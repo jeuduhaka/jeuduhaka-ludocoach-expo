@@ -1,0 +1,31 @@
+{
+  "expo": {
+    "name": "Ludocoach Jeu du Haka",
+    "description": "Transforme ton énergie négative en positive ! Y'HAKA jouer !",
+    "slug": "jeuduhaka-ludocoach",
+    "privacy": "unlisted",
+    "sdkVersion": "20.0.0",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "primaryColor": "#cccccc",
+    "icon": "./assets/icons/logo-192px.png",
+    "notification": {
+      "icon": "./assets/icons/notification-icon.png",
+      "color": "#000000"
+    },
+    "loading": {
+      "icon": "./assets/icons/logo-192px.png",
+      "hideExponentText": true,
+      "backgroundColor": "#ffffff",
+      "splash": {
+
+      }
+    },
+    "packagerOpts": {
+      "assetExts": ["ttf"]
+    },
+    "ios": {
+      "supportsTablet": true
+    }
+  }
+}
