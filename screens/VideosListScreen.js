@@ -5,8 +5,7 @@ import {
   ScrollView,
   Text,
   View,
-  TouchableOpacity,
-  ReactNativeComponentTree
+  TouchableOpacity
 } from 'react-native';
 
 import styles from './screens.style';
@@ -15,10 +14,17 @@ const TouchableListRow = props => {
   const rowPressed = () => {
     props.onPress(props.id);
   };
+
+  const propRowStyle = props.style && props.style.row ? props.style.row : {};
+  const propRowTextStyle =
+    props.style && props.style.rowText ? props.style.rowText : {};
+
   return (
     <TouchableOpacity style={styles.listRowButton} onPress={rowPressed}>
-      <View style={styles.listRowContainer}>
-        <Text style={styles.listRowText}>{props.data.name}</Text>
+      <View style={[styles.listRowContainer, propRowStyle]}>
+        <Text style={[styles.listRowText, propRowTextStyle]}>
+          {props.data.name}
+        </Text>
       </View>
     </TouchableOpacity>
   );
@@ -58,6 +64,7 @@ export default class VideosListScreen extends React.Component {
         id={rowKey}
         onPress={this._goToVideo}
         data={rowData}
+        style={this.props.style}
       />
     );
   };

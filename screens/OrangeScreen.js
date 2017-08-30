@@ -1,10 +1,24 @@
 import React from 'react';
+import { Text } from 'react-native';
 import VideosListScreen from './VideosListScreen';
 import rowsDataOrange from '../stores/rowsDataOrange';
 
 export default class OrangeScreen extends React.Component {
   static navigationOptions = {
-    tabBarLabel: 'FAIRE'
+    // tabBarLabel: 'FAIRE'
+    tabBarLabel: props => {
+      return (
+        <Text
+          style={{
+            textAlign: 'center',
+            fontSize: 16,
+            color: props.focused ? '#F7941C' : '#000'
+          }}
+        >
+          FAIRE
+        </Text>
+      );
+    }
     // Note: By default the icon is only shown on iOS. Search the showIcon option below.
     // tabBarIcon: ({ tintColor }) => (
     //   <Image
@@ -19,6 +33,14 @@ export default class OrangeScreen extends React.Component {
       <VideosListScreen
         navigation={this.props.navigation}
         rows={rowsDataOrange}
+        style={{
+          row: {
+            backgroundColor: 'rgba(247, 148, 28, 0.1)'
+          },
+          rowText: {
+            color: '#F7941C'
+          }
+        }}
       />
     );
   }

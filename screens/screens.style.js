@@ -13,14 +13,23 @@ export default StyleSheet.create({
     flexDirection: 'column',
     justifyContent: 'center',
     paddingHorizontal: 16,
-    borderBottomColor: '#ddd',
+    backgroundColor: 'rgba(184, 40, 46, 0.1)',
+    borderBottomColor: '#999',
     borderBottomWidth: StyleSheet.hairlineWidth
-    // backgroundColor: 'red'
   },
   listRowButton: {
     flex: 1
   },
   listRowText: {
     fontSize: 16
+  },
+  textRed: {
+    color: '#B8282E'
+  },
+  textOrange: {
+    color: '#F7941C'
+  },
+  textGreen: {
+    color: '#39B549'
   }
 });

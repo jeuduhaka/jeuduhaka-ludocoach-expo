@@ -20,7 +20,7 @@ const INITIAL_STATE = AppNavigator.router.getStateForAction(
 
 function findRouteKey({ routes, routeName }) {
   let key = null;
-  const routeObj = routes.find((r) => r.routeName === routeName);
+  const routeObj = routes.find(r => r.routeName === routeName);
 
   if (routeObj) {
     key = { key: routeObj.key };
@@ -31,7 +31,7 @@ function findRouteKey({ routes, routeName }) {
 
 export default (state = INITIAL_STATE, action) => {
   let nextState;
-  console.log(`nav action: ${action.type}`);
+  // console.log(`nav action: ${action.type}`);
 
   switch (action.type) {
     case ActionTypes.GAME_MODE_CHOSEN:
@@ -61,10 +61,12 @@ export default (state = INITIAL_STATE, action) => {
         //     NavigationActions.navigate({ routeName: 'Deck' }),
         //   ]
         // }),
-        NavigationActions.back(findRouteKey({
-          routes: state.routes,
-          routeName: 'ChooseCardGrid',
-        })),
+        NavigationActions.back(
+          findRouteKey({
+            routes: state.routes,
+            routeName: 'ChooseCardGrid'
+          })
+        ),
         state
       );
       break;
@@ -102,19 +104,23 @@ export default (state = INITIAL_STATE, action) => {
     case ActionTypes.VIDEO_ENDED:
       nextState = AppNavigator.router.getStateForAction(
         // NavigationActions.navigate({ routeName: 'Deck' }),
-        NavigationActions.back(findRouteKey({
-          routes: state.routes,
-          routeName: 'Video',
-        })),
+        NavigationActions.back(
+          findRouteKey({
+            routes: state.routes,
+            routeName: 'Video'
+          })
+        ),
         state
       );
       break;
     case ActionTypes.ALL_VIDEOS_ENDED:
       nextState = AppNavigator.router.getStateForAction(
-        NavigationActions.back(findRouteKey({
-          routes: state.routes,
-          routeName: 'Deck',
-        })),
+        NavigationActions.back(
+          findRouteKey({
+            routes: state.routes,
+            routeName: 'Deck'
+          })
+        ),
         state
       );
       break;

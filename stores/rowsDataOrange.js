@@ -4,7 +4,7 @@ export default {
     videoSource: require('../assets/videos/action.mp4')
   },
   courage: {
-    name: 'Colère',
+    name: 'Courage',
     videoSource: require('../assets/videos/courage.mp4')
   },
   mouvement: {

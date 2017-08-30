@@ -30,7 +30,12 @@ const mainScreenNavigatorConfig = {
   initialRouteName: 'Red',
   headerMode: 'none',
   tabBarOptions: {
-    activeTintColor: '#e91e63'
+    activeTintColor: '#111',
+    activeBackgroundColor: '#eee',
+    labelStyle: {
+      fontSize: 16,
+      alignSelf: 'center'
+    }
   },
   transitionConfig: () => ({
     transitionSpec: {
@@ -45,26 +50,21 @@ const MainScreenNavigator = TabNavigator(
   routeConfigs,
   mainScreenNavigatorConfig
 );
-MainScreenNavigator.navigationOptions = {
-  title: 'Ludocoach'
-};
 
 export const AppNavigator = StackNavigator({
   Home: {
     screen: MainScreenNavigator,
     navigationOptions: ({ navigation }) => ({
-      // headerLeft: <Text nav={navigation}>Menu</Text>
+      title: 'Ludocoach',
+      headerBackTitle: null
     })
   },
   Video: {
     path: 'video/:card',
     screen: VideoScreen,
-    navigationOptions: ({ navigation }) => {
-      console.log(navigation.state.params);
-      return {
-        headerTitle: navigation.state.params.videoName
-      };
-    }
+    navigationOptions: ({ navigation }) => ({
+      headerTitle: navigation.state.params.videoName
+    })
   }
 });
 
