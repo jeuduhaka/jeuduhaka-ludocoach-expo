@@ -9,7 +9,6 @@ import {
 } from 'react-native';
 import { Video } from 'expo';
 // import styles from './screens.style';
-import { slugify } from '../utilities/helpers';
 
 const styles = {
   videoContainer: {
@@ -34,7 +33,7 @@ export default class VideoScreen extends React.Component {
       <View style={styles.videoContainer}>
         <Video
           ref={this._mountVideo}
-          source={require('../assets/videos/peur-render-AQ.mp4')}
+          source={this.props.navigation.state.params.videoSource}
           style={[
             styles.backgroundVideo
             // styles.video,

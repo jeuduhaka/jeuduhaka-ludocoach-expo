@@ -9,15 +9,15 @@ export default {
   },
   degout: {
     name: 'Dégoût',
-    videoSource: require('../assets/videos/peur-render-AQ.mp4')
+    videoSource: require('../assets/videos/degout.mp4')
   },
   doute: {
     name: 'Doute',
-    videoSource: require('../assets/videos/peur-render-AQ.mp4')
+    videoSource: require('../assets/videos/doute.mp4')
   },
   menace: {
     name: 'Menace',
-    videoSource: require('../assets/videos/peur-render-AQ.mp4')
+    videoSource: require('../assets/videos/menace.mp4')
   },
   peur: {
     name: 'Peur',
@@ -25,7 +25,7 @@ export default {
   },
   tristesse: {
     name: 'Tristesse',
-    videoSource: require('../assets/videos/peur-render-AQ.mp4')
+    videoSource: require('../assets/videos/tristesse.mp4')
   },
   violence: {
     name: 'Violence',

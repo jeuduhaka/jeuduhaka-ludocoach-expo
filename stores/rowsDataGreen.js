@@ -1,39 +1,47 @@
 export default {
-  abandon: {
-    name: 'Abandon',
-    videoSource: require('../assets/videos/abandon-render-AQ.mp4')
+  amour: {
+    name: 'Amour',
+    videoSource: require('../assets/videos/paix-render-AQ.mp4')
+    // videoSource: require('../assets/videos/amour.mp4')
   },
-  colere: {
-    name: 'Colère',
-    videoSource: require('../assets/videos/colere-render-AQ.mp4')
+  calme: {
+    name: 'Calme',
+    videoSource: require('../assets/videos/paix-render-AQ.mp4')
+    // videoSource: require('../assets/videos/calme.mp4')
   },
-  degout: {
+  confiance: {
     name: 'Dégoût',
-    videoSource: require('../assets/videos/peur-render-AQ.mp4')
+    videoSource: require('../assets/videos/paix-render-AQ.mp4')
+    // videoSource: require('../assets/videos/confiance.mp4')
   },
-  doute: {
+  energie: {
     name: 'Doute',
-    videoSource: require('../assets/videos/peur-render-AQ.mp4')
+    videoSource: require('../assets/videos/paix-render-AQ.mp4')
+    // videoSource: require('../assets/videos/energie.mp4')
   },
-  menace: {
-    name: 'Menace',
-    videoSource: require('../assets/videos/peur-render-AQ.mp4')
+  estimedesoi: {
+    name: 'Estime de soi',
+    videoSource: require('../assets/videos/paix-render-AQ.mp4')
+    // videoSource: require('../assets/videos/estime-de-soi.mp4')
   },
-  peur: {
-    name: 'Peur',
-    videoSource: require('../assets/videos/peur-render-AQ.mp4')
+  force: {
+    name: 'Force',
+    videoSource: require('../assets/videos/paix-render-AQ.mp4')
+    // videoSource: require('../assets/videos/force.mp4')
   },
-  tristesse: {
-    name: 'Tristesse',
-    videoSource: require('../assets/videos/peur-render-AQ.mp4')
+  joie: {
+    name: 'Joie',
+    videoSource: require('../assets/videos/paix-render-AQ.mp4')
+    // videoSource: require('../assets/videos/joie.mp4')
   },
-  violence: {
-    name: 'Violence',
-    videoSource: require('../assets/videos/violence-render-AQ.mp4')
+  paix: {
+    name: 'Paix',
+    videoSource: require('../assets/videos/paix-render-AQ.mp4')
   },
   joker: {
-    name: 'Joker rouge',
-    videoSource: require('../assets/videos/joker-rouge-render-AQ.mp4')
+    name: 'Joker vert',
+    videoSource: require('../assets/videos/paix-render-AQ.mp4')
+    // videoSource: require('../assets/videos/joker-vert.mp4')
   }
   // 'Abandon',
   // 'Colère',

@@ -1,10 +1,10 @@
 import React from 'react';
-import { Image, Button } from 'react-native';
-import styles from './screens.style';
+import VideosListScreen from './VideosListScreen';
+import rowsDataGreen from '../stores/rowsDataGreen';
 
-export default class GreenScreen extends React.Component {
+export default class OrangeScreen extends React.Component {
   static navigationOptions = {
-    tabBarLabel: 'ÊTRE',
+    tabBarLabel: 'ÊTRE'
     // Note: By default the icon is only shown on iOS. Search the showIcon option below.
     // tabBarIcon: ({ tintColor }) => (
     //   <Image
@@ -16,9 +16,9 @@ export default class GreenScreen extends React.Component {
 
   render() {
     return (
-      <Button
-        onPress={() => this.props.navigation.navigate('Red')}
-        title="Go to Red screen"
+      <VideosListScreen
+        navigation={this.props.navigation}
+        rows={rowsDataGreen}
       />
     );
   }

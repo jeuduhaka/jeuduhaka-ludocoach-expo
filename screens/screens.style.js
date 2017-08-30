@@ -21,6 +21,6 @@ export default StyleSheet.create({
     flex: 1
   },
   listRowText: {
-    fontSize: 20
+    fontSize: 16
   }
 });

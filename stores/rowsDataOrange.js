@@ -1,39 +1,39 @@
 export default {
-  abandon: {
-    name: 'Abandon',
-    videoSource: require('../assets/videos/abandon-render-AQ.mp4')
+  action: {
+    name: 'Action',
+    videoSource: require('../assets/videos/action.mp4')
   },
-  colere: {
+  courage: {
     name: 'Colère',
-    videoSource: require('../assets/videos/colere-render-AQ.mp4')
+    videoSource: require('../assets/videos/courage.mp4')
   },
-  degout: {
-    name: 'Dégoût',
-    videoSource: require('../assets/videos/peur-render-AQ.mp4')
+  mouvement: {
+    name: 'Mouvement',
+    videoSource: require('../assets/videos/mouvement.mp4')
   },
-  doute: {
-    name: 'Doute',
-    videoSource: require('../assets/videos/peur-render-AQ.mp4')
+  patience: {
+    name: 'Patience',
+    videoSource: require('../assets/videos/patience.mp4')
   },
-  menace: {
-    name: 'Menace',
-    videoSource: require('../assets/videos/peur-render-AQ.mp4')
+  preparation: {
+    name: 'Préparation',
+    videoSource: require('../assets/videos/preparation.mp4')
   },
-  peur: {
-    name: 'Peur',
-    videoSource: require('../assets/videos/peur-render-AQ.mp4')
+  prevention: {
+    name: 'Prévention',
+    videoSource: require('../assets/videos/prevention.mp4')
   },
-  tristesse: {
-    name: 'Tristesse',
-    videoSource: require('../assets/videos/peur-render-AQ.mp4')
+  protection: {
+    name: 'Protection',
+    videoSource: require('../assets/videos/protection-render-AQ.mp4')
   },
-  violence: {
-    name: 'Violence',
-    videoSource: require('../assets/videos/violence-render-AQ.mp4')
+  unite: {
+    name: 'Unité',
+    videoSource: require('../assets/videos/unite.mp4')
   },
   joker: {
-    name: 'Joker rouge',
-    videoSource: require('../assets/videos/joker-rouge-render-AQ.mp4')
+    name: 'Joker orange',
+    videoSource: require('../assets/videos/joker-orange.mp4')
   }
   // 'Abandon',
   // 'Colère',
