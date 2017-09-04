@@ -1,11 +1,18 @@
 import { StyleSheet } from 'react-native';
 
+export const colors = {
+  black: '#1a1917',
+  gray: '#888888',
+  darkred: '#550000',
+  background2: '#FF0000'
+};
+
 export default StyleSheet.create({
   icon: {
     width: 26,
     height: 26
   },
-  listContainer: {
+  container: {
     flex: 1
   },
   listRowContainer: {

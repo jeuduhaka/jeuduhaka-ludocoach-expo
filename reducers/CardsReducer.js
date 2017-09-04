@@ -1,6 +1,6 @@
 import * as ActionTypes from '../actions/types';
 import cardImageSources from './CardImageSources';
-import cardVideoSources from './CardVideoSourcesLocal';
+import cardVideoSources from './CardVideoSourcesRemote';
 import gesturesTexts from './GesturesTexts';
 
 const INITIAL_STATE = {
@@ -14,8 +14,8 @@ const INITIAL_STATE = {
   selected: {
     red: '',
     orange: '',
-    green: '',
-  },
+    green: ''
+  }
 };
 
 export default (state = INITIAL_STATE, action) => {
@@ -25,41 +25,41 @@ export default (state = INITIAL_STATE, action) => {
       return {
         ...state,
         currentDeck: action.currentDeck,
-        allVideosEnded: false,
+        allVideosEnded: false
       };
     case ActionTypes.CARD_PRESSED:
       return {
         ...state,
         selected: {
           ...state.selected,
-          [state.currentDeck]: action.cardName,
+          [state.currentDeck]: action.cardName
         },
-        cardConfirmed: false,
+        cardConfirmed: false
       };
     case ActionTypes.CARD_CANCELLED:
-    return {
-      ...state,
-      selected: {
-        ...state.selected,
-        [state.currentDeck]: ''
-      }
-    };
+      return {
+        ...state,
+        selected: {
+          ...state.selected,
+          [state.currentDeck]: ''
+        }
+      };
     case ActionTypes.CARD_CONFIRMED:
       return {
         ...state,
         currentDeck: action.nextDeck,
         allCardsChosen: state.currentDeck === 'green',
-        cardConfirmed: true,
+        cardConfirmed: true
       };
     case ActionTypes.VIDEO_ENDED:
       return {
         ...state,
-        currentDeck: action.nextDeck,
+        currentDeck: action.nextDeck
       };
     case ActionTypes.ALL_VIDEOS_ENDED:
       return {
         ...state,
-        allVideosEnded: true,
+        allVideosEnded: true
       };
     default:
       return state;

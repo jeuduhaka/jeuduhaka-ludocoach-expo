@@ -1,6 +1,6 @@
 import React from 'react';
 import { Text } from 'react-native';
-import VideosListScreen from './VideosListScreen';
+import VideoCardsScreen from './VideoCardsScreen';
 import rowsDataGreen from '../stores/rowsDataGreen';
 
 export default class OrangeScreen extends React.Component {
@@ -30,7 +30,7 @@ export default class OrangeScreen extends React.Component {
 
   render() {
     return (
-      <VideosListScreen
+      <VideoCardsScreen
         navigation={this.props.navigation}
         rows={rowsDataGreen}
         style={{

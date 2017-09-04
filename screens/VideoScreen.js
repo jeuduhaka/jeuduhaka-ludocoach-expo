@@ -5,9 +5,13 @@ import {
   ScrollView,
   Text,
   View,
-  TouchableOpacity
+  TouchableOpacity,
+  Dimensions
 } from 'react-native';
 import { Video } from 'expo';
+import { Header } from 'react-navigation';
+//from abi-expo-videoplayer with custom Height
+import VideoPlayer from '../components/VideoPlayer';
 // import styles from './screens.style';
 
 const styles = {
@@ -23,37 +27,52 @@ const styles = {
   }
 };
 
+const videoWidth = Dimensions.get('window').width;
+const videoHeight = Dimensions.get('window').height - Header.HEIGHT;
+
 export default class VideoScreen extends React.Component {
   static navigationOptions = ({ navigation }) => ({
     title: navigation.state.params.videoName
   });
 
+  constructor(props) {
+    super(props);
+
+    // const data = this.props.navigation.state.params.data;
+
+    this.state = {
+      // data,
+      // links,
+      isPortrait: true
+      // playback: this.props.playback,
+      // uri:
+      //   this.props.offline.state === STATES.DOWNLOADING
+      //     ? this.props.offline.uri.uri
+      //     : data.videos['240p'],
+    };
+  }
+
   render() {
     return (
-      <View style={styles.videoContainer}>
-        <Video
-          ref={this._mountVideo}
-          source={this.props.navigation.state.params.videoSource}
-          style={[
-            styles.backgroundVideo
-            // styles.video,
-            // {
-            //   opacity: this.state.showVideo ? 1.0 : 0.0,
-            //   width: this.state.videoWidth,
-            //   height: this.state.videoHeight
-            // }
-          ]}
-          resizeMode={Video.RESIZE_MODE_CONTAIN}
-          // onPlaybackStatusUpdate={this._onPlaybackStatusUpdate}
-          // onLoadStart={this._onLoadStart}
-          // onLoad={this._onLoad}
-          // onError={this._onError}
-          // onFullscreenUpdate={this._onFullscreenUpdate}
-          // onReadyForDisplay={this._onReadyForDisplay}
-          useNativeControls
-          // shouldPlay
-        />
-      </View>
+      // <View style={styles.videoContainer}>
+      <VideoPlayer
+        videoProps={{
+          // style: styles.backgroundVideo,
+          shouldPlay: true, // config.autoplayVideo,
+          // isMuted:  config.muteVideo,
+          resizeMode: Video.RESIZE_MODE_COVER,
+          source: {
+            uri: this.props.navigation.state.params.videoSource
+          },
+          // positionMillis: this.state.playback,
+          style: {
+            width: videoWidth,
+            height: videoHeight
+          }
+        }}
+        isPortrait={this.state.isPortrait}
+      />
+      // </View>
     );
   }
 }

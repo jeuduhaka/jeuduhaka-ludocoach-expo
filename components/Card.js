@@ -4,7 +4,8 @@ import {
   TouchableOpacity,
   Animated,
   Easing,
-  Text
+  Text,
+  View
 } from 'react-native';
 // import resolveAssetSource from 'react-native/Libraries/Image/resolveAssetSource';
 //
@@ -31,27 +32,29 @@ function createImage({ name, source, imageStyle }) {
 
   return (
     <Animated.Image
-      // style={styles.image}
-      style={{ ...styles.containerStyle, ...imageStyle }}
+      style={{ ...styles.baseImageStyle, ...imageStyle }}
       source={source}
-      onError={(error) => {
+      onError={error => {
         console.log(error);
         console.log('onError');
       }}
       // onLoad={() => console.log('onLoad')}
     >
-      {/* <Text style={{ color: 'white', width: 100, height: 100, backgroundColor: 'red'}}>{name}</Text> */}
+      <View style={styles.textContainer}>
+        <Text style={styles.title}>{name}</Text>
+      </View>
     </Animated.Image>
   );
 }
 
-const Card = ({
-  imageSource,
-  onPress,
-  ...otherProps,
-}) => {
+const Card = ({ imageSource, onPress, ...otherProps }) => {
+  const rowPressed = () => {
+    props.onPress(props.id);
+  };
+
   const image = createImage({
     source: imageSource,
+    name: otherProps.name,
     imageStyle: otherProps.style ? otherProps.style.imageStyle : null
   });
 
@@ -60,10 +63,7 @@ const Card = ({
   }
 
   return (
-    <TouchableOpacity
-      style={styles.buttonContainer}
-      onPress={onPress}
-    >
+    <TouchableOpacity style={styles.buttonContainer} onPress={onPress}>
       {image}
     </TouchableOpacity>
   );
@@ -73,34 +73,36 @@ const styles = {
   buttonContainer: {
     flex: 1,
     //backgroundColor needed for Android -> black by default
-    backgroundColor: 'transparent',
+    backgroundColor: 'transparent'
+    // padding: 10
   },
   //disable parent View justifyContent and alignItems properties
   // to get fullscreen image
-  image: {
-    // flex: 1,
-    // width: undefined,
-    // height: undefined,
-  },
-  containerStyle: {
-    // borderWidth: 1,
-    // shadowColor: '#000',
-    // shadowOffset: { width: 0, height: 2 },
-    // shadowOpacity: 0.1,
-    // shadowRadius: 2,
-    // marginLeft: 5,
-    // marginRight: 5,
-    // marginTop: 10,
-    // height: 200,
-    // width: 100,
-    // width: 200,
-    // height: 200,
-
+  baseImageStyle: {
     resizeMode: 'contain',
     flex: 1,
+    // alignSelf: 'stretch',
+    // flexGrow: 1,
     width: undefined,
-    // height: undefined,
+    height: undefined
   },
+  textContainer: {
+    flex: 1,
+    flexDirection: 'column',
+    justifyContent: 'flex-end',
+    alignItems: 'center',
+    bottom: '10%',
+    // backgroundColor: 'rgba(255,0,0,0.3)',
+    backgroundColor: 'transparent'
+  },
+  title: {
+    // color: colors.black,
+    color: '#ffffff',
+    fontFamily: 'charcuterie-sans-inline',
+    fontSize: 20,
+    fontWeight: 'bold',
+    letterSpacing: 0.5
+  }
 };
 
 export default Card;

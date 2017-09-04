@@ -1,6 +1,6 @@
 import React from 'react';
-import { Text } from 'react-native';
-import VideosListScreen from './VideosListScreen';
+import { Text, View } from 'react-native';
+import VideoCardsScreen from './VideoCardsScreen';
 import rowsDataRed from '../stores/rowsDataRed';
 
 export default class RedScreen extends React.Component {
@@ -30,15 +30,12 @@ export default class RedScreen extends React.Component {
 
   render() {
     return (
-      <VideosListScreen
+      <VideoCardsScreen
         navigation={this.props.navigation}
         rows={rowsDataRed}
         style={{
-          row: {
-            backgroundColor: 'rgba(184, 40, 46, 0.1)'
-          },
-          rowText: {
-            color: '#B8282E'
+          screenBackground: {
+            backgroundColor: '#550000'
           }
         }}
       />

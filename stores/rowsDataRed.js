@@ -1,39 +1,47 @@
 export default {
   abandon: {
     name: 'Abandon',
-    videoSource: require('../assets/videos/abandon-render-AQ.mp4')
+    videoSource: 'https://s3.eu-west-2.amazonaws.com/frqs-jdh/videos/peur.mp4'
+    // videoSource: require('../assets/videos/abandon-render-AQ.mp4')
   },
   colere: {
     name: 'Colère',
-    videoSource: require('../assets/videos/colere-render-AQ.mp4')
+    videoSource: 'https://s3.eu-west-2.amazonaws.com/frqs-jdh/videos/peur.mp4'
+    // videoSource: require('../assets/videos/colere-render-AQ.mp4')
   },
   degout: {
     name: 'Dégoût',
-    videoSource: require('../assets/videos/degout.mp4')
+    videoSource: 'https://s3.eu-west-2.amazonaws.com/frqs-jdh/videos/peur.mp4'
+    // videoSource: require('../assets/videos/degout.mp4')
   },
   doute: {
     name: 'Doute',
-    videoSource: require('../assets/videos/doute.mp4')
+    videoSource: 'https://s3.eu-west-2.amazonaws.com/frqs-jdh/videos/peur.mp4'
+    // videoSource: require('../assets/videos/doute.mp4')
   },
   menace: {
     name: 'Menace',
-    videoSource: require('../assets/videos/menace.mp4')
+    videoSource: 'https://s3.eu-west-2.amazonaws.com/frqs-jdh/videos/peur.mp4'
+    // videoSource: require('../assets/videos/menace.mp4')
   },
   peur: {
     name: 'Peur',
-    videoSource: require('../assets/videos/peur-render-AQ.mp4')
+    videoSource: 'https://s3.eu-west-2.amazonaws.com/frqs-jdh/videos/peur.mp4'
   },
   tristesse: {
     name: 'Tristesse',
-    videoSource: require('../assets/videos/tristesse.mp4')
+    videoSource: 'https://s3.eu-west-2.amazonaws.com/frqs-jdh/videos/peur.mp4'
+    // videoSource: require('../assets/videos/tristesse.mp4')
   },
   violence: {
     name: 'Violence',
-    videoSource: require('../assets/videos/violence-render-AQ.mp4')
+    videoSource: 'https://s3.eu-west-2.amazonaws.com/frqs-jdh/videos/peur.mp4'
+    // videoSource: require('../assets/videos/violence-render-AQ.mp4')
   },
   joker: {
     name: 'Joker rouge',
-    videoSource: require('../assets/videos/joker-rouge-render-AQ.mp4')
+    videoSource: 'https://s3.eu-west-2.amazonaws.com/frqs-jdh/videos/peur.mp4'
+    // videoSource: require('../assets/videos/joker-rouge-render-AQ.mp4')
   }
   // 'Abandon',
   // 'Colère',

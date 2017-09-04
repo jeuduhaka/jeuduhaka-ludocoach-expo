@@ -1,13 +1,13 @@
 import { combineReducers } from 'redux';
 import NavReducer from './NavReducer';
 // import GameModeReducer from './GameModeReducer';
-// import CardsReducer from './CardsReducer';
+import CardsReducer from './CardsReducer';
 import { ALL_VIDEOS_ENDED } from '../actions/types';
 
 const appReducer = combineReducers({
   nav: NavReducer,
   // gameMode: GameModeReducer,
-  // cards: CardsReducer,
+  cards: CardsReducer
 });
 
 const rootReducer = (state, action) => {

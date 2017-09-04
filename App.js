@@ -1,9 +1,8 @@
-
 import React from 'react';
 import {
   View,
-//   Image,
-  StyleSheet,
+  //   Image,
+  StyleSheet
 } from 'react-native';
 import { Provider } from 'react-redux';
 
@@ -16,7 +15,7 @@ const store = configureStore();
 
 class App extends React.Component {
   state = {
-    appIsReady: false,
+    appIsReady: false
   };
 
   componentWillMount() {
@@ -24,14 +23,15 @@ class App extends React.Component {
       // this._getLanguage();
       this._loadFontsAsync();
     } finally {
-      this.setState({ appIsReady: true });
+      // this.setState({ appIsReady: true });
     }
   }
 
   async _loadFontsAsync() {
     await Font.loadAsync({
-      'charcuterie-sans-inline': require('./assets/fonts/CharcuterieSansInline-Regular.ttf'),
+      'charcuterie-sans-inline': require('./assets/fonts/CharcuterieSansInline-Regular.ttf')
     });
+    this.setState({ appIsReady: true });
   }
 
   async _getLanguage() {
@@ -61,9 +61,9 @@ class App extends React.Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#fff",
-    alignItems: "center",
-    justifyContent: "center"
+    backgroundColor: '#fff',
+    alignItems: 'center',
+    justifyContent: 'center'
   }
 });
 
