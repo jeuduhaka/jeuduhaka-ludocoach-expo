@@ -49,7 +49,8 @@ class VideoCardsScreen extends React.Component {
         key={cardName}
         name={cardName}
         imageSource={imageSource}
-        onPress={() => cardPressed(cardName)}
+        // onPress={cardPressed}
+        onPress={this._goToVideo}
       />
     ));
 
@@ -84,7 +85,7 @@ class VideoCardsScreen extends React.Component {
 }
 
 const mapStateToProps = state => ({
-  currentDeck: state.cards.currentDeck,
+  // currentDeck: state.cards.currentDeck,
   cardConfirmed: state.cards.cardConfirmed,
   allCardsChosen: state.cards.allCardsChosen,
   cardImageSources: state.cards.imageSources

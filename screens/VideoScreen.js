@@ -30,6 +30,8 @@ const styles = {
 const videoWidth = Dimensions.get('window').width;
 const videoHeight = Dimensions.get('window').height - Header.HEIGHT;
 
+const BASE_VIDEO_URI = 'https://s3.eu-west-2.amazonaws.com/frqs-jdh/videos/';
+
 export default class VideoScreen extends React.Component {
   static navigationOptions = ({ navigation }) => ({
     title: navigation.state.params.videoName
@@ -39,10 +41,12 @@ export default class VideoScreen extends React.Component {
     super(props);
 
     // const data = this.props.navigation.state.params.data;
+    const videoId = this.props.navigation.state.params.videoId;
 
     this.state = {
       // data,
       // links,
+      videoUri: `${BASE_VIDEO_URI}${videoId}-render.mp4`,
       isPortrait: true
       // playback: this.props.playback,
       // uri:
@@ -62,7 +66,7 @@ export default class VideoScreen extends React.Component {
           // isMuted:  config.muteVideo,
           resizeMode: Video.RESIZE_MODE_COVER,
           source: {
-            uri: this.props.navigation.state.params.videoSource
+            uri: this.state.videoUri
           },
           // positionMillis: this.state.playback,
           style: {

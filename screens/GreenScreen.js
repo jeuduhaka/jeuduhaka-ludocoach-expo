@@ -33,6 +33,7 @@ export default class OrangeScreen extends React.Component {
       <VideoCardsScreen
         navigation={this.props.navigation}
         rows={rowsDataGreen}
+        currentDeck={'green'}
         style={{
           row: {
             backgroundColor: 'rgba(57, 181, 73, 0.1)'

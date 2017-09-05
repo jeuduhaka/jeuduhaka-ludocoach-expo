@@ -11,8 +11,8 @@ const styles = {
   cardsContainerStyle: {
     flex: 1,
     flexDirection: 'row',
-    alignItems: 'center'
-    // justifyContent: 'space-around',
+    alignItems: 'center',
+    justifyContent: 'space-around'
   }
 };
 

@@ -31,30 +31,26 @@ function createImage({ name, source, imageStyle }) {
   // console.log(resolveAssetSource(source));
 
   return (
-    <Animated.Image
+    <Image
       style={{ ...styles.baseImageStyle, ...imageStyle }}
       source={source}
-      onError={error => {
-        console.log(error);
-        console.log('onError');
-      }}
       // onLoad={() => console.log('onLoad')}
     >
       <View style={styles.textContainer}>
         <Text style={styles.title}>{name}</Text>
       </View>
-    </Animated.Image>
+    </Image>
   );
 }
 
-const Card = ({ imageSource, onPress, ...otherProps }) => {
-  const rowPressed = () => {
-    props.onPress(props.id);
+const Card = ({ name, imageSource, onPress, ...otherProps }) => {
+  const buttonOnPress = () => {
+    onPress(name);
   };
 
   const image = createImage({
     source: imageSource,
-    name: otherProps.name,
+    name,
     imageStyle: otherProps.style ? otherProps.style.imageStyle : null
   });
 
@@ -63,7 +59,7 @@ const Card = ({ imageSource, onPress, ...otherProps }) => {
   }
 
   return (
-    <TouchableOpacity style={styles.buttonContainer} onPress={onPress}>
+    <TouchableOpacity style={styles.buttonContainer} onPress={buttonOnPress}>
       {image}
     </TouchableOpacity>
   );
@@ -83,17 +79,23 @@ const styles = {
     flex: 1,
     // alignSelf: 'stretch',
     // flexGrow: 1,
+    justifyContent: 'space-between',
     width: undefined,
     height: undefined
   },
   textContainer: {
     flex: 1,
     flexDirection: 'column',
+    // flexWrap: 'nowrap',
+    flexGrow: 1,
+    flexShrink: 1,
+    overflow: 'scroll',
     justifyContent: 'flex-end',
     alignItems: 'center',
-    bottom: '10%',
     // backgroundColor: 'rgba(255,0,0,0.3)',
     backgroundColor: 'transparent'
+    // borderWidth: 1,
+    // borderColor: 'yellow'
   },
   title: {
     // color: colors.black,
@@ -101,7 +103,10 @@ const styles = {
     fontFamily: 'charcuterie-sans-inline',
     fontSize: 20,
     fontWeight: 'bold',
-    letterSpacing: 0.5
+    letterSpacing: 0.5,
+    bottom: '10%'
+    // borderWidth: 1,
+    // borderColor: 'blue'
   }
 };
 

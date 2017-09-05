@@ -33,6 +33,7 @@ export default class RedScreen extends React.Component {
       <VideoCardsScreen
         navigation={this.props.navigation}
         rows={rowsDataRed}
+        currentDeck={'red'}
         style={{
           screenBackground: {
             backgroundColor: '#550000'
