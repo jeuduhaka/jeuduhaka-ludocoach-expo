@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Text } from 'react-native';
+import { Text, TouchableHighlight } from 'react-native';
 import { connect } from 'react-redux';
 import {
   addNavigationHelpers,
@@ -8,6 +8,8 @@ import {
   StackNavigator
 } from 'react-navigation';
 
+import FirstScreen from '../screens/FirstScreen';
+import SecondScreen from '../screens/SecondScreen';
 import RedScreen from '../screens/RedScreen';
 import OrangeScreen from '../screens/OrangeScreen';
 import GreenScreen from '../screens/GreenScreen';
@@ -52,11 +54,13 @@ const MainScreenNavigator = TabNavigator(
 );
 
 export const AppNavigator = StackNavigator({
-  Home: {
+  First: { screen: FirstScreen },
+  Second: { screen: SecondScreen },
+  Main: {
     screen: MainScreenNavigator,
     navigationOptions: ({ navigation }) => ({
-      title: 'Ludocoach',
-      headerBackTitle: null
+      title: 'Ludocoach'
+      // headerBackTitle: null
     })
   },
   Video: {

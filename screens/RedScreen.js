@@ -15,7 +15,7 @@ export default class RedScreen extends React.Component {
             color: props.focused ? '#B8282E' : '#000'
           }}
         >
-          AVOIR
+          1.AVOIR
         </Text>
       );
     }
@@ -36,7 +36,7 @@ export default class RedScreen extends React.Component {
         currentDeck={'red'}
         style={{
           screenBackground: {
-            backgroundColor: '#550000'
+            backgroundColor: '#6C0000'
           }
         }}
       />

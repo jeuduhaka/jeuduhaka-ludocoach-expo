@@ -27,7 +27,7 @@ export default {
       calme: require('../assets/images/green/fr/calme/carte-vert-calme-sans-texte.png'),
       confiance: require('../assets/images/green/fr/confiance/carte-vert-confiance-sans-texte.png'),
       energie: require('../assets/images/green/fr/energie/carte-vert-energie-sans-texte.png'),
-      estimedesoi: require('../assets/images/green/fr/estime-de-soi/carte-vert-estime-de-soi-sans-texte.png'),
+      'estime-de-soi': require('../assets/images/green/fr/estime-de-soi/carte-vert-estime-de-soi-sans-texte.png'),
       force: require('../assets/images/green/fr/force/carte-vert-force-sans-texte.png'),
       joie: require('../assets/images/green/fr/joie/carte-vert-joie-sans-texte.png'),
       paix: require('../assets/images/green/fr/paix/carte-vert-paix-sans-texte.png'),

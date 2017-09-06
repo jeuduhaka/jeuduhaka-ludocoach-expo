@@ -29,7 +29,8 @@ class App extends React.Component {
 
   async _loadFontsAsync() {
     await Font.loadAsync({
-      'charcuterie-sans-inline': require('./assets/fonts/CharcuterieSansInline-Regular.ttf')
+      'charcuterie-sans-inline': require('./assets/fonts/CharcuterieSansInline-Regular.ttf'),
+      ionicons: require('./assets/fonts/Ionicons.ttf')
     });
     this.setState({ appIsReady: true });
   }

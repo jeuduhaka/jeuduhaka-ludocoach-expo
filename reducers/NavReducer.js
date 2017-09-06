@@ -31,7 +31,7 @@ function findRouteKey({ routes, routeName }) {
 
 export default (state = INITIAL_STATE, action) => {
   let nextState;
-  console.log(`nav action: ${action.type}`);
+  // console.log(`nav action: ${action.type}`);
 
   switch (action.type) {
     case ActionTypes.GAME_MODE_CHOSEN:

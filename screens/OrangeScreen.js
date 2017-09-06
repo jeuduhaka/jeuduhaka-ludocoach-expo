@@ -15,7 +15,7 @@ export default class OrangeScreen extends React.Component {
             color: props.focused ? '#F7941C' : '#000'
           }}
         >
-          FAIRE
+          2.FAIRE
         </Text>
       );
     }
@@ -35,11 +35,8 @@ export default class OrangeScreen extends React.Component {
         rows={rowsDataOrange}
         currentDeck={'orange'}
         style={{
-          row: {
-            backgroundColor: 'rgba(247, 148, 28, 0.1)'
-          },
-          rowText: {
-            color: '#F7941C'
+          screenBackground: {
+            backgroundColor: '#AB4800'
           }
         }}
       />
