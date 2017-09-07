@@ -7,6 +7,16 @@ import _get from 'lodash.get';
 import { cardConfirmed, cardCancelled } from '../actions';
 import { Button } from '../components/common';
 
+function capitalizeFirstLetter(string) {
+  return string.charAt(0).toUpperCase() + string.slice(1);
+}
+
+function removeUnusedCharsInCardName(string) {
+  let tmp = string.replace(/-/gi, ' ');
+  tmp = tmp.replace(/rouge|orange|vert/gi, '');
+  return tmp;
+}
+
 class ConfirmCardScreen extends React.Component {
   static navigationOptions = {
     header: null,
@@ -39,7 +49,9 @@ class ConfirmCardScreen extends React.Component {
         <View style={imageContainerStyle}>
           <Image style={imageStyle} source={_get(cardImageSources, imagePath)}>
             <View style={styles.textContainer}>
-              <Text style={styles.title}>{cardName}</Text>
+              <Text style={styles.title}>
+                {capitalizeFirstLetter(removeUnusedCharsInCardName(cardName))}
+              </Text>
             </View>
           </Image>
         </View>

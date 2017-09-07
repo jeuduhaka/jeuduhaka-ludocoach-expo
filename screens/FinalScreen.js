@@ -23,16 +23,16 @@ export default class FinalScreen extends React.Component {
           <View style={styles.titleContainer}>
             <Text style={styles.titleFirst}>
               Bravo, vous avez activé votre Mana ! Les autres joueurs vont
-              maintenant vous noter avec leurs ressentis de votre expression
+              maintenant vous noter avec leurs ressentis sur votre expression
               corporelle.
             </Text>
           </View>
           <View style={styles.startButtonContainer}>
             <Button
               style={styles.startButton}
-              onPress={() => this.props.navigation.navigate('Deck')}
+              onPress={() => this.props.navigation.navigate('First')}
             >
-              Je réactive mon Mana
+              Merci
             </Button>
           </View>
         </Image>

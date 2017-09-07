@@ -1,8 +1,5 @@
 import React, { PropTypes } from 'react';
-import {
-  View,
-  Text
-} from 'react-native';
+import { View, Text } from 'react-native';
 import { compose } from 'redux';
 import { connect } from 'react-redux';
 
@@ -11,10 +8,20 @@ import Card from '../components/Card';
 import ChooseCardText from '../components/ChooseCardText';
 import { cardPressed } from '../actions';
 
+function capitalizeFirstLetter(string) {
+  return string.charAt(0).toUpperCase() + string.slice(1);
+}
+
+function removeUnusedCharsInCardName(string) {
+  let tmp = string.replace(/-/gi, ' ');
+  tmp = tmp.replace(/rouge|orange|vert/gi, '');
+  return tmp;
+}
+
 class ChooseCardGridScreen extends React.Component {
   static navigationOptions = {
     header: null,
-    gesturesEnabled: false,
+    gesturesEnabled: false
   };
 
   shouldComponentUpdate(nextProps) {
@@ -28,14 +35,13 @@ class ChooseCardGridScreen extends React.Component {
       cardImageSources.front[currentDeck]
     );
     const rows = [];
-
     const cards = currentImageSources.map(([cardName, imageSource]) => (
-        <Card
-          key={cardName}
-          name={cardName}
-          imageSource={imageSource}
-          onPress={() => cardPressed(cardName)}
-        />
+      <Card
+        key={cardName}
+        name={capitalizeFirstLetter(removeUnusedCharsInCardName(cardName))}
+        imageSource={imageSource}
+        onPress={() => cardPressed(cardName)}
+      />
     ));
 
     const NB_CARDS_PER_ROW = 3;
@@ -43,24 +49,19 @@ class ChooseCardGridScreen extends React.Component {
     for (let i = 0; i < NB_CARDS_PER_ROW; ++i) {
       rows.push(
         <DecksContainer key={i} style={styles.rowStyle}>
-          {cards.slice(i * NB_CARDS_PER_ROW, (i * NB_CARDS_PER_ROW) + NB_CARDS_PER_ROW)}
+          {cards.slice(
+            i * NB_CARDS_PER_ROW,
+            i * NB_CARDS_PER_ROW + NB_CARDS_PER_ROW
+          )}
         </DecksContainer>
       );
     }
 
-    return (
-      <View style={{ flex: 9 }}>
-        {rows}
-      </View>
-    );
+    return <View style={{ flex: 9 }}>{rows}</View>;
   }
 
   render() {
-    const {
-      containerStyle,
-      textStyle,
-      rowStyle,
-    } = styles;
+    const { containerStyle, textStyle, rowStyle } = styles;
 
     return (
       <View style={containerStyle}>
@@ -77,7 +78,7 @@ const styles = {
     flexDirection: 'column',
     justifyContent: 'center',
     // alignItems: 'center',
-    backgroundColor: '#000000',
+    backgroundColor: '#000000'
     // paddingTop: 30,
   },
   textStyle: {
@@ -85,7 +86,7 @@ const styles = {
   },
   rowStyle: {
     flex: 1,
-    flexDirection: 'row',
+    flexDirection: 'row'
     // backgroundColor: '#00ff00'
   }
 };
@@ -95,14 +96,11 @@ const mapStateToProps = state => ({
   currentDeck: state.cards.currentDeck,
   allCardsChosen: state.cards.allCardsChosen,
   cardImageSources: state.cards.imageSources,
-  cardConfirmed: state.cards.cardConfirmed,
+  cardConfirmed: state.cards.cardConfirmed
 });
 
 const enhance = compose(
-  connect(
-    mapStateToProps,
-    { cardPressed }
-  ),
+  connect(mapStateToProps, { cardPressed })
   // require('../utils/withLifecycleLogs').default
 );
 
