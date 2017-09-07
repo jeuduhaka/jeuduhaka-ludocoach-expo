@@ -668,9 +668,11 @@ export default class VideoPlayer extends React.Component {
               <Control center={true} callback={this._replay.bind(this)}>
                 <ReplayIcon />
               </Control>
-              <Control center={true} callback={this._next.bind(this)}>
-                <NextIcon />
-              </Control>
+              {this.props.nextCallback && (
+                <Control center={true} callback={this._next.bind(this)}>
+                  <NextIcon />
+                </Control>
+              )}
             </CenteredView>
           )}
 
