@@ -76,6 +76,13 @@ export default (state = INITIAL_STATE, action) => {
         state
       );
       break;
+
+    case ActionTypes.ALL_CARDS_CONFIRMED:
+      nextState = AppNavigator.router.getStateForAction(
+        NavigationActions.navigate({ routeName: 'AfterCards' }),
+        state
+      );
+      break;
     case ActionTypes.SELECTED_CARD_PRESSED:
       nextState = AppNavigator.router.getStateForAction(
         // NavigationActions.navigate({ routeName: 'GesturesText' }),
@@ -95,6 +102,7 @@ export default (state = INITIAL_STATE, action) => {
         state
       );
       break;
+
     case 'PLAY_VIDEO':
       nextState = AppNavigator.router.getStateForAction(
         NavigationActions.navigate({ routeName: 'Video' }),
@@ -113,14 +121,20 @@ export default (state = INITIAL_STATE, action) => {
         state
       );
       break;
+    // case ActionTypes.ALL_VIDEOS_ENDED:
+    //   nextState = AppNavigator.router.getStateForAction(
+    //     NavigationActions.back(
+    //       findRouteKey({
+    //         routes: state.routes,
+    //         routeName: 'Deck'
+    //       })
+    //     ),
+    //     state
+    //   );
+    //   break;
     case ActionTypes.ALL_VIDEOS_ENDED:
       nextState = AppNavigator.router.getStateForAction(
-        NavigationActions.back(
-          findRouteKey({
-            routes: state.routes,
-            routeName: 'Deck'
-          })
-        ),
+        NavigationActions.navigate({ routeName: 'Final' }),
         state
       );
       break;

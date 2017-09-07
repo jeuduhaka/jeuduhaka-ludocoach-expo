@@ -1,0 +1,3 @@
+{
+	"payload": "[{\"type\":\"Navigation/NAVIGATE\",\"routeName\":\"Second\"},{\"type\":\"Navigation/NAVIGATE\",\"routeName\":\"Deck\"},{\"type\":\"DECK_PRESSED\",\"currentDeck\":\"red\"},{\"type\":\"CARD_PRESSED\",\"cardName\":\"menace\"},{\"type\":\"CARD_CONFIRMED\",\"nextDeck\":\"orange\"},{\"type\":\"DECK_PRESSED\",\"currentDeck\":\"orange\"},{\"type\":\"CARD_PRESSED\",\"cardName\":\"preparation\"},{\"type\":\"CARD_CONFIRMED\",\"nextDeck\":\"green\"},{\"type\":\"DECK_PRESSED\",\"currentDeck\":\"green\"},{\"type\":\"CARD_PRESSED\",\"cardName\":\"estime-de-soi\"}]"
+}

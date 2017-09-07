@@ -51,6 +51,13 @@ export default (state = INITIAL_STATE, action) => {
         allCardsChosen: state.currentDeck === 'green',
         cardConfirmed: true
       };
+    case ActionTypes.ALL_CARDS_CONFIRMED:
+      return {
+        ...state,
+        allCardsChosen: true,
+        cardConfirmed: true,
+        currentDeck: action.nextDeck
+      };
     case ActionTypes.VIDEO_ENDED:
       return {
         ...state,

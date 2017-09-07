@@ -38,7 +38,16 @@ export default class FirstScreen extends React.Component {
               title={'Démarrer'}
               onPress={() => this.props.navigation.navigate('Second')}
             >
-              Démarrer
+              Jouer en 3 mouvements
+            </Button>
+          </View>
+          <View style={styles.startButtonContainer}>
+            <Button
+              style={styles.startButton}
+              title={'Bien-être tout de suite'}
+              onPress={() => this.props.navigation.navigate('Second')}
+            >
+              Jouer en 1 mouvement
             </Button>
           </View>
           <View style={styles.websites} />

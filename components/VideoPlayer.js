@@ -23,7 +23,8 @@ import {
   Spinner,
   FullscreenEnterIcon,
   FullscreenExitIcon,
-  ReplayIcon
+  ReplayIcon,
+  NextIcon
 } from '../assets/videoplayer-icons';
 const TRACK_IMAGE = require('../assets/track.png');
 const THUMB_IMAGE = require('../assets/thumb.png');
@@ -91,6 +92,8 @@ export default class VideoPlayer extends React.Component {
     * Error callback (lots of errors are non-fatal and the video will continue to play)
     */
     errorCallback: PropTypes.func,
+
+    nextCallback: PropTypes.func,
 
     // Icons
     playIcon: PropTypes.func,
@@ -421,6 +424,14 @@ export default class VideoPlayer extends React.Component {
       });
   }
 
+  _next() {
+    try {
+      this.props.nextCallback();
+    } catch (e) {
+      console.error('Uncaught error when calling props.nextCallback', e);
+    }
+  }
+
   _togglePlay() {
     this.state.playbackState == PLAYBACK_STATES.PLAYING
       ? this._playbackInstance.setStatusAsync({ shouldPlay: false })
@@ -657,6 +668,9 @@ export default class VideoPlayer extends React.Component {
               <Control center={true} callback={this._replay.bind(this)}>
                 <ReplayIcon />
               </Control>
+              <Control center={true} callback={this._next.bind(this)}>
+                <NextIcon />
+              </Control>
             </CenteredView>
           )}
 
@@ -726,7 +740,7 @@ export default class VideoPlayer extends React.Component {
             </Text>
 
             {/* Fullscreen control */}
-            <Control
+            {/* <Control
               style={{ backgroundColor: 'transparent' }}
               center={false}
               callback={() => {
@@ -740,7 +754,7 @@ export default class VideoPlayer extends React.Component {
               ) : (
                 <FullscreenExitIcon />
               )}
-            </Control>
+            </Control> */}
           </Animated.View>
         </View>
       </TouchableWithoutFeedback>

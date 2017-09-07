@@ -2,7 +2,8 @@ import React from 'react';
 import {
   View,
   //   Image,
-  StyleSheet
+  StyleSheet,
+  StatusBar
 } from 'react-native';
 import { Provider } from 'react-redux';
 
@@ -20,7 +21,7 @@ class App extends React.Component {
 
   componentWillMount() {
     try {
-      // this._getLanguage();
+      this._getLanguage();
       this._loadFontsAsync();
     } finally {
       // this.setState({ appIsReady: true });
@@ -38,7 +39,7 @@ class App extends React.Component {
   async _getLanguage() {
     try {
       const locale = await Expo.Util.getCurrentLocaleAsync();
-      // console.log(locale);
+      console.log(locale);
     } catch (e) {
       console.log(e.message);
     }
@@ -51,6 +52,7 @@ class App extends React.Component {
 
     return (
       <View style={{ flex: 1 }}>
+        <StatusBar hidden />
         <Provider store={store}>
           <AppWithNavigationState />
         </Provider>

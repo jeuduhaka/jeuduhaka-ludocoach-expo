@@ -1,4 +1,9 @@
 export default {
+  back: {
+    red: require('../assets/images/1-back_carte_rouge1.png'),
+    orange: require('../assets/images/2-back_carte_orange1.png'),
+    green: require('../assets/images/3-back_carte_verte1.png')
+  },
   front: {
     red: {
       abandon: require('../assets/images/red/fr/abandon/carte-rouge-abandon-sans-texte.png'),

@@ -1,8 +1,10 @@
 import React from 'react';
 import { Text, Image, Linking, View } from 'react-native';
+import { compose } from 'redux';
+import { connect } from 'react-redux';
 import { Button } from '../components/common';
 
-export default class SecondScreen extends React.Component {
+class AfterCardsScreen extends React.Component {
   static route = {
     navigationBar: {
       visible: false
@@ -14,6 +16,14 @@ export default class SecondScreen extends React.Component {
   };
 
   render() {
+    const {
+      selectedCards: {
+        red: selectedRedCard,
+        orange: selectedOrangeCard,
+        green: selectedGreenCard
+      }
+    } = this.props;
+
     return (
       <View style={styles.container}>
         <Image
@@ -22,23 +32,24 @@ export default class SecondScreen extends React.Component {
         >
           <View style={styles.titleContainer}>
             <Text style={styles.titleFirst}>
-              Choisissez une carte de chaque couleur en fonction de vos émotions
-              et laissez-vous guider en appuyant sur la carte correspondante
-              dans l'ordre : <Text style={{ color: '#B8282E' }}>1.AVOIR</Text>,{' '}
-              <Text style={{ color: '#F7941C' }}>2.FAIRE</Text>,{' '}
-              <Text style={{ color: '#39B549' }}>3.ETRE</Text>
+              Vous avez choisi{' '}
+              <Text style={{ color: '#B8282E' }}>{selectedRedCard}</Text>,{' '}
+              <Text style={{ color: '#F7941C' }}>{selectedOrangeCard}</Text>,{' '}
+              <Text style={{ color: '#39B549' }}>{selectedGreenCard}</Text>.
+              Placez vous dans un endroit où vous vous sentez bien et où vous
+              avez assez d'espace. Respirez bien et faites comme moi.
             </Text>
           </View>
           <View style={styles.subtitleContainer}>
-            {/* <Text style={styles.subtitle}>Activez votre Mana (Pouvoir) ! </Text>
-            <Text style={styles.subtitle}>A vous de jouer ! </Text> */}
+            {/* <Text style={styles.subtitle}>Activez votre Mana (Pouvoir) ! </Text> */}
+            {/* <Text style={styles.subtitle}>A vous de jouer ! </Text> */}
           </View>
           <View style={styles.startButtonContainer}>
             <Button
               style={styles.startButton}
               onPress={() => this.props.navigation.navigate('Deck')}
             >
-              A vous de jouer !
+              C'est parti !
             </Button>
           </View>
         </Image>
@@ -104,3 +115,18 @@ const styles = {
   copyrightContainer: { flex: 1 },
   copyright: { backgroundColor: 'transparent' }
 };
+
+const mapStateToProps = state => ({
+  gameMode: state.gameMode,
+  currentDeck: state.cards.currentDeck,
+  selectedCards: state.cards.selected,
+  allCardsChosen: state.cards.allCardsChosen,
+  cardImageSources: state.cards.imageSources
+});
+
+const enhance = compose(
+  connect(mapStateToProps)
+  // require('../utils/withLifecycleLogs').default
+);
+
+export default enhance(AfterCardsScreen);

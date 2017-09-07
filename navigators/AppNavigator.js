@@ -10,10 +10,15 @@ import {
 
 import FirstScreen from '../screens/FirstScreen';
 import SecondScreen from '../screens/SecondScreen';
+import DeckScreen from '../screens/DeckScreen';
+import ChooseCardGridScreen from '../screens/ChooseCardGridScreen';
+import ConfirmCardScreen from '../screens/ConfirmCardScreen';
 import RedScreen from '../screens/RedScreen';
 import OrangeScreen from '../screens/OrangeScreen';
 import GreenScreen from '../screens/GreenScreen';
 import VideoScreen from '../screens/VideoScreen';
+import FinalScreen from '../screens/FinalScreen';
+import AfterCardsScreen from '../screens/AfterCardsScreen';
 
 const routeConfigs = {
   Red: {
@@ -56,18 +61,23 @@ const MainScreenNavigator = TabNavigator(
 export const AppNavigator = StackNavigator({
   First: { screen: FirstScreen },
   Second: { screen: SecondScreen },
-  Main: {
-    screen: MainScreenNavigator,
-    navigationOptions: ({ navigation }) => ({
-      title: 'Ludocoach'
-      // headerBackTitle: null
-    })
-  },
+  Final: { screen: FinalScreen },
+  Deck: { screen: DeckScreen },
+  ChooseCardGrid: { screen: ChooseCardGridScreen },
+  ConfirmCard: { screen: ConfirmCardScreen },
+  AfterCards: { screen: AfterCardsScreen },
+  // Main: {
+  //   screen: MainScreenNavigator,
+  //   navigationOptions: ({ navigation }) => ({
+  //     title: 'Ludocoach'
+  //     // headerBackTitle: null
+  //   })
+  // },
   Video: {
     path: 'video/:card',
     screen: VideoScreen,
     navigationOptions: ({ navigation }) => ({
-      headerTitle: navigation.state.params.videoName
+      // headerTitle: navigation.state.params.videoName
     })
   }
 });
