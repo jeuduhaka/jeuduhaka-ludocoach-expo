@@ -39,9 +39,4 @@ const styles = {
   }
 };
 
-// state refers to the "current state" of your store.
-const mapStateToProps = state => ({
-  currentDeck: state.cards.currentDeck
-});
-
-export default connect(mapStateToProps)(ChooseCardText);
+export default ChooseCardText;

@@ -14,10 +14,11 @@ export const deckPressed = currentDeck => {
   };
 };
 
-export const cardPressed = cardName => {
+export const cardPressed = (cardName, gameMode) => {
   return {
     type: ActionTypes.CARD_PRESSED,
-    cardName
+    cardName,
+    gameMode
   };
 };
 
@@ -67,7 +68,7 @@ export const ludocoachLaunched = () => {
   };
 };
 
-export const videoEnded = currentDeck => {
+export const videoEnded = (currentDeck, gameMode) => {
   if (currentDeck !== 'green') {
     return {
       type: ActionTypes.VIDEO_ENDED,
@@ -76,6 +77,7 @@ export const videoEnded = currentDeck => {
   }
 
   return {
-    type: ActionTypes.ALL_VIDEOS_ENDED
+    type: ActionTypes.ALL_VIDEOS_ENDED,
+    gameMode
   };
 };

@@ -13,7 +13,7 @@ import { Header } from 'react-navigation';
 import { compose } from 'redux';
 import { connect } from 'react-redux';
 
-//from abi-expo-videoplayer with custom Height
+//from @expo/videoplayer with custom Height
 import VideoPlayer from '../components/VideoPlayer';
 // import styles from './screens.style';
 import { videoEnded } from '../actions';
@@ -98,8 +98,8 @@ class VideoScreen extends React.Component {
         }}
         isPortrait={this.state.isPortrait}
         nextCallback={() => {
-          const { currentDeck, videoEnded } = this.props;
-          videoEnded(currentDeck);
+          const { currentDeck, videoEnded, gameMode } = this.props;
+          videoEnded(currentDeck, gameMode);
         }}
       />
       // </View>

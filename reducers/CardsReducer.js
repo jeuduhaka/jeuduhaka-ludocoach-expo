@@ -20,6 +20,14 @@ const INITIAL_STATE = {
 
 export default (state = INITIAL_STATE, action) => {
   switch (action.type) {
+    case ActionTypes.GAME_MODE_CHOSEN:
+      if (action.gameMode === ActionTypes.GAME_MODE_1_MOVE) {
+        return {
+          ...state,
+          currentDeck: 'green'
+        };
+      }
+      return state;
     case ActionTypes.DECK_PRESSED:
       // console.log(action);
       return {

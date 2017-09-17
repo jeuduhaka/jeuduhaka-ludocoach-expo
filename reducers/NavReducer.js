@@ -31,12 +31,25 @@ function findRouteKey({ routes, routeName }) {
 
 export default (state = INITIAL_STATE, action) => {
   let nextState;
+  let route;
+  // console.log(action);
   // console.log(`nav action: ${action.type}`);
+  // console.log(state);
 
   switch (action.type) {
     case ActionTypes.GAME_MODE_CHOSEN:
+      switch (action.gameMode) {
+        case ActionTypes.GAME_MODE_3_MOVES:
+          route = 'Second3Moves';
+          break;
+
+        case ActionTypes.GAME_MODE_1_MOVE:
+          route = 'ChooseCardGrid';
+          break;
+      }
+
       nextState = AppNavigator.router.getStateForAction(
-        NavigationActions.navigate({ routeName: 'Deck' }),
+        NavigationActions.navigate({ routeName: route }),
         state
       );
       break;
@@ -47,8 +60,18 @@ export default (state = INITIAL_STATE, action) => {
       );
       break;
     case ActionTypes.CARD_PRESSED:
+      switch (action.gameMode) {
+        case ActionTypes.GAME_MODE_3_MOVES:
+          route = 'ConfirmCard';
+          break;
+
+        case ActionTypes.GAME_MODE_1_MOVE:
+          route = 'Video';
+          break;
+      }
+
       nextState = AppNavigator.router.getStateForAction(
-        NavigationActions.navigate({ routeName: 'ConfirmCard' }),
+        NavigationActions.navigate({ routeName: route }),
         state
       );
       break;
@@ -90,12 +113,6 @@ export default (state = INITIAL_STATE, action) => {
         state
       );
       break;
-    // case ActionTypes.LUDOCOACH_LAUNCHED:
-    //   nextState = AppNavigator.router.getStateForAction(
-    //     NavigationActions.navigate({ routeName: 'Video' }),
-    //     state
-    //   );
-    //   break;
     case 'CHOOSE_CARD':
       nextState = AppNavigator.router.getStateForAction(
         NavigationActions.navigate({ routeName: 'Deck' }),
@@ -121,20 +138,18 @@ export default (state = INITIAL_STATE, action) => {
         state
       );
       break;
-    // case ActionTypes.ALL_VIDEOS_ENDED:
-    //   nextState = AppNavigator.router.getStateForAction(
-    //     NavigationActions.back(
-    //       findRouteKey({
-    //         routes: state.routes,
-    //         routeName: 'Deck'
-    //       })
-    //     ),
-    //     state
-    //   );
-    //   break;
     case ActionTypes.ALL_VIDEOS_ENDED:
+      switch (action.gameMode) {
+        case ActionTypes.GAME_MODE_3_MOVES:
+          route = 'Final';
+          break;
+
+        case ActionTypes.GAME_MODE_1_MOVE:
+          route = 'First';
+          break;
+      }
       nextState = AppNavigator.router.getStateForAction(
-        NavigationActions.navigate({ routeName: 'Final' }),
+        NavigationActions.navigate({ routeName: route }),
         state
       );
       break;

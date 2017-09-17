@@ -1,8 +1,15 @@
 import React from 'react';
 import { Text, Image, Linking, View } from 'react-native';
-import { Button } from '../components/common';
+import { compose } from 'redux';
+import { connect } from 'react-redux';
 
-export default class FirstScreen extends React.Component {
+import { gameModeChosen } from '../actions';
+import * as ActionTypes from '../actions/types';
+
+import { Button } from '../components/common';
+import styles from './styles';
+
+class FirstScreen extends React.Component {
   static route = {
     navigationBar: {
       visible: false
@@ -34,18 +41,20 @@ export default class FirstScreen extends React.Component {
           </View>
           <View style={styles.startButtonContainer}>
             <Button
-              style={styles.startButton}
-              title={'Démarrer'}
-              onPress={() => this.props.navigation.navigate('Second')}
+              title={'Jouer en 3 mouvements'}
+              // onPress={() => this.props.navigation.navigate('Second3Moves')}
+              onPress={() =>
+                this.props.gameModeChosen(ActionTypes.GAME_MODE_3_MOVES)}
             >
               Jouer en 3 mouvements
             </Button>
           </View>
           <View style={styles.startButtonContainer}>
             <Button
-              style={styles.startButton}
-              title={'Bien-être tout de suite'}
-              onPress={() => this.props.navigation.navigate('Second')}
+              title={'Jouer en 1 mouvement'}
+              // onPress={() => this.props.navigation.navigate('ChooseCardGrid')}
+              onPress={() =>
+                this.props.gameModeChosen(ActionTypes.GAME_MODE_1_MOVE)}
             >
               Jouer en 1 mouvement
             </Button>
@@ -83,54 +92,13 @@ export default class FirstScreen extends React.Component {
   }
 }
 
-const styles = {
-  container: { flex: 1 },
-  backgroundImage: {
-    flex: 1,
-    resizeMode: 'cover',
-    width: undefined,
-    height: undefined
-  },
-  titleContainer: {
-    flex: 1,
-    paddingTop: '5%'
-  },
-  title: {
-    fontSize: 40,
-    fontFamily: 'charcuterie-sans-inline',
-    color: '#014DA2',
-    backgroundColor: 'transparent',
-    textAlign: 'center'
-  },
-  subtitleContainer: {
-    flex: 1
-  },
-  subtitle: {
-    fontSize: 24,
-    fontFamily: 'charcuterie-sans-inline',
-    color: '#014DA2',
-    backgroundColor: 'transparent',
-    textAlign: 'center'
-  },
-  homeImageContainer: {
-    flex: 6
-  },
-  homeImage: {
-    flex: 1,
-    resizeMode: 'contain',
-    alignSelf: 'center'
-  },
-  startButtonContainer: { flex: 1 },
-  startButton: {
-    alignSelf: 'none',
-    fontFamily: 'charcuterie-sans-inline',
-    backgroundColor: '#000'
-  },
-  websites: { flex: 1, alignItems: 'center' },
-  websiteLink: {
-    backgroundColor: 'transparent',
-    alignSelf: 'center'
-  },
-  copyrightContainer: { flex: 1, paddingTop: '5%' },
-  copyright: { backgroundColor: 'transparent', alignSelf: 'center' }
-};
+const mapStateToProps = state => ({
+  gameMode: state.gameMode
+});
+
+const enhance = compose(
+  connect(mapStateToProps, { gameModeChosen })
+  // require('../utils/withLifecycleLogs').default
+);
+
+export default enhance(FirstScreen);

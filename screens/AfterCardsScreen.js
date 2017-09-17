@@ -3,6 +3,8 @@ import { Text, Image, Linking, View } from 'react-native';
 import { compose } from 'redux';
 import { connect } from 'react-redux';
 import { Button } from '../components/common';
+import * as ActionTypes from '../actions/types';
+import styles from './styles';
 
 class AfterCardsScreen extends React.Component {
   static route = {
@@ -14,6 +16,42 @@ class AfterCardsScreen extends React.Component {
   static navigationOptions = {
     header: null
   };
+
+  renderChosenCardsText() {
+    const {
+      gameMode,
+      selectedCards: {
+        red: selectedRedCard,
+        orange: selectedOrangeCard,
+        green: selectedGreenCard
+      }
+    } = this.props;
+
+    const render = [];
+
+    if (gameMode === ActionTypes.GAME_MODE_3_MOVES) {
+      const renderTmp = [
+        <Text key={selectedRedCard} style={{ color: '#B8282E' }}>
+          {selectedRedCard}
+        </Text>,
+        ', ',
+        <Text key={selectedOrangeCard} style={{ color: '#F7941C' }}>
+          {selectedOrangeCard}
+        </Text>,
+        ', '
+      ];
+
+      render.push(...renderTmp);
+    }
+
+    render.push(
+      <Text key={selectedGreenCard} style={{ color: '#39B549' }}>
+        {selectedGreenCard}
+      </Text>
+    );
+
+    return render;
+  }
 
   render() {
     const {
@@ -31,13 +69,10 @@ class AfterCardsScreen extends React.Component {
           source={require('../assets/images/fond-bleu-vague-1980x1980.jpg')}
         >
           <View style={styles.titleContainer}>
-            <Text style={styles.titleFirst}>
-              Vous avez choisi{' '}
-              <Text style={{ color: '#B8282E' }}>{selectedRedCard}</Text>,{' '}
-              <Text style={{ color: '#F7941C' }}>{selectedOrangeCard}</Text>,{' '}
-              <Text style={{ color: '#39B549' }}>{selectedGreenCard}</Text>.
-              Placez vous dans un endroit où vous vous sentez bien et où vous
-              avez assez d'espace. Respirez bien et faites comme moi.
+            <Text style={[styles.title, styles.font20px]}>
+              Vous avez choisi {this.renderChosenCardsText()}. Placez vous dans
+              un endroit où vous vous sentez bien et où vous avez assez
+              d'espace. Respirez bien et faites comme moi.
             </Text>
           </View>
           <View style={styles.subtitleContainer}>
@@ -45,10 +80,7 @@ class AfterCardsScreen extends React.Component {
             {/* <Text style={styles.subtitle}>A vous de jouer ! </Text> */}
           </View>
           <View style={styles.startButtonContainer}>
-            <Button
-              style={styles.startButton}
-              onPress={() => this.props.navigation.navigate('Deck')}
-            >
+            <Button onPress={() => this.props.navigation.navigate('Deck')}>
               C'est parti !
             </Button>
           </View>
@@ -57,64 +89,6 @@ class AfterCardsScreen extends React.Component {
     );
   }
 }
-
-const styles = {
-  container: { flex: 1 },
-  backgroundImage: {
-    flex: 1,
-    resizeMode: 'cover',
-    width: undefined,
-    height: undefined
-  },
-  titleContainer: {
-    flex: 3,
-    paddingTop: '15%'
-  },
-  titleFirst: {
-    fontSize: 20,
-    fontFamily: 'charcuterie-sans-inline',
-    color: '#014DA2',
-    backgroundColor: 'transparent',
-    textAlign: 'center'
-  },
-  title: {
-    fontSize: 20,
-    fontFamily: 'charcuterie-sans-inline',
-    color: '#014DA2',
-    backgroundColor: 'transparent',
-    textAlign: 'center'
-  },
-  subtitleContainer: {
-    flex: 1
-  },
-  subtitle: {
-    fontSize: 24,
-    fontFamily: 'charcuterie-sans-inline',
-    color: '#014DA2',
-    backgroundColor: 'transparent',
-    textAlign: 'center'
-  },
-  homeImageContainer: {
-    flex: 6
-  },
-  homeImage: {
-    flex: 1,
-    resizeMode: 'contain',
-    alignSelf: 'center'
-  },
-  startButtonContainer: { flex: 1 },
-  startButton: {
-    alignSelf: 'center',
-    fontFamily: 'charcuterie-sans-inline',
-    backgroundColor: '#000'
-  },
-  websites: { flex: 1 },
-  websiteLink: {
-    backgroundColor: 'transparent'
-  },
-  copyrightContainer: { flex: 1 },
-  copyright: { backgroundColor: 'transparent' }
-};
 
 const mapStateToProps = state => ({
   gameMode: state.gameMode,

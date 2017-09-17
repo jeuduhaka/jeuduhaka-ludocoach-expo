@@ -29,7 +29,7 @@ class ChooseCardGridScreen extends React.Component {
   }
 
   displayCardRows() {
-    const { cardImageSources, currentDeck, cardPressed } = this.props;
+    const { cardImageSources, currentDeck, cardPressed, gameMode } = this.props;
 
     const currentImageSources = Object.entries(
       cardImageSources.front[currentDeck]
@@ -40,7 +40,7 @@ class ChooseCardGridScreen extends React.Component {
         key={cardName}
         name={capitalizeFirstLetter(removeUnusedCharsInCardName(cardName))}
         imageSource={imageSource}
-        onPress={() => cardPressed(cardName)}
+        onPress={() => cardPressed(cardName, gameMode)}
       />
     ));
 
@@ -65,7 +65,7 @@ class ChooseCardGridScreen extends React.Component {
 
     return (
       <View style={containerStyle}>
-        <ChooseCardText />
+        <ChooseCardText currentDeck={this.props.currentDeck} />
         {this.displayCardRows()}
       </View>
     );
@@ -92,7 +92,7 @@ const styles = {
 };
 
 const mapStateToProps = state => ({
-  // gameMode: state.gameMode,
+  gameMode: state.gameMode,
   currentDeck: state.cards.currentDeck,
   allCardsChosen: state.cards.allCardsChosen,
   cardImageSources: state.cards.imageSources,

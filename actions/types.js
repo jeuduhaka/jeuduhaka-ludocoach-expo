@@ -1,4 +1,6 @@
 export const GAME_MODE_CHOSEN = 'GAME_MODE_CHOSEN';
+export const GAME_MODE_3_MOVES = 'GAME_MODE_3_MOVES';
+export const GAME_MODE_1_MOVE = 'GAME_MODE_1_MOVE';
 
 export const DECK_PRESSED = 'DECK_PRESSED';
 export const RED_DECK_PRESSED = 'RED_DECK_PRESSED';

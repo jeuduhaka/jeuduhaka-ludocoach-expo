@@ -1,7 +1,8 @@
 {
   "expo": {
     "name": "Ludocoach Jeu du Haka",
-    "description": "Transforme ton énergie négative en positive ! Y'HAKA jouer !",
+    "description":
+      "Transforme ton énergie négative en positive ! Y'HAKA jouer !",
     "slug": "jeuduhaka-ludocoach",
     "privacy": "unlisted",
     "sdkVersion": "20.0.0",
@@ -17,9 +18,7 @@
       "icon": "./assets/icons/logo-192px.png",
       "hideExponentText": true,
       "backgroundColor": "#ffffff",
-      "splash": {
-
-      }
+      "splash": {}
     },
     "packagerOpts": {
       "assetExts": ["ttf"]
