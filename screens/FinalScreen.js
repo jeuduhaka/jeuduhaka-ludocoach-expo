@@ -1,14 +1,11 @@
 import React from 'react';
 import { Text, Image, Linking, View } from 'react-native';
-import I18n from 'ex-react-native-i18n';
+
+import I18n from '../i18n';
 
 import { Button } from '../components/common';
 import styles from './styles';
 import NavigationHeader from '../components/NavigatonHeader';
-
-import translations from '../stores/translations';
-
-I18n.translations = translations;
 
 export default class FinalScreen extends React.Component {
   static route = {

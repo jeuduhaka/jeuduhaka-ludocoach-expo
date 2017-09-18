@@ -1,11 +1,8 @@
 import React from 'react';
 import { View, Text } from 'react-native';
 import { connect } from 'react-redux';
-import I18n from 'ex-react-native-i18n';
 
-import translations from '../stores/translations';
-
-I18n.translations = translations;
+import I18n from '../i18n';
 
 const ChooseCardText = ({ currentDeck, style }) => {
   let text = '';

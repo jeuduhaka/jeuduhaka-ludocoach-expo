@@ -7,8 +7,6 @@ import {
   Text,
   View
 } from 'react-native';
-// import resolveAssetSource from 'react-native/Libraries/Image/resolveAssetSource';
-//
 // import env from '../config/env';
 //
 //
@@ -27,9 +25,6 @@ import {
 // }
 
 function createImage({ name, source, imageStyle }) {
-  // const { width, height } = resolveAssetSource(source);
-  // console.log(resolveAssetSource(source));
-
   return (
     <Image
       style={{ ...styles.baseImageStyle, ...imageStyle }}

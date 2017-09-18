@@ -2,17 +2,14 @@ import React from 'react';
 import { Text, Image, Linking, View } from 'react-native';
 import { compose } from 'redux';
 import { connect } from 'react-redux';
-import I18n from 'ex-react-native-i18n';
+
+import I18n from '../i18n';
 
 import { Button } from '../components/common';
 import NavigationHeader from '../components/NavigatonHeader';
 
 import * as ActionTypes from '../actions/types';
 import styles from './styles';
-
-import translations from '../stores/translations';
-
-I18n.translations = translations;
 
 class AfterCardsScreen extends React.Component {
   static route = {

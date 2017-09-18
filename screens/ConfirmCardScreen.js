@@ -3,15 +3,12 @@ import { View, Image, Text } from 'react-native';
 import { compose } from 'redux';
 import { connect } from 'react-redux';
 import _get from 'lodash.get';
-import I18n from 'ex-react-native-i18n';
+
+import I18n from '../i18n';
 
 import { cardConfirmed, cardCancelled } from '../actions';
 import { Button } from '../components/common';
 import NavigationHeader from '../components/NavigatonHeader';
-
-import translations from '../stores/translations';
-
-I18n.translations = translations;
 
 function capitalizeFirstLetter(string) {
   return string.charAt(0).toUpperCase() + string.slice(1);
