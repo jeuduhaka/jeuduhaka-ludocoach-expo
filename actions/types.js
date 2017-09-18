@@ -24,3 +24,6 @@ export const VIDEO_PLAYED = 'VIDEO_PLAYED';
 export const VIDEO_PAUSED = 'VIDEO_PAUSED';
 export const VIDEO_ENDED = 'VIDEO_ENDED';
 export const ALL_VIDEOS_ENDED = 'ALL_VIDEOS_ENDED';
+
+export const BACK_HOME = 'BACK_HOME';
+export const GO_BACK = 'GO_BACK';

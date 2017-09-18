@@ -6,15 +6,17 @@ import {
   Text,
   View,
   TouchableOpacity,
-  Dimensions
+  Dimensions,
+  StyleSheet
 } from 'react-native';
 import { Video, Constants } from 'expo';
-import { Header } from 'react-navigation';
+import { Header, HeaderBackButton, HeaderTitle } from 'react-navigation';
 import { compose } from 'redux';
 import { connect } from 'react-redux';
 
 //from @expo/videoplayer with custom Height
 import VideoPlayer from '../components/VideoPlayer';
+import NavigationHeader from '../components/NavigatonHeader';
 // import styles from './screens.style';
 import { videoEnded } from '../actions';
 
@@ -38,10 +40,18 @@ const videoHeight = Dimensions.get('window').height;
 const BASE_VIDEO_URI = 'https://s3.eu-west-2.amazonaws.com/frqs-jdh/videos/';
 
 class VideoScreen extends React.Component {
-  static navigationOptions = ({ navigation }) => ({
-    // title: navigation.state.params.videoName
+  static navigationOptions = {
     header: null
-  });
+    // headerStyle: {
+    //   position: 'absolute',
+    //   backgroundColor: 'transparent',
+    //   zIndex: 100,
+    //   top: 0,
+    //   left: 0,
+    //   right: 0,
+    //   borderWidth: 0
+    // }
+  };
 
   constructor(props) {
     super(props);
@@ -69,40 +79,42 @@ class VideoScreen extends React.Component {
 
   render() {
     return (
-      // <View style={styles.videoContainer}>
-      <VideoPlayer
-        videoProps={{
-          ref: component => {
-            this._playbackInstance = component;
-          },
-          // style: styles.backgroundVideo,
-          shouldPlay: true, // config.autoplayVideo,
-          // isMuted:  config.muteVideo,
-          resizeMode: Video.RESIZE_MODE_COVER,
-          source: {
-            uri: this.state.videoUri
-          },
-          // positionMillis: this.state.playback,
-          style: {
-            width: videoWidth,
-            height: videoHeight
-          },
-          onLoad: status => {
-            // console.log(this._video);
-            // console.log(`ON LOAD : ${JSON.stringify(status)}`);
-            if (!Constants.isDevice) {
-              this._playbackInstance.playFromPositionAsync(25000);
+      <View style={styles.videoContainer}>
+        <NavigationHeader />
+
+        <VideoPlayer
+          videoProps={{
+            ref: component => {
+              this._playbackInstance = component;
+            },
+            // style: styles.backgroundVideo,
+            shouldPlay: true, // config.autoplayVideo,
+            // isMuted:  config.muteVideo,
+            resizeMode: Video.RESIZE_MODE_COVER,
+            source: {
+              uri: this.state.videoUri
+            },
+            // positionMillis: this.state.playback,
+            style: {
+              width: videoWidth,
+              height: videoHeight
+            },
+            onLoad: status => {
+              // console.log(this._video);
+              // console.log(`ON LOAD : ${JSON.stringify(status)}`);
+              if (!Constants.isDevice && status.isLoaded) {
+                this._playbackInstance.playFromPositionAsync(25000);
+              }
+              // this._video.playFromPositionAsync(0);
             }
-            // this._video.playFromPositionAsync(0);
-          }
-        }}
-        isPortrait={this.state.isPortrait}
-        nextCallback={() => {
-          const { currentDeck, videoEnded, gameMode } = this.props;
-          videoEnded(currentDeck, gameMode);
-        }}
-      />
-      // </View>
+          }}
+          isPortrait={this.state.isPortrait}
+          nextCallback={() => {
+            const { currentDeck, videoEnded, gameMode } = this.props;
+            videoEnded(currentDeck, gameMode);
+          }}
+        />
+      </View>
     );
   }
 }

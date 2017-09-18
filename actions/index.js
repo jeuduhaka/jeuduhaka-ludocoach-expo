@@ -62,12 +62,6 @@ export const selectedCardPressed = () => {
   };
 };
 
-export const ludocoachLaunched = () => {
-  return {
-    type: ActionTypes.LUDOCOACH_LAUNCHED
-  };
-};
-
 export const videoEnded = (currentDeck, gameMode) => {
   if (currentDeck !== 'green') {
     return {
@@ -79,5 +73,18 @@ export const videoEnded = (currentDeck, gameMode) => {
   return {
     type: ActionTypes.ALL_VIDEOS_ENDED,
     gameMode
+  };
+};
+
+export const backHome = gameMode => {
+  return {
+    type: ActionTypes.BACK_HOME,
+    gameMode
+  };
+};
+
+export const goBack = () => {
+  return {
+    type: ActionTypes.GO_BACK
   };
 };

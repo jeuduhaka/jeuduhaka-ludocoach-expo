@@ -9,6 +9,7 @@ import { deckPressed, selectedCardPressed } from '../actions';
 import Card from '../components/Card';
 import CardBack from '../components/CardBack';
 import DecksContainer from '../components/DecksContainer';
+import NavigationHeader from '../components/NavigatonHeader';
 
 class DeckScreen extends React.Component {
   static navigationOptions = {
@@ -64,6 +65,7 @@ class DeckScreen extends React.Component {
 
     return (
       <View style={containerStyle}>
+        <NavigationHeader />
         <DecksContainer>
           {this.displayCard('red')}
           {this.displayCard('orange')}

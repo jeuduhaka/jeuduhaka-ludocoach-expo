@@ -2,7 +2,7 @@ import { combineReducers } from 'redux';
 import NavReducer from './NavReducer';
 import GameModeReducer from './GameModeReducer';
 import CardsReducer from './CardsReducer';
-import { ALL_VIDEOS_ENDED } from '../actions/types';
+import * as ActionTypes from '../actions/types';
 
 const appReducer = combineReducers({
   nav: NavReducer,
@@ -10,12 +10,39 @@ const appReducer = combineReducers({
   cards: CardsReducer
 });
 
+const resetEnabledActionTypes = [
+  ActionTypes.ALL_VIDEOS_ENDED,
+  ActionTypes.BACK_HOME
+];
+
 const rootReducer = (state, action) => {
   let newState = state;
 
   //reset redux state to initial state
-  if (action.type === ALL_VIDEOS_ENDED) {
+  if (resetEnabledActionTypes.includes(action.type)) {
     newState = undefined;
+  } else if (
+    state !== undefined &&
+    state.nav &&
+    action.type === ActionTypes.GO_BACK
+  ) {
+    //reset redux state when using go back to the home page
+    let secondRoute;
+
+    switch (state.gameMode) {
+      case ActionTypes.GAME_MODE_1_MOVE:
+        secondRoute = 'ChooseCardGrid';
+        break;
+      default:
+        secondRoute = 'Second';
+        break;
+    }
+
+    const currentRoute = newState.nav.routes[newState.nav.index].routeName;
+
+    if (currentRoute === secondRoute) {
+      newState = undefined;
+    }
   }
 
   return appReducer(newState, action);

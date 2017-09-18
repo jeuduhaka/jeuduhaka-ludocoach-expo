@@ -24,7 +24,7 @@
       "assetExts": ["ttf"]
     },
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": false
     }
   }
 }

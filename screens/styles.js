@@ -12,6 +12,9 @@ export default StyleSheet.create({
     flex: 1,
     paddingTop: '5%'
   },
+  navigationHeaderPaddingTop: {
+    paddingTop: 50
+  },
   title: {
     fontSize: 40,
     fontFamily: 'charcuterie-sans-inline',

@@ -7,6 +7,7 @@ import DecksContainer from '../components/DecksContainer';
 import Card from '../components/Card';
 import ChooseCardText from '../components/ChooseCardText';
 import { cardPressed } from '../actions';
+import NavigationHeader from '../components/NavigatonHeader';
 
 function capitalizeFirstLetter(string) {
   return string.charAt(0).toUpperCase() + string.slice(1);
@@ -65,6 +66,7 @@ class ChooseCardGridScreen extends React.Component {
 
     return (
       <View style={containerStyle}>
+        <NavigationHeader />
         <ChooseCardText currentDeck={this.props.currentDeck} />
         {this.displayCardRows()}
       </View>

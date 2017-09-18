@@ -9,8 +9,7 @@ import {
 } from 'react-navigation';
 
 import FirstScreen from '../screens/FirstScreen';
-import SecondScreen3Moves from '../screens/3MovesMode/SecondScreen';
-import SecondScreen1Move from '../screens/1MoveMode/SecondScreen';
+import SecondScreen from '../screens/SecondScreen';
 import DeckScreen from '../screens/DeckScreen';
 import ChooseCardGridScreen from '../screens/ChooseCardGridScreen';
 import ConfirmCardScreen from '../screens/ConfirmCardScreen';
@@ -61,8 +60,7 @@ const MainScreenNavigator = TabNavigator(
 
 export const AppNavigator = StackNavigator({
   First: { screen: FirstScreen },
-  Second3Moves: { screen: SecondScreen3Moves },
-  Second1Move: { screen: SecondScreen1Move },
+  Second: { screen: SecondScreen },
   Final: { screen: FinalScreen },
   Deck: { screen: DeckScreen },
   ChooseCardGrid: { screen: ChooseCardGridScreen },
@@ -78,6 +76,7 @@ export const AppNavigator = StackNavigator({
   Video: {
     path: 'video/:card',
     screen: VideoScreen,
+    // headerMode: 'float',
     navigationOptions: ({ navigation }) => ({
       // headerTitle: navigation.state.params.videoName
     })

@@ -3,6 +3,8 @@ import { Text, Image, Linking, View } from 'react-native';
 import { compose } from 'redux';
 import { connect } from 'react-redux';
 import { Button } from '../components/common';
+import NavigationHeader from '../components/NavigatonHeader';
+
 import * as ActionTypes from '../actions/types';
 import styles from './styles';
 
@@ -64,11 +66,14 @@ class AfterCardsScreen extends React.Component {
 
     return (
       <View style={styles.container}>
+        <NavigationHeader />
         <Image
           style={styles.backgroundImage}
           source={require('../assets/images/fond-bleu-vague-1980x1980.jpg')}
         >
-          <View style={styles.titleContainer}>
+          <View
+            style={[styles.titleContainer, styles.navigationHeaderPaddingTop]}
+          >
             <Text style={[styles.title, styles.font20px]}>
               Vous avez choisi {this.renderChosenCardsText()}. Placez vous dans
               un endroit où vous vous sentez bien et où vous avez assez

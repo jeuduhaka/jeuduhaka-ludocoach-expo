@@ -2,6 +2,7 @@ import { NavigationActions } from 'react-navigation';
 import { AppNavigator } from '../navigators/AppNavigator';
 
 import * as ActionTypes from '../actions/types';
+import { findRouteKey } from '../utilities/helpers';
 
 // Help: https://github.com/react-community/react-navigation/tree/master/examples/ReduxExample
 // Start with two routes: The Main screen, with the Login screen on top.
@@ -18,17 +19,6 @@ const INITIAL_STATE = AppNavigator.router.getStateForAction(
   NavigationActions.init()
 );
 
-function findRouteKey({ routes, routeName }) {
-  let key = null;
-  const routeObj = routes.find(r => r.routeName === routeName);
-
-  if (routeObj) {
-    key = { key: routeObj.key };
-  }
-
-  return key;
-}
-
 export default (state = INITIAL_STATE, action) => {
   let nextState;
   let route;
@@ -39,12 +29,11 @@ export default (state = INITIAL_STATE, action) => {
   switch (action.type) {
     case ActionTypes.GAME_MODE_CHOSEN:
       switch (action.gameMode) {
-        case ActionTypes.GAME_MODE_3_MOVES:
-          route = 'Second3Moves';
-          break;
-
         case ActionTypes.GAME_MODE_1_MOVE:
           route = 'ChooseCardGrid';
+          break;
+        default:
+          route = 'Second';
           break;
       }
 
@@ -61,12 +50,11 @@ export default (state = INITIAL_STATE, action) => {
       break;
     case ActionTypes.CARD_PRESSED:
       switch (action.gameMode) {
-        case ActionTypes.GAME_MODE_3_MOVES:
-          route = 'ConfirmCard';
-          break;
-
         case ActionTypes.GAME_MODE_1_MOVE:
           route = 'Video';
+          break;
+        default:
+          route = 'ConfirmCard';
           break;
       }
 
@@ -84,12 +72,13 @@ export default (state = INITIAL_STATE, action) => {
         //     NavigationActions.navigate({ routeName: 'Deck' }),
         //   ]
         // }),
-        NavigationActions.back(
-          findRouteKey({
-            routes: state.routes,
-            routeName: 'ChooseCardGrid'
-          })
-        ),
+        // NavigationActions.back(
+        //   findRouteKey({
+        //     routes: state.routes,
+        //     routeName: 'ChooseCardGrid'
+        //   })
+        // ),
+        NavigationActions.navigate({ routeName: 'Deck' }),
         state
       );
       break;
@@ -113,19 +102,6 @@ export default (state = INITIAL_STATE, action) => {
         state
       );
       break;
-    case 'CHOOSE_CARD':
-      nextState = AppNavigator.router.getStateForAction(
-        NavigationActions.navigate({ routeName: 'Deck' }),
-        state
-      );
-      break;
-
-    case 'PLAY_VIDEO':
-      nextState = AppNavigator.router.getStateForAction(
-        NavigationActions.navigate({ routeName: 'Video' }),
-        state
-      );
-      break;
     case ActionTypes.VIDEO_ENDED:
       nextState = AppNavigator.router.getStateForAction(
         // NavigationActions.navigate({ routeName: 'Deck' }),
@@ -140,16 +116,41 @@ export default (state = INITIAL_STATE, action) => {
       break;
     case ActionTypes.ALL_VIDEOS_ENDED:
       switch (action.gameMode) {
-        case ActionTypes.GAME_MODE_3_MOVES:
-          route = 'Final';
-          break;
-
         case ActionTypes.GAME_MODE_1_MOVE:
           route = 'First';
+          break;
+        default:
+          route = 'Final';
           break;
       }
       nextState = AppNavigator.router.getStateForAction(
         NavigationActions.navigate({ routeName: route }),
+        state
+      );
+      break;
+    case ActionTypes.BACK_HOME:
+      switch (action.gameMode) {
+        case ActionTypes.GAME_MODE_1_MOVE:
+          route = 'ChooseCardGrid';
+          break;
+        default:
+          route = 'Second';
+          break;
+      }
+      nextState = AppNavigator.router.getStateForAction(
+        // NavigationActions.navigate({ routeName: 'Deck' }),
+        NavigationActions.back(
+          findRouteKey({
+            routes: state.routes,
+            routeName: route
+          })
+        ),
+        state
+      );
+      break;
+    case ActionTypes.GO_BACK:
+      nextState = AppNavigator.router.getStateForAction(
+        NavigationActions.back(),
         state
       );
       break;

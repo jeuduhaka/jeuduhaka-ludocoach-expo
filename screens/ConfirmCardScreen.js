@@ -6,6 +6,7 @@ import _get from 'lodash.get';
 
 import { cardConfirmed, cardCancelled } from '../actions';
 import { Button } from '../components/common';
+import NavigationHeader from '../components/NavigatonHeader';
 
 function capitalizeFirstLetter(string) {
   return string.charAt(0).toUpperCase() + string.slice(1);
@@ -46,6 +47,7 @@ class ConfirmCardScreen extends React.Component {
 
     return (
       <View style={containerStyle}>
+        <NavigationHeader />
         <View style={imageContainerStyle}>
           <Image style={imageStyle} source={_get(cardImageSources, imagePath)}>
             <View style={styles.textContainer}>

@@ -1,7 +1,8 @@
 import React from 'react';
 import { Text, Image, Linking, View } from 'react-native';
-import { Button } from '../../components/common';
-import styles from '../styles';
+import { Button } from '../components/common';
+import styles from './styles';
+import NavigationHeader from '../components/NavigatonHeader';
 
 export default class SecondScreen extends React.Component {
   static route = {
@@ -17,11 +18,14 @@ export default class SecondScreen extends React.Component {
   render() {
     return (
       <View style={styles.container}>
+        <NavigationHeader />
         <Image
           style={styles.backgroundImage}
-          source={require('../../assets/images/fond-bleu-vague-1980x1980.jpg')}
+          source={require('../assets/images/fond-bleu-vague-1980x1980.jpg')}
         >
-          <View style={styles.titleContainer}>
+          <View
+            style={[styles.titleContainer, styles.navigationHeaderPaddingTop]}
+          >
             <Text style={[styles.title, styles.font20px]}>
               Choisissez une carte de chaque couleur en fonction de vos émotions
               et laissez-vous guider en appuyant sur la carte correspondante
