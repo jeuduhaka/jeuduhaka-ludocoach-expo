@@ -10,16 +10,6 @@ import { cardConfirmed, cardCancelled } from '../actions';
 import { Button } from '../components/common';
 import NavigationHeader from '../components/NavigatonHeader';
 
-function capitalizeFirstLetter(string) {
-  return string.charAt(0).toUpperCase() + string.slice(1);
-}
-
-function removeUnusedCharsInCardName(string) {
-  let tmp = string.replace(/-/gi, ' ');
-  tmp = tmp.replace(/rouge|orange|vert/gi, '');
-  return tmp;
-}
-
 class ConfirmCardScreen extends React.Component {
   static navigationOptions = {
     header: null,
@@ -47,6 +37,7 @@ class ConfirmCardScreen extends React.Component {
     const cardName = selectedCards[currentDeck];
     const imagePath = `front.${currentDeck}.${cardName}`;
 
+    console.log(I18n.defaultLocale);
     return (
       <View style={containerStyle}>
         <NavigationHeader />

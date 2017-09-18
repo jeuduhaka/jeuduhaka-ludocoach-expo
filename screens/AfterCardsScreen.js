@@ -37,11 +37,11 @@ class AfterCardsScreen extends React.Component {
     if (gameMode === ActionTypes.GAME_MODE_3_MOVES) {
       const renderTmp = [
         <Text key={selectedRedCard} style={{ color: '#B8282E' }}>
-          {selectedRedCard}
+          {I18n.t(selectedRedCard)}
         </Text>,
         ', ',
         <Text key={selectedOrangeCard} style={{ color: '#F7941C' }}>
-          {selectedOrangeCard}
+          {I18n.t(selectedOrangeCard)}
         </Text>,
         ', '
       ];
@@ -51,7 +51,7 @@ class AfterCardsScreen extends React.Component {
 
     render.push(
       <Text key={selectedGreenCard} style={{ color: '#39B549' }}>
-        {selectedGreenCard}
+        {I18n.t(selectedGreenCard)}
       </Text>
     );
 
