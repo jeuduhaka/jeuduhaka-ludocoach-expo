@@ -56,9 +56,7 @@ class ConfirmCardScreen extends React.Component {
         <View style={imageContainerStyle}>
           <Image style={imageStyle} source={_get(cardImageSources, imagePath)}>
             <View style={styles.textContainer}>
-              <Text style={styles.title}>
-                {capitalizeFirstLetter(removeUnusedCharsInCardName(cardName))}
-              </Text>
+              <Text style={styles.title}>{I18n.t(cardName)}</Text>
             </View>
           </Image>
         </View>

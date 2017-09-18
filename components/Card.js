@@ -101,7 +101,7 @@ const styles = {
     // color: colors.black,
     color: '#ffffff',
     fontFamily: 'charcuterie-sans-inline',
-    fontSize: 20,
+    fontSize: 16,
     fontWeight: 'bold',
     letterSpacing: 0.5,
     bottom: '10%'

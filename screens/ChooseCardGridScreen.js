@@ -2,12 +2,17 @@ import React, { PropTypes } from 'react';
 import { View, Text } from 'react-native';
 import { compose } from 'redux';
 import { connect } from 'react-redux';
+import I18n from 'ex-react-native-i18n';
 
 import DecksContainer from '../components/DecksContainer';
 import Card from '../components/Card';
 import ChooseCardText from '../components/ChooseCardText';
 import { cardPressed } from '../actions';
 import NavigationHeader from '../components/NavigatonHeader';
+
+import translations from '../stores/translations';
+
+I18n.translations = translations;
 
 function capitalizeFirstLetter(string) {
   return string.charAt(0).toUpperCase() + string.slice(1);
@@ -39,7 +44,7 @@ class ChooseCardGridScreen extends React.Component {
     const cards = currentImageSources.map(([cardName, imageSource]) => (
       <Card
         key={cardName}
-        name={capitalizeFirstLetter(removeUnusedCharsInCardName(cardName))}
+        name={I18n.t(cardName)}
         imageSource={imageSource}
         onPress={() => cardPressed(cardName, gameMode)}
       />
