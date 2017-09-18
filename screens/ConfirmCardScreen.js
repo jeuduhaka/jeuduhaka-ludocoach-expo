@@ -3,10 +3,15 @@ import { View, Image, Text } from 'react-native';
 import { compose } from 'redux';
 import { connect } from 'react-redux';
 import _get from 'lodash.get';
+import I18n from 'ex-react-native-i18n';
 
 import { cardConfirmed, cardCancelled } from '../actions';
 import { Button } from '../components/common';
 import NavigationHeader from '../components/NavigatonHeader';
+
+import translations from '../stores/translations';
+
+I18n.translations = translations;
 
 function capitalizeFirstLetter(string) {
   return string.charAt(0).toUpperCase() + string.slice(1);
@@ -89,7 +94,7 @@ class ConfirmCardScreen extends React.Component {
               }
             }}
           >
-            Je choisis
+            {I18n.t('iChoose')}
           </Button>
           <Button
             onPress={() => cardCancelled()}
@@ -115,7 +120,7 @@ class ConfirmCardScreen extends React.Component {
               }
             }}
           >
-            Choisir une autre carte
+            {I18n.t('chooseAnotherCard')}
           </Button>
         </View>
       </View>

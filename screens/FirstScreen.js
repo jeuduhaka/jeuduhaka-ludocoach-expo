@@ -2,12 +2,17 @@ import React from 'react';
 import { Text, Image, Linking, View } from 'react-native';
 import { compose } from 'redux';
 import { connect } from 'react-redux';
+import I18n from 'ex-react-native-i18n';
 
 import { gameModeChosen } from '../actions';
 import * as ActionTypes from '../actions/types';
 
 import { Button } from '../components/common';
 import styles from './styles';
+
+import translations from '../stores/translations';
+
+I18n.translations = translations;
 
 class FirstScreen extends React.Component {
   static route = {
@@ -28,10 +33,10 @@ class FirstScreen extends React.Component {
           source={require('../assets/images/fond-bleu-vague-1980x1980.jpg')}
         >
           <View style={styles.titleContainer}>
-            <Text style={styles.title}>Le Jeu du Haka</Text>
+            <Text style={styles.title}>{I18n.t('hakaGame')}</Text>
           </View>
           <View style={styles.subtitleContainer}>
-            <Text style={styles.subtitle}>guidé par le ludocoach Tehotu</Text>
+            <Text style={styles.subtitle}>{I18n.t('guidedByLudocoach')}</Text>
           </View>
           <View style={styles.homeImageContainer}>
             <Image
@@ -41,22 +46,22 @@ class FirstScreen extends React.Component {
           </View>
           <View style={styles.startButtonContainer}>
             <Button
-              title={'Jouer en 3 mouvements'}
+              title={I18n.t('play3Moves')}
               // onPress={() => this.props.navigation.navigate('Second3Moves')}
               onPress={() =>
                 this.props.gameModeChosen(ActionTypes.GAME_MODE_3_MOVES)}
             >
-              Jouer en 3 mouvements
+              {I18n.t('play3Moves')}
             </Button>
           </View>
           <View style={styles.startButtonContainer}>
             <Button
-              title={'Jouer en 1 mouvement'}
+              title={I18n.t('play1Move')}
               // onPress={() => this.props.navigation.navigate('ChooseCardGrid')}
               onPress={() =>
                 this.props.gameModeChosen(ActionTypes.GAME_MODE_1_MOVE)}
             >
-              Jouer en 1 mouvement
+              {I18n.t('play1Move')}
             </Button>
           </View>
           <View style={styles.websites} />
@@ -83,7 +88,7 @@ class FirstScreen extends React.Component {
           </Text>
           <View style={styles.copyrightContainer}>
             <Text style={styles.copyright}>
-              © Le Jeu du Haka - Tous droits réservés
+              © Le Jeu du Haka - {I18n.t('allRightsReserved')}
             </Text>
           </View>
         </Image>

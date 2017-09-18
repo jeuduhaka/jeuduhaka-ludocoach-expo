@@ -1,19 +1,24 @@
 import React from 'react';
 import { View, Text } from 'react-native';
 import { connect } from 'react-redux';
+import I18n from 'ex-react-native-i18n';
+
+import translations from '../stores/translations';
+
+I18n.translations = translations;
 
 const ChooseCardText = ({ currentDeck, style }) => {
   let text = '';
 
   switch (currentDeck) {
     case 'red':
-      text = '1. AVOIR';
+      text = `1. ${I18n.t('having')}`;
       break;
     case 'orange':
-      text = '2. FAIRE';
+      text = `2. ${I18n.t('doing')}`;
       break;
     case 'green':
-      text = '3. ETRE';
+      text = `3. ${I18n.t('being')}`;
       break;
     default:
   }

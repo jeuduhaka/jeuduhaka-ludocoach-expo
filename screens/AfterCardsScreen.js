@@ -2,11 +2,17 @@ import React from 'react';
 import { Text, Image, Linking, View } from 'react-native';
 import { compose } from 'redux';
 import { connect } from 'react-redux';
+import I18n from 'ex-react-native-i18n';
+
 import { Button } from '../components/common';
 import NavigationHeader from '../components/NavigatonHeader';
 
 import * as ActionTypes from '../actions/types';
 import styles from './styles';
+
+import translations from '../stores/translations';
+
+I18n.translations = translations;
 
 class AfterCardsScreen extends React.Component {
   static route = {
@@ -75,9 +81,8 @@ class AfterCardsScreen extends React.Component {
             style={[styles.titleContainer, styles.navigationHeaderPaddingTop]}
           >
             <Text style={[styles.title, styles.font20px]}>
-              Vous avez choisi {this.renderChosenCardsText()}. Placez vous dans
-              un endroit où vous vous sentez bien et où vous avez assez
-              d'espace. Respirez bien et faites comme moi.
+              {I18n.t('youHaveChosen')} {this.renderChosenCardsText()}
+              {I18n.t('placeYourself')}
             </Text>
           </View>
           <View style={styles.subtitleContainer}>
@@ -86,7 +91,7 @@ class AfterCardsScreen extends React.Component {
           </View>
           <View style={styles.startButtonContainer}>
             <Button onPress={() => this.props.navigation.navigate('Deck')}>
-              C'est parti !
+              {I18n.t('letsGo')}
             </Button>
           </View>
         </Image>

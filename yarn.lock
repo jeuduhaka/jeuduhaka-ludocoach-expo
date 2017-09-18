@@ -1971,6 +1971,10 @@ event-target-shim@^1.0.5:
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/event-target-shim/-/event-target-shim-1.1.1.tgz#a86e5ee6bdaa16054475da797ccddf0c55698491"
 
+ex-react-native-i18n@^0.0.3:
+  version "0.0.3"
+  resolved "https://registry.yarnpkg.com/ex-react-native-i18n/-/ex-react-native-i18n-0.0.3.tgz#5f9f08b63ebce295c9f2ed7d49e36c950cef0e74"
+
 exec-sh@^0.2.0:
   version "0.2.1"
   resolved "https://registry.yarnpkg.com/exec-sh/-/exec-sh-0.2.1.tgz#163b98a6e89e6b65b47c2a28d215bc1f63989c38"

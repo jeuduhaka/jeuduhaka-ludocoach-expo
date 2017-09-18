@@ -1,8 +1,14 @@
 import React from 'react';
 import { Text, Image, Linking, View } from 'react-native';
+import I18n from 'ex-react-native-i18n';
+
 import { Button } from '../components/common';
 import styles from './styles';
 import NavigationHeader from '../components/NavigatonHeader';
+
+import translations from '../stores/translations';
+
+I18n.translations = translations;
 
 export default class FinalScreen extends React.Component {
   static route = {
@@ -27,9 +33,7 @@ export default class FinalScreen extends React.Component {
             style={[styles.titleContainer, styles.navigationHeaderPaddingTop]}
           >
             <Text style={[styles.title, styles.font20px]}>
-              Bravo, vous avez activé votre Mana ! Les autres joueurs vont
-              maintenant vous noter avec leurs ressentis sur votre expression
-              corporelle.
+              {I18n.t('manaActivated')}
             </Text>
           </View>
           <View style={styles.startButtonContainer}>
@@ -37,7 +41,7 @@ export default class FinalScreen extends React.Component {
               style={styles.startButton}
               onPress={() => this.props.navigation.navigate('First')}
             >
-              Merci
+              {I18n.t('thankYou')}
             </Button>
           </View>
         </Image>
