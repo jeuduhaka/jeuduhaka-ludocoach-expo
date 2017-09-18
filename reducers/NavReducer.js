@@ -30,7 +30,7 @@ export default (state = INITIAL_STATE, action) => {
     case ActionTypes.GAME_MODE_CHOSEN:
       switch (action.gameMode) {
         case ActionTypes.GAME_MODE_1_MOVE:
-          route = 'ChooseCardGrid';
+          route = 'Second1Move';
           break;
         default:
           route = 'Second';
@@ -131,7 +131,7 @@ export default (state = INITIAL_STATE, action) => {
     case ActionTypes.BACK_HOME:
       switch (action.gameMode) {
         case ActionTypes.GAME_MODE_1_MOVE:
-          route = 'ChooseCardGrid';
+          route = 'Second1Move';
           break;
         default:
           route = 'Second';

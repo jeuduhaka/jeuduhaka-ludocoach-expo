@@ -10,6 +10,7 @@ import {
 
 import FirstScreen from '../screens/FirstScreen';
 import SecondScreen from '../screens/SecondScreen';
+import SecondScreen1Move from '../screens/SecondScreen1Move';
 import DeckScreen from '../screens/DeckScreen';
 import ChooseCardGridScreen from '../screens/ChooseCardGridScreen';
 import ConfirmCardScreen from '../screens/ConfirmCardScreen';
@@ -61,6 +62,7 @@ const MainScreenNavigator = TabNavigator(
 export const AppNavigator = StackNavigator({
   First: { screen: FirstScreen },
   Second: { screen: SecondScreen },
+  Second1Move: { screen: SecondScreen1Move },
   Final: { screen: FinalScreen },
   Deck: { screen: DeckScreen },
   ChooseCardGrid: { screen: ChooseCardGridScreen },

@@ -6,6 +6,8 @@ export default {
   allRightsReserved: 'Tous droits réservés',
   chooseCards:
     "Choisissez une carte de chaque couleur en fonction de vos émotions et laissez-vous guider en appuyant sur la carte correspondante dans l'ordre : ",
+  oneMoveDescription:
+    'Pour cette version, choisissez la carte qui vous permettra de passer directement à un mieux-Être.',
   having: 'AVOIR',
   doing: 'FAIRE',
   being: 'ÊTRE',

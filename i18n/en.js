@@ -6,6 +6,8 @@ export default {
   allRightsReserved: 'All rights reserved',
   chooseCards:
     'Choose a card of each color fitting your emotions and let yourself be guided by tapping each corresponding card in order',
+  oneMoveDescription:
+    'For this version, choose the card which will help you directly reach a state of better-Being',
   having: 'HAVING',
   doing: 'DOING',
   being: 'BEING',

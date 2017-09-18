@@ -31,7 +31,7 @@ const rootReducer = (state, action) => {
 
     switch (state.gameMode) {
       case ActionTypes.GAME_MODE_1_MOVE:
-        secondRoute = 'ChooseCardGrid';
+        secondRoute = 'Second1Move';
         break;
       default:
         secondRoute = 'Second';
