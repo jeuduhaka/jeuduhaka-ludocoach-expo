@@ -44,11 +44,6 @@ export default StyleSheet.create({
     alignSelf: 'center'
   },
   startButtonContainer: { flex: 1 },
-  websites: { flex: 1, alignItems: 'center' },
-  websiteLink: {
-    backgroundColor: 'transparent',
-    alignSelf: 'center'
-  },
   copyrightContainer: { flex: 1, paddingTop: '5%' },
   copyright: { backgroundColor: 'transparent', alignSelf: 'center' }
 });

@@ -45,7 +45,7 @@ class App extends React.Component {
   }
 
   async loadSoundAsync() {
-    // if (__DEV__) return;
+    if (__DEV__) return;
 
     try {
       const {

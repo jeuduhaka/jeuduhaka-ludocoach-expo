@@ -9,6 +9,8 @@ import { gameModeChosen } from '../actions';
 import * as ActionTypes from '../actions/types';
 
 import { Button } from '../components/common';
+import MenuButton from '../components/MenuButton';
+import SoundButton from '../components/SoundButton';
 import styles from './styles';
 
 class FirstScreen extends React.Component {
@@ -25,6 +27,10 @@ class FirstScreen extends React.Component {
   render() {
     return (
       <View style={styles.container}>
+        <MenuButton
+          onPress={() => this.props.navigation.navigate('DrawerOpen')}
+        />
+        <SoundButton onPress={() => console.log('pressed')} />
         <Image
           style={styles.backgroundImage}
           source={require('../assets/images/fond-bleu-vague-1980x1980.jpg')}
@@ -41,7 +47,7 @@ class FirstScreen extends React.Component {
               source={require('../assets/images/jeu-du-haka-logo-200x200.png')}
             />
           </View>
-          <View style={styles.startButtonContainer}>
+          <View style={[styles.startButtonContainer, { flex: 3 }]}>
             <Button
               title={I18n.t('play3Moves')}
               // onPress={() => this.props.navigation.navigate('Second3Moves')}
@@ -50,8 +56,6 @@ class FirstScreen extends React.Component {
             >
               {I18n.t('play3Moves')}
             </Button>
-          </View>
-          <View style={styles.startButtonContainer}>
             <Button
               title={I18n.t('play1Move')}
               // onPress={() => this.props.navigation.navigate('ChooseCardGrid')}
@@ -60,8 +64,6 @@ class FirstScreen extends React.Component {
             >
               {I18n.t('play1Move')}
             </Button>
-          </View>
-          <View style={styles.startButtonContainer}>
             <Button
               title={I18n.t('accessTraining')}
               // onPress={() => this.props.navigation.navigate('ChooseCardGrid')}
@@ -70,28 +72,6 @@ class FirstScreen extends React.Component {
               {I18n.t('accessTraining')}
             </Button>
           </View>
-          <View style={styles.websites} />
-          <Text
-            style={styles.websiteLink}
-            title={'www.jeuduhaka.com'}
-            onPress={() => Linking.openURL('https://www.jeuduhaka.com')}
-          >
-            www.jeuduhaka.com
-          </Text>
-          <Text
-            style={styles.websiteLink}
-            title={'www.marckucharz.com'}
-            onPress={() => Linking.openURL('http://www.marckucharz.com')}
-          >
-            www.marckucharz.com
-          </Text>
-          <Text
-            style={styles.websiteLink}
-            title={'www.ludocoaching.com'}
-            onPress={() => Linking.openURL('http://www.ludocoaching.com')}
-          >
-            www.ludocoaching.com
-          </Text>
           <View style={styles.copyrightContainer}>
             <Text style={styles.copyright}>
               © Le Jeu du Haka - {I18n.t('allRightsReserved')}
