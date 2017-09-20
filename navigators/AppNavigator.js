@@ -5,10 +5,12 @@ import {
   View,
   TouchableHighlight,
   Linking,
-  StyleSheet
+  StyleSheet,
+  Animated,
+  Easing
 } from 'react-native';
 import { connect } from 'react-redux';
-import { MaterialIcons } from '@expo/vector-icons';
+import { Entypo, MaterialIcons, FontAwesome } from '@expo/vector-icons';
 import {
   addNavigationHelpers,
   TabNavigator,
@@ -32,27 +34,25 @@ import VideoScreen from '../screens/VideoScreen';
 import FinalScreen from '../screens/FinalScreen';
 import AfterCardsScreen from '../screens/AfterCardsScreen';
 
+const noTransitionConfig = () => ({
+  transitionSpec: {
+    duration: 0,
+    timing: Animated.timing,
+    easing: Easing.step0
+  }
+});
+
 const mainScreenNavigatorConfig = {
   navigationOptions: {
     drawerLabel: 'Retour au jeu',
     drawerIcon: ({ tintColor }) => (
-      <MaterialIcons
-        name="videogame-asset"
-        size={24}
-        style={{ color: tintColor }}
-      />
+      <FontAwesome name="gamepad" size={18} style={{ color: '#014DA2' }} />
     )
   },
   swipeEnabled: false,
   initialRouteName: 'First',
   headerMode: 'none',
-  transitionConfig: () => ({
-    transitionSpec: {
-      duration: 0
-      // easing: Easing.out(Easing.poly(4)),
-      // timing: Animated.timing,
-    }
-  })
+  transitionConfig: noTransitionConfig
 };
 
 const GameNavigator = StackNavigator(
@@ -95,6 +95,7 @@ const styles = StyleSheet.create({
     alignItems: 'center'
   },
   label: {
+    color: '#014DA2',
     margin: 16,
     fontWeight: 'bold'
   }
@@ -139,6 +140,20 @@ export const AppNavigator = DrawerNavigator(
           >
             <View style={[styles.item]}>
               <Text style={[styles.label]}>www.ludocoaching.com</Text>
+            </View>
+          </TouchableItem>
+          <TouchableItem
+            onPress={() =>
+              Linking.openURL('https://www.facebook.com/jeuduhaka')}
+            delayPressIn={0}
+          >
+            <View style={[styles.item, { justifyContent: 'center' }]}>
+              <Entypo
+                name={'facebook'}
+                size={36}
+                color={'#014DA2'}
+                style={{ textAlign: 'center', backgroundColor: 'transparent' }}
+              />
             </View>
           </TouchableItem>
         </View>
