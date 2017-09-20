@@ -25,6 +25,7 @@ class App extends React.Component {
     try {
       // this._getLanguage();
       this.initI18nAsync();
+      this.loadSoundAsync();
       this._loadFontsAsync();
     } finally {
       // this.setState({ appIsReady: true });
@@ -43,10 +44,30 @@ class App extends React.Component {
     await I18n.initAsync();
   }
 
+  async loadSoundAsync() {
+    // if (__DEV__) return;
+
+    try {
+      const {
+        soundObject,
+        status
+      } = await Expo.Audio.Sound.create(
+        require('./assets/sounds/normalized-tamtam-loop16bit-1min-volume-0.6.mp3'),
+        {
+          shouldPlay: true,
+          isLooping: true
+        }
+      );
+
+      // Your sound is playing!
+    } catch (error) {
+      // An error occurred!
+    }
+  }
+
   async _getLanguage() {
     try {
       const locale = await Expo.Util.getCurrentLocaleAsync();
-      console.log(locale);
     } catch (e) {
       console.log(e.message);
     }

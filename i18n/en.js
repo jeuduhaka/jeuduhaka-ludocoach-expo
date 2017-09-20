@@ -3,6 +3,7 @@ export default {
   guidedByLudocoach: "guided by ludocoach's Tehotu",
   play3Moves: 'Play with 3 moves',
   play1Move: 'Play with 1 move',
+  accessTraining: 'Access to trainings',
   allRightsReserved: 'All rights reserved',
   chooseCards:
     'Choose a card of each color fitting your emotions and let yourself be guided by tapping each corresponding card in order',

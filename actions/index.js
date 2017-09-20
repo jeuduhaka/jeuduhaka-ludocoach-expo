@@ -35,8 +35,6 @@ function nextDeck(currentDeck) {
   }
 }
 export const cardConfirmed = currentDeck => {
-  console.log(currentDeck);
-
   if (currentDeck !== 'green') {
     return {
       type: ActionTypes.CARD_CONFIRMED,

@@ -61,6 +61,15 @@ class FirstScreen extends React.Component {
               {I18n.t('play1Move')}
             </Button>
           </View>
+          <View style={styles.startButtonContainer}>
+            <Button
+              title={I18n.t('accessTraining')}
+              // onPress={() => this.props.navigation.navigate('ChooseCardGrid')}
+              onPress={() => Linking.openURL('http://bit.ly/2jvNoUj')}
+            >
+              {I18n.t('accessTraining')}
+            </Button>
+          </View>
           <View style={styles.websites} />
           <Text
             style={styles.websiteLink}
