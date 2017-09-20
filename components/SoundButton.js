@@ -13,6 +13,8 @@ import { connect } from 'react-redux';
 import { MaterialIcons } from '@expo/vector-icons';
 import Expo, { Asset } from 'expo';
 
+import App from '../App';
+
 // import { backHome, goBack } from '../actions';
 
 const ICON_COLOR = '#014DA2';
@@ -33,26 +35,26 @@ class SoundButton extends React.Component {
     // this.loadSoundAsync();
   }
 
-  async loadSoundAsync() {
-    // if (__DEV__) return;
-
-    try {
-      const {
-        soundObject,
-        status
-      } = await Expo.Audio.Sound.create(
-        require('../assets/sounds/normalized-tamtam-loop16bit-1min-volume-0.6.mp3'),
-        {
-          shouldPlay: true,
-          isLooping: true
-        }
-      );
-
-      // Your sound is playing!
-    } catch (error) {
-      // An error occurred!
-    }
-  }
+  // async loadSoundAsync() {
+  //   // if (__DEV__) return;
+  //
+  //   try {
+  //     const {
+  //       soundObject,
+  //       status
+  //     } = await Expo.Audio.Sound.create(
+  //       require('../assets/sounds/normalized-tamtam-loop16bit-1min-volume-0.6.mp3'),
+  //       {
+  //         // shouldPlay: true,
+  //         isLooping: true
+  //       }
+  //     );
+  //
+  //     // Your sound is playing!
+  //   } catch (error) {
+  //     // An error occurred!
+  //   }
+  // }
 
   render() {
     const { onPress } = this.props;

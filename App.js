@@ -17,6 +17,8 @@ const store = configureStore();
 I18n.fallbacks = true;
 
 class App extends React.Component {
+  static sound = new Expo.Audio.Sound();
+
   state = {
     appIsReady: false
   };
@@ -48,16 +50,28 @@ class App extends React.Component {
     // if (__DEV__) return;
 
     try {
-      const {
-        soundObject,
-        status
-      } = await Expo.Audio.Sound.create(
+      await soundObject.playAsync();
+
+      // const {
+      //   soundObject,
+      //   status
+      // } = await Expo.Audio.Sound.create(
+      //   require('./assets/sounds/normalized-tamtam-loop16bit-1min-volume-0.6.mp3'),
+      //   {
+      // shouldPlay: true,
+      // isLooping: true
+      //   }
+      // );
+
+      await App.sound.loadAsync(
         require('./assets/sounds/normalized-tamtam-loop16bit-1min-volume-0.6.mp3'),
         {
-          // shouldPlay: true,
+          shouldPlay: true,
           isLooping: true
         }
       );
+
+      await App.sound.playAsync();
 
       // Your sound is playing!
     } catch (error) {
