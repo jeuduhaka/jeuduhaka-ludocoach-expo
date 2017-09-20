@@ -45,7 +45,7 @@ class App extends React.Component {
   }
 
   async loadSoundAsync() {
-    if (__DEV__) return;
+    // if (__DEV__) return;
 
     try {
       const {
@@ -54,7 +54,7 @@ class App extends React.Component {
       } = await Expo.Audio.Sound.create(
         require('./assets/sounds/normalized-tamtam-loop16bit-1min-volume-0.6.mp3'),
         {
-          shouldPlay: true,
+          // shouldPlay: true,
           isLooping: true
         }
       );

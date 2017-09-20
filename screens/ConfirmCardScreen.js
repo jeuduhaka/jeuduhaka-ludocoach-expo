@@ -40,7 +40,7 @@ class ConfirmCardScreen extends React.Component {
     console.log(I18n.defaultLocale);
     return (
       <View style={containerStyle}>
-        <NavigationHeader />
+        <NavigationHeader tintColor={'#ffffff'} />
         <View style={imageContainerStyle}>
           <Image style={imageStyle} source={_get(cardImageSources, imagePath)}>
             <View style={styles.textContainer}>

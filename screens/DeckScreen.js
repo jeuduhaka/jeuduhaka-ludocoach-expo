@@ -65,7 +65,7 @@ class DeckScreen extends React.Component {
 
     return (
       <View style={containerStyle}>
-        <NavigationHeader />
+        <NavigationHeader tintColor={'#ffffff'} />
         <DecksContainer>
           {this.displayCard('red')}
           {this.displayCard('orange')}

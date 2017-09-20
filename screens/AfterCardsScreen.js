@@ -69,7 +69,7 @@ class AfterCardsScreen extends React.Component {
 
     return (
       <View style={styles.container}>
-        <NavigationHeader />
+        <NavigationHeader tintColor={'#014DA2'} />
         <Image
           style={styles.backgroundImage}
           source={require('../assets/images/fond-bleu-vague-1980x1980.jpg')}

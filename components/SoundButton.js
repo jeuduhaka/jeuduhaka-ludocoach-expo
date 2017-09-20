@@ -11,6 +11,7 @@ import { Header, HeaderBackButton, HeaderTitle } from 'react-navigation';
 import { compose } from 'redux';
 import { connect } from 'react-redux';
 import { MaterialIcons } from '@expo/vector-icons';
+import Expo, { Asset } from 'expo';
 
 // import { backHome, goBack } from '../actions';
 
@@ -27,29 +28,57 @@ const MuteSound = ({ isMuted }) => (
   />
 );
 
-const SoundButton = ({ onPress }) => {
-  return (
-    <View
-      style={{
-        position: 'absolute',
-        top: 0,
-        right: 0,
-        flexDirection: 'row',
-        //zIndex needed to be on top of Video
-        zIndex: 2
-      }}
-    >
-      <TouchableOpacity onPress={onPress}>
-        <MuteSound />
-      </TouchableOpacity>
-    </View>
-  );
-};
-// const mapStateToProps = state => ({
-//   gameMode: state.gameMode
-// });
-//
-// const enhance = compose(connect(mapStateToProps, { backHome, goBack }));
-//
-// export default enhance(MenuButton);
-export default SoundButton;
+class SoundButton extends React.Component {
+  componentDidMount() {
+    // this.loadSoundAsync();
+  }
+
+  async loadSoundAsync() {
+    // if (__DEV__) return;
+
+    try {
+      const {
+        soundObject,
+        status
+      } = await Expo.Audio.Sound.create(
+        require('../assets/sounds/normalized-tamtam-loop16bit-1min-volume-0.6.mp3'),
+        {
+          shouldPlay: true,
+          isLooping: true
+        }
+      );
+
+      // Your sound is playing!
+    } catch (error) {
+      // An error occurred!
+    }
+  }
+
+  render() {
+    const { onPress } = this.props;
+
+    return (
+      <View
+        style={{
+          position: 'absolute',
+          top: 0,
+          right: 0,
+          flexDirection: 'row',
+          //zIndex needed to be on top of Video
+          zIndex: 2
+        }}
+      >
+        <TouchableOpacity onPress={() => {}}>
+          <MuteSound />
+        </TouchableOpacity>
+      </View>
+    );
+  }
+}
+const mapStateToProps = state => ({
+  gameMode: state.gameMode
+});
+
+const enhance = compose(connect(mapStateToProps, {}));
+
+export default enhance(SoundButton);

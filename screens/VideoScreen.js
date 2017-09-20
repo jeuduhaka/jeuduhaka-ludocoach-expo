@@ -80,7 +80,7 @@ class VideoScreen extends React.Component {
   render() {
     return (
       <View style={styles.videoContainer}>
-        <NavigationHeader />
+        <NavigationHeader tintColor={'#ffffff'} />
 
         <VideoPlayer
           videoProps={{

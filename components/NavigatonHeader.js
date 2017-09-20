@@ -14,20 +14,20 @@ import { MaterialIcons } from '@expo/vector-icons';
 
 import { backHome, goBack } from '../actions';
 
-const ICON_COLOR = '#FFFFFF';
+const ICON_COLOR = '#014DA2';
 const CENTER_ICON_SIZE = 36;
 const BOTTOM_BAR_ICON_SIZE = 30;
 
-const HomeIcon = () => (
+const HomeIcon = ({ tintColor }) => (
   <MaterialIcons
     name={'home'}
     size={CENTER_ICON_SIZE}
-    color={ICON_COLOR}
+    color={tintColor}
     style={{ textAlign: 'center', backgroundColor: 'transparent' }}
   />
 );
 
-const NavigationHeader = ({ goBack, gameMode, backHome }) => {
+const NavigationHeader = ({ goBack, gameMode, backHome, tintColor }) => {
   return (
     <View
       style={{
@@ -39,7 +39,7 @@ const NavigationHeader = ({ goBack, gameMode, backHome }) => {
         zIndex: 2
       }}
     >
-      <HeaderBackButton onPress={() => goBack()} tintColor={'white'} />
+      <HeaderBackButton onPress={() => goBack()} tintColor={tintColor} />
       {/* <HeaderTitle
       style={{
         position: 'absolute',
@@ -51,7 +51,7 @@ const NavigationHeader = ({ goBack, gameMode, backHome }) => {
       Menace
     </HeaderTitle> */}
       <TouchableOpacity onPress={() => backHome(gameMode)}>
-        <HomeIcon />
+        <HomeIcon tintColor={tintColor} />
       </TouchableOpacity>
     </View>
   );

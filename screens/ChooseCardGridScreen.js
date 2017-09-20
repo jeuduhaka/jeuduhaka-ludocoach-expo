@@ -58,7 +58,7 @@ class ChooseCardGridScreen extends React.Component {
 
     return (
       <View style={containerStyle}>
-        <NavigationHeader />
+        <NavigationHeader tintColor={'#ffffff'} />
         <ChooseCardText currentDeck={this.props.currentDeck} />
         {this.displayCardRows()}
       </View>
