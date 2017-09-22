@@ -5,7 +5,7 @@
       "Transforme ton énergie négative en positive ! Y'HAKA jouer !",
     "slug": "jeuduhaka-ludocoach",
     "privacy": "unlisted",
-    "sdkVersion": "20.0.0",
+    "sdkVersion": "21.0.0",
     "version": "1.0.0",
     "orientation": "portrait",
     "primaryColor": "#cccccc",
@@ -17,8 +17,7 @@
     "loading": {
       "icon": "./assets/icons/logo-192px.png",
       "hideExponentText": true,
-      "backgroundColor": "#ffffff",
-      "splash": {}
+      "backgroundColor": "#ffffff"
     },
     "packagerOpts": {
       "assetExts": ["ttf"]

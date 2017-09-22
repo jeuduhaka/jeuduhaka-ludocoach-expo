@@ -6,8 +6,9 @@ import {
   StatusBar
 } from 'react-native';
 import { Provider } from 'react-redux';
-import Expo, { Font } from 'expo';
+import Expo, { Font, AppLoading } from 'expo';
 import I18n from 'ex-react-native-i18n';
+import { Ionicons } from '@expo/vector-icons';
 
 import AppWithNavigationState from './navigators/AppNavigator';
 import configureStore from './config/configureStore';
@@ -20,64 +21,8 @@ class App extends React.Component {
   static sound = new Expo.Audio.Sound();
 
   state = {
-    appIsReady: false
+    isLoadingComplete: false
   };
-
-  componentWillMount() {
-    try {
-      // this._getLanguage();
-      this.initI18nAsync();
-      this.loadSoundAsync();
-      this._loadFontsAsync();
-    } finally {
-      // this.setState({ appIsReady: true });
-    }
-  }
-
-  async _loadFontsAsync() {
-    await Font.loadAsync({
-      'charcuterie-sans-inline': require('./assets/fonts/CharcuterieSansInline-Regular.ttf'),
-      ionicons: require('./assets/fonts/Ionicons.ttf')
-    });
-    this.setState({ appIsReady: true });
-  }
-
-  async initI18nAsync() {
-    await I18n.initAsync();
-  }
-
-  async loadSoundAsync() {
-    // if (__DEV__) return;
-
-    try {
-      await soundObject.playAsync();
-
-      // const {
-      //   soundObject,
-      //   status
-      // } = await Expo.Audio.Sound.create(
-      //   require('./assets/sounds/normalized-tamtam-loop16bit-1min-volume-0.6.mp3'),
-      //   {
-      // shouldPlay: true,
-      // isLooping: true
-      //   }
-      // );
-
-      await App.sound.loadAsync(
-        require('./assets/sounds/normalized-tamtam-loop16bit-1min-volume-0.6.mp3'),
-        {
-          shouldPlay: true,
-          isLooping: true
-        }
-      );
-
-      await App.sound.playAsync();
-
-      // Your sound is playing!
-    } catch (error) {
-      // An error occurred!
-    }
-  }
 
   async _getLanguage() {
     try {
@@ -87,9 +32,48 @@ class App extends React.Component {
     }
   }
 
+  async loadSoundAsync() {
+    if (__DEV__) return;
+
+    try {
+      // await soundObject.playAsync();
+
+      const {
+        soundObject,
+        status
+      } = await Expo.Audio.Sound.create(
+        require('./assets/sounds/normalized-tamtam-loop16bit-1min-volume-0.6.mp3'),
+        {
+          shouldPlay: true,
+          isLooping: true
+        }
+      );
+
+      // await App.sound.loadAsync(
+      //   require('./assets/sounds/normalized-tamtam-loop16bit-1min-volume-0.6.mp3'),
+      //   {
+      //     shouldPlay: true,
+      //     isLooping: true
+      //   }
+      // );
+      //
+      // await App.sound.playAsync();
+
+      // Your sound is playing!
+    } catch (error) {
+      // An error occurred!
+    }
+  }
+
   render() {
-    if (!this.state.appIsReady) {
-      return <Expo.AppLoading />;
+    if (!this.state.isLoadingComplete && !this.props.skipLoadingScreen) {
+      return (
+        <AppLoading
+          startAsync={this._loadResourcesAsync}
+          onError={this._handleLoadingError}
+          onFinish={this._handleFinishLoading}
+        />
+      );
     }
 
     return (
@@ -101,6 +85,29 @@ class App extends React.Component {
       </View>
     );
   }
+
+  _loadResourcesAsync = async () => {
+    return Promise.all([
+      I18n.initAsync(),
+      Font.loadAsync([
+        ...Ionicons.font,
+        {
+          'charcuterie-sans-inline': require('./assets/fonts/CharcuterieSansInline-Regular.ttf')
+        }
+      ]),
+      this.loadSoundAsync()
+    ]);
+  };
+
+  _handleLoadingError = error => {
+    // In this case, you might want to report the error to your error
+    // reporting service, for example Sentry
+    console.warn(error);
+  };
+
+  _handleFinishLoading = () => {
+    this.setState({ isLoadingComplete: true });
+  };
 }
 
 const styles = StyleSheet.create({
