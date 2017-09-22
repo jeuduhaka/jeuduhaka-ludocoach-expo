@@ -1,4 +1,5 @@
 export default {
+  //Jeu
   hakaGame: 'Le Jeu du Haka',
   guidedByLudocoach: 'guidé par le ludocoach Tehotu',
   play3Moves: 'Jouer en 3 mouvements',
@@ -22,6 +23,13 @@ export default {
   manaActivated:
     'Bravo, vous avez activé votre Mana ! Les autres joueurs vont maintenant vous noter avec leurs ressentis sur votre expression corporelle.',
   thankYou: 'Merci',
+
+  //Menus
+  backToGame: 'Retour au jeu',
+  acknowledgementsMenu: 'Remerciements',
+  acknowledgementsText: 'Remerciements à ',
+
+  //Cartes
   abandon: 'Abandon',
   colere: 'Colère',
   degout: 'Dégoût',

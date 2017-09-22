@@ -20,6 +20,8 @@ import {
 } from 'react-navigation';
 import TouchableItem from 'react-navigation/src/views/TouchableItem';
 
+import I18n from '../i18n/';
+
 import ThanksScreen from '../screens/ThanksScreen';
 import FirstScreen from '../screens/FirstScreen';
 import SecondScreen from '../screens/SecondScreen';
@@ -44,7 +46,7 @@ const noTransitionConfig = () => ({
 
 const mainScreenNavigatorConfig = {
   navigationOptions: {
-    drawerLabel: 'Retour au jeu',
+    drawerLabel: I18n.t('backToGame'),
     drawerIcon: ({ tintColor }) => (
       <FontAwesome name="gamepad" size={18} style={{ color: '#014DA2' }} />
     )
@@ -115,6 +117,7 @@ export const AppNavigator = DrawerNavigator(
     initialRouteName: 'Home',
     gesturesEnabled: false,
     contentComponent: props => {
+      console.log('here');
       return (
         <View style={{ flex: 1 }}>
           <DrawerItems {...props} />

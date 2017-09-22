@@ -1,12 +1,14 @@
 import React from 'react';
 import { Text, Image, StyleSheet, Button, View } from 'react-native';
 import { FontAwesome } from '@expo/vector-icons';
+
 import MenuButton from '../components/MenuButton';
+import I18n from '../i18n';
 
 class ThanksScreen extends React.Component {
   static navigationOptions = {
     headerMode: 'float',
-    drawerLabel: 'Remerciements',
+    drawerLabel: I18n.t('acknowledgementsMenu'),
     drawerIcon: ({ tintColor }) => (
       <FontAwesome name="handshake-o" size={18} style={{ color: '#014DA2' }} />
     )
@@ -19,7 +21,7 @@ class ThanksScreen extends React.Component {
           onPress={() => this.props.navigation.navigate('DrawerOpen')}
         />
         <Text style={[styles.text, { paddingBottom: 20 }]}>
-          Remerciements :
+          {I18n.t('acknowledgementsText')}:
         </Text>
         <Text style={styles.text}>La Délégation de la Polynésie Française</Text>
         <Text style={styles.text}>Teanuanua PARAURAHI</Text>
