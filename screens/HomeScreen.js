@@ -2,6 +2,7 @@ import React from 'react';
 import { Text, Image, Linking, View } from 'react-native';
 import { compose } from 'redux';
 import { connect } from 'react-redux';
+import { FontAwesome } from '@expo/vector-icons';
 
 import I18n from '../i18n';
 
@@ -13,7 +14,7 @@ import MenuButton from '../components/MenuButton';
 import LanguageFlagButton from '../components/LanguageFlagButton';
 import styles from './styles';
 
-class FirstScreen extends React.Component {
+class HomeScreen extends React.Component {
   static route = {
     navigationBar: {
       visible: false
@@ -21,7 +22,11 @@ class FirstScreen extends React.Component {
   };
 
   static navigationOptions = {
-    header: null
+    headerMode: 'float',
+    drawerLabel: I18n.t('backToGame'),
+    drawerIcon: ({ tintColor }) => (
+      <FontAwesome name="gamepad" size={18} style={{ color: '#014DA2' }} />
+    )
   };
 
   render() {
@@ -30,7 +35,10 @@ class FirstScreen extends React.Component {
     return (
       <View style={styles.container}>
         <MenuButton
-          onPress={() => this.props.navigation.navigate('DrawerOpen')}
+          onPress={() =>
+            this.props.navigation.navigate('DrawerOpen', {
+              language: I18n.locale
+            })}
         />
         <LanguageFlagButton onPress={() => this.forceUpdate()} />
         <Image
@@ -94,4 +102,4 @@ const enhance = compose(
   // require('../utils/withLifecycleLogs').default
 );
 
-export default enhance(FirstScreen);
+export default enhance(HomeScreen);

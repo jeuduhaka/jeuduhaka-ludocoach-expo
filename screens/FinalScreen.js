@@ -36,7 +36,7 @@ export default class FinalScreen extends React.Component {
           <View style={styles.startButtonContainer}>
             <Button
               style={styles.startButton}
-              onPress={() => this.props.navigation.navigate('First')}
+              onPress={() => this.props.navigation.navigate('Home')}
             >
               {I18n.t('thankYou')}
             </Button>

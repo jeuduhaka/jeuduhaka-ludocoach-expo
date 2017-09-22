@@ -117,7 +117,7 @@ export default (state = INITIAL_STATE, action) => {
     case ActionTypes.ALL_VIDEOS_ENDED:
       switch (action.gameMode) {
         case ActionTypes.GAME_MODE_1_MOVE:
-          route = 'First';
+          route = 'Home';
           break;
         default:
           route = 'Final';

@@ -18,7 +18,7 @@ import I18n from '../i18n';
 import App from '../App';
 
 const ICON_COLOR = '#014DA2';
-const CENTER_ICON_SIZE = 36;
+const CENTER_ICON_SIZE = 30;
 
 const flags = {
   en:
@@ -37,7 +37,7 @@ class LanguageFlagButton extends React.Component {
   constructor() {
     super();
 
-    const locale = I18n.locale;
+    const locale = I18n.locale.split('-')[0];
     if (I18n.isLocaleSupported(locale)) {
       this.state.currentFlag = getOtherFlag(locale);
     } else {

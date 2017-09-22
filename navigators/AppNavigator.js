@@ -10,7 +10,7 @@ import {
   Easing
 } from 'react-native';
 import { connect } from 'react-redux';
-import { Entypo, MaterialIcons, FontAwesome } from '@expo/vector-icons';
+import { Entypo, FontAwesome } from '@expo/vector-icons';
 import {
   addNavigationHelpers,
   TabNavigator,
@@ -23,7 +23,7 @@ import TouchableItem from 'react-navigation/src/views/TouchableItem';
 import I18n from '../i18n/';
 
 import ThanksScreen from '../screens/ThanksScreen';
-import FirstScreen from '../screens/FirstScreen';
+import HomeScreen from '../screens/HomeScreen';
 import SecondScreen from '../screens/SecondScreen';
 import SecondScreen1Move from '../screens/SecondScreen1Move';
 import DeckScreen from '../screens/DeckScreen';
@@ -45,46 +45,11 @@ const noTransitionConfig = () => ({
 });
 
 const mainScreenNavigatorConfig = {
-  navigationOptions: {
-    drawerLabel: I18n.t('backToGame'),
-    drawerIcon: ({ tintColor }) => (
-      <FontAwesome name="gamepad" size={18} style={{ color: '#014DA2' }} />
-    )
-  },
   swipeEnabled: false,
-  initialRouteName: 'First',
+  initialRouteName: 'Home',
   headerMode: 'none',
   transitionConfig: noTransitionConfig
 };
-
-const GameNavigator = StackNavigator(
-  {
-    First: { screen: FirstScreen },
-    Second: { screen: SecondScreen },
-    Second1Move: { screen: SecondScreen1Move },
-    Final: { screen: FinalScreen },
-    Deck: { screen: DeckScreen },
-    ChooseCardGrid: { screen: ChooseCardGridScreen },
-    ConfirmCard: { screen: ConfirmCardScreen },
-    AfterCards: { screen: AfterCardsScreen },
-    // Main: {
-    //   screen: MainScreenNavigator,
-    //   navigationOptions: ({ navigation }) => ({
-    //     title: 'Ludocoach'
-    //     // headerBackTitle: null
-    //   })
-    // },
-    Video: {
-      path: 'video/:card',
-      screen: VideoScreen,
-      // headerMode: 'float',
-      navigationOptions: ({ navigation }) => ({
-        // headerTitle: navigation.state.params.videoName
-      })
-    }
-  },
-  mainScreenNavigatorConfig
-);
 
 const styles = StyleSheet.create({
   item: {
@@ -103,10 +68,10 @@ const styles = StyleSheet.create({
   }
 });
 
-export const AppNavigator = DrawerNavigator(
+const HomeWithDrawer = DrawerNavigator(
   {
     Home: {
-      screen: GameNavigator
+      screen: HomeScreen
     },
     Thanks: {
       screen: ThanksScreen
@@ -117,7 +82,11 @@ export const AppNavigator = DrawerNavigator(
     initialRouteName: 'Home',
     gesturesEnabled: false,
     contentComponent: props => {
-      console.log('here');
+      // const allProps = {
+      //   ...props,
+      //   language: I18n.locale
+      // };
+
       return (
         <View style={{ flex: 1 }}>
           <DrawerItems {...props} />
@@ -165,9 +134,46 @@ export const AppNavigator = DrawerNavigator(
   }
 );
 
-const AppWithNavigationState = ({ dispatch, nav }) => (
-  <AppNavigator navigation={addNavigationHelpers({ dispatch, state: nav })} />
+export const AppNavigator = StackNavigator(
+  {
+    Home: { screen: HomeWithDrawer },
+    Second: { screen: SecondScreen },
+    Second1Move: { screen: SecondScreen1Move },
+    Final: { screen: FinalScreen },
+    Deck: { screen: DeckScreen },
+    ChooseCardGrid: { screen: ChooseCardGridScreen },
+    ConfirmCard: { screen: ConfirmCardScreen },
+    AfterCards: { screen: AfterCardsScreen },
+    // Main: {
+    //   screen: MainScreenNavigator,
+    //   navigationOptions: ({ navigation }) => ({
+    //     title: 'Ludocoach'
+    //     // headerBackTitle: null
+    //   })
+    // },
+    Video: {
+      path: 'video/:card',
+      screen: VideoScreen,
+      // headerMode: 'float',
+      navigationOptions: ({ navigation }) => ({
+        // headerTitle: navigation.state.params.videoName
+      })
+    }
+  },
+  mainScreenNavigatorConfig
 );
+
+const AppWithNavigationState = ({ dispatch, nav }) => {
+  return (
+    <AppNavigator
+      navigation={addNavigationHelpers({
+        dispatch,
+        state: nav,
+        language: I18n.locale
+      })}
+    />
+  );
+};
 
 AppWithNavigationState.propTypes = {
   dispatch: PropTypes.func.isRequired,
