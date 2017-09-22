@@ -14,8 +14,6 @@ import AppWithNavigationState from './navigators/AppNavigator';
 import configureStore from './config/configureStore';
 
 const store = configureStore();
-// Enable fallbacks if you want `en-US` and `en-GB` to fallback to `en`
-I18n.fallbacks = true;
 
 class App extends React.Component {
   static sound = new Expo.Audio.Sound();
@@ -23,14 +21,6 @@ class App extends React.Component {
   state = {
     isLoadingComplete: false
   };
-
-  async _getLanguage() {
-    try {
-      const locale = await Expo.Util.getCurrentLocaleAsync();
-    } catch (e) {
-      console.log(e.message);
-    }
-  }
 
   async loadSoundAsync() {
     if (__DEV__) return;

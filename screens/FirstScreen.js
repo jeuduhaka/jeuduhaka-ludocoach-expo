@@ -10,7 +10,7 @@ import * as ActionTypes from '../actions/types';
 
 import { Button } from '../components/common';
 import MenuButton from '../components/MenuButton';
-import SoundButton from '../components/SoundButton';
+import LanguageFlagButton from '../components/LanguageFlagButton';
 import styles from './styles';
 
 class FirstScreen extends React.Component {
@@ -30,7 +30,7 @@ class FirstScreen extends React.Component {
         <MenuButton
           onPress={() => this.props.navigation.navigate('DrawerOpen')}
         />
-        <SoundButton onPress={() => console.log('pressed')} />
+        <LanguageFlagButton onPress={() => this.forceUpdate()} />
         <Image
           style={styles.backgroundImage}
           source={require('../assets/images/fond-bleu-vague-1980x1980.jpg')}
