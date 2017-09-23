@@ -1,11 +1,13 @@
 import { combineReducers } from 'redux';
 import NavReducer from './NavReducer';
+import LanguageReducer from './LanguageReducer.js';
 import GameModeReducer from './GameModeReducer';
 import CardsReducer from './CardsReducer';
 import * as ActionTypes from '../actions/types';
 
 const appReducer = combineReducers({
   nav: NavReducer,
+  language: LanguageReducer,
   gameMode: GameModeReducer,
   cards: CardsReducer
 });

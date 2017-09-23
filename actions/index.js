@@ -1,5 +1,12 @@
 import * as ActionTypes from './types';
 
+export const languageChanged = language => {
+  return {
+    type: ActionTypes.LANGUAGE_CHANGED,
+    language
+  };
+};
+
 export const gameModeChosen = gameMode => {
   return {
     type: ActionTypes.GAME_MODE_CHOSEN,

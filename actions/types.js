@@ -1,3 +1,5 @@
+export const LANGUAGE_CHANGED = 'LANGUAGE_CHANGED';
+
 export const GAME_MODE_CHOSEN = 'GAME_MODE_CHOSEN';
 export const GAME_MODE_3_MOVES = 'GAME_MODE_3_MOVES';
 export const GAME_MODE_1_MOVE = 'GAME_MODE_1_MOVE';

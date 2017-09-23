@@ -13,8 +13,6 @@ import { Ionicons } from '@expo/vector-icons';
 import AppWithNavigationState from './navigators/AppNavigator';
 import configureStore from './config/configureStore';
 
-const store = configureStore();
-
 class App extends React.Component {
   static sound = new Expo.Audio.Sound();
 
@@ -65,6 +63,8 @@ class App extends React.Component {
         />
       );
     }
+
+    const store = configureStore({ language: I18n.locale });
 
     return (
       <View style={{ flex: 1 }}>

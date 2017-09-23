@@ -6,19 +6,23 @@ import MenuButton from '../components/MenuButton';
 import I18n from '../i18n';
 
 class ThanksScreen extends React.Component {
-  static navigationOptions = {
+  static navigationOptions = ({ navigation, screenProps }) => ({
     headerMode: 'float',
-    drawerLabel: I18n.t('acknowledgementsMenu'),
+    drawerLabel: I18n.t('acknowledgementsMenu', {
+      locale: screenProps.language
+    }),
     drawerIcon: ({ tintColor }) => (
       <FontAwesome name="handshake-o" size={18} style={{ color: '#014DA2' }} />
     )
-  };
+  });
 
   render() {
     return (
       <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
         <MenuButton
-          onPress={() => this.props.navigation.navigate('DrawerOpen')}
+          onPress={() => {
+            this.props.navigation.navigate('DrawerOpen');
+          }}
         />
         <Text style={[styles.text, { paddingBottom: 20 }]}>
           {I18n.t('acknowledgementsText')}:

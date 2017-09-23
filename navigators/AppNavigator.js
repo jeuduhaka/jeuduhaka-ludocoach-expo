@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {
   Text,
+  Image,
   View,
   TouchableHighlight,
   Linking,
@@ -89,45 +90,65 @@ const HomeWithDrawer = DrawerNavigator(
 
       return (
         <View style={{ flex: 1 }}>
+          <Image
+            style={{
+              alignSelf: 'center',
+              marginTop: 10,
+              width: 100,
+              height: 100
+            }}
+            source={require('../assets/images/jeu-du-haka-logo-200x200.png')}
+          />
           <DrawerItems {...props} />
-          <TouchableItem
-            onPress={() => Linking.openURL('https://www.jeuduhaka.com')}
-            delayPressIn={0}
+          <View
+            style={{
+              flex: 1,
+              flexDirection: 'column',
+              justifyContent: 'flex-end'
+            }}
           >
-            <View style={[styles.item]}>
-              <Text style={[styles.label]}>www.jeuduhaka.com</Text>
-            </View>
-          </TouchableItem>
-          <TouchableItem
-            onPress={() => Linking.openURL('http://www.marckucharz.com')}
-            delayPressIn={0}
-          >
-            <View style={[styles.item]}>
-              <Text style={[styles.label]}>www.marckucharz.com</Text>
-            </View>
-          </TouchableItem>
-          <TouchableItem
-            onPress={() => Linking.openURL('http://www.ludocoaching.com')}
-            delayPressIn={0}
-          >
-            <View style={[styles.item]}>
-              <Text style={[styles.label]}>www.ludocoaching.com</Text>
-            </View>
-          </TouchableItem>
-          <TouchableItem
-            onPress={() =>
-              Linking.openURL('https://www.facebook.com/jeuduhaka')}
-            delayPressIn={0}
-          >
-            <View style={[styles.item, { justifyContent: 'center' }]}>
-              <Entypo
-                name={'facebook'}
-                size={36}
-                color={'#014DA2'}
-                style={{ textAlign: 'center', backgroundColor: 'transparent' }}
-              />
-            </View>
-          </TouchableItem>
+            <TouchableItem
+              onPress={() => Linking.openURL('https://www.jeuduhaka.com')}
+              delayPressIn={0}
+            >
+              <View style={[styles.item]}>
+                <Text style={[styles.label]}>www.jeuduhaka.com</Text>
+              </View>
+            </TouchableItem>
+            <TouchableItem
+              onPress={() => Linking.openURL('http://www.marckucharz.com')}
+              delayPressIn={0}
+            >
+              <View style={[styles.item]}>
+                <Text style={[styles.label]}>www.marckucharz.com</Text>
+              </View>
+            </TouchableItem>
+            <TouchableItem
+              onPress={() => Linking.openURL('http://www.ludocoaching.com')}
+              delayPressIn={0}
+            >
+              <View style={[styles.item]}>
+                <Text style={[styles.label]}>www.ludocoaching.com</Text>
+              </View>
+            </TouchableItem>
+            <TouchableItem
+              onPress={() =>
+                Linking.openURL('https://www.facebook.com/jeuduhaka')}
+              delayPressIn={0}
+            >
+              <View style={[styles.item, { justifyContent: 'center' }]}>
+                <Entypo
+                  name={'facebook'}
+                  size={36}
+                  color={'#014DA2'}
+                  style={{
+                    textAlign: 'center',
+                    backgroundColor: 'transparent'
+                  }}
+                />
+              </View>
+            </TouchableItem>
+          </View>
         </View>
       );
     }
@@ -163,14 +184,14 @@ export const AppNavigator = StackNavigator(
   mainScreenNavigatorConfig
 );
 
-const AppWithNavigationState = ({ dispatch, nav }) => {
+const AppWithNavigationState = ({ dispatch, nav, language }) => {
   return (
     <AppNavigator
       navigation={addNavigationHelpers({
         dispatch,
-        state: nav,
-        language: I18n.locale
+        state: nav
       })}
+      screenProps={{ language }}
     />
   );
 };
@@ -181,7 +202,8 @@ AppWithNavigationState.propTypes = {
 };
 
 const mapStateToProps = state => ({
-  nav: state.nav
+  nav: state.nav,
+  language: state.language
 });
 
 export default connect(mapStateToProps)(AppWithNavigationState);

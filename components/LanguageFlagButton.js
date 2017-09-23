@@ -1,21 +1,11 @@
 import React from 'react';
-import {
-  Button,
-  Text,
-  View,
-  Image,
-  TouchableOpacity,
-  Dimensions,
-  StyleSheet
-} from 'react-native';
-import { Header, HeaderBackButton, HeaderTitle } from 'react-navigation';
+import { View, Image, TouchableOpacity } from 'react-native';
 import { compose } from 'redux';
 import { connect } from 'react-redux';
-import { MaterialIcons } from '@expo/vector-icons';
-import Expo, { Asset } from 'expo';
-import I18n from '../i18n';
 
+import I18n from '../i18n/';
 import App from '../App';
+import { languageChanged } from '../actions/';
 
 const ICON_COLOR = '#014DA2';
 const CENTER_ICON_SIZE = 30;
@@ -50,7 +40,7 @@ class LanguageFlagButton extends React.Component {
   };
 
   render() {
-    const { onPress } = this.props;
+    const { onPress, languageChanged } = this.props;
 
     return (
       <View
@@ -69,7 +59,8 @@ class LanguageFlagButton extends React.Component {
             I18n.locale = this.state.currentFlag;
             this.state.currentFlag = otherFlag;
 
-            onPress();
+            languageChanged(I18n.locale);
+            onPress && onPress();
           }}
         >
           <Image
@@ -85,9 +76,10 @@ class LanguageFlagButton extends React.Component {
   }
 }
 const mapStateToProps = state => ({
-  gameMode: state.gameMode
+  gameMode: state.gameMode,
+  language: state.language
 });
 
-const enhance = compose(connect(mapStateToProps, {}));
+const enhance = compose(connect(mapStateToProps, { languageChanged }));
 
 export default enhance(LanguageFlagButton);

@@ -21,26 +21,33 @@ class HomeScreen extends React.Component {
     }
   };
 
-  static navigationOptions = {
-    headerMode: 'float',
-    drawerLabel: I18n.t('backToGame'),
-    drawerIcon: ({ tintColor }) => (
-      <FontAwesome name="gamepad" size={18} style={{ color: '#014DA2' }} />
-    )
+  // static navigationOptions = {
+  //   headerMode: 'float',
+  //   drawerLabel: I18n.t('backToGame'),
+  //   drawerIcon: ({ tintColor }) => (
+  //     <FontAwesome name="gamepad" size={18} style={{ color: '#014DA2' }} />
+  //   )
+  // };
+
+  static navigationOptions = ({ navigation, screenProps }) => {
+    return {
+      headerMode: 'float',
+      drawerLabel: I18n.t('backToGame', { locale: screenProps.language }),
+      drawerIcon: ({ tintColor }) => (
+        <FontAwesome name="gamepad" size={18} style={{ color: '#014DA2' }} />
+      )
+    };
   };
 
   render() {
-    console.log(this.props.navigation);
-
     return (
       <View style={styles.container}>
         <MenuButton
-          onPress={() =>
-            this.props.navigation.navigate('DrawerOpen', {
-              language: I18n.locale
-            })}
+          onPress={() => {
+            this.props.navigation.navigate('DrawerOpen');
+          }}
         />
-        <LanguageFlagButton onPress={() => this.forceUpdate()} />
+        <LanguageFlagButton />
         <Image
           style={styles.backgroundImage}
           source={require('../assets/images/fond-bleu-vague-1980x1980.jpg')}
@@ -94,7 +101,8 @@ class HomeScreen extends React.Component {
 }
 
 const mapStateToProps = state => ({
-  gameMode: state.gameMode
+  gameMode: state.gameMode,
+  language: state.language
 });
 
 const enhance = compose(
