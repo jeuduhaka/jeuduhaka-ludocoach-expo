@@ -17,11 +17,11 @@ const flags = {
     'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACgAAAAeBAMAAACs80HuAAAABGdBTUEAALGPC/xhBQAAAAFzUkdCAK7OHOkAAAAgY0hSTQAAeiYAAICEAAD6AAAAgOgAAHUwAADqYAAAOpgAABdwnLpRPAAAACFQTFRFACZ/AymBABl3qbbU////+/z9//z8+7G58gok8xsz8xgwxtlaVAAAAAFiS0dEBI9o2VEAAAAJcEhZcwAAAEgAAABIAEbJaz4AAAAeSURBVCjPY2AAAUZlVxcgSKmYtQoEGEYFRwVpKQgAg3q7n/McyNsAAAAldEVYdGRhdGU6Y3JlYXRlADIwMTMtMTAtMDdUMTM6MTQ6NDcrMDI6MDDY2ztBAAAAJXRFWHRkYXRlOm1vZGlmeQAyMDEzLTEwLTA3VDEzOjE0OjQ3KzAyOjAwqYaD/QAAAABJRU5ErkJggg=='
 };
 
-const otherFlag = {
+const otherFlagMap = {
   fr: 'en',
   en: 'fr'
 };
-const getOtherFlag = currentLocale => otherFlag[currentLocale];
+const getOtherFlag = currentLocale => otherFlagMap[currentLocale];
 
 class LanguageFlagButton extends React.Component {
   constructor() {
