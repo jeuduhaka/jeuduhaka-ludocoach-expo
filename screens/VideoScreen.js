@@ -91,6 +91,7 @@ class VideoScreen extends React.Component {
             // style: styles.backgroundVideo,
             shouldPlay: true, // config.autoplayVideo,
             // isMuted:  config.muteVideo,
+            isMuted: false,
             resizeMode: Video.RESIZE_MODE_COVER,
             source: {
               uri: this.state.videoUri,

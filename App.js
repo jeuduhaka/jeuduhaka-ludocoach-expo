@@ -3,7 +3,8 @@ import {
   View,
   //   Image,
   StyleSheet,
-  StatusBar
+  StatusBar,
+  Platform,
 } from 'react-native';
 import { Provider } from 'react-redux';
 import Expo, { Font, AppLoading } from 'expo';
@@ -17,39 +18,41 @@ class App extends React.Component {
   static sound = new Expo.Audio.Sound();
 
   state = {
-    isLoadingComplete: false
+    isLoadingComplete: false,
   };
 
   async loadSoundAsync() {
     if (__DEV__) return;
 
-    try {
-      // await soundObject.playAsync();
+    if (Platform.OS === 'ios') {
+      try {
+        // await soundObject.playAsync();
 
-      const {
-        soundObject,
-        status
-      } = await Expo.Audio.Sound.create(
-        require('./assets/sounds/normalized-tamtam-loop16bit-1min-volume-0.6.mp3'),
-        {
-          shouldPlay: true,
-          isLooping: true
-        }
-      );
+        const {
+          soundObject,
+          status,
+        } = await Expo.Audio.Sound.create(
+          require('./assets/sounds/normalized-tamtam-loop16bit-1min-volume-0.6.mp3'),
+          {
+            shouldPlay: true,
+            isLooping: true,
+          }
+        );
 
-      // await App.sound.loadAsync(
-      //   require('./assets/sounds/normalized-tamtam-loop16bit-1min-volume-0.6.mp3'),
-      //   {
-      //     shouldPlay: true,
-      //     isLooping: true
-      //   }
-      // );
-      //
-      // await App.sound.playAsync();
+        // await App.sound.loadAsync(
+        //   require('./assets/sounds/normalized-tamtam-loop16bit-1min-volume-0.6.mp3'),
+        //   {
+        //     shouldPlay: true,
+        //     isLooping: true
+        //   }
+        // );
+        //
+        // await App.sound.playAsync();
 
-      // Your sound is playing!
-    } catch (error) {
-      // An error occurred!
+        // Your sound is playing!
+      } catch (error) {
+        // An error occurred!
+      }
     }
   }
 
@@ -82,10 +85,10 @@ class App extends React.Component {
       Font.loadAsync([
         ...Ionicons.font,
         {
-          'charcuterie-sans-inline': require('./assets/fonts/CharcuterieSansInline-Regular.ttf')
-        }
+          'charcuterie-sans-inline': require('./assets/fonts/CharcuterieSansInline-Regular.ttf'),
+        },
       ]),
-      this.loadSoundAsync()
+      this.loadSoundAsync(),
     ]);
   };
 
@@ -105,8 +108,8 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#fff',
     alignItems: 'center',
-    justifyContent: 'center'
-  }
+    justifyContent: 'center',
+  },
 });
 
 export default App;

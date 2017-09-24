@@ -33,7 +33,7 @@ export default (state = INITIAL_STATE, action) => {
           route = 'Second1Move';
           break;
         default:
-          route = 'Second';
+          route = 'Second3Moves';
           break;
       }
 

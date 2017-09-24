@@ -17,8 +17,8 @@ import styles from './styles';
 class HomeScreen extends React.Component {
   static route = {
     navigationBar: {
-      visible: false
-    }
+      visible: false,
+    },
   };
 
   // static navigationOptions = {
@@ -35,7 +35,7 @@ class HomeScreen extends React.Component {
       drawerLabel: I18n.t('backToGame', { locale: screenProps.language }),
       drawerIcon: ({ tintColor }) => (
         <FontAwesome name="gamepad" size={18} style={{ color: '#014DA2' }} />
-      )
+      ),
     };
   };
 
@@ -50,8 +50,7 @@ class HomeScreen extends React.Component {
         <LanguageFlagButton />
         <Image
           style={styles.backgroundImage}
-          source={require('../assets/images/fond-bleu-vague-1980x1980.jpg')}
-        >
+          source={require('../assets/images/fond-bleu-vague-1980x1980.jpg')}>
           <View style={styles.titleContainer}>
             <Text style={styles.title}>{I18n.t('hakaGame')}</Text>
           </View>
@@ -69,23 +68,20 @@ class HomeScreen extends React.Component {
               title={I18n.t('play3Moves')}
               // onPress={() => this.props.navigation.navigate('Second3Moves')}
               onPress={() =>
-                this.props.gameModeChosen(ActionTypes.GAME_MODE_3_MOVES)}
-            >
+                this.props.gameModeChosen(ActionTypes.GAME_MODE_3_MOVES)}>
               {I18n.t('play3Moves')}
             </Button>
             <Button
               title={I18n.t('play1Move')}
               // onPress={() => this.props.navigation.navigate('ChooseCardGrid')}
               onPress={() =>
-                this.props.gameModeChosen(ActionTypes.GAME_MODE_1_MOVE)}
-            >
+                this.props.gameModeChosen(ActionTypes.GAME_MODE_1_MOVE)}>
               {I18n.t('play1Move')}
             </Button>
             <Button
               title={I18n.t('accessTraining')}
               // onPress={() => this.props.navigation.navigate('ChooseCardGrid')}
-              onPress={() => Linking.openURL('http://bit.ly/2jvNoUj')}
-            >
+              onPress={() => Linking.openURL('http://bit.ly/2jvNoUj')}>
               {I18n.t('accessTraining')}
             </Button>
           </View>
@@ -102,7 +98,7 @@ class HomeScreen extends React.Component {
 
 const mapStateToProps = state => ({
   gameMode: state.gameMode,
-  language: state.language
+  language: state.language,
 });
 
 const enhance = compose(

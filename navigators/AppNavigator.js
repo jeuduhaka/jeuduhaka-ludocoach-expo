@@ -28,7 +28,7 @@ import I18n from '../i18n/';
 
 import ThanksScreen from '../screens/ThanksScreen';
 import HomeScreen from '../screens/HomeScreen';
-import SecondScreen from '../screens/SecondScreen';
+import SecondScreen3Moves from '../screens/SecondScreen3Moves';
 import SecondScreen1Move from '../screens/SecondScreen1Move';
 import DeckScreen from '../screens/DeckScreen';
 import ChooseCardGridScreen from '../screens/ChooseCardGridScreen';
@@ -128,7 +128,8 @@ const HomeWithDrawer = DrawerNavigator(
               </View>
             </TouchableItem>
             <TouchableItem
-              onPress={() => Linking.openURL('https://www.facebook.com/jeuduhaka')}
+              onPress={() =>
+                Linking.openURL('https://www.facebook.com/jeuduhaka')}
               delayPressIn={0}>
               <View style={[styles.item, { justifyContent: 'center' }]}>
                 <Entypo
@@ -152,7 +153,7 @@ const HomeWithDrawer = DrawerNavigator(
 export const AppNavigator = StackNavigator(
   {
     Home: { screen: HomeWithDrawer },
-    Second: { screen: SecondScreen },
+    Second3Moves: { screen: SecondScreen3Moves },
     Second1Move: { screen: SecondScreen1Move },
     Final: { screen: FinalScreen },
     Deck: { screen: DeckScreen },
