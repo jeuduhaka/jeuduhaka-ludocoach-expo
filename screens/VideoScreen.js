@@ -7,10 +7,9 @@ import {
   View,
   TouchableOpacity,
   Dimensions,
-  StyleSheet
+  StyleSheet,
 } from 'react-native';
 import { Video, Constants } from 'expo';
-import { Header, HeaderBackButton, HeaderTitle } from 'react-navigation';
 import { compose } from 'redux';
 import { connect } from 'react-redux';
 
@@ -24,15 +23,15 @@ import videoSources from '../stores/CardVideoSourcesRemote.js';
 
 const styles = {
   videoContainer: {
-    flex: 1
+    flex: 1,
   },
   backgroundVideo: {
     position: 'absolute',
     top: 0,
     left: 0,
     bottom: 0,
-    right: 0
-  }
+    right: 0,
+  },
 };
 
 const videoWidth = Dimensions.get('window').width;
@@ -43,7 +42,7 @@ const BASE_VIDEO_URI = 'https://s3.eu-west-2.amazonaws.com/frqs-jdh/videos/';
 
 class VideoScreen extends React.Component {
   static navigationOptions = {
-    header: null
+    header: null,
     // headerStyle: {
     //   position: 'absolute',
     //   backgroundColor: 'transparent',
@@ -61,7 +60,7 @@ class VideoScreen extends React.Component {
     // const data = this.props.navigation.state.params.data;
     // const videoId = this.props.navigation.state.params.videoId;
     //
-    const { currentDeck, selectedCards, videoSources } = this.props;
+    const { currentDeck, selectedCards } = this.props;
 
     const cardName = selectedCards[currentDeck];
     // const videoSource = videoSources[currentDeck][cardName];
@@ -70,7 +69,7 @@ class VideoScreen extends React.Component {
       // data,
       // links,
       videoUri: `${BASE_VIDEO_URI}${cardName}-render.mp4`,
-      isPortrait: true
+      isPortrait: true,
       // playback: this.props.playback,
       // uri:
       //   this.props.offline.state === STATES.DOWNLOADING
@@ -94,12 +93,12 @@ class VideoScreen extends React.Component {
             // isMuted:  config.muteVideo,
             resizeMode: Video.RESIZE_MODE_COVER,
             source: {
-              uri: this.state.videoUri
+              uri: this.state.videoUri,
             },
             // positionMillis: this.state.playback,
             style: {
               width: videoWidth,
-              height: videoHeight
+              height: videoHeight,
             },
             onLoad: status => {
               // console.log(this._video);
@@ -108,7 +107,7 @@ class VideoScreen extends React.Component {
                 this._playbackInstance.playFromPositionAsync(25000);
               }
               // this._video.playFromPositionAsync(0);
-            }
+            },
           }}
           isPortrait={this.state.isPortrait}
           nextCallback={() => {
@@ -130,7 +129,7 @@ const mapStateToProps = state => ({
   gameMode: state.gameMode,
   currentDeck: state.cards.present.currentDeck,
   selectedCards: state.cards.present.selected,
-  allVideosEnded: state.cards.present.allVideosEnded
+  allVideosEnded: state.cards.present.allVideosEnded,
 });
 
 const enhance = compose(

@@ -9,7 +9,7 @@ import {
   Text,
   Slider,
   NetInfo,
-  Navigator
+  Navigator,
 } from 'react-native';
 import PropTypes from 'prop-types';
 import reactMixin from 'react-mixin';
@@ -24,7 +24,7 @@ import {
   FullscreenEnterIcon,
   FullscreenExitIcon,
   ReplayIcon,
-  NextIcon
+  NextIcon,
 } from '../assets/videoplayer-icons';
 const TRACK_IMAGE = require('../assets/track.png');
 const THUMB_IMAGE = require('../assets/thumb.png');
@@ -35,7 +35,7 @@ var CONTROL_STATES = {
   SHOWN: 'SHOWN',
   SHOWING: 'SHOWING',
   HIDDEN: 'HIDDEN',
-  HIDING: 'HIDDING'
+  HIDING: 'HIDDING',
 };
 
 var PLAYBACK_STATES = {
@@ -44,13 +44,13 @@ var PLAYBACK_STATES = {
   PAUSED: 'PAUSED',
   BUFFERING: 'BUFFERING',
   ERROR: 'ERROR',
-  ENDED: 'ENDED'
+  ENDED: 'ENDED',
 };
 
 var SEEK_STATES = {
   NOT_SEEKING: 'NOT_SEEKING',
   SEEKING: 'SEEKING',
-  SEEKED: 'SEEKED'
+  SEEKED: 'SEEKED',
 };
 
 // Don't show the Spinner for very short periods of buffering
@@ -121,7 +121,7 @@ export default class VideoPlayer extends React.Component {
     // Dealing with fullscreen
     isPortrait: PropTypes.bool,
     switchToLandscape: PropTypes.func,
-    switchToPortrait: PropTypes.func
+    switchToPortrait: PropTypes.func,
   };
 
   static defaultProps = {
@@ -141,14 +141,14 @@ export default class VideoPlayer extends React.Component {
     thumbImage: THUMB_IMAGE,
     textStyle: {
       color: '#FFFFFF',
-      fontSize: 12
+      fontSize: 12,
     },
     // Callbacks
     playbackCallback: () => {},
     errorCallback: error => {
       console.log('Error: ', error.message, error.type, error.obj);
     },
-    debug: false
+    debug: false,
   };
 
   constructor(props) {
@@ -167,7 +167,7 @@ export default class VideoPlayer extends React.Component {
       error: null,
       // Controls display state
       controlsOpacity: new Animated.Value(0),
-      controlsState: CONTROL_STATES.HIDDEN
+      controlsState: CONTROL_STATES.HIDDEN,
     };
   }
 
@@ -181,24 +181,24 @@ export default class VideoPlayer extends React.Component {
         interruptionModeIOS: Audio.INTERRUPTION_MODE_IOS_DO_NOT_MIX,
         playsInSilentModeIOS: true,
         shouldDuckAndroid: true,
-        interruptionModeAndroid: Audio.INTERRUPTION_MODE_ANDROID_DO_NOT_MIX
+        interruptionModeAndroid: Audio.INTERRUPTION_MODE_ANDROID_DO_NOT_MIX,
       });
     } catch (e) {
       this.props.errorCallback({
         type: 'NON_FATAL',
         message: 'setAudioModeAsync error',
-        obj: e
+        obj: e,
       });
     }
   }
 
   // Listen for changes in network connectivity
   _setupNetInfoListener() {
-    NetInfo.fetch().then(reach => {
+    NetInfo.getConnectionInfo().then(reach => {
       this.props.debug && console.log('[networkState]', reach);
       this.setState({ networkState: reach });
     });
-    NetInfo.addEventListener('change', reach => {
+    NetInfo.addEventListener('connectionChange', reach => {
       this.props.debug && console.log('[networkState]', reach);
       this.setState({ networkState: reach });
     });
@@ -259,7 +259,7 @@ export default class VideoPlayer extends React.Component {
         this._setPlaybackState(PLAYBACK_STATES.ERROR);
         const errorMsg = `Encountered a fatal error during playback: ${playbackStatus.error}`;
         this.setState({
-          error: errorMsg
+          error: errorMsg,
         });
         this.props.errorCallback({ type: 'FATAL', message: errorMsg, obj: {} });
       }
@@ -268,7 +268,7 @@ export default class VideoPlayer extends React.Component {
       this.setState({
         playbackInstancePosition: playbackStatus.positionMillis,
         playbackInstanceDuration: playbackStatus.durationMillis,
-        shouldPlay: playbackStatus.shouldPlay
+        shouldPlay: playbackStatus.shouldPlay,
       });
 
       // Figure out what state should be next (only if we are not seeking, other the seek action handlers control the playback state,
@@ -281,19 +281,14 @@ export default class VideoPlayer extends React.Component {
           this._setPlaybackState(PLAYBACK_STATES.ENDED);
         } else {
           // If the video is buffering but there is no Internet, you go to the ERROR state
-          if (
-            this.state.networkState === 'none' &&
-            playbackStatus.isBuffering
-          ) {
+          if (this.state.networkState === 'none' && playbackStatus.isBuffering) {
             this._setPlaybackState(PLAYBACK_STATES.ERROR);
             this.setState({
               error:
-                'You are probably offline. Please make sure you are connected to the Internet to watch this video'
+                'You are probably offline. Please make sure you are connected to the Internet to watch this video',
             });
           } else {
-            this._setPlaybackState(
-              this._isPlayingOrBufferingOrPaused(playbackStatus)
-            );
+            this._setPlaybackState(this._isPlayingOrBufferingOrPaused(playbackStatus));
           }
         }
       }
@@ -307,19 +302,13 @@ export default class VideoPlayer extends React.Component {
       this.state.playbackInstancePosition != null &&
       this.state.playbackInstanceDuration != null
     ) {
-      return (
-        this.state.playbackInstancePosition /
-        this.state.playbackInstanceDuration
-      );
+      return this.state.playbackInstancePosition / this.state.playbackInstanceDuration;
     }
     return 0;
   }
 
   _onSeekSliderValueChange = () => {
-    if (
-      this._playbackInstance != null &&
-      this.state.seekState !== SEEK_STATES.SEEKING
-    ) {
+    if (this._playbackInstance != null && this.state.seekState !== SEEK_STATES.SEEKING) {
       this._setSeekState(SEEK_STATES.SEEKING);
       // A seek might have finished (SEEKED) but since we are not in NOT_SEEKING yet, the `shouldPlay` flag
       // is still false, but we really want it be the stored value from before the previous seek
@@ -339,23 +328,19 @@ export default class VideoPlayer extends React.Component {
       // If the video is going to play after seek, the user expects a spinner.
       // Otherwise, the user expects the play button
       this._setPlaybackState(
-        this.shouldPlayAtEndOfSeek
-          ? PLAYBACK_STATES.BUFFERING
-          : PLAYBACK_STATES.PAUSED
+        this.shouldPlayAtEndOfSeek ? PLAYBACK_STATES.BUFFERING : PLAYBACK_STATES.PAUSED
       );
       this._playbackInstance
         .setStatusAsync({
           positionMillis: value * this.state.playbackInstanceDuration,
-          shouldPlay: this.shouldPlayAtEndOfSeek
+          shouldPlay: this.shouldPlayAtEndOfSeek,
         })
         .then(playbackStatus => {
           // The underlying <Video> has successfully updated playback position
           // TODO: If `shouldPlayAtEndOfSeek` is false, should we still set the playbackState to PAUSED?
           // But because we setStatusAsync(shouldPlay: false), so the playbackStatus return value will be PAUSED.
           this._setSeekState(SEEK_STATES.NOT_SEEKING);
-          this._setPlaybackState(
-            this._isPlayingOrBufferingOrPaused(playbackStatus)
-          );
+          this._setPlaybackState(this._isPlayingOrBufferingOrPaused(playbackStatus));
         })
         .catch(message => {
           this.props.debug && console.log('Seek error: ', message);
@@ -416,7 +401,7 @@ export default class VideoPlayer extends React.Component {
     this._playbackInstance
       .setStatusAsync({
         shouldPlay: true,
-        positionMillis: 0
+        positionMillis: 0,
       })
       .then(() => {
         // Update playbackState to get out of ENDED state
@@ -465,7 +450,7 @@ export default class VideoPlayer extends React.Component {
     this.showingAnimation = Animated.timing(this.state.controlsOpacity, {
       toValue: 1,
       duration: this.props.fadeInDuration,
-      useNativeDriver: true
+      useNativeDriver: true,
     });
 
     this.showingAnimation.start(({ finished }) => {
@@ -482,10 +467,8 @@ export default class VideoPlayer extends React.Component {
     }
     this.hideAnimation = Animated.timing(this.state.controlsOpacity, {
       toValue: 0,
-      duration: immediate
-        ? this.props.quickFadeOutDuration
-        : this.props.fadeOutDuration,
-      useNativeDriver: true
+      duration: immediate ? this.props.quickFadeOutDuration : this.props.fadeOutDuration,
+      useNativeDriver: true,
     });
     this.hideAnimation.start(({ finished }) => {
       if (finished) {
@@ -511,10 +494,8 @@ export default class VideoPlayer extends React.Component {
   };
 
   render() {
-    const videoWidth =
-      this.props.videoProps.style.width || Dimensions.get('window').width;
-    const videoHeight =
-      this.props.videoProps.style.height || videoWidth * (9 / 16);
+    const videoWidth = this.props.videoProps.style.width || Dimensions.get('window').width;
+    const videoHeight = this.props.videoProps.style.height || videoWidth * (9 / 16);
     const centeredContentWidth = 60;
 
     const PlayIcon = this.props.playIcon;
@@ -525,13 +506,7 @@ export default class VideoPlayer extends React.Component {
     const ReplayIcon = this.props.replayIcon;
 
     // Do not let the user override `ref`, `callback`, and `style`
-    const {
-      ref,
-      callback,
-      style,
-      source,
-      ...otherVideoProps
-    } = this.props.videoProps;
+    const { ref, callback, style, source, ...otherVideoProps } = this.props.videoProps;
 
     // TODO: Best way to throw required property missing error
     if (!source) {
@@ -545,23 +520,19 @@ export default class VideoPlayer extends React.Component {
         onPress={() => {
           this._resetControlsTimer();
           callback();
-        }}
-      >
+        }}>
         <View
           style={
-            center ? (
-              {
-                backgroundColor: 'rgba(0, 0, 0, 0.4)',
-                justifyContent: 'center',
-                width: centeredContentWidth,
-                height: centeredContentWidth,
-                borderRadius: centeredContentWidth
-              }
-            ) : (
-              {}
-            )
-          }
-        >
+            center
+              ? {
+                  backgroundColor: 'rgba(0, 0, 0, 0.4)',
+                  justifyContent: 'center',
+                  width: centeredContentWidth,
+                  height: centeredContentWidth,
+                  borderRadius: centeredContentWidth,
+                }
+              : {}
+          }>
           {children}
         </View>
       </TouchableOpacity>
@@ -579,11 +550,10 @@ export default class VideoPlayer extends React.Component {
             height: centeredContentWidth,
             flexDirection: 'column',
             justifyContent: 'center',
-            alignItems: 'center'
+            alignItems: 'center',
           },
-          style
-        ]}
-      >
+          style,
+        ]}>
         {children}
       </Animated.View>
     );
@@ -595,12 +565,9 @@ export default class VideoPlayer extends React.Component {
           top: videoHeight / 2,
           width: videoWidth - 40,
           marginRight: 20,
-          marginLeft: 20
-        }}
-      >
-        <Text style={[this.props.textStyle, { textAlign: 'center' }]}>
-          {text}
-        </Text>
+          marginLeft: 20,
+        }}>
+        <Text style={[this.props.textStyle, { textAlign: 'center' }]}>{text}</Text>
       </View>
     );
 
@@ -608,9 +575,8 @@ export default class VideoPlayer extends React.Component {
       <TouchableWithoutFeedback onPress={this._toggleControls.bind(this)}>
         <View
           style={{
-            backgroundColor: 'black'
-          }}
-        >
+            backgroundColor: 'black',
+          }}>
           <Video
             source={source}
             ref={component => {
@@ -620,47 +586,39 @@ export default class VideoPlayer extends React.Component {
             onPlaybackStatusUpdate={this._playbackCallback.bind(this)}
             style={{
               width: videoWidth,
-              height: videoHeight
+              height: videoHeight,
             }}
             {...otherVideoProps}
           />
 
           {/* Spinner */}
           {((this.state.playbackState == PLAYBACK_STATES.BUFFERING &&
-            Date.now() - this.state.lastPlaybackStateUpdate >
-              BUFFERING_SHOW_DELAY) ||
+            Date.now() - this.state.lastPlaybackStateUpdate > BUFFERING_SHOW_DELAY) ||
             this.state.playbackState == PLAYBACK_STATES.LOADING) && (
-            <CenteredView>
-              <Spinner />
-            </CenteredView>
-          )}
+              <CenteredView>
+                <Spinner />
+              </CenteredView>
+            )}
 
           {/* Play/pause buttons */}
           {(this.state.seekState == SEEK_STATES.NOT_SEEKING ||
             this.state.seekState == SEEK_STATES.SEEKED) &&
-          (this.state.playbackState == PLAYBACK_STATES.PLAYING ||
-            this.state.playbackState == PLAYBACK_STATES.PAUSED) && (
-            <CenteredView
-              pointerEvents={
-                this.state.controlsState === CONTROL_STATES.HIDDEN ? (
-                  'none'
-                ) : (
-                  'auto'
-                )
-              }
-              style={{
-                opacity: this.state.controlsOpacity
-              }}
-            >
-              <Control center={true} callback={this._togglePlay.bind(this)}>
-                {this.state.playbackState == PLAYBACK_STATES.PLAYING ? (
-                  <PauseIcon />
-                ) : (
-                  <PlayIcon />
-                )}
-              </Control>
-            </CenteredView>
-          )}
+            (this.state.playbackState == PLAYBACK_STATES.PLAYING ||
+              this.state.playbackState == PLAYBACK_STATES.PAUSED) && (
+              <CenteredView
+                pointerEvents={this.state.controlsState === CONTROL_STATES.HIDDEN ? 'none' : 'auto'}
+                style={{
+                  opacity: this.state.controlsOpacity,
+                }}>
+                <Control center={true} callback={this._togglePlay.bind(this)}>
+                  {this.state.playbackState == PLAYBACK_STATES.PLAYING ? (
+                    <PauseIcon />
+                  ) : (
+                    <PlayIcon />
+                  )}
+                </Control>
+              </CenteredView>
+            )}
 
           {/* Replay button to show at the end of a video */}
           {this.state.playbackState == PLAYBACK_STATES.ENDED && (
@@ -683,13 +641,7 @@ export default class VideoPlayer extends React.Component {
 
           {/* Bottom bar */}
           <Animated.View
-            pointerEvents={
-              this.state.controlsState === CONTROL_STATES.HIDDEN ? (
-                'none'
-              ) : (
-                'auto'
-              )
-            }
+            pointerEvents={this.state.controlsState === CONTROL_STATES.HIDDEN ? 'none' : 'auto'}
             style={{
               position: 'absolute',
               bottom: 0,
@@ -697,24 +649,17 @@ export default class VideoPlayer extends React.Component {
               opacity: this.state.controlsOpacity,
               flexDirection: 'row',
               alignItems: 'center',
-              justifyContent: 'space-between'
-            }}
-          >
+              justifyContent: 'space-between',
+            }}>
             {/* Current time display */}
-            <Text
-              style={[
-                this.props.textStyle,
-                { backgroundColor: 'transparent', marginLeft: 5 }
-              ]}
-            >
+            <Text style={[this.props.textStyle, { backgroundColor: 'transparent', marginLeft: 5 }]}>
               {this._getMMSSFromMillis(this.state.playbackInstancePosition)}
             </Text>
 
             {/* Seek bar */}
             <TouchableWithoutFeedback
               onLayout={this._onSliderLayout.bind(this)}
-              onPress={this._onSeekBarTap.bind(this)}
-            >
+              onPress={this._onSeekBarTap.bind(this)}>
               <Slider
                 style={{ marginRight: 10, marginLeft: 10, flex: 1 }}
                 trackImage={this.props.trackImage}
@@ -733,11 +678,7 @@ export default class VideoPlayer extends React.Component {
 
             {/* Duration display */}
             <Text
-              style={[
-                this.props.textStyle,
-                { backgroundColor: 'transparent', marginRight: 5 }
-              ]}
-            >
+              style={[this.props.textStyle, { backgroundColor: 'transparent', marginRight: 5 }]}>
               {this._getMMSSFromMillis(this.state.playbackInstanceDuration)}
             </Text>
 
