@@ -22,6 +22,7 @@ import {
   DrawerItems,
 } from 'react-navigation';
 import TouchableItem from 'react-navigation/src/views/TouchableItem';
+import { ActionCreators as UndoActionCreators } from 'redux-undo';
 
 import I18n from '../i18n/';
 
@@ -197,6 +198,7 @@ class AppWithNavigationState extends React.Component {
       return false;
     }
     dispatch(NavigationActions.back());
+    dispatch(UndoActionCreators.undo());
     return true;
   }
 
