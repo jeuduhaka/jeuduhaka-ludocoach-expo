@@ -1,12 +1,5 @@
 import React from 'react';
-import {
-  Image,
-  TouchableOpacity,
-  Animated,
-  Easing,
-  Text,
-  View
-} from 'react-native';
+import { Image, TouchableOpacity, Animated, Easing, Text, View } from 'react-native';
 // import env from '../config/env';
 //
 //
@@ -26,11 +19,7 @@ import {
 
 function createImage({ name, source, imageStyle }) {
   return (
-    <Image
-      style={{ ...styles.baseImageStyle, ...imageStyle }}
-      source={source}
-      // onLoad={() => console.log('onLoad')}
-    >
+    <Image style={{ ...styles.baseImageStyle, ...imageStyle }} source={source}>
       <View style={styles.textContainer}>
         <Text style={styles.title}>{name}</Text>
       </View>
@@ -46,7 +35,7 @@ const Card = ({ name, imageSource, onPress, ...otherProps }) => {
   const image = createImage({
     source: imageSource,
     name,
-    imageStyle: otherProps.style ? otherProps.style.imageStyle : null
+    imageStyle: otherProps.style ? otherProps.style.imageStyle : null,
   });
 
   if (!onPress) {
@@ -64,7 +53,7 @@ const styles = {
   buttonContainer: {
     flex: 1,
     //backgroundColor needed for Android -> black by default
-    backgroundColor: 'transparent'
+    backgroundColor: 'transparent',
     // padding: 10
   },
   //disable parent View justifyContent and alignItems properties
@@ -76,7 +65,7 @@ const styles = {
     // flexGrow: 1,
     justifyContent: 'space-between',
     width: undefined,
-    height: undefined
+    height: undefined,
   },
   textContainer: {
     flex: 1,
@@ -88,7 +77,7 @@ const styles = {
     justifyContent: 'flex-end',
     alignItems: 'center',
     // backgroundColor: 'rgba(255,0,0,0.3)',
-    backgroundColor: 'transparent'
+    backgroundColor: 'transparent',
     // borderWidth: 1,
     // borderColor: 'yellow'
   },
@@ -97,12 +86,13 @@ const styles = {
     color: '#ffffff',
     fontFamily: 'charcuterie-sans-inline',
     fontSize: 16,
-    fontWeight: 'bold',
+    //fontWeight prevents charcuterie-sans-inline from displaying on Android
+    // fontWeight: 'bold',
     letterSpacing: 0.5,
-    bottom: '10%'
+    bottom: '10%',
     // borderWidth: 1,
     // borderColor: 'blue'
-  }
+  },
 };
 
 export default Card;

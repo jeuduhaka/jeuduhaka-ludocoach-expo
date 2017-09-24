@@ -6,44 +6,44 @@ export default StyleSheet.create({
     flex: 1,
     resizeMode: 'cover',
     width: undefined,
-    height: undefined
+    height: undefined,
   },
   titleContainer: {
     flex: 1,
-    paddingTop: '5%'
+    paddingTop: '5%',
   },
   navigationHeaderPaddingTop: {
-    paddingTop: 50
+    paddingTop: 50,
   },
   title: {
     fontSize: 40,
     fontFamily: 'charcuterie-sans-inline',
     color: '#014DA2',
     backgroundColor: 'transparent',
-    textAlign: 'center'
+    textAlign: 'center',
   },
   font20px: {
-    fontSize: 20
+    fontSize: 20,
   },
   subtitleContainer: {
-    flex: 1
+    flex: 1,
   },
   subtitle: {
     fontSize: 24,
     fontFamily: 'charcuterie-sans-inline',
     color: '#014DA2',
     backgroundColor: 'transparent',
-    textAlign: 'center'
+    textAlign: 'center',
   },
   homeImageContainer: {
-    flex: 6
+    flex: 6,
   },
   homeImage: {
     flex: 1,
     resizeMode: 'contain',
-    alignSelf: 'center'
+    alignSelf: 'center',
   },
   startButtonContainer: { flex: 1 },
   copyrightContainer: { flex: 1, paddingTop: '5%' },
-  copyright: { backgroundColor: 'transparent', alignSelf: 'center' }
+  copyright: { backgroundColor: 'transparent', alignSelf: 'center' },
 });

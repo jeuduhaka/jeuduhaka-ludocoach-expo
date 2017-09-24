@@ -17,7 +17,7 @@ import cardImageSources from '../stores/CardImageSources';
 class ConfirmCardScreen extends React.Component {
   static navigationOptions = {
     header: null,
-    gesturesEnabled: false
+    gesturesEnabled: false,
   };
 
   render() {
@@ -27,15 +27,10 @@ class ConfirmCardScreen extends React.Component {
       imageStyle,
       descriptionContainerStyle,
       descriptionStyle,
-      buttonsContainerStyle
+      buttonsContainerStyle,
     } = styles;
 
-    const {
-      currentDeck,
-      selectedCards,
-      onCardConfirm,
-      onCardCancel
-    } = this.props;
+    const { currentDeck, selectedCards, onCardConfirm, onCardCancel } = this.props;
 
     const cardName = selectedCards[currentDeck];
     const imagePath = `front.${currentDeck}.${cardName}`;
@@ -68,7 +63,7 @@ class ConfirmCardScreen extends React.Component {
                 fontSize: 16,
                 fontWeight: '600',
                 paddingTop: 10,
-                paddingBottom: 10
+                paddingBottom: 10,
               },
               buttonStyle: {
                 // flex: 1, //expands as much as content possibly can
@@ -78,10 +73,9 @@ class ConfirmCardScreen extends React.Component {
                 borderWidth: 1,
                 borderColor: '#000000',
                 marginLeft: 5,
-                marginRight: 5
-              }
-            }}
-          >
+                marginRight: 5,
+              },
+            }}>
             {I18n.t('iChoose')}
           </Button>
           <Button
@@ -94,7 +88,7 @@ class ConfirmCardScreen extends React.Component {
                 fontSize: 16,
                 fontWeight: '600',
                 paddingTop: 10,
-                paddingBottom: 10
+                paddingBottom: 10,
               },
               buttonStyle: {
                 // flex: 1, //expands as much as content possibly can
@@ -104,10 +98,9 @@ class ConfirmCardScreen extends React.Component {
                 borderWidth: 1,
                 borderColor: '#ffffff',
                 marginLeft: 5,
-                marginRight: 5
-              }
-            }}
-          >
+                marginRight: 5,
+              },
+            }}>
             {I18n.t('chooseAnotherCard')}
           </Button>
         </View>
@@ -122,15 +115,15 @@ const styles = {
     justifyContent: 'center',
     // alignItems: 'center',
     backgroundColor: '#000000',
-    paddingTop: 30
+    paddingTop: 30,
   },
   imageContainerStyle: {
-    flex: 3
+    flex: 3,
   },
   imageStyle: {
     alignSelf: 'center',
     flex: 1,
-    resizeMode: 'contain'
+    resizeMode: 'contain',
   },
   textContainer: {
     flex: 1,
@@ -142,7 +135,7 @@ const styles = {
     justifyContent: 'flex-end',
     alignItems: 'center',
     // backgroundColor: 'rgba(255,0,0,0.3)'
-    backgroundColor: 'transparent'
+    backgroundColor: 'transparent',
     // borderWidth: 1,
     // borderColor: 'yellow'
   },
@@ -151,10 +144,10 @@ const styles = {
     color: '#ffffff',
     fontFamily: 'charcuterie-sans-inline',
     fontSize: 50,
-    fontWeight: 'bold',
+    // fontWeight: 'bold',
     letterSpacing: 0.5,
     bottom: '10%',
-    textAlign: 'center'
+    textAlign: 'center',
     // borderWidth: 1,
     // borderColor: 'blue'
   },
@@ -167,15 +160,15 @@ const styles = {
   // },
   buttonsContainerStyle: {
     flex: 1,
-    paddingTop: 30
-  }
+    paddingTop: 30,
+  },
 };
 
 const mapStateToProps = state => ({
   gameMode: state.gameMode,
   currentDeck: state.cards.present.currentDeck,
   selectedCards: state.cards.present.selected,
-  allCardsChosen: state.cards.present.allCardsChosen
+  allCardsChosen: state.cards.present.allCardsChosen,
 });
 
 const mapDispatchToProps = dispatch => {
@@ -185,7 +178,7 @@ const mapDispatchToProps = dispatch => {
       dispatch(UndoActionCreators.undo());
       dispatch(cardCancelled());
     },
-    onRedo: () => dispatch(UndoActionCreators.redo())
+    onRedo: () => dispatch(UndoActionCreators.redo()),
   };
 };
 
