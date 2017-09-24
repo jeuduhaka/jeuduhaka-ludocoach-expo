@@ -84,7 +84,7 @@ export default (state = INITIAL_STATE, action) => {
       break;
     case ActionTypes.CARD_CANCELLED:
       nextState = AppNavigator.router.getStateForAction(
-        NavigationActions.back(),
+        NavigationActions.back(null),
         state
       );
       break;
@@ -92,6 +92,12 @@ export default (state = INITIAL_STATE, action) => {
     case ActionTypes.ALL_CARDS_CONFIRMED:
       nextState = AppNavigator.router.getStateForAction(
         NavigationActions.navigate({ routeName: 'AfterCards' }),
+        state
+      );
+      break;
+    case ActionTypes.AFTER_CARDS_BUTTON_PRESSED:
+      nextState = AppNavigator.router.getStateForAction(
+        NavigationActions.navigate({ routeName: 'Deck' }),
         state
       );
       break;
@@ -104,47 +110,19 @@ export default (state = INITIAL_STATE, action) => {
       break;
     case ActionTypes.VIDEO_ENDED:
       nextState = AppNavigator.router.getStateForAction(
-        // NavigationActions.navigate({ routeName: 'Deck' }),
-        NavigationActions.back(
-          findRouteKey({
-            routes: state.routes,
-            routeName: 'Video'
-          })
-        ),
+        NavigationActions.navigate({ routeName: 'Deck' }),
         state
       );
       break;
     case ActionTypes.ALL_VIDEOS_ENDED:
-      switch (action.gameMode) {
-        case ActionTypes.GAME_MODE_1_MOVE:
-          route = 'Home';
-          break;
-        default:
-          route = 'Final';
-          break;
-      }
       nextState = AppNavigator.router.getStateForAction(
-        NavigationActions.navigate({ routeName: route }),
+        NavigationActions.navigate({ routeName: 'Final' }),
         state
       );
       break;
     case ActionTypes.BACK_HOME:
-      switch (action.gameMode) {
-        case ActionTypes.GAME_MODE_1_MOVE:
-          route = 'Second1Move';
-          break;
-        default:
-          route = 'Second';
-          break;
-      }
       nextState = AppNavigator.router.getStateForAction(
-        // NavigationActions.navigate({ routeName: 'Deck' }),
-        NavigationActions.back(
-          findRouteKey({
-            routes: state.routes,
-            routeName: route
-          })
-        ),
+        NavigationActions.navigate({ routeName: 'Home' }),
         state
       );
       break;

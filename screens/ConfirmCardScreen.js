@@ -10,6 +10,10 @@ import { cardConfirmed, cardCancelled } from '../actions';
 import { Button } from '../components/common';
 import NavigationHeader from '../components/NavigatonHeader';
 
+import { ActionCreators as UndoActionCreators } from 'redux-undo';
+
+import cardImageSources from '../stores/CardImageSources';
+
 class ConfirmCardScreen extends React.Component {
   static navigationOptions = {
     header: null,
@@ -28,16 +32,14 @@ class ConfirmCardScreen extends React.Component {
 
     const {
       currentDeck,
-      cardImageSources,
       selectedCards,
-      cardConfirmed,
-      cardCancelled
+      onCardConfirm,
+      onCardCancel
     } = this.props;
 
     const cardName = selectedCards[currentDeck];
     const imagePath = `front.${currentDeck}.${cardName}`;
 
-    console.log(I18n.defaultLocale);
     return (
       <View style={containerStyle}>
         <NavigationHeader tintColor={'#ffffff'} />
@@ -57,7 +59,7 @@ class ConfirmCardScreen extends React.Component {
         </View> */}
         <View style={buttonsContainerStyle}>
           <Button
-            onPress={() => cardConfirmed(currentDeck)}
+            onPress={onCardConfirm.bind(this, currentDeck)}
             style={{
               textStyle: {
                 alignSelf: 'center',
@@ -83,7 +85,7 @@ class ConfirmCardScreen extends React.Component {
             {I18n.t('iChoose')}
           </Button>
           <Button
-            onPress={() => cardCancelled()}
+            onPress={onCardCancel}
             style={{
               textStyle: {
                 alignSelf: 'center',
@@ -151,7 +153,8 @@ const styles = {
     fontSize: 50,
     fontWeight: 'bold',
     letterSpacing: 0.5,
-    bottom: '10%'
+    bottom: '10%',
+    textAlign: 'center'
     // borderWidth: 1,
     // borderColor: 'blue'
   },
@@ -170,14 +173,24 @@ const styles = {
 
 const mapStateToProps = state => ({
   gameMode: state.gameMode,
-  currentDeck: state.cards.currentDeck,
-  selectedCards: state.cards.selected,
-  allCardsChosen: state.cards.allCardsChosen,
-  cardImageSources: state.cards.imageSources
+  currentDeck: state.cards.present.currentDeck,
+  selectedCards: state.cards.present.selected,
+  allCardsChosen: state.cards.present.allCardsChosen
 });
 
+const mapDispatchToProps = dispatch => {
+  return {
+    onCardConfirm: currentDeck => dispatch(cardConfirmed(currentDeck)),
+    onCardCancel: () => {
+      dispatch(UndoActionCreators.undo());
+      dispatch(cardCancelled());
+    },
+    onRedo: () => dispatch(UndoActionCreators.redo())
+  };
+};
+
 const enhance = compose(
-  connect(mapStateToProps, { cardConfirmed, cardCancelled })
+  connect(mapStateToProps, mapDispatchToProps)
   // require('../utils/withLifecycleLogs').default
 );
 

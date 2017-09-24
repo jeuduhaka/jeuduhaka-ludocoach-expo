@@ -61,13 +61,19 @@ export const cardCancelled = () => {
   };
 };
 
+export const afterCardsButtonPressed = currentDeck => {
+  return {
+    type: ActionTypes.AFTER_CARDS_BUTTON_PRESSED
+  };
+};
+
 export const selectedCardPressed = () => {
   return {
     type: ActionTypes.SELECTED_CARD_PRESSED
   };
 };
 
-export const videoEnded = (currentDeck, gameMode) => {
+export const videoEnded = currentDeck => {
   if (currentDeck !== 'green') {
     return {
       type: ActionTypes.VIDEO_ENDED,
@@ -76,15 +82,13 @@ export const videoEnded = (currentDeck, gameMode) => {
   }
 
   return {
-    type: ActionTypes.ALL_VIDEOS_ENDED,
-    gameMode
+    type: ActionTypes.ALL_VIDEOS_ENDED
   };
 };
 
-export const backHome = gameMode => {
+export const backHome = () => {
   return {
-    type: ActionTypes.BACK_HOME,
-    gameMode
+    type: ActionTypes.BACK_HOME
   };
 };
 

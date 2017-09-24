@@ -1,5 +1,8 @@
 import React from 'react';
 import { Text, Image, Linking, View } from 'react-native';
+import { compose } from 'redux';
+import { connect } from 'react-redux';
+import { ActionCreators as UndoActionCreators } from 'redux-undo';
 
 import I18n from '../i18n';
 
@@ -7,7 +10,9 @@ import { Button } from '../components/common';
 import styles from './styles';
 import NavigationHeader from '../components/NavigatonHeader';
 
-export default class FinalScreen extends React.Component {
+import { backHome } from '../actions';
+
+class FinalScreen extends React.Component {
   static route = {
     navigationBar: {
       visible: false
@@ -36,7 +41,7 @@ export default class FinalScreen extends React.Component {
           <View style={styles.startButtonContainer}>
             <Button
               style={styles.startButton}
-              onPress={() => this.props.navigation.navigate('Home')}
+              onPress={this.props.onThanksPress}
             >
               {I18n.t('thankYou')}
             </Button>
@@ -46,3 +51,19 @@ export default class FinalScreen extends React.Component {
     );
   }
 }
+
+const mapStateToProps = state => ({});
+
+const mapDispatchToProps = dispatch => {
+  return {
+    onThanksPress: () => {
+      // dispatch(UndoActionCreators.clearHistory());
+      dispatch(backHome());
+    }
+    // onRedo: () => dispatch(UndoActionCreators.redo())
+  };
+};
+
+const enhance = compose(connect(mapStateToProps, mapDispatchToProps));
+
+export default enhance(FinalScreen);

@@ -11,6 +11,7 @@ import { Header, HeaderBackButton, HeaderTitle } from 'react-navigation';
 import { compose } from 'redux';
 import { connect } from 'react-redux';
 import { MaterialIcons } from '@expo/vector-icons';
+import { ActionCreators as UndoActionCreators } from 'redux-undo';
 
 import { backHome, goBack } from '../actions';
 
@@ -27,7 +28,14 @@ const HomeIcon = ({ tintColor }) => (
   />
 );
 
-const NavigationHeader = ({ goBack, gameMode, backHome, tintColor }) => {
+const NavigationHeader = ({
+  onBackPress,
+  onUndo,
+  onHomePress,
+  onReset,
+  gameMode,
+  tintColor
+}) => {
   return (
     <View
       style={{
@@ -39,7 +47,7 @@ const NavigationHeader = ({ goBack, gameMode, backHome, tintColor }) => {
         zIndex: 2
       }}
     >
-      <HeaderBackButton onPress={() => goBack()} tintColor={tintColor} />
+      <HeaderBackButton onPress={onBackPress} tintColor={tintColor} />
       {/* <HeaderTitle
       style={{
         position: 'absolute',
@@ -50,16 +58,29 @@ const NavigationHeader = ({ goBack, gameMode, backHome, tintColor }) => {
     >
       Menace
     </HeaderTitle> */}
-      <TouchableOpacity onPress={() => backHome(gameMode)}>
+      <TouchableOpacity onPress={onHomePress}>
         <HomeIcon tintColor={tintColor} />
       </TouchableOpacity>
     </View>
   );
 };
-const mapStateToProps = state => ({
-  gameMode: state.gameMode
-});
+const mapStateToProps = state => ({});
 
-const enhance = compose(connect(mapStateToProps, { backHome, goBack }));
+const mapDispatchToProps = dispatch => {
+  return {
+    onBackPress: () => {
+      dispatch(UndoActionCreators.undo());
+      dispatch(goBack());
+    },
+    // onReset: () => dispatch(UndoActionCreators.clearHistory()),
+    onHomePress: () => {
+      dispatch(backHome());
+    }
+    // onUndo: () => dispatch(UndoActionCreators.undo()),
+    // onRedo: () => dispatch(UndoActionCreators.redo())
+  };
+};
+
+const enhance = compose(connect(mapStateToProps, mapDispatchToProps));
 
 export default enhance(NavigationHeader);

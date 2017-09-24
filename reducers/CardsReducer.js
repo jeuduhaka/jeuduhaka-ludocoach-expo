@@ -1,16 +1,11 @@
 import * as ActionTypes from '../actions/types';
-import cardImageSources from './CardImageSources';
-import cardVideoSources from './CardVideoSourcesRemote';
-import gesturesTexts from './GesturesTexts';
 
 const INITIAL_STATE = {
   allCardsChosen: false,
   allVideosEnded: false,
   currentDeck: 'red',
-  imageSources: cardImageSources,
-  videoSources: cardVideoSources,
-  gesturesTexts,
   cardConfirmed: false,
+  videoLaunched: false,
   selected: {
     red: '',
     orange: '',
@@ -19,6 +14,7 @@ const INITIAL_STATE = {
 };
 
 export default (state = INITIAL_STATE, action) => {
+  console.log(state.currentDeck);
   switch (action.type) {
     case ActionTypes.GAME_MODE_CHOSEN:
       if (action.gameMode === ActionTypes.GAME_MODE_1_MOVE) {
@@ -44,14 +40,14 @@ export default (state = INITIAL_STATE, action) => {
         },
         cardConfirmed: false
       };
-    case ActionTypes.CARD_CANCELLED:
-      return {
-        ...state,
-        selected: {
-          ...state.selected,
-          [state.currentDeck]: ''
-        }
-      };
+    // case ActionTypes.CARD_CANCELLED:
+    //   return {
+    //     ...state,
+    //     selected: {
+    //       ...state.selected,
+    //       [state.currentDeck]: ''
+    //     }
+    //   };
     case ActionTypes.CARD_CONFIRMED:
       return {
         ...state,
@@ -62,19 +58,31 @@ export default (state = INITIAL_STATE, action) => {
     case ActionTypes.ALL_CARDS_CONFIRMED:
       return {
         ...state,
+        currentDeck: action.nextDeck,
         allCardsChosen: true,
-        cardConfirmed: true,
-        currentDeck: action.nextDeck
+        cardConfirmed: true
+      };
+    case ActionTypes.AFTER_CARDS_BUTTON_PRESSED:
+      return {
+        ...state,
+        cardConfirmed: false
+      };
+    case ActionTypes.SELECTED_CARD_PRESSED:
+      return {
+        ...state,
+        videoLaunched: true
       };
     case ActionTypes.VIDEO_ENDED:
       return {
         ...state,
-        currentDeck: action.nextDeck
+        currentDeck: action.nextDeck,
+        videoLaunched: false
       };
     case ActionTypes.ALL_VIDEOS_ENDED:
       return {
         ...state,
-        allVideosEnded: true
+        allVideosEnded: true,
+        videoLaunched: false
       };
     default:
       return state;

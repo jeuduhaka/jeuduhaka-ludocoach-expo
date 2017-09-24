@@ -10,6 +10,7 @@ import Card from '../components/Card';
 import ChooseCardText from '../components/ChooseCardText';
 import { cardPressed } from '../actions';
 import NavigationHeader from '../components/NavigatonHeader';
+import cardImageSources from '../stores/CardImageSources';
 
 class ChooseCardGridScreen extends React.Component {
   static navigationOptions = {
@@ -17,12 +18,12 @@ class ChooseCardGridScreen extends React.Component {
     gesturesEnabled: false
   };
 
-  shouldComponentUpdate(nextProps) {
-    return false;
-  }
+  // shouldComponentUpdate(nextProps) {
+  //   return false;
+  // }
 
   displayCardRows() {
-    const { cardImageSources, currentDeck, cardPressed, gameMode } = this.props;
+    const { currentDeck, cardPressed, gameMode } = this.props;
 
     const currentImageSources = Object.entries(
       cardImageSources.front[currentDeck]
@@ -87,10 +88,9 @@ const styles = {
 
 const mapStateToProps = state => ({
   gameMode: state.gameMode,
-  currentDeck: state.cards.currentDeck,
-  allCardsChosen: state.cards.allCardsChosen,
-  cardImageSources: state.cards.imageSources,
-  cardConfirmed: state.cards.cardConfirmed
+  currentDeck: state.cards.present.currentDeck,
+  allCardsChosen: state.cards.present.allCardsChosen,
+  cardConfirmed: state.cards.present.cardConfirmed
 });
 
 const enhance = compose(

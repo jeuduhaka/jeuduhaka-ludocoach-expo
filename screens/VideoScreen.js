@@ -18,7 +18,9 @@ import { connect } from 'react-redux';
 import VideoPlayer from '../components/VideoPlayer';
 import NavigationHeader from '../components/NavigatonHeader';
 // import styles from './screens.style';
-import { videoEnded } from '../actions';
+import { videoEnded, backHome } from '../actions';
+import { GAME_MODE_1_MOVE } from '../actions/types';
+import videoSources from '../stores/CardVideoSourcesRemote.js';
 
 const styles = {
   videoContainer: {
@@ -110,8 +112,13 @@ class VideoScreen extends React.Component {
           }}
           isPortrait={this.state.isPortrait}
           nextCallback={() => {
-            const { currentDeck, videoEnded, gameMode } = this.props;
-            videoEnded(currentDeck, gameMode);
+            const { currentDeck, videoEnded, backHome, gameMode } = this.props;
+
+            if (gameMode === GAME_MODE_1_MOVE) {
+              backHome();
+            } else {
+              videoEnded(currentDeck);
+            }
           }}
         />
       </View>
@@ -121,14 +128,13 @@ class VideoScreen extends React.Component {
 
 const mapStateToProps = state => ({
   gameMode: state.gameMode,
-  currentDeck: state.cards.currentDeck,
-  selectedCards: state.cards.selected,
-  videoSources: state.cards.videoSources,
-  allVideosEnded: state.cards.allVideosEnded
+  currentDeck: state.cards.present.currentDeck,
+  selectedCards: state.cards.present.selected,
+  allVideosEnded: state.cards.present.allVideosEnded
 });
 
 const enhance = compose(
-  connect(mapStateToProps, { videoEnded })
+  connect(mapStateToProps, { videoEnded, backHome })
   // require('../utils/withLifecycleLogs').default
 );
 

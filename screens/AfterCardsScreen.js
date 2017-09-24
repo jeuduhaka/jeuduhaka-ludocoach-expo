@@ -9,6 +9,7 @@ import { Button } from '../components/common';
 import NavigationHeader from '../components/NavigatonHeader';
 
 import * as ActionTypes from '../actions/types';
+import { afterCardsButtonPressed } from '../actions/';
 import styles from './styles';
 
 class AfterCardsScreen extends React.Component {
@@ -59,13 +60,13 @@ class AfterCardsScreen extends React.Component {
   }
 
   render() {
+    const { currentDeck, afterCardsButtonPressed } = this.props;
+
     const {
-      selectedCards: {
-        red: selectedRedCard,
-        orange: selectedOrangeCard,
-        green: selectedGreenCard
-      }
-    } = this.props;
+      red: selectedRedCard,
+      orange: selectedOrangeCard,
+      green: selectedGreenCard
+    } = this.props.selectedCards;
 
     return (
       <View style={styles.container}>
@@ -87,7 +88,7 @@ class AfterCardsScreen extends React.Component {
             {/* <Text style={styles.subtitle}>A vous de jouer ! </Text> */}
           </View>
           <View style={styles.startButtonContainer}>
-            <Button onPress={() => this.props.navigation.navigate('Deck')}>
+            <Button onPress={() => afterCardsButtonPressed(currentDeck)}>
               {I18n.t('letsGo')}
             </Button>
           </View>
@@ -99,14 +100,14 @@ class AfterCardsScreen extends React.Component {
 
 const mapStateToProps = state => ({
   gameMode: state.gameMode,
-  currentDeck: state.cards.currentDeck,
-  selectedCards: state.cards.selected,
-  allCardsChosen: state.cards.allCardsChosen,
-  cardImageSources: state.cards.imageSources
+  currentDeck: state.cards.present.currentDeck,
+  selectedCards: state.cards.present.selected,
+  allCardsChosen: state.cards.present.allCardsChosen,
+  cardImageSources: state.cards.present.imageSources
 });
 
 const enhance = compose(
-  connect(mapStateToProps)
+  connect(mapStateToProps, { afterCardsButtonPressed })
   // require('../utils/withLifecycleLogs').default
 );
 

@@ -11,15 +11,17 @@ import CardBack from '../components/CardBack';
 import DecksContainer from '../components/DecksContainer';
 import NavigationHeader from '../components/NavigatonHeader';
 
+import cardImageSources from '../stores/CardImageSources';
+
 class DeckScreen extends React.Component {
   static navigationOptions = {
     header: null,
     gesturesEnabled: false
   };
 
-  shouldComponentUpdate(nextProps) {
-    return nextProps.cardConfirmed && !nextProps.allVideosEnded;
-  }
+  // shouldComponentUpdate(nextProps) {
+  //   return nextProps.cardConfirmed && !nextProps.allVideosEnded;
+  // }
 
   displayCard(color) {
     const cardProps = {};
@@ -27,7 +29,6 @@ class DeckScreen extends React.Component {
     const {
       currentDeck,
       allCardsChosen,
-      cardImageSources,
       deckPressed,
       selectedCards,
       selectedCardPressed
@@ -90,13 +91,11 @@ const styles = {
 };
 
 const mapStateToProps = state => ({
-  gameMode: state.gameMode,
-  currentDeck: state.cards.currentDeck,
-  cardConfirmed: state.cards.cardConfirmed,
-  selectedCards: state.cards.selected,
-  allCardsChosen: state.cards.allCardsChosen,
-  cardImageSources: state.cards.imageSources,
-  allVideosEnded: state.cards.allVideosEnded
+  currentDeck: state.cards.present.currentDeck,
+  cardConfirmed: state.cards.present.cardConfirmed,
+  selectedCards: state.cards.present.selected,
+  allCardsChosen: state.cards.present.allCardsChosen,
+  allVideosEnded: state.cards.present.allVideosEnded
 });
 
 const enhance = compose(
