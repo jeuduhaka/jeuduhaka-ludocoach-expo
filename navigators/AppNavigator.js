@@ -8,16 +8,18 @@ import {
   Linking,
   StyleSheet,
   Animated,
-  Easing
+  Easing,
+  BackHandler,
 } from 'react-native';
 import { connect } from 'react-redux';
 import { Entypo, FontAwesome } from '@expo/vector-icons';
 import {
   addNavigationHelpers,
+  NavigationActions,
   TabNavigator,
   DrawerNavigator,
   StackNavigator,
-  DrawerItems
+  DrawerItems,
 } from 'react-navigation';
 import TouchableItem from 'react-navigation/src/views/TouchableItem';
 
@@ -38,42 +40,42 @@ const noTransitionConfig = () => ({
   transitionSpec: {
     duration: 0,
     timing: Animated.timing,
-    easing: Easing.step0
-  }
+    easing: Easing.step0,
+  },
 });
 
 const mainScreenNavigatorConfig = {
   swipeEnabled: false,
   initialRouteName: 'Home',
   headerMode: 'none',
-  transitionConfig: noTransitionConfig
+  transitionConfig: noTransitionConfig,
 };
 
 const styles = StyleSheet.create({
   item: {
     flexDirection: 'row',
-    alignItems: 'center'
+    alignItems: 'center',
   },
   icon: {
     marginHorizontal: 16,
     width: 24,
-    alignItems: 'center'
+    alignItems: 'center',
   },
   label: {
     color: '#014DA2',
     margin: 16,
-    fontWeight: 'bold'
-  }
+    fontWeight: 'bold',
+  },
 });
 
 const HomeWithDrawer = DrawerNavigator(
   {
     Home: {
-      screen: HomeScreen
+      screen: HomeScreen,
     },
     Thanks: {
-      screen: ThanksScreen
-    }
+      screen: ThanksScreen,
+    },
   },
   {
     headerMode: 'none',
@@ -92,7 +94,7 @@ const HomeWithDrawer = DrawerNavigator(
               alignSelf: 'center',
               marginTop: 10,
               width: 100,
-              height: 100
+              height: 100,
             }}
             source={require('../assets/images/jeu-du-haka-logo-200x200.png')}
           />
@@ -101,38 +103,32 @@ const HomeWithDrawer = DrawerNavigator(
             style={{
               flex: 1,
               flexDirection: 'column',
-              justifyContent: 'flex-end'
-            }}
-          >
+              justifyContent: 'flex-end',
+            }}>
             <TouchableItem
               onPress={() => Linking.openURL('https://www.jeuduhaka.com')}
-              delayPressIn={0}
-            >
+              delayPressIn={0}>
               <View style={[styles.item]}>
                 <Text style={[styles.label]}>www.jeuduhaka.com</Text>
               </View>
             </TouchableItem>
             <TouchableItem
               onPress={() => Linking.openURL('http://www.marckucharz.com')}
-              delayPressIn={0}
-            >
+              delayPressIn={0}>
               <View style={[styles.item]}>
                 <Text style={[styles.label]}>www.marckucharz.com</Text>
               </View>
             </TouchableItem>
             <TouchableItem
               onPress={() => Linking.openURL('http://www.ludocoaching.com')}
-              delayPressIn={0}
-            >
+              delayPressIn={0}>
               <View style={[styles.item]}>
                 <Text style={[styles.label]}>www.ludocoaching.com</Text>
               </View>
             </TouchableItem>
             <TouchableItem
-              onPress={() =>
-                Linking.openURL('https://www.facebook.com/jeuduhaka')}
-              delayPressIn={0}
-            >
+              onPress={() => Linking.openURL('https://www.facebook.com/jeuduhaka')}
+              delayPressIn={0}>
               <View style={[styles.item, { justifyContent: 'center' }]}>
                 <Entypo
                   name={'facebook'}
@@ -140,7 +136,7 @@ const HomeWithDrawer = DrawerNavigator(
                   color={'#014DA2'}
                   style={{
                     textAlign: 'center',
-                    backgroundColor: 'transparent'
+                    backgroundColor: 'transparent',
                   }}
                 />
               </View>
@@ -148,7 +144,7 @@ const HomeWithDrawer = DrawerNavigator(
           </View>
         </View>
       );
-    }
+    },
   }
 );
 
@@ -175,32 +171,54 @@ export const AppNavigator = StackNavigator(
       // headerMode: 'float',
       navigationOptions: ({ navigation }) => ({
         // headerTitle: navigation.state.params.videoName
-      })
-    }
+      }),
+    },
   },
   mainScreenNavigatorConfig
 );
 
-const AppWithNavigationState = ({ dispatch, nav, language }) => {
-  return (
-    <AppNavigator
-      navigation={addNavigationHelpers({
-        dispatch,
-        state: nav
-      })}
-      screenProps={{ language }}
-    />
-  );
-};
+//ref https://reactnavigation.org/docs/guides/redux#Handling-the-Hardware-Back-Button-in-Android
+class AppWithNavigationState extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.onBackPress = this.onBackPress.bind(this);
+  }
+
+  componentDidMount() {
+    BackHandler.addEventListener('hardwareBackPress', this.onBackPress);
+  }
+  componentWillUnmount() {
+    BackHandler.removeEventListener('hardwareBackPress', this.onBackPress);
+  }
+  onBackPress() {
+    const { dispatch, nav } = this.props;
+    if (nav.index === 0) {
+      return false;
+    }
+    dispatch(NavigationActions.back());
+    return true;
+  }
+
+  render() {
+    const { dispatch, nav, language } = this.props;
+    const navigation = addNavigationHelpers({
+      dispatch,
+      state: nav,
+    });
+
+    return <AppNavigator navigation={navigation} screenProps={{ language }} />;
+  }
+}
 
 AppWithNavigationState.propTypes = {
   dispatch: PropTypes.func.isRequired,
-  nav: PropTypes.object.isRequired
+  nav: PropTypes.object.isRequired,
 };
 
 const mapStateToProps = state => ({
   nav: state.nav,
-  language: state.language
+  language: state.language,
 });
 
 export default connect(mapStateToProps)(AppWithNavigationState);

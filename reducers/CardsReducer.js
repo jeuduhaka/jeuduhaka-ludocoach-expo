@@ -9,18 +9,17 @@ const INITIAL_STATE = {
   selected: {
     red: '',
     orange: '',
-    green: ''
-  }
+    green: '',
+  },
 };
 
 export default (state = INITIAL_STATE, action) => {
-  console.log(state.currentDeck);
   switch (action.type) {
     case ActionTypes.GAME_MODE_CHOSEN:
       if (action.gameMode === ActionTypes.GAME_MODE_1_MOVE) {
         return {
           ...state,
-          currentDeck: 'green'
+          currentDeck: 'green',
         };
       }
       return state;
@@ -29,16 +28,16 @@ export default (state = INITIAL_STATE, action) => {
       return {
         ...state,
         currentDeck: action.currentDeck,
-        allVideosEnded: false
+        allVideosEnded: false,
       };
     case ActionTypes.CARD_PRESSED:
       return {
         ...state,
         selected: {
           ...state.selected,
-          [state.currentDeck]: action.cardName
+          [state.currentDeck]: action.cardName,
         },
-        cardConfirmed: false
+        cardConfirmed: false,
       };
     // case ActionTypes.CARD_CANCELLED:
     //   return {
@@ -53,36 +52,36 @@ export default (state = INITIAL_STATE, action) => {
         ...state,
         currentDeck: action.nextDeck,
         allCardsChosen: state.currentDeck === 'green',
-        cardConfirmed: true
+        cardConfirmed: true,
       };
     case ActionTypes.ALL_CARDS_CONFIRMED:
       return {
         ...state,
         currentDeck: action.nextDeck,
         allCardsChosen: true,
-        cardConfirmed: true
+        cardConfirmed: true,
       };
     case ActionTypes.AFTER_CARDS_BUTTON_PRESSED:
       return {
         ...state,
-        cardConfirmed: false
+        cardConfirmed: false,
       };
     case ActionTypes.SELECTED_CARD_PRESSED:
       return {
         ...state,
-        videoLaunched: true
+        videoLaunched: true,
       };
     case ActionTypes.VIDEO_ENDED:
       return {
         ...state,
         currentDeck: action.nextDeck,
-        videoLaunched: false
+        videoLaunched: false,
       };
     case ActionTypes.ALL_VIDEOS_ENDED:
       return {
         ...state,
         allVideosEnded: true,
-        videoLaunched: false
+        videoLaunched: false,
       };
     default:
       return state;

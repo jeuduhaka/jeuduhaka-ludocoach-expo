@@ -18,7 +18,7 @@ const styles = {
     fontSize: 16,
     fontWeight: '600',
     paddingTop: 10,
-    paddingBottom: 10
+    paddingBottom: 10,
   },
   buttonStyle: {
     // flex: 1, //expands as much as content possibly can
@@ -26,8 +26,8 @@ const styles = {
     backgroundColor: '#014DA2',
     borderRadius: 5,
     marginLeft: 5,
-    marginRight: 5
-  }
+    marginRight: 5,
+  },
 };
 
 export { Button };
