@@ -1,6 +1,13 @@
+import { AsyncStorage } from 'react-native';
 import { applyMiddleware, createStore, compose } from 'redux';
+import { persistStore, autoRehydrate } from 'redux-persist';
+import { REHYDRATE } from 'redux-persist/constants';
 
 import reducer from '../reducers';
+
+export function isPersistedStateInvalid(state) {
+  return Object.keys(state).length === 0;
+}
 
 export default initialState => {
   /* eslint-disable no-undef */
@@ -17,46 +24,67 @@ export default initialState => {
   const middlewares = [];
 
   if (__DEV__) {
-    // // Seamless-Immutable logger cleanup
-    // const stateTransformer = (state) => {
-    //   if (typeof state === 'object' && state !== null && Object.keys(state).length) {
-    //     const newState = {}
+    // Seamless-Immutable logger cleanup
+    // const stateTransformer = state => {
+    //   if (
+    //     typeof state === 'object' &&
+    //     state !== null &&
+    //     Object.keys(state).length
+    //   ) {
+    //     const newState = {};
     //     for (var i of Object.keys(state)) {
-    //       if (state[i].asMutable) newState[i] = state[i].asMutable({ deep: true })
-    //       else newState[i] = state[i]
+    //       if (state[i].asMutable)
+    //         newState[i] = state[i].asMutable({ deep: true });
+    //       else newState[i] = state[i];
     //     }
-    //     return newState
+    //     return newState;
     //   } else {
-    //     return state
+    //     return state;
     //   }
-    // }
-    //
-    // const createLogger = require('redux-logger').default;
-    // middlewares.push(require('redux-logger').default);
+    // };
+    // const loggerMiddleware = require('redux-logger').default;
+    // middlewares.push(loggerMiddleware);
   }
   /* eslint-enable no-undef */
   /* eslint-enable no-underscore-dangle */
 
   const enhancer = composeEnhancers(
-    applyMiddleware(...middlewares)
+    applyMiddleware(...middlewares),
     // other store enhancers if any
+    autoRehydrate({ log: true })
   );
 
-  const store = createStore(reducer, initialState, enhancer);
+  const Store = createStore(reducer, initialState, enhancer);
 
-  // store.subscribe(() => {
-  //   console.log(store.getState().cards.present);
-  //   console.log(store.getState().gameMode);
-  // });
+  Store.rehydrateAsync = () => {
+    return new Promise(resolve => {
+      persistStore(
+        Store,
+        {
+          storage: AsyncStorage,
+          // debounce: 500,
+          blacklist: ['gameMode', 'nav', 'cards'],
+        },
+        () => {
+          resolve();
+        }
+      );
+    });
+  };
+
+  Store.subscribe(() => {
+    console.log(Store.getState().language);
+    //   console.log(Store.getState().gameMode);
+  });
 
   if (module && module.hot) {
     // Enable Webpack hot module replacement for reducers
     module.hot.accept('../reducers', () => {
       const nextRootReducer = require('../reducers').default;
 
-      store.replaceReducer(nextRootReducer);
+      Store.replaceReducer(nextRootReducer);
     });
   }
 
-  return store;
+  return Store;
 };

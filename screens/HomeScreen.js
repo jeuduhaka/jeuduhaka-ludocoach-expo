@@ -6,7 +6,7 @@ import { FontAwesome } from '@expo/vector-icons';
 
 import I18n from '../i18n';
 
-import { gameModeChosen } from '../actions';
+import { gameModeChosen, languageChanged } from '../actions';
 import * as ActionTypes from '../actions/types';
 
 import { Button } from '../components/common';
@@ -39,9 +39,14 @@ class HomeScreen extends React.Component {
     };
   };
 
-  shouldComponentUpdate(nextProps) {
-    //fix issue when backHome
-    return nextProps.children !== this.props.children;
+  async componentWillMount() {
+    if (this.props.language) {
+      I18n.locale = this.props.language;
+      return;
+    }
+
+    await I18n.initAsync();
+    this.props.languageChanged(I18n.locale);
   }
 
   render() {
@@ -107,7 +112,7 @@ const mapStateToProps = state => ({
 });
 
 const enhance = compose(
-  connect(mapStateToProps, { gameModeChosen })
+  connect(mapStateToProps, { gameModeChosen, languageChanged })
   // require('../utils/withLifecycleLogs').default
 );
 

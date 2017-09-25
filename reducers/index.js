@@ -12,11 +12,11 @@ import * as ActionTypes from '../actions/types';
 // the reducer will be reset when the following action type is passed
 const resettable = resettableReducer(ActionTypes.BACK_HOME);
 
-const appReducer = combineReducers({
+const rootReducer = combineReducers({
   nav: resettable(NavReducer),
   language: LanguageReducer,
   cards: resettable(undoable(CardsReducer)),
-  gameMode: resettable(GameModeReducer)
+  gameMode: resettable(GameModeReducer),
 });
 
-export default appReducer;
+export default rootReducer;

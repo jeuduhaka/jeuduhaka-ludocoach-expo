@@ -45,7 +45,7 @@ class LanguageFlagButton extends React.Component {
   }
 
   render() {
-    const { onPress, languageChanged } = this.props;
+    const { languageChanged } = this.props;
 
     return (
       <View
@@ -61,10 +61,9 @@ class LanguageFlagButton extends React.Component {
           onPress={() => {
             const otherFlag = getOtherFlag(this.state.currentFlag);
             I18n.locale = this.state.currentFlag;
-            this.state.currentFlag = otherFlag;
+            this.setState({ currentFlag: otherFlag });
 
             languageChanged(I18n.locale);
-            onPress && onPress();
           }}>
           <Image
             style={{

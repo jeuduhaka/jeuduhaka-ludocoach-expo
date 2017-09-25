@@ -1,5 +1,6 @@
 import React from '/utilities/enhancedReact';
 import {
+  AsyncStorage,
   View,
   //   Image,
   StyleSheet,
@@ -14,12 +15,31 @@ import { Ionicons } from '@expo/vector-icons';
 import AppWithNavigationState from './navigators/AppNavigator';
 import configureStore from './config/configureStore';
 
+const store = configureStore();
+
 class App extends React.Component {
   static sound = new Expo.Audio.Sound();
 
   state = {
     isLoadingComplete: false,
+    store: null,
   };
+
+  componentWillMount() {
+    console.log(ErrorUtils);
+    //Intercept react-native error handling
+    this.defaultHandler = ErrorUtils.getGlobalHandler();
+    ErrorUtils.setGlobalHandler(this.wrapGlobalHandler.bind(this));
+  }
+
+  async wrapGlobalHandler(error, isFatal) {
+    // If the error kills our app in Release mode, make sure we don't rehydrate
+    // with an invalid Redux state and cleanly go back to home page instead
+    if (isFatal && !__DEV__) AsyncStorage.clear();
+
+    //Once finished, make sure react-native also gets the error
+    if (this.defaultHandler) this.defaultHandler(error, isFatal);
+  }
 
   async loadSoundAsync() {
     if (__DEV__) return;
@@ -67,8 +87,6 @@ class App extends React.Component {
       );
     }
 
-    const store = configureStore({ language: I18n.locale });
-
     return (
       <View style={{ flex: 1 }}>
         <StatusBar hidden />
@@ -80,22 +98,27 @@ class App extends React.Component {
   }
 
   _loadResourcesAsync = async () => {
-    return Promise.all([
-      I18n.initAsync(),
-      Font.loadAsync([
-        ...Ionicons.font,
-        {
-          'charcuterie-sans-inline': require('./assets/fonts/CharcuterieSansInline-Regular.ttf'),
-        },
-      ]),
-      this.loadSoundAsync(),
-    ]);
+    try {
+      await Promise.all([
+        store.rehydrateAsync(),
+        Font.loadAsync([
+          ...Ionicons.font,
+          {
+            'charcuterie-sans-inline': require('./assets/fonts/CharcuterieSansInline-Regular.ttf'),
+          },
+        ]),
+        this.loadSoundAsync(),
+      ]);
+    } catch (e) {
+      console.log('Error downloading assets', e);
+    }
   };
 
   _handleLoadingError = error => {
     // In this case, you might want to report the error to your error
     // reporting service, for example Sentry
     console.warn(error);
+    // Sentry.captureException(e);
   };
 
   _handleFinishLoading = () => {
