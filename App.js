@@ -102,14 +102,7 @@ class App extends React.Component {
     this.setState({ isLoadingComplete: true });
   };
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
-
+//to use storybook
+//uncomment this line and run `yarn run storybook`
+// export default from './storybook';
 export default App;
