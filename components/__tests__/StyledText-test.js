@@ -1,5 +1,5 @@
 import 'react-native';
-import React from '/utilities/enhancedReact';
+import React from '/utils/enhancedReact';
 import { MonoText } from '../StyledText';
 import renderer from 'react-test-renderer';
 

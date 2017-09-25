@@ -1,4 +1,4 @@
-import React from '/utilities/enhancedReact';
+import React from '/utils/enhancedReact';
 import { Text, Image, Linking, View } from 'react-native';
 
 import I18n from '../i18n';

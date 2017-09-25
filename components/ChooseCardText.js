@@ -1,4 +1,4 @@
-import React from '/utilities/enhancedReact';
+import React from '/utils/enhancedReact';
 import { View, Text } from 'react-native';
 import { connect } from 'react-redux';
 

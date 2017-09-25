@@ -1,7 +1,7 @@
 import { AsyncStorage } from 'react-native';
 import { applyMiddleware, createStore, compose } from 'redux';
-import { persistStore, autoRehydrate } from 'redux-persist';
-import { REHYDRATE } from 'redux-persist/constants';
+import { autoRehydrate } from 'redux-persist';
+import persistStore from '/utils/persistStore';
 
 import reducer from '../reducers';
 
@@ -62,7 +62,7 @@ export default initialState => {
         Store,
         {
           storage: AsyncStorage,
-          // debounce: 500,
+          debounce: 500,
           blacklist: ['gameMode', 'nav', 'cards'],
         },
         () => {

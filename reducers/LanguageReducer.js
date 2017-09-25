@@ -1,4 +1,4 @@
-import { REHYDRATE } from 'redux-persist/constants';
+import { REHYDRATE } from 'redux-persist/src/constants';
 
 import I18n from '../i18n/';
 import { LANGUAGE_CHANGED } from '../actions/types';

@@ -1,4 +1,4 @@
-import React from '/utilities/enhancedReact';
+import React from '/utils/enhancedReact';
 import { View } from 'react-native';
 
 const RowCards = props => {

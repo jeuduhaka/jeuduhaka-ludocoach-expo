@@ -2,7 +2,7 @@ import { NavigationActions } from 'react-navigation';
 import { AppNavigator } from '../navigators/AppNavigator';
 
 import * as ActionTypes from '../actions/types';
-import { findRouteKey } from '../utilities/helpers';
+import { findRouteKey } from '../utils/helpers';
 
 // Help: https://github.com/react-community/react-navigation/tree/master/examples/ReduxExample
 // Start with two routes: The Main screen, with the Login screen on top.

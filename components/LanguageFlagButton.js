@@ -1,4 +1,4 @@
-import React from '/utilities/enhancedReact';
+import React from '/utils/enhancedReact';
 import { View, Image, TouchableOpacity } from 'react-native';
 import { compose } from 'redux';
 import { connect } from 'react-redux';

@@ -1,4 +1,4 @@
-import React from '/utilities/enhancedReact';
+import React from '/utils/enhancedReact';
 import {
   AsyncStorage,
   View,
@@ -26,7 +26,6 @@ class App extends React.Component {
   };
 
   componentWillMount() {
-    console.log(ErrorUtils);
     //Intercept react-native error handling
     this.defaultHandler = ErrorUtils.getGlobalHandler();
     ErrorUtils.setGlobalHandler(this.wrapGlobalHandler.bind(this));
@@ -98,20 +97,16 @@ class App extends React.Component {
   }
 
   _loadResourcesAsync = async () => {
-    try {
-      await Promise.all([
-        store.rehydrateAsync(),
-        Font.loadAsync([
-          ...Ionicons.font,
-          {
-            'charcuterie-sans-inline': require('./assets/fonts/CharcuterieSansInline-Regular.ttf'),
-          },
-        ]),
-        this.loadSoundAsync(),
-      ]);
-    } catch (e) {
-      console.log('Error downloading assets', e);
-    }
+    return Promise.all([
+      store.rehydrateAsync(),
+      Font.loadAsync([
+        ...Ionicons.font,
+        {
+          'charcuterie-sans-inline': require('./assets/fonts/CharcuterieSansInline-Regular.ttf'),
+        },
+      ]),
+      this.loadSoundAsync(),
+    ]);
   };
 
   _handleLoadingError = error => {
