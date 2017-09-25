@@ -1,4 +1,4 @@
-import React from 'react';
+import React from '/utilities/enhancedReact';
 import { Text, Image, Linking, View } from 'react-native';
 import { compose } from 'redux';
 import { connect } from 'react-redux';
@@ -38,6 +38,11 @@ class HomeScreen extends React.Component {
       ),
     };
   };
+
+  shouldComponentUpdate(nextProps) {
+    //fix issue when backHome
+    return nextProps.children !== this.props.children;
+  }
 
   render() {
     return (

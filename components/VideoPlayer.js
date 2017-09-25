@@ -1,4 +1,4 @@
-import React from 'react';
+import React from '/utilities/enhancedReact';
 import { Audio, Video } from 'expo';
 import {
   View,

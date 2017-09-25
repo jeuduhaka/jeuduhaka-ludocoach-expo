@@ -1,4 +1,4 @@
-import React from 'react';
+import React from '/utilities/enhancedReact';
 import { Text, View } from 'react-native';
 import VideoCardsScreen from './VideoCardsScreen';
 import rowsDataRed from '../stores/rowsDataRed';

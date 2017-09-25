@@ -1,9 +1,10 @@
 import * as ActionTypes from '../actions/types';
 
 const INITIAL_STATE = {
+  secondScreenPassed: false,
   allCardsChosen: false,
   allVideosEnded: false,
-  currentDeck: 'red',
+  currentDeck: '',
   cardConfirmed: false,
   videoLaunched: false,
   selected: {
@@ -22,7 +23,16 @@ export default (state = INITIAL_STATE, action) => {
           currentDeck: 'green',
         };
       }
-      return state;
+      return {
+        ...state,
+        currentDeck: 'red',
+      };
+    case ActionTypes.SECOND_SCREEN_3_MOVES_PASSED:
+    case ActionTypes.SECOND_SCREEN_1_MOVE_PASSED:
+      return {
+        ...state,
+        secondScreenPassed: true,
+      };
     case ActionTypes.DECK_PRESSED:
       // console.log(action);
       return {

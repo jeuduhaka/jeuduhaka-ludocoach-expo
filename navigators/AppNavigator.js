@@ -1,4 +1,4 @@
-import React from 'react';
+import React from '/utilities/enhancedReact';
 import PropTypes from 'prop-types';
 import {
   Text,

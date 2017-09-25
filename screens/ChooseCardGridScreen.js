@@ -15,12 +15,13 @@ import cardImageSources from '../stores/CardImageSources';
 class ChooseCardGridScreen extends React.Component {
   static navigationOptions = {
     header: null,
-    gesturesEnabled: false
+    gesturesEnabled: false,
   };
 
-  // shouldComponentUpdate(nextProps) {
-  //   return false;
-  // }
+  shouldComponentUpdate(nextProps) {
+    //fix issue when backHome
+    return nextProps.currentDeck !== '';
+  }
 
   displayCardRows() {
     const { currentDeck, cardPressed, gameMode } = this.props;
@@ -73,24 +74,24 @@ const styles = {
     flexDirection: 'column',
     justifyContent: 'center',
     // alignItems: 'center',
-    backgroundColor: '#000000'
+    backgroundColor: '#000000',
     // paddingTop: 30,
   },
   textStyle: {
-    color: '#FFF'
+    color: '#FFF',
   },
   rowStyle: {
     flex: 1,
-    flexDirection: 'row'
+    flexDirection: 'row',
     // backgroundColor: '#00ff00'
-  }
+  },
 };
 
 const mapStateToProps = state => ({
   gameMode: state.gameMode,
   currentDeck: state.cards.present.currentDeck,
   allCardsChosen: state.cards.present.allCardsChosen,
-  cardConfirmed: state.cards.present.cardConfirmed
+  cardConfirmed: state.cards.present.cardConfirmed,
 });
 
 const enhance = compose(

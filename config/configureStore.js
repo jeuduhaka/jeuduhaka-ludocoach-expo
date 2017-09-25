@@ -8,10 +8,11 @@ export default initialState => {
   const composeEnhancers =
     typeof window === 'object' &&
     __DEV__ &&
-    window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ ?
-      window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__({
-        // Specify extension’s options like name, actionsBlacklist, actionsCreators, serialize...
-      }) : compose;
+    window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__
+      ? window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__({
+          // Specify extension’s options like name, actionsBlacklist, actionsCreators, serialize...
+        })
+      : compose;
 
   const middlewares = [];
 
@@ -37,14 +38,15 @@ export default initialState => {
   /* eslint-enable no-underscore-dangle */
 
   const enhancer = composeEnhancers(
-    applyMiddleware(...middlewares),
+    applyMiddleware(...middlewares)
     // other store enhancers if any
   );
 
   const store = createStore(reducer, initialState, enhancer);
 
   // store.subscribe(() => {
-  //   console.log(store.getState().cards);
+  //   console.log(store.getState().cards.present);
+  //   console.log(store.getState().gameMode);
   // });
 
   if (module && module.hot) {

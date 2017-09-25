@@ -1,5 +1,12 @@
-import React from 'react';
-import { Image, TouchableOpacity, Animated, Easing, Text, View } from 'react-native';
+import React from '/utilities/enhancedReact';
+import {
+  Image,
+  TouchableOpacity,
+  Animated,
+  Easing,
+  Text,
+  View,
+} from 'react-native';
 // import env from '../config/env';
 //
 //

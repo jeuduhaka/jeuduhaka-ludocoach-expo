@@ -1,4 +1,4 @@
-import React from 'react';
+import React from '/utilities/enhancedReact';
 import { View, Image, Text } from 'react-native';
 import { compose } from 'redux';
 import { connect } from 'react-redux';
@@ -20,6 +20,11 @@ class ConfirmCardScreen extends React.Component {
     gesturesEnabled: false,
   };
 
+  shouldComponentUpdate(nextProps) {
+    //fix issue when backHome
+    return nextProps.currentDeck !== '';
+  }
+
   render() {
     const {
       containerStyle,
@@ -30,7 +35,12 @@ class ConfirmCardScreen extends React.Component {
       buttonsContainerStyle,
     } = styles;
 
-    const { currentDeck, selectedCards, onCardConfirm, onCardCancel } = this.props;
+    const {
+      currentDeck,
+      selectedCards,
+      onCardConfirm,
+      onCardCancel,
+    } = this.props;
 
     const cardName = selectedCards[currentDeck];
     const imagePath = `front.${currentDeck}.${cardName}`;

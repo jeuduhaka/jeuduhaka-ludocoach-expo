@@ -1,8 +1,8 @@
 {
   "expo": {
-    "name": "Ludocoach Jeu du Haka",
+    "name": "Jeu du Haka Ludocoach",
     "description":
-      "Transforme ton énergie négative en positive ! Y'HAKA jouer !",
+      "Transforme ton énergie négative en énergie positive ! Y'HAKA jouer !",
     "slug": "jeuduhaka-ludocoach",
     "privacy": "unlisted",
     "sdkVersion": "21.0.0",

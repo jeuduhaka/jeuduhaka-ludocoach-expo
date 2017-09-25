@@ -1,4 +1,4 @@
-import React from 'react';
+import React from '/utilities/enhancedReact';
 import { Text } from 'react-native';
 
 export class MonoText extends React.Component {

@@ -1,4 +1,4 @@
-import React from 'react';
+import React from '/utilities/enhancedReact';
 import { Text, Image, Linking, View } from 'react-native';
 
 import I18n from '../i18n';
@@ -9,7 +9,6 @@ import NavigationHeader from '../components/NavigatonHeader';
 
 export default class SecondScreen extends React.Component {
   render() {
-    console.log(I18n.locale);
     const { textContent, buttonOnPress } = this.props;
     return (
       <View style={styles.container}>

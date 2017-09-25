@@ -1,4 +1,4 @@
-import React from 'react';
+import React from '/utilities/enhancedReact';
 import { Text, Image, Linking, View } from 'react-native';
 import { compose } from 'redux';
 import { connect } from 'react-redux';
@@ -15,12 +15,12 @@ import styles from './styles';
 class AfterCardsScreen extends React.Component {
   static route = {
     navigationBar: {
-      visible: false
-    }
+      visible: false,
+    },
   };
 
   static navigationOptions = {
-    header: null
+    header: null,
   };
 
   renderChosenCardsText() {
@@ -29,8 +29,8 @@ class AfterCardsScreen extends React.Component {
       selectedCards: {
         red: selectedRedCard,
         orange: selectedOrangeCard,
-        green: selectedGreenCard
-      }
+        green: selectedGreenCard,
+      },
     } = this.props;
 
     const render = [];
@@ -44,7 +44,7 @@ class AfterCardsScreen extends React.Component {
         <Text key={selectedOrangeCard} style={{ color: '#F7941C' }}>
           {I18n.t(selectedOrangeCard)}
         </Text>,
-        ', '
+        ', ',
       ];
 
       render.push(...renderTmp);
@@ -65,7 +65,7 @@ class AfterCardsScreen extends React.Component {
     const {
       red: selectedRedCard,
       orange: selectedOrangeCard,
-      green: selectedGreenCard
+      green: selectedGreenCard,
     } = this.props.selectedCards;
 
     return (
@@ -73,11 +73,9 @@ class AfterCardsScreen extends React.Component {
         <NavigationHeader tintColor={'#014DA2'} />
         <Image
           style={styles.backgroundImage}
-          source={require('../assets/images/fond-bleu-vague-1980x1980.jpg')}
-        >
+          source={require('../assets/images/fond-bleu-vague-1980x1980.jpg')}>
           <View
-            style={[styles.titleContainer, styles.navigationHeaderPaddingTop]}
-          >
+            style={[styles.titleContainer, styles.navigationHeaderPaddingTop]}>
             <Text style={[styles.title, styles.font20px]}>
               {I18n.t('youHaveChosen')} {this.renderChosenCardsText()}
               {I18n.t('placeYourself')}
@@ -103,7 +101,7 @@ const mapStateToProps = state => ({
   currentDeck: state.cards.present.currentDeck,
   selectedCards: state.cards.present.selected,
   allCardsChosen: state.cards.present.allCardsChosen,
-  cardImageSources: state.cards.present.imageSources
+  cardImageSources: state.cards.present.imageSources,
 });
 
 const enhance = compose(

@@ -1,11 +1,11 @@
-import React from 'react';
+import React from '/utilities/enhancedReact';
 import {
   Button,
   Text,
   View,
   TouchableOpacity,
   Dimensions,
-  StyleSheet
+  StyleSheet,
 } from 'react-native';
 import { Header, HeaderBackButton, HeaderTitle } from 'react-navigation';
 import { compose } from 'redux';
@@ -34,7 +34,7 @@ const NavigationHeader = ({
   onHomePress,
   onReset,
   gameMode,
-  tintColor
+  tintColor,
 }) => {
   return (
     <View
@@ -44,9 +44,8 @@ const NavigationHeader = ({
         left: 0,
         flexDirection: 'row',
         //zIndex needed to be on top of Video
-        zIndex: 2
-      }}
-    >
+        zIndex: 2,
+      }}>
       <HeaderBackButton onPress={onBackPress} tintColor={tintColor} />
       {/* <HeaderTitle
       style={{
@@ -75,7 +74,7 @@ const mapDispatchToProps = dispatch => {
     // onReset: () => dispatch(UndoActionCreators.clearHistory()),
     onHomePress: () => {
       dispatch(backHome());
-    }
+    },
     // onUndo: () => dispatch(UndoActionCreators.undo()),
     // onRedo: () => dispatch(UndoActionCreators.redo())
   };

@@ -1,4 +1,4 @@
-import React from 'react';
+import React from '/utilities/enhancedReact';
 import { Text, Image, StyleSheet, Button, View } from 'react-native';
 import { FontAwesome } from '@expo/vector-icons';
 

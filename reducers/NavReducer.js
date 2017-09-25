@@ -42,6 +42,18 @@ export default (state = INITIAL_STATE, action) => {
         state
       );
       break;
+    case ActionTypes.SECOND_SCREEN_3_MOVES_PASSED:
+      nextState = AppNavigator.router.getStateForAction(
+        NavigationActions.navigate({ routeName: 'Deck' }),
+        state
+      );
+      break;
+    case ActionTypes.SECOND_SCREEN_1_MOVE_PASSED:
+      nextState = AppNavigator.router.getStateForAction(
+        NavigationActions.navigate({ routeName: 'ChooseCardGrid' }),
+        state
+      );
+      break;
     case ActionTypes.DECK_PRESSED:
       nextState = AppNavigator.router.getStateForAction(
         NavigationActions.navigate({ routeName: 'ChooseCardGrid' }),

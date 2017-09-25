@@ -1,11 +1,13 @@
-import React from 'react';
+import React from '/utilities/enhancedReact';
 import { Text, Image, Linking, View } from 'react-native';
+import { compose } from 'redux';
+import { connect } from 'react-redux';
 
 import I18n from '../i18n';
-
 import SecondScreen from './SecondScreen';
+import { secondScreen3MovesPassed } from '../actions/';
 
-export default ({ navigation }) => (
+const SecondScreen3Moves = ({ onPress }) => (
   <SecondScreen
     textContent={[
       I18n.t('chooseCards'),
@@ -22,6 +24,22 @@ export default ({ navigation }) => (
         3.{I18n.t('being')}
       </Text>,
     ]}
-    buttonOnPress={() => navigation.navigate('Deck')}
+    buttonOnPress={onPress}
   />
 );
+
+const mapStateToProps = state => ({});
+
+const mapDispatchToProps = dispatch => {
+  return {
+    onPress: () => {
+      // dispatch(UndoActionCreators.clearHistory());
+      dispatch(secondScreen3MovesPassed());
+    },
+    // onRedo: () => dispatch(UndoActionCreators.redo())
+  };
+};
+
+const enhance = compose(connect(mapStateToProps, mapDispatchToProps));
+
+export default enhance(SecondScreen3Moves);
