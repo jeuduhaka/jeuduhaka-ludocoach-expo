@@ -9,21 +9,29 @@
     "version": "1.0.0",
     "orientation": "portrait",
     "primaryColor": "#cccccc",
-    "icon": "./assets/icons/logo-192px.png",
+    "icon": "./assets/icons/jeuduhaka-app-icon-512x512.png",
     "notification": {
       "icon": "./assets/icons/notification-icon.png",
       "color": "#000000"
     },
     "loading": {
-      "icon": "./assets/icons/logo-192px.png",
-      "hideExponentText": true,
-      "backgroundColor": "#ffffff"
+      "icon": "./assets/icons/jeuduhaka-app-icon-512x512.png",
+      "backgroundColor": "#ffffff",
+      "hideExponentText": true
     },
     "packagerOpts": {
       "assetExts": ["ttf"]
     },
     "ios": {
+      "bundleIdentifier": "com.marckucharz.jeuduhaka-ludocoach",
+      "buildNumber": "1.0.0",
+      "icon": "./assets/icons/jeuduhaka-app-icon-512x512-no-transparency.png",
       "supportsTablet": false
+    },
+    "android": {
+      "package": "com.marckucharz.jeuduhakaludocoach",
+      "versionCode": "1.0.0",
+      "icon": "./assets/icons/jeuduhaka-app-icon-512x512.png"
     }
   }
 }

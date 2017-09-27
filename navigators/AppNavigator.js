@@ -143,6 +143,15 @@ const HomeWithDrawer = DrawerNavigator(
                 />
               </View>
             </TouchableItem>
+            <View style={[styles.item]}>
+              <Text
+                style={[
+                  styles.label,
+                  { color: '#000000', fontWeight: 'normal' },
+                ]}>
+                Développé par Florent Roques
+              </Text>
+            </View>
           </View>
         </View>
       );

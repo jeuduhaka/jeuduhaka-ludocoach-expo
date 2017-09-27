@@ -65,6 +65,7 @@ class VideoScreen extends React.Component {
     const cardName = selectedCards[currentDeck];
     // const videoSource = videoSources[currentDeck][cardName];
 
+    console.log(BASE_VIDEO_URI);
     this.state = {
       // data,
       // links,
@@ -92,7 +93,7 @@ class VideoScreen extends React.Component {
             shouldPlay: true, // config.autoplayVideo,
             // isMuted:  config.muteVideo,
             isMuted: false,
-            resizeMode: Video.RESIZE_MODE_COVER,
+            resizeMode: Video.RESIZE_MODE_CONTAIN,
             source: {
               uri: this.state.videoUri,
             },
@@ -119,6 +120,9 @@ class VideoScreen extends React.Component {
             } else {
               videoEnded(currentDeck);
             }
+          }}
+          playbackCallback={status => {
+            console.log(status);
           }}
         />
       </View>

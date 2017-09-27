@@ -97,6 +97,9 @@ class HomeScreen extends React.Component {
           </View>
           <View style={styles.copyrightContainer}>
             <Text style={styles.copyright}>
+              Hinenao Kimitete, Tehotu Tauraatua, Marc Kucharz
+            </Text>
+            <Text style={styles.copyright}>
               © Le Jeu du Haka - {I18n.t('allRightsReserved')}
             </Text>
           </View>
