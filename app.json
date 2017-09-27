@@ -25,7 +25,7 @@
     "ios": {
       "bundleIdentifier": "com.marckucharz.jeuduhaka-ludocoach",
       "buildNumber": "1.0.0",
-      "icon": "./assets/icons/jeuduhaka-app-icon-512x512-no-transparency.png",
+      "icon": "./assets/icons/jeuduhaka-app-icon-1024x1024-no-transparency.png",
       "supportsTablet": false
     },
     "android": {
