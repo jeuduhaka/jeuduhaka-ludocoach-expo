@@ -19,7 +19,8 @@ import NavigationHeader from '../components/NavigatonHeader';
 // import styles from './screens.style';
 import { videoEnded, backHome } from '../actions';
 import { GAME_MODE_1_MOVE } from '../actions/types';
-import videoSources from '../stores/CardVideoSourcesRemote.js';
+// import videoSources from '../stores/CardVideoSourcesRemote.js';
+// import videoSources from '../stores/CardVideoSourcesLocal.js';
 
 const styles = {
   videoContainer: {
@@ -61,11 +62,8 @@ class VideoScreen extends React.Component {
     // const videoId = this.props.navigation.state.params.videoId;
     //
     const { currentDeck, selectedCards } = this.props;
-
     const cardName = selectedCards[currentDeck];
-    // const videoSource = videoSources[currentDeck][cardName];
 
-    console.log(BASE_VIDEO_URI);
     this.state = {
       // data,
       // links,
