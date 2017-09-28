@@ -44,6 +44,6 @@ export default StyleSheet.create({
     alignSelf: 'center',
   },
   startButtonContainer: { flex: 1 },
-  copyrightContainer: { flex: 1, paddingTop: '5%' },
+  copyrightContainer: { flex: 2, paddingTop: '5%' },
   copyright: { backgroundColor: 'transparent', alignSelf: 'center' },
 });

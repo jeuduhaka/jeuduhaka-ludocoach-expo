@@ -20,7 +20,7 @@ import NavigationHeader from '../components/NavigatonHeader';
 import { videoEnded, backHome } from '../actions';
 import { GAME_MODE_1_MOVE } from '../actions/types';
 // import videoSources from '../stores/CardVideoSourcesRemote.js';
-// import videoSources from '../stores/CardVideoSourcesLocal.js';
+import videoSources from '../stores/CardVideoSourcesLocal.js';
 
 const styles = {
   videoContainer: {
@@ -65,6 +65,7 @@ class VideoScreen extends React.Component {
     const cardName = selectedCards[currentDeck];
 
     this.state = {
+      firstRender: true,
       // data,
       // links,
       videoUri: `${BASE_VIDEO_URI}${cardName}-render.mp4`,
@@ -77,16 +78,29 @@ class VideoScreen extends React.Component {
     };
   }
 
+  shouldComponentUpdate(nextProps, nextState) {
+    const { currentDeck, selectedCards } = nextProps;
+    const cardName = selectedCards[currentDeck];
+
+    if (!cardName || !nextState.firstRender) {
+      return false;
+    }
+
+    return true;
+  }
+
   render() {
+    const { currentDeck, selectedCards } = this.props;
+
+    const cardName = selectedCards[currentDeck];
+    const videoSource = videoSources[currentDeck][cardName];
+
     return (
       <View style={styles.videoContainer}>
         <NavigationHeader tintColor={'#ffffff'} />
 
         <VideoPlayer
           videoProps={{
-            ref: component => {
-              this._playbackInstance = component;
-            },
             // style: styles.backgroundVideo,
             shouldPlay: true, // config.autoplayVideo,
             // isMuted:  config.muteVideo,
@@ -94,22 +108,30 @@ class VideoScreen extends React.Component {
             resizeMode: Video.RESIZE_MODE_CONTAIN,
             source: {
               uri: this.state.videoUri,
+              // videoSource,
             },
             // positionMillis: this.state.playback,
             style: {
               width: videoWidth,
               height: videoHeight,
             },
-            onLoad: status => {
-              // console.log(this._video);
-              // console.log(`ON LOAD : ${JSON.stringify(status)}`);
-              if (!Constants.isDevice && status.isLoaded) {
-                this._playbackInstance.playFromPositionAsync(25000);
-              }
-              // this._video.playFromPositionAsync(0);
-            },
+            // onReadyForDisplay: (naturalSize, status) => {
+            //   console.log('onReadyForDisplay');
+            //   console.log(status);
+            // },
+            // onLoadStart: () => {
+            //   console.log('onLoadStart');
+            // },
+            // onLoad: status => {
+            //   // console.log(this._video);
+            //   console.log(`ON LOAD : ${JSON.stringify(status)}`);
+            //   // if (!Constants.isDevice && status.isLoaded) {
+            //   //   this._playbackInstance.playFromPositionAsync(25000);
+            //   // }
+            //   // this._video.playFromPositionAsync(0);
+            // },
           }}
-          isPortrait={this.state.isPortrait}
+          // isPortrait={this.state.isPortrait}
           nextCallback={() => {
             const { currentDeck, videoEnded, backHome, gameMode } = this.props;
 
@@ -119,9 +141,9 @@ class VideoScreen extends React.Component {
               videoEnded(currentDeck);
             }
           }}
-          playbackCallback={status => {
-            console.log(status);
-          }}
+          // playbackCallback={status => {
+          //   console.log(status);
+          // }}
         />
       </View>
     );

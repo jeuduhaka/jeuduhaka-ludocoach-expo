@@ -11,17 +11,19 @@ import { Provider } from 'react-redux';
 import Expo, { Font, AppLoading } from 'expo';
 import I18n from 'ex-react-native-i18n';
 import { Ionicons } from '@expo/vector-icons';
+// import Sentry from 'sentry-expo';
 
 import AppWithNavigationState from './navigators/AppNavigator';
 import configureStore from './config/configureStore';
 // import imageSources from './stores/CardImageSources';
 // import videoSources from './stores/CardVideoSourcesLocal';
-// import { cacheImages, cacheVideos, cacheFonts } from './utils/cacheAssetsAsync';
+import { cacheImages, cacheVideos, cacheFonts } from './utils/cacheAssetsAsync';
+// import DownloadManager from './utils/DownloadManager';
 
 const store = configureStore();
 
 class App extends React.Component {
-  static sound = new Expo.Audio.Sound();
+  // static sound = new Expo.Audio.Sound();
 
   state = {
     isLoadingComplete: false,
@@ -32,6 +34,10 @@ class App extends React.Component {
     //Intercept react-native error handling
     this.defaultHandler = ErrorUtils.getGlobalHandler();
     ErrorUtils.setGlobalHandler(this.wrapGlobalHandler.bind(this));
+  }
+
+  componentWillUnmount() {
+    this._downloadManager && this._downloadManager.teardown();
   }
 
   async wrapGlobalHandler(error, isFatal) {
@@ -100,16 +106,30 @@ class App extends React.Component {
   }
 
   _loadResourcesAsync = async () => {
-    return Promise.all([
-      store.rehydrateAsync(),
-      Font.loadAsync([
-        ...Ionicons.font,
-        {
-          'charcuterie-sans-inline': require('./assets/fonts/CharcuterieSansInline-Regular.ttf'),
-        },
-      ]),
-      this.loadSoundAsync(),
-    ]);
+    try {
+      await Promise.all([
+        store.rehydrateAsync(),
+        ...cacheImages([
+          require('./assets/images/fond-bleu-vague-1980x1980.jpg'),
+          require('./assets/images/jeu-du-haka-logo-200x200.png'),
+          require('./assets/videoplayer/thumb.png'),
+          require('./assets/videoplayer/track.png'),
+        ]),
+        // ...cacheVideos(videoSources),
+        Font.loadAsync([
+          ...Ionicons.font,
+          {
+            'charcuterie-sans-inline': require('./assets/fonts/CharcuterieSansInline-Regular.ttf'),
+          },
+        ]),
+        this.loadSoundAsync(),
+      ]);
+    } catch (e) {
+      console.log('Error downloading assets', e);
+      // Sentry.captureException(e);
+    }
+
+    // this._downloadManager = new DownloadManager(store);
   };
 
   _handleLoadingError = error => {

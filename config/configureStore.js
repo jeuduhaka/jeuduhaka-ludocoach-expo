@@ -72,10 +72,10 @@ export default initialState => {
     });
   };
 
-  Store.subscribe(() => {
-    console.log(Store.getState().language);
-    //   console.log(Store.getState().gameMode);
-  });
+  // Store.subscribe(() => {
+  //   // console.log(Store.getState().language);
+  //   //   console.log(Store.getState().gameMode);
+  // });
 
   if (module && module.hot) {
     // Enable Webpack hot module replacement for reducers
