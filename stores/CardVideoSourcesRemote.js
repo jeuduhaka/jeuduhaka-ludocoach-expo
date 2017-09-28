@@ -9,7 +9,8 @@ export default {
     peur: 'https://s3.eu-west-2.amazonaws.com/frqs-jdh/videos/peur.mp4',
     tristesse: 'https://s3.eu-west-2.amazonaws.com/frqs-jdh/videos/peur.mp4',
     violence: 'https://s3.eu-west-2.amazonaws.com/frqs-jdh/videos/peur.mp4',
-    'joker-rouge': 'https://s3.eu-west-2.amazonaws.com/frqs-jdh/videos/peur.mp4'
+    'joker-rouge':
+      'https://s3.eu-west-2.amazonaws.com/frqs-jdh/videos/peur.mp4',
   },
   orange: {
     action: 'https://s3.eu-west-2.amazonaws.com/frqs-jdh/videos/protection.mp4',
@@ -27,7 +28,7 @@ export default {
       'https://s3.eu-west-2.amazonaws.com/frqs-jdh/videos/protection.mp4',
     unite: 'https://s3.eu-west-2.amazonaws.com/frqs-jdh/videos/protection.mp4',
     'joker-orange':
-      'https://s3.eu-west-2.amazonaws.com/frqs-jdh/videos/protection.mp4'
+      'https://s3.eu-west-2.amazonaws.com/frqs-jdh/videos/protection.mp4',
   },
   green: {
     amour: 'https://s3.eu-west-2.amazonaws.com/frqs-jdh/videos/confiance.mp4',
@@ -41,6 +42,6 @@ export default {
     joie: 'https://s3.eu-west-2.amazonaws.com/frqs-jdh/videos/confiance.mp4',
     paix: 'https://s3.eu-west-2.amazonaws.com/frqs-jdh/videos/confiance.mp4',
     'joker-vert':
-      'https://s3.eu-west-2.amazonaws.com/frqs-jdh/videos/confiance.mp4'
-  }
+      'https://s3.eu-west-2.amazonaws.com/frqs-jdh/videos/confiance.mp4',
+  },
 };

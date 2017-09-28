@@ -4,16 +4,16 @@ import { Asset, Font } from 'expo';
 export default function cacheAssetsAsync({
   images = [],
   videos = [],
-  fonts = []
+  fonts = [],
 }) {
   return Promise.all([
     ...cacheImages(images),
     ...cacheVideos(videos),
-    ...cacheFonts(fonts)
+    ...cacheFonts(fonts),
   ]);
 }
 
-function cacheVideos(videos) {
+export function cacheVideos(videos) {
   return Object.values(videos).map(video => {
     // console.log(typeof video);
     if (typeof video === 'object') {
@@ -28,7 +28,7 @@ function cacheVideos(videos) {
   });
 }
 
-function cacheImages(images) {
+export function cacheImages(images) {
   return Object.values(images).map(image => {
     if (typeof image === 'string') {
       // console.log('image string');
@@ -43,6 +43,6 @@ function cacheImages(images) {
   });
 }
 
-function cacheFonts(fonts) {
+export function cacheFonts(fonts) {
   return fonts.map(font => Font.loadAsync(font));
 }

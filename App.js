@@ -14,6 +14,9 @@ import { Ionicons } from '@expo/vector-icons';
 
 import AppWithNavigationState from './navigators/AppNavigator';
 import configureStore from './config/configureStore';
+// import imageSources from './stores/CardImageSources';
+// import videoSources from './stores/CardVideoSourcesLocal';
+// import { cacheImages, cacheVideos, cacheFonts } from './utils/cacheAssetsAsync';
 
 const store = configureStore();
 

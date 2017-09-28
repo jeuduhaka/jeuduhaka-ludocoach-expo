@@ -6,7 +6,7 @@
     "slug": "jeuduhaka-ludocoach",
     "privacy": "unlisted",
     "sdkVersion": "21.0.0",
-    "version": "1.0.1",
+    "version": "1.0.3",
     "orientation": "portrait",
     "primaryColor": "#cccccc",
     "icon": "./assets/icons/jeuduhaka-app-icon-512x512.png",
@@ -24,14 +24,15 @@
     },
     "ios": {
       "bundleIdentifier": "com.marckucharz.jeuduhaka-ludocoach",
-      "buildNumber": "1.0.1",
+      "buildNumber": "2",
       "icon": "./assets/icons/jeuduhaka-app-icon-1024x1024-no-transparency.png",
       "supportsTablet": false
     },
     "android": {
       "package": "com.marckucharz.jeuduhakaludocoach",
-      "versionCode": "1.0.0",
-      "icon": "./assets/icons/jeuduhaka-app-icon-512x512.png"
+      "versionCode": 3,
+      "icon": "./assets/icons/jeuduhaka-app-icon-512x512.png",
+      "permissions": []
     }
   }
 }

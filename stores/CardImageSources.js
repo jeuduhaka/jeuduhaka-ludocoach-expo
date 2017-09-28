@@ -1,8 +1,10 @@
 export default {
+  logo: require('../assets/images/jeu-du-haka-logo-200x200.png'),
+  wave: require('../assets/images/fond-bleu-vague-1980x1980.jpg'),
   back: {
     red: require('../assets/images/1-back_carte_rouge1.png'),
     orange: require('../assets/images/2-back_carte_orange1.png'),
-    green: require('../assets/images/3-back_carte_verte1.png')
+    green: require('../assets/images/3-back_carte_verte1.png'),
   },
   front: {
     red: {
@@ -14,7 +16,7 @@ export default {
       peur: require('../assets/images/red/fr/peur/carte-rouge-peur-sans-texte.png'),
       tristesse: require('../assets/images/red/fr/tristesse/carte-rouge-tristesse-sans-texte.png'),
       violence: require('../assets/images/red/fr/violence/carte-rouge-violence-sans-texte.png'),
-      'joker-rouge': require('../assets/images/red/fr/joker/carte-rouge-joker-sans-texte.png')
+      'joker-rouge': require('../assets/images/red/fr/joker/carte-rouge-joker-sans-texte.png'),
     },
     orange: {
       action: require('../assets/images/orange/fr/action/carte-orange-action-sans-texte.png'),
@@ -25,7 +27,7 @@ export default {
       prevention: require('../assets/images/orange/fr/prevention/carte-orange-prevention-sans-texte.png'),
       protection: require('../assets/images/orange/fr/protection/carte-orange-protection-sans-texte.png'),
       unite: require('../assets/images/orange/fr/unite/carte-orange-unite-sans-texte.png'),
-      'joker-orange': require('../assets/images/orange/fr/joker/carte-orange-joker-sans-texte.png')
+      'joker-orange': require('../assets/images/orange/fr/joker/carte-orange-joker-sans-texte.png'),
     },
     green: {
       amour: require('../assets/images/green/fr/amour/carte-vert-amour-sans-texte.png'),
@@ -36,7 +38,7 @@ export default {
       force: require('../assets/images/green/fr/force/carte-vert-force-sans-texte.png'),
       joie: require('../assets/images/green/fr/joie/carte-vert-joie-sans-texte.png'),
       paix: require('../assets/images/green/fr/paix/carte-vert-paix-sans-texte.png'),
-      'joker-vert': require('../assets/images/green/fr/joker/carte-vert-joker-sans-texte.png')
-    }
-  }
+      'joker-vert': require('../assets/images/green/fr/joker/carte-vert-joker-sans-texte.png'),
+    },
+  },
 };
