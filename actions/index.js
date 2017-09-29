@@ -7,6 +7,13 @@ export const languageChanged = language => {
   };
 };
 
+export const assetsLoaded = assetsLoaded => {
+  return {
+    type: ActionTypes.ASSETS_LOADED,
+    assetsLoaded,
+  };
+};
+
 export const gameModeChosen = gameMode => {
   return {
     type: ActionTypes.GAME_MODE_CHOSEN,

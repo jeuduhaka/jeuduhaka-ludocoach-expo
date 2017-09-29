@@ -8,7 +8,7 @@ import flat from 'flat';
 
 import I18n from '../i18n';
 
-import { gameModeChosen, languageChanged } from '../actions';
+import { gameModeChosen, languageChanged, assetsLoaded } from '../actions';
 import * as ActionTypes from '../actions/types';
 
 import { Button } from '../components/common';
@@ -59,6 +59,12 @@ class HomeScreen extends React.Component {
   }
 
   async _loadAssetsAsync() {
+    // console.log(this.props);
+    // if (this.props.areAssetsLoaded) {
+    //   this.setState({ assetsLoaded: true });
+    //   return;
+    // }
+
     const images = Object.values(flat(cardImageSources));
     const videos = Object.values(flat(cardVideoSources));
 
@@ -73,16 +79,21 @@ class HomeScreen extends React.Component {
     }
 
     this.setState({ assetsLoaded: true });
+    this.props.assetsLoaded(true);
   }
 
   async componentWillMount() {
+    console.log(this.props);
     if (this.props.language) {
       I18n.locale = this.props.language;
-      return;
+    } else {
+      await I18n.initAsync();
+      this.props.languageChanged(I18n.locale);
     }
 
-    await I18n.initAsync();
-    this.props.languageChanged(I18n.locale);
+    if (this.props.areAssetsLoaded) {
+      this.setState({ assetsLoaded: true });
+    }
   }
 
   render() {
@@ -177,10 +188,11 @@ class HomeScreen extends React.Component {
 const mapStateToProps = state => ({
   gameMode: state.gameMode,
   language: state.language,
+  areAssetsLoaded: state.assetsLoaded,
 });
 
 const enhance = compose(
-  connect(mapStateToProps, { gameModeChosen, languageChanged })
+  connect(mapStateToProps, { gameModeChosen, languageChanged, assetsLoaded })
   // require('../utils/withLifecycleLogs').default
 );
 

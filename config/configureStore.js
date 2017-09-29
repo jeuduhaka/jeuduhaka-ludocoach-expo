@@ -48,11 +48,12 @@ export default initialState => {
   /* eslint-enable no-undef */
   /* eslint-enable no-underscore-dangle */
 
+  const rehydrateLog = !!__DEV__;
   const enhancer = composeEnhancers(
     applyMiddleware(...middlewares),
     // other store enhancers if any
     autoRehydrate({
-      // log: true
+      log: rehydrateLog,
     })
   );
 
@@ -74,10 +75,10 @@ export default initialState => {
     });
   };
 
-  // Store.subscribe(() => {
-  //   // console.log(Store.getState().language);
-  //   //   console.log(Store.getState().gameMode);
-  // });
+  Store.subscribe(() => {
+    __DEV__ && console.log(Store.getState().assetsLoaded);
+    //   console.log(Store.getState().gameMode);
+  });
 
   if (module && module.hot) {
     // Enable Webpack hot module replacement for reducers
