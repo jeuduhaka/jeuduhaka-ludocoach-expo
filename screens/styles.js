@@ -2,6 +2,14 @@ import { StyleSheet, Dimensions } from 'react-native';
 
 const { height, width } = Dimensions.get('window');
 
+const textStyle = {
+  fontSize: width * 0.07,
+
+  color: '#014DA2',
+  backgroundColor: 'transparent',
+  textAlign: 'center',
+};
+
 export default StyleSheet.create({
   container: { flex: 1 },
   backgroundImage: {
@@ -22,7 +30,7 @@ export default StyleSheet.create({
   },
   backgroundOpacity: {
     position: 'absolute',
-    opacity: 0.6,
+    opacity: 0.3,
     width: width,
     height: height,
     top: 0,
@@ -45,11 +53,11 @@ export default StyleSheet.create({
     flex: 1,
   },
   subtitle: {
-    fontSize: width * 0.07,
+    ...textStyle,
     fontFamily: 'charcuterie-sans-inline',
-    color: '#014DA2',
-    backgroundColor: 'transparent',
-    textAlign: 'center',
+  },
+  intermediateScreenText: {
+    ...textStyle,
   },
   homeImageContainer: {
     flex: 6,

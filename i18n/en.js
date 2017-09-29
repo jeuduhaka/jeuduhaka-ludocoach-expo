@@ -9,7 +9,7 @@ export default {
   accessTraining: 'Access to trainings',
   allRightsReserved: 'All rights reserved',
   chooseCards:
-    'Choose a card of each color fitting your emotions and let yourself be guided by tapping each corresponding card in order',
+    'Choose a card of each color according to your emotions and let yourself be guided by tapping each corresponding card in order',
   oneMoveDescription:
     'For this version, choose the card which will help you directly reach a state of better-Being',
   having: 'HAVING',
@@ -18,7 +18,7 @@ export default {
   play: 'Play',
   youHaveChosen: 'You have chosen',
   placeYourself:
-    '. Place yourself where you feel good and have enough space. Pay attention to your breathe and follow me.',
+    '. Find a place where you feel good and have enough space. Pay attention to your breath and follow me.',
   letsGo: "Let's go!",
   iChoose: 'I choose',
   chooseAnotherCard: 'Choose another card',
