@@ -9,7 +9,7 @@ import {
   Dimensions,
   StyleSheet,
 } from 'react-native';
-import { Video, Constants } from 'expo';
+import { Asset, Video, Constants } from 'expo';
 import { compose } from 'redux';
 import { connect } from 'react-redux';
 
@@ -65,7 +65,6 @@ class VideoScreen extends React.Component {
     const cardName = selectedCards[currentDeck];
 
     this.state = {
-      firstRender: true,
       // data,
       // links,
       videoUri: `${BASE_VIDEO_URI}${cardName}-render.mp4`,
@@ -82,7 +81,7 @@ class VideoScreen extends React.Component {
     const { currentDeck, selectedCards } = nextProps;
     const cardName = selectedCards[currentDeck];
 
-    if (!cardName || !nextState.firstRender) {
+    if (!cardName) {
       return false;
     }
 
@@ -106,10 +105,10 @@ class VideoScreen extends React.Component {
             // isMuted:  config.muteVideo,
             isMuted: false,
             resizeMode: Video.RESIZE_MODE_CONTAIN,
-            source: {
-              uri: this.state.videoUri,
-              // videoSource,
-            },
+            // source: {
+            //   // uri: this.state.videoUri,
+            // },
+            source: videoSource,
             // positionMillis: this.state.playback,
             style: {
               width: videoWidth,

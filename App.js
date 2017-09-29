@@ -10,7 +10,7 @@ import {
 import { Provider } from 'react-redux';
 import Expo, { Font, AppLoading } from 'expo';
 import I18n from 'ex-react-native-i18n';
-import { Ionicons } from '@expo/vector-icons';
+import { MaterialIcons, Foundation } from '@expo/vector-icons';
 // import Sentry from 'sentry-expo';
 
 import AppWithNavigationState from './navigators/AppNavigator';
@@ -37,7 +37,7 @@ class App extends React.Component {
   }
 
   componentWillUnmount() {
-    this._downloadManager && this._downloadManager.teardown();
+    // this._downloadManager && this._downloadManager.teardown();
   }
 
   async wrapGlobalHandler(error, isFatal) {
@@ -52,35 +52,21 @@ class App extends React.Component {
   async loadSoundAsync() {
     if (__DEV__) return;
 
-    if (Platform.OS === 'ios') {
-      try {
-        // await soundObject.playAsync();
-
-        const {
-          soundObject,
-          status,
-        } = await Expo.Audio.Sound.create(
-          require('./assets/sounds/normalized-tamtam-loop16bit-1min-volume-0.6.mp3'),
-          {
-            shouldPlay: true,
-            isLooping: true,
-          }
-        );
-
-        // await App.sound.loadAsync(
-        //   require('./assets/sounds/normalized-tamtam-loop16bit-1min-volume-0.6.mp3'),
-        //   {
-        //     shouldPlay: true,
-        //     isLooping: true
-        //   }
-        // );
-        //
-        // await App.sound.playAsync();
-
-        // Your sound is playing!
-      } catch (error) {
-        // An error occurred!
-      }
+    try {
+      const {
+        soundObject,
+        status,
+      } = await Expo.Audio.Sound.create(
+        require('./assets/sounds/normalized-tamtam-loop16bit-1min-volume-0.6.mp3'),
+        {
+          shouldPlay: true,
+          isLooping: true,
+        }
+      );
+      // Your sound is playing!
+    } catch (error) {
+      // An error occurred!
+      console.warn(error);
     }
   }
 
@@ -117,7 +103,9 @@ class App extends React.Component {
         ]),
         // ...cacheVideos(videoSources),
         Font.loadAsync([
-          ...Ionicons.font,
+          //Foundation used by videoplayer
+          ...Foundation.font,
+          ...MaterialIcons.font,
           {
             'charcuterie-sans-inline': require('./assets/fonts/CharcuterieSansInline-Regular.ttf'),
           },
