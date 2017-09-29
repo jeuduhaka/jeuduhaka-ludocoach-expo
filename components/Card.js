@@ -7,6 +7,7 @@ import {
   Text,
   View,
 } from 'react-native';
+import Layout from '../constants/Layout';
 // import env from '../config/env';
 //
 //
@@ -73,32 +74,32 @@ const styles = {
     justifyContent: 'space-between',
     width: undefined,
     height: undefined,
+    alignItems: 'center',
   },
   textContainer: {
     flex: 1,
-    flexDirection: 'column',
+    // flexDirection: 'column',
     // flexWrap: 'nowrap',
     flexGrow: 1,
-    flexShrink: 1,
+    // flexShrink: 1,
     overflow: 'scroll',
     justifyContent: 'flex-end',
     alignItems: 'center',
-    // backgroundColor: 'rgba(255,0,0,0.3)',
+    // backgroundColor: 'rgba(255,0,0,0.3)'
     backgroundColor: 'transparent',
     // borderWidth: 1,
-    // borderColor: 'yellow'
+    // borderColor: 'yellow',
+    width: Layout.window.width * 0.28,
   },
   title: {
+    flex: 2 / 9,
     // color: colors.black,
     color: '#ffffff',
     fontFamily: 'charcuterie-sans-inline',
-    fontSize: 16,
-    //fontWeight prevents charcuterie-sans-inline from displaying on Android
-    // fontWeight: 'bold',
+    fontSize: Layout.window.width * 0.28 / 5.5,
     letterSpacing: 0.5,
-    bottom: '10%',
     // borderWidth: 1,
-    // borderColor: 'blue'
+    // borderColor: 'blue',
   },
 };
 
