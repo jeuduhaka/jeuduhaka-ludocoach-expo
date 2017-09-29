@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import _get from 'lodash.get';
 import { ActionCreators as UndoActionCreators } from 'redux-undo';
 
+import Layout from '../constants/Layout';
 import I18n from '../i18n';
 
 import { cardConfirmed, cardCancelled } from '../actions';
@@ -131,6 +132,7 @@ class ConfirmCardScreen extends React.Component {
 const styles = {
   containerStyle: {
     flex: 1,
+    flexDirection: 'column',
     justifyContent: 'center',
     // alignItems: 'center',
     backgroundColor: '#000000',
@@ -139,36 +141,40 @@ const styles = {
   imageContainerStyle: {
     flex: 7 / 10,
     // backgroundColor: 'yellow',
+    alignItems: 'center',
   },
   imageStyle: {
-    alignSelf: 'center',
     flex: 1,
+    flexDirection: 'column',
     resizeMode: 'contain',
+    width: Layout.window.width * 0.85,
+    // backgroundColor: 'orange',
+    alignItems: 'center',
   },
   textContainer: {
     flex: 1,
-    flexDirection: 'column',
+    // flexDirection: 'column',
     // flexWrap: 'nowrap',
     flexGrow: 1,
-    flexShrink: 1,
+    // flexShrink: 1,
     overflow: 'scroll',
     justifyContent: 'flex-end',
     alignItems: 'center',
     // backgroundColor: 'rgba(255,0,0,0.3)'
     backgroundColor: 'transparent',
     // borderWidth: 1,
-    // borderColor: 'yellow'
+    // borderColor: 'yellow',
+    width: Layout.window.width * 0.7,
   },
   title: {
+    flex: 2 / 9,
     // color: colors.black,
     color: '#ffffff',
     fontFamily: 'charcuterie-sans-inline',
-    fontSize: 50,
+    fontSize: Layout.window.width * 0.7 / 5.5,
     letterSpacing: 0.5,
-    bottom: '10%',
-    textAlign: 'center',
     // borderWidth: 1,
-    // borderColor: 'blue'
+    // borderColor: 'blue',
   },
   // descriptionContainerStyle: {
   //   flex: 1,
