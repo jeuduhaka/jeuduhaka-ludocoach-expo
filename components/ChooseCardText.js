@@ -41,7 +41,8 @@ const styles = {
   },
   textStyle: {
     color: '#FFF',
-    fontSize: width * 0.075,
+    fontSize: width * 0.1,
+    fontFamily: 'charcuterie-sans-inline',
   },
 };
 

@@ -46,6 +46,8 @@ class DeckScreen extends React.Component {
       cardProps.style = {
         imageStyle: {
           flex: 3 / 7,
+          // borderWidth: 1,
+          // borderColor: 'yellow',
         },
       };
     } else {
@@ -95,6 +97,7 @@ class DeckScreen extends React.Component {
 const styles = {
   containerStyle: {
     flex: 1,
+    flexDirection: 'column',
     justifyContent: 'center',
     // alignItems: 'center',
     backgroundColor: '#000000',

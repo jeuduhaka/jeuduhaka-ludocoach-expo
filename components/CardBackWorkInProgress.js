@@ -6,7 +6,10 @@ import {
   Easing,
   Text,
   View,
+  Dimensions,
 } from 'react-native';
+
+const { height, width } = Dimensions.get('window');
 // import resolveAssetSource from 'react-native/Libraries/Image/resolveAssetSource';
 //
 // import env from '../config/env';
@@ -31,11 +34,15 @@ function createImage({ source, imageStyle }) {
   // console.log(resolveAssetSource(source));
 
   return (
-    <Image
-      style={{ ...styles.baseImageStyle, ...imageStyle }}
-      source={source}
-      // onLoad={() => console.log('onLoad')}
-    />
+    <View style={styles.imageContainer}>
+      <Image
+        style={{ ...styles.baseImageStyle, ...imageStyle }}
+        source={source}>
+        <View style={styles.textContainer}>
+          <Text style={styles.title}>Estime de soi</Text>
+        </View>
+      </Image>
+    </View>
   );
 }
 
@@ -55,13 +62,22 @@ const CardBack = ({ name, imageSource, onPress, ...otherProps }) => {
   }
 
   return (
-    <TouchableOpacity style={styles.buttonContainer} onPress={buttonOnPress}>
-      {image}
-    </TouchableOpacity>
+    <View style={styles.cardContainer}>
+      <TouchableOpacity style={styles.buttonContainer} onPress={buttonOnPress}>
+        {image}
+      </TouchableOpacity>
+    </View>
   );
 };
 
 const styles = {
+  cardContainer: {
+    // flex: 1,
+    flexDirection: 'column',
+    backgroundColor: 'red',
+    // width: width * 0.5,
+    height: height * 0.5,
+  },
   buttonContainer: {
     flex: 1,
     //backgroundColor needed for Android -> black by default
@@ -69,16 +85,24 @@ const styles = {
     // backgroundColor: 'yellow'
     // padding: 10
   },
+  imageContainer: {
+    flex: 7 / 10,
+    // backgroundColor: 'yellow',
+    alignItems: 'center',
+  },
   //disable parent View justifyContent and alignItems properties
   // to get fullscreen image
   baseImageStyle: {
-    resizeMode: 'contain',
-    flex: 1,
     // alignSelf: 'stretch',
     // flexGrow: 1,
-    justifyContent: 'space-between',
-    width: undefined,
-    // height: undefined
+    // justifyContent: 'space-between',
+    width: width * 0.5,
+    height: 500,
+    flexDirection: 'column',
+    resizeMode: 'contain',
+    // width: width * 0.85,
+    backgroundColor: 'orange',
+    alignItems: 'center',
   },
   textContainer: {
     flex: 1,
@@ -93,17 +117,17 @@ const styles = {
     backgroundColor: 'transparent',
     // borderWidth: 1,
     // borderColor: 'yellow'
+    width: width * 0.5,
   },
   title: {
+    flex: 2 / 9,
     // color: colors.black,
     color: '#ffffff',
     fontFamily: 'charcuterie-sans-inline',
     fontSize: 20,
-    fontWeight: 'bold',
     letterSpacing: 0.5,
-    bottom: '10%',
-    // borderWidth: 1,
-    // borderColor: 'blue'
+    borderWidth: 1,
+    borderColor: 'blue',
   },
 };
 
