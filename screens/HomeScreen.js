@@ -97,63 +97,76 @@ class HomeScreen extends React.Component {
         <Image
           style={styles.backgroundImage}
           source={require('../assets/images/fond-bleu-vague-1980x1980.jpg')}>
-          <View style={styles.titleContainer}>
-            <Text style={styles.title}>{I18n.t('hakaGame')}</Text>
-          </View>
-          <View style={styles.subtitleContainer}>
-            <Text style={styles.subtitle}>{I18n.t('guidedByLudocoach')}</Text>
-          </View>
-          <View style={styles.homeImageContainer}>
-            <Image
-              style={styles.homeImage}
-              source={require('../assets/images/jeu-du-haka-logo-200x200.png')}
-            />
-          </View>
-          <View style={[styles.startButtonContainer, { flex: 3 }]}>
-            {this.state.assetsLoaded ? (
-              <View>
-                <Button
-                  title={I18n.t('play3Moves')}
-                  // onPress={() => this.props.navigation.navigate('Second3Moves')}
-                  onPress={() =>
-                    this.props.gameModeChosen(ActionTypes.GAME_MODE_3_MOVES)}>
-                  {I18n.t('play3Moves')}
-                </Button>
-                <Button
-                  title={I18n.t('play1Move')}
-                  // onPress={() => this.props.navigation.navigate('ChooseCardGrid')}
-                  onPress={() =>
-                    this.props.gameModeChosen(ActionTypes.GAME_MODE_1_MOVE)}>
-                  {I18n.t('play1Move')}
-                </Button>
-                <Button
-                  title={I18n.t('accessTraining')}
-                  // onPress={() => this.props.navigation.navigate('ChooseCardGrid')}
-                  onPress={() => Linking.openURL('http://bit.ly/2jvNoUj')}>
-                  {I18n.t('accessTraining')}
-                </Button>
-              </View>
-            ) : (
-              this.state.assetsNumber &&
-              this.state.currentAssetIndex && (
-                <Text
-                  style={{
-                    color: '#000000',
-                    alignSelf: 'center',
-                  }}>
-                  {I18n.t('loading')}... {this.state.currentAssetIndex}/{this.state.assetsNumber}
-                </Text>
-              )
-            )}
-          </View>
-          <View style={styles.copyrightContainer}>
-            <Text style={styles.copyright}>
-              Hinenao Kimitete - Tehotu Tauraatua
-            </Text>
-            <Text style={styles.copyright}>Marc Kucharz</Text>
-            <Text style={[styles.copyright, { marginTop: 10 }]}>
-              © Le Jeu du Haka - {I18n.t('allRightsReserved')}
-            </Text>
+          <View style={styles.navigationHeader} />
+          <View style={styles.contentContainer}>
+            <View style={styles.titleContainer}>
+              <Text style={styles.title}>{I18n.t('hakaGame')}</Text>
+            </View>
+            <View style={styles.subtitleContainer}>
+              <Text style={styles.subtitle}>{I18n.t('guidedByLudocoach')}</Text>
+            </View>
+            <View style={styles.homeImageContainer}>
+              <Image
+                style={styles.homeImage}
+                source={require('../assets/images/jeu-du-haka-logo-200x200.png')}
+              />
+            </View>
+            <View style={styles.startButtonContainer}>
+              {this.state.assetsLoaded ? (
+                <View>
+                  <View style={styles.homeActionButton}>
+                    <Button
+                      title={I18n.t('play3Moves')}
+                      // onPress={() => this.props.navigation.navigate('Second3Moves')}
+                      onPress={() =>
+                        this.props.gameModeChosen(
+                          ActionTypes.GAME_MODE_3_MOVES
+                        )}>
+                      {I18n.t('play3Moves')}
+                    </Button>
+                  </View>
+                  <View style={styles.homeActionButton}>
+                    <Button
+                      title={I18n.t('play1Move')}
+                      // onPress={() => this.props.navigation.navigate('ChooseCardGrid')}
+                      onPress={() =>
+                        this.props.gameModeChosen(
+                          ActionTypes.GAME_MODE_1_MOVE
+                        )}>
+                      {I18n.t('play1Move')}
+                    </Button>
+                  </View>
+                  <View style={styles.homeActionButton}>
+                    <Button
+                      title={I18n.t('accessTraining')}
+                      // onPress={() => this.props.navigation.navigate('ChooseCardGrid')}
+                      onPress={() => Linking.openURL('http://bit.ly/2jvNoUj')}>
+                      {I18n.t('accessTraining')}
+                    </Button>
+                  </View>
+                </View>
+              ) : (
+                this.state.assetsNumber &&
+                this.state.currentAssetIndex && (
+                  <Text
+                    style={{
+                      color: '#000000',
+                      alignSelf: 'center',
+                    }}>
+                    {I18n.t('loading')}... {this.state.currentAssetIndex}/{this.state.assetsNumber}
+                  </Text>
+                )
+              )}
+            </View>
+            <View style={styles.copyrightContainer}>
+              <Text style={styles.copyright}>
+                Hinenao Kimitete - Tehotu Tauraatua
+              </Text>
+              <Text style={styles.copyright}>Marc Kucharz</Text>
+              <Text style={[styles.copyright, { paddingTop: 10 }]}>
+                © Le Jeu du Haka - {I18n.t('allRightsReserved')}
+              </Text>
+            </View>
           </View>
         </Image>
       </View>
