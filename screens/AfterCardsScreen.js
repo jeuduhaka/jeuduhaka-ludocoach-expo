@@ -74,25 +74,23 @@ class AfterCardsScreen extends React.Component {
         <BackButton tintColor={'#014DA2'} />
         <HomeButton tintColor={'#014DA2'} />
         <Image
-          style={styles.backgroundImage}
-          source={require('../assets/images/fond-bleu-vague-1980x1980.jpg')}>
-          <View
-            style={[styles.titleContainer, styles.navigationHeaderPaddingTop]}>
-            <Text style={[styles.title, styles.font20px]}>
+          style={styles.backgroundOpacity}
+          source={require('../assets/images/fond-bleu-vague-1980x1980.jpg')}
+        />
+        <View style={styles.navigationHeader} />
+        <View style={styles.contentContainer}>
+          <View style={[styles.intermediateScreenTextContainer]}>
+            <Text style={[styles.subtitle]}>
               {I18n.t('youHaveChosen')} {this.renderChosenCardsText()}
               {I18n.t('placeYourself')}
             </Text>
+            <View style={styles.nextButtonContainer}>
+              <Button onPress={() => afterCardsButtonPressed(currentDeck)}>
+                {I18n.t('letsGo')}
+              </Button>
+            </View>
           </View>
-          <View style={styles.subtitleContainer}>
-            {/* <Text style={styles.subtitle}>Activez votre Mana (Pouvoir) ! </Text> */}
-            {/* <Text style={styles.subtitle}>A vous de jouer ! </Text> */}
-          </View>
-          <View style={styles.startButtonContainer}>
-            <Button onPress={() => afterCardsButtonPressed(currentDeck)}>
-              {I18n.t('letsGo')}
-            </Button>
-          </View>
-        </Image>
+        </View>
       </View>
     );
   }

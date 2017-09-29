@@ -32,22 +32,21 @@ class FinalScreen extends React.Component {
         <BackButton tintColor={'#014DA2'} />
         <HomeButton tintColor={'#014DA2'} />
         <Image
-          style={styles.backgroundImage}
-          source={require('../assets/images/fond-bleu-vague-1980x1980.jpg')}>
-          <View
-            style={[styles.titleContainer, styles.navigationHeaderPaddingTop]}>
-            <Text style={[styles.title, styles.font20px]}>
-              {I18n.t('manaActivated')}
-            </Text>
-          </View>
-          <View style={styles.startButtonContainer}>
-            <Button
-              style={styles.startButton}
-              onPress={this.props.onThanksPress}>
-              {I18n.t('thankYou')}
-            </Button>
-          </View>
-        </Image>
+          style={styles.backgroundOpacity}
+          source={require('../assets/images/fond-bleu-vague-1980x1980.jpg')}
+        />
+        <View style={styles.navigationHeader} />
+        <View
+          style={[styles.titleContainer, styles.navigationHeaderPaddingTop]}>
+          <Text style={[styles.title, styles.font20px]}>
+            {I18n.t('manaActivated')}
+          </Text>
+        </View>
+        <View style={styles.startButtonContainer}>
+          <Button style={styles.startButton} onPress={this.props.onThanksPress}>
+            {I18n.t('thankYou')}
+          </Button>
+        </View>
       </View>
     );
   }

@@ -15,8 +15,21 @@ export default StyleSheet.create({
   titleContainer: {
     flex: 1.25,
   },
-  navigationHeaderPaddingTop: {
-    paddingTop: 50,
+  intermediateScreenTextContainer: {
+    flex: 1,
+    flexDirection: 'column',
+    justifyContent: 'center',
+  },
+  backgroundOpacity: {
+    position: 'absolute',
+    opacity: 0.6,
+    width: width,
+    height: height,
+    top: 0,
+    left: 0,
+  },
+  nextButtonContainer: {
+    marginTop: 20,
   },
   title: {
     fontSize: width * 0.14,
