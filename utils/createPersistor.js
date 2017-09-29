@@ -73,7 +73,7 @@ export default function createPersistor(store, config) {
           serializer(endState),
           warnIfSetError(key)
         );
-        console.log('stored');
+        // console.log('stored');
       } catch (error) {
         // TODO Error saving data to AsyncStorage
       }

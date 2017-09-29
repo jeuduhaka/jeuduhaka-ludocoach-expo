@@ -51,7 +51,9 @@ export default initialState => {
   const enhancer = composeEnhancers(
     applyMiddleware(...middlewares),
     // other store enhancers if any
-    autoRehydrate({ log: true })
+    autoRehydrate({
+      // log: true
+    })
   );
 
   const Store = createStore(reducer, initialState, enhancer);
