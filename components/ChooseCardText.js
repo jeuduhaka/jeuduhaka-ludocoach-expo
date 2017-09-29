@@ -1,8 +1,11 @@
 import React from '/utils/enhancedReact';
-import { View, Text } from 'react-native';
+import { View, Text, Dimensions } from 'react-native';
+
 import { connect } from 'react-redux';
 
 import I18n from '../i18n';
+
+const { height, width } = Dimensions.get('window');
 
 const ChooseCardText = ({ currentDeck, style }) => {
   let text = '';
@@ -34,11 +37,12 @@ const styles = {
     backgroundColor: '#000000',
     flex: 1,
     justifyContent: 'center',
-    alignItems: 'center'
+    alignItems: 'center',
   },
   textStyle: {
-    color: '#FFF'
-  }
+    color: '#FFF',
+    fontSize: width * 0.075,
+  },
 };
 
 export default ChooseCardText;
