@@ -1,12 +1,5 @@
 import React from '/utils/enhancedReact';
-import {
-  Button,
-  Text,
-  View,
-  TouchableOpacity,
-  Dimensions,
-  StyleSheet,
-} from 'react-native';
+import { Button, Text, View, TouchableOpacity } from 'react-native';
 import { Header, HeaderBackButton, HeaderTitle } from 'react-navigation';
 import { compose } from 'redux';
 import { connect } from 'react-redux';
@@ -57,7 +50,11 @@ const NavigationHeader = ({
     >
       Menace
     </HeaderTitle> */}
-      <TouchableOpacity onPress={onHomePress}>
+      <TouchableOpacity
+        onPress={onHomePress}
+        style={{
+          marginVertical: 12,
+        }}>
         <HomeIcon tintColor={tintColor} />
       </TouchableOpacity>
     </View>
