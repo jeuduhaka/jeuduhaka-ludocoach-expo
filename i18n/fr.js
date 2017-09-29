@@ -1,4 +1,6 @@
 export default {
+  loading: 'chargement',
+
   //Jeu
   hakaGame: 'Le Jeu du Haka',
   guidedByLudocoach: 'guidé par le ludocoach Tehotu',
@@ -28,6 +30,7 @@ export default {
   backToGame: 'Retour au jeu',
   acknowledgementsMenu: 'Remerciements',
   acknowledgementsText: 'Remerciements à ',
+  developedBy: 'Développé par',
 
   //Cartes
   abandon: 'Abandon',
@@ -56,5 +59,5 @@ export default {
   force: 'Force',
   joie: 'Joie',
   paix: 'Paix',
-  'joker-vert': 'Joker'
+  'joker-vert': 'Joker',
 };

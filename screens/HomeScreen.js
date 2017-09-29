@@ -141,7 +141,7 @@ class HomeScreen extends React.Component {
                     color: '#000000',
                     alignSelf: 'center',
                   }}>
-                  chargement... {this.state.currentAssetIndex}/{this.state.assetsNumber}
+                  {I18n.t('loading')}... {this.state.currentAssetIndex}/{this.state.assetsNumber}
                 </Text>
               )
             )}

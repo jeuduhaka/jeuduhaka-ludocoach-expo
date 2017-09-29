@@ -147,9 +147,9 @@ const HomeWithDrawer = DrawerNavigator(
               <Text
                 style={[
                   styles.label,
-                  { color: '#000000', fontWeight: 'normal' },
+                  { color: '#bbbbbb', fontWeight: 'normal', fontSize: 12 },
                 ]}>
-                Développé par Florent Roques
+                {I18n.t('developedBy')} Florent Roques
               </Text>
             </View>
           </View>
