@@ -9,10 +9,11 @@ const DecksContainer = props => {
 
 const styles = {
   cardsContainerStyle: {
+    flex: 1,
     flexDirection: 'row',
     alignItems: 'center',
-    justifyContent: 'space-around'
-  }
+    justifyContent: 'space-around',
+  },
 };
 
 export default DecksContainer;

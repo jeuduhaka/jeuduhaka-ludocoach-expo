@@ -5,14 +5,16 @@ import I18n from '../i18n';
 
 import { Button } from '../components/common';
 import styles from './styles';
-import NavigationHeader from '../components/NavigatonHeader';
+import BackButton from '../components/BackButton';
+import HomeButton from '../components/HomeButton';
 
 export default class SecondScreen extends React.Component {
   render() {
     const { textContent, buttonOnPress } = this.props;
     return (
       <View style={styles.container}>
-        <NavigationHeader tintColor={'#014DA2'} />
+        <BackButton tintColor={'#014DA2'} />
+        <HomeButton tintColor={'#014DA2'} />
         <Image
           style={styles.backgroundImage}
           source={require('../assets/images/fond-bleu-vague-1980x1980.jpg')}>

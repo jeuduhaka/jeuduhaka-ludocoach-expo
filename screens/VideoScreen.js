@@ -15,7 +15,9 @@ import { connect } from 'react-redux';
 
 //from @expo/videoplayer with custom Height
 import VideoPlayer from '../components/VideoPlayer';
-import NavigationHeader from '../components/NavigatonHeader';
+// import NavigationHeader from '../components/NavigationHeader';
+import BackButton from '../components/BackButton';
+import HomeButton from '../components/HomeButton';
 // import styles from './screens.style';
 import { videoEnded, backHome } from '../actions';
 import { GAME_MODE_1_MOVE } from '../actions/types';
@@ -96,7 +98,9 @@ class VideoScreen extends React.Component {
 
     return (
       <View style={styles.videoContainer}>
-        <NavigationHeader tintColor={'#ffffff'} />
+        {/* <NavigationHeader tintColor={'#ffffff'} /> */}
+        <BackButton tintColor={'#ffffff'} />
+        <HomeButton tintColor={'#ffffff'} />
 
         <VideoPlayer
           videoProps={{

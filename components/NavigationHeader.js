@@ -1,5 +1,5 @@
 import React from '/utils/enhancedReact';
-import { Button, Text, View, TouchableOpacity } from 'react-native';
+import { Button, Text, View, TouchableOpacity, Platform } from 'react-native';
 import { Header, HeaderBackButton, HeaderTitle } from 'react-navigation';
 import { compose } from 'redux';
 import { connect } from 'react-redux';
@@ -28,35 +28,40 @@ const NavigationHeader = ({
   onReset,
   gameMode,
   tintColor,
+  title,
+  ...otherProps
 }) => {
   return (
-    <View
-      style={{
-        position: 'absolute',
-        top: 0,
-        left: 0,
-        flexDirection: 'row',
-        //zIndex needed to be on top of Video
-        zIndex: 2,
-      }}>
-      <HeaderBackButton onPress={onBackPress} tintColor={tintColor} />
-      {/* <HeaderTitle
-      style={{
-        position: 'absolute',
-        fontSize: 36,
-        fontFamily: 'charcuterie-sans-inline'
-        // textAlign: 'center'
-      }}
-    >
-      Menace
-    </HeaderTitle> */}
-      <TouchableOpacity
-        onPress={onHomePress}
+    <View style={[{ position: 'absolute', top: 0, zIndex: 10 }]}>
+      <View
         style={{
-          marginVertical: 12,
+          flex: 1,
+          position: 'absolute',
+          top: 0,
+          left: 0,
+          flexDirection: 'row',
+          //zIndex needed to be on top of Video
+          zIndex: 5,
         }}>
-        <HomeIcon tintColor={tintColor} />
-      </TouchableOpacity>
+        <HeaderBackButton onPress={onBackPress} tintColor={tintColor} />
+      </View>
+      <View
+        style={{
+          position: 'absolute',
+          top: 0,
+          right: 10,
+          flexDirection: 'row',
+          //zIndex needed to be on top of Video
+          zIndex: 2,
+        }}>
+        <TouchableOpacity
+          onPress={onHomePress}
+          style={{
+            marginVertical: 5,
+          }}>
+          <HomeIcon tintColor={tintColor} />
+        </TouchableOpacity>
+      </View>
     </View>
   );
 };

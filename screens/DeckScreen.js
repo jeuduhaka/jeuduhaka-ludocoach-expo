@@ -9,14 +9,16 @@ import { deckPressed, selectedCardPressed } from '../actions';
 import Card from '../components/Card';
 import CardBack from '../components/CardBack';
 import DecksContainer from '../components/DecksContainer';
-import NavigationHeader from '../components/NavigatonHeader';
+import BackButton from '../components/BackButton';
+import HomeButton from '../components/HomeButton';
+import ChooseCardText from '../components/ChooseCardText';
 
 import cardImageSources from '../stores/CardImageSources';
 
 class DeckScreen extends React.Component {
   static navigationOptions = {
     header: null,
-    gesturesEnabled: false
+    gesturesEnabled: false,
   };
 
   // shouldComponentUpdate(nextProps) {
@@ -31,7 +33,7 @@ class DeckScreen extends React.Component {
       allCardsChosen,
       deckPressed,
       selectedCards,
-      selectedCardPressed
+      selectedCardPressed,
     } = this.props;
 
     if (currentDeck === color) {
@@ -40,11 +42,18 @@ class DeckScreen extends React.Component {
       } else {
         cardProps.onPress = () => selectedCardPressed();
       }
+
+      cardProps.style = {
+        imageStyle: {
+          flex: 3 / 7,
+        },
+      };
     } else {
       cardProps.style = {
         imageStyle: {
-          opacity: 0.5
-        }
+          flex: 2 / 7,
+          opacity: 0.5,
+        },
       };
     }
 
@@ -66,12 +75,18 @@ class DeckScreen extends React.Component {
 
     return (
       <View style={containerStyle}>
-        <NavigationHeader tintColor={'#ffffff'} />
-        <DecksContainer>
-          {this.displayCard('red')}
-          {this.displayCard('orange')}
-          {this.displayCard('green')}
-        </DecksContainer>
+        <View style={{ flex: 1 / 10 }}>
+          <BackButton tintColor={'#ffffff'} />
+          <HomeButton tintColor={'#ffffff'} />
+          <ChooseCardText currentDeck={this.props.currentDeck} />
+        </View>
+        <View style={{ flex: 9 / 10 }}>
+          <DecksContainer>
+            {this.displayCard('red')}
+            {this.displayCard('orange')}
+            {this.displayCard('green')}
+          </DecksContainer>
+        </View>
       </View>
     );
   }
@@ -81,13 +96,12 @@ const styles = {
   containerStyle: {
     flex: 1,
     justifyContent: 'center',
-    alignItems: 'center',
+    // alignItems: 'center',
     backgroundColor: '#000000',
-    paddingTop: 30
   },
   textStyle: {
-    color: '#FFF'
-  }
+    color: '#FFF',
+  },
 };
 
 const mapStateToProps = state => ({
@@ -95,7 +109,7 @@ const mapStateToProps = state => ({
   cardConfirmed: state.cards.present.cardConfirmed,
   selectedCards: state.cards.present.selected,
   allCardsChosen: state.cards.present.allCardsChosen,
-  allVideosEnded: state.cards.present.allVideosEnded
+  allVideosEnded: state.cards.present.allVideosEnded,
 });
 
 const enhance = compose(

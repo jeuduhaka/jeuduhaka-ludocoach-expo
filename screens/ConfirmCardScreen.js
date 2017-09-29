@@ -3,14 +3,15 @@ import { View, Image, Text } from 'react-native';
 import { compose } from 'redux';
 import { connect } from 'react-redux';
 import _get from 'lodash.get';
+import { ActionCreators as UndoActionCreators } from 'redux-undo';
 
 import I18n from '../i18n';
 
 import { cardConfirmed, cardCancelled } from '../actions';
 import { Button } from '../components/common';
-import NavigationHeader from '../components/NavigatonHeader';
-
-import { ActionCreators as UndoActionCreators } from 'redux-undo';
+import BackButton from '../components/BackButton';
+import HomeButton from '../components/HomeButton';
+import ChooseCardText from '../components/ChooseCardText';
 
 import cardImageSources from '../stores/CardImageSources';
 
@@ -21,8 +22,13 @@ class ConfirmCardScreen extends React.Component {
   };
 
   shouldComponentUpdate(nextProps) {
+    const { currentDeck, selectedCards } = nextProps;
     //fix issue when backHome
-    return nextProps.currentDeck !== '';
+    return (
+      currentDeck !== '' &&
+      //Fix issue with missing translation
+      selectedCards[currentDeck] !== ''
+    );
   }
 
   render() {
@@ -47,7 +53,11 @@ class ConfirmCardScreen extends React.Component {
 
     return (
       <View style={containerStyle}>
-        <NavigationHeader tintColor={'#ffffff'} />
+        <View style={styles.navigationHeader}>
+          <BackButton tintColor={'#ffffff'} />
+          <HomeButton tintColor={'#ffffff'} />
+          <ChooseCardText currentDeck={this.props.currentDeck} />
+        </View>
         <View style={imageContainerStyle}>
           <Image style={imageStyle} source={_get(cardImageSources, imagePath)}>
             <View style={styles.textContainer}>
@@ -69,7 +79,6 @@ class ConfirmCardScreen extends React.Component {
               textStyle: {
                 alignSelf: 'center',
                 color: '#000000',
-                backgroundColor: '#ffffff',
                 fontSize: 16,
                 fontWeight: '600',
                 paddingTop: 10,
@@ -125,10 +134,11 @@ const styles = {
     justifyContent: 'center',
     // alignItems: 'center',
     backgroundColor: '#000000',
-    paddingTop: 30,
   },
+  navigationHeader: { flex: 1 / 10 },
   imageContainerStyle: {
-    flex: 3,
+    flex: 7 / 10,
+    // backgroundColor: 'yellow',
   },
   imageStyle: {
     alignSelf: 'center',
@@ -154,7 +164,6 @@ const styles = {
     color: '#ffffff',
     fontFamily: 'charcuterie-sans-inline',
     fontSize: 50,
-    // fontWeight: 'bold',
     letterSpacing: 0.5,
     bottom: '10%',
     textAlign: 'center',
@@ -169,7 +178,7 @@ const styles = {
   //   color: '#ffffff',
   // },
   buttonsContainerStyle: {
-    flex: 1,
+    flex: 2 / 10,
     paddingTop: 30,
   },
 };

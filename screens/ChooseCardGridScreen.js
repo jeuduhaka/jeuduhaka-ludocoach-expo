@@ -9,7 +9,9 @@ import DecksContainer from '../components/DecksContainer';
 import Card from '../components/Card';
 import ChooseCardText from '../components/ChooseCardText';
 import { cardPressed } from '../actions';
-import NavigationHeader from '../components/NavigatonHeader';
+import BackButton from '../components/BackButton';
+import HomeButton from '../components/HomeButton';
+
 import cardImageSources from '../stores/CardImageSources';
 
 class ChooseCardGridScreen extends React.Component {
@@ -60,9 +62,12 @@ class ChooseCardGridScreen extends React.Component {
 
     return (
       <View style={containerStyle}>
-        <NavigationHeader tintColor={'#ffffff'} />
-        <ChooseCardText currentDeck={this.props.currentDeck} />
-        {this.displayCardRows()}
+        <View style={{ flex: 1 / 10 }}>
+          <BackButton tintColor={'#ffffff'} />
+          <HomeButton tintColor={'#ffffff'} />
+          <ChooseCardText currentDeck={this.props.currentDeck} />
+        </View>
+        <View style={{ flex: 9 / 10 }}>{this.displayCardRows()}</View>
       </View>
     );
   }
