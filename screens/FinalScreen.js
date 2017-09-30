@@ -36,16 +36,15 @@ class FinalScreen extends React.Component {
           source={require('../assets/images/fond-bleu-vague-1980x1980.jpg')}
         />
         <View style={styles.navigationHeader} />
-        <View
-          style={[styles.titleContainer, styles.navigationHeaderPaddingTop]}>
-          <Text style={[styles.title, styles.font20px]}>
-            {I18n.t('manaActivated')}
-          </Text>
-        </View>
-        <View style={styles.startButtonContainer}>
-          <Button style={styles.startButton} onPress={this.props.onThanksPress}>
-            {I18n.t('thankYou')}
-          </Button>
+        <View style={styles.contentContainer}>
+          <View style={[styles.intermediateScreenTextContainer]}>
+            <Text style={[styles.subtitle]}>{I18n.t('manaActivated')}</Text>
+            <View style={styles.nextButtonContainer}>
+              <Button onPress={this.props.onThanksPress}>
+                {I18n.t('thankYou')}
+              </Button>
+            </View>
+          </View>
         </View>
       </View>
     );
