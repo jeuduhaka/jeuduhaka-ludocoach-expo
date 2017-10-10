@@ -23,7 +23,7 @@ export default {
   iChoose: 'Je choisis',
   chooseAnotherCard: 'Choisir une autre carte',
   manaActivated:
-    'Bravo, vous avez activé votre Mana ! Les autres joueurs vont maintenant vous noter avec leurs ressentis sur votre expression corporelle.',
+    'Bravo, vous avez activé votre Mana ! Dites vous : "Le pouvoir est en moi !"',
   thankYou: 'Merci',
 
   //Menus

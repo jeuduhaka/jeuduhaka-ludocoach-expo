@@ -23,7 +23,7 @@ export default {
   iChoose: 'I choose',
   chooseAnotherCard: 'Choose another card',
   manaActivated:
-    'Congratulations, you have activated your Mana! The other players are now going to grade you using their feelings towards your body expression.',
+    'Congratulations, you have activated your Mana! Say to yourself: "The Power is mine!"',
   thankYou: 'Thank you',
 
   //Menus

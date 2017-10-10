@@ -21,7 +21,7 @@ export default StyleSheet.create({
   navigationHeader: { flex: 1 / 14 },
   contentContainer: { flex: 12 / 14 },
   titleContainer: {
-    flex: 1.25,
+    flex: 1 / 10,
   },
   intermediateScreenTextContainer: {
     flex: 1,
@@ -50,7 +50,7 @@ export default StyleSheet.create({
     fontSize: 20,
   },
   subtitleContainer: {
-    flex: 1,
+    flex: 1 / 10,
   },
   subtitle: {
     ...textStyle,
@@ -60,7 +60,7 @@ export default StyleSheet.create({
     ...textStyle,
   },
   homeImageContainer: {
-    flex: 6,
+    flex: 5 / 10,
   },
   homeImage: {
     flex: 1,
@@ -70,9 +70,12 @@ export default StyleSheet.create({
   homeActionButton: {
     paddingTop: 5,
   },
-  startButtonContainer: { flex: 4 },
+  mantraContainer: {
+    flex: 1 / 10,
+  },
+  startButtonContainer: { flex: 2 / 10 },
   copyrightContainer: {
-    flex: 1,
+    flex: 1 / 10,
     paddingTop: 10,
     // borderWidth: 1,
     // borderColor: 'yellow',

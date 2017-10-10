@@ -122,6 +122,9 @@ class HomeScreen extends React.Component {
                 source={require('../assets/images/jeu-du-haka-logo-200x200.png')}
               />
             </View>
+            <View style={styles.mantraContainer}>
+              <Text style={styles.subtitle}>"Le pouvoir est en toi !"</Text>
+            </View>
             <View style={styles.startButtonContainer}>
               {this.state.assetsLoaded ? (
                 <View>
@@ -147,14 +150,14 @@ class HomeScreen extends React.Component {
                       {I18n.t('play1Move')}
                     </Button>
                   </View>
-                  <View style={styles.homeActionButton}>
+                  {/* <View style={styles.homeActionButton}>
                     <Button
                       title={I18n.t('accessTraining')}
                       // onPress={() => this.props.navigation.navigate('ChooseCardGrid')}
                       onPress={() => Linking.openURL('http://bit.ly/2jvNoUj')}>
                       {I18n.t('accessTraining')}
                     </Button>
-                  </View>
+                  </View> */}
                 </View>
               ) : (
                 this.state.assetsNumber &&
