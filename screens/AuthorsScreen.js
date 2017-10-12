@@ -10,6 +10,7 @@ import {
 import { FontAwesome } from '@expo/vector-icons';
 
 import MenuButton from '../components/MenuButton';
+import BackgroundWave from '../components/BackgroundWave';
 import I18n from '../i18n';
 
 const { height, width } = Dimensions.get('window');
@@ -33,14 +34,7 @@ class AuthorsScreen extends React.Component {
             this.props.navigation.navigate('DrawerOpen');
           }}
         />
-        <Image
-          style={{
-            // backgroundColor: 'yellow',
-            resizeMode: 'contain',
-            flex: 1,
-            width: width * (4 / 5),
-          }}
-          source={require('../assets/images/fond-bleu-vague-1980x1980.jpg')}>
+        <BackgroundWave>
           <Text
             style={[
               styles.blackText,
@@ -48,19 +42,34 @@ class AuthorsScreen extends React.Component {
             ]}>
             {I18n.t('authorsTitle')}
           </Text>
-          <Image
-            style={{
-              // backgroundColor: 'yellow',
-              resizeMode: 'contain',
-              flex: 1,
-              width: width * (4 / 5),
-            }}
-            source={require('../assets/images/authors.png')}
-          />
-          <Text>Tehotu Tauraatua</Text>
-          <Text>Hinenao Kimitete</Text>
-          <Text>Marc Kucharz</Text>
-        </Image>
+
+          <View style={styles.authorsInfoContainer}>
+            <View style={[styles.authorInfoContainer, { paddingTop: '5%' }]}>
+              <Text style={styles.authorTitle}>Tehotu Tauraatua</Text>
+              <Text style={styles.authorDesc}>
+                Tahitien, coach en bien-être et danseur.
+              </Text>
+            </View>
+            <View style={[styles.authorInfoContainer, { paddingTop: '10%' }]}>
+              <Text style={styles.authorTitle}>Hinenao Kimitete</Text>
+              <Text style={styles.authorDesc}>
+                Marquisienne, illustratrice et coach en bien-être.
+              </Text>
+            </View>
+            <View style={[styles.authorInfoContainer, { paddingTop: '10%' }]}>
+              <Text style={styles.authorTitle}>Marc Kucharz</Text>
+              <Text style={styles.authorDesc}>
+                Parisien, auteur de jeux et fondateur du ludocoaching
+              </Text>
+            </View>
+          </View>
+          <View style={styles.authorsImageContainer}>
+            <Image
+              style={styles.authorsImage}
+              source={require('../assets/images/authors.png')}
+            />
+          </View>
+        </BackgroundWave>
       </View>
     );
   }
@@ -68,29 +77,47 @@ class AuthorsScreen extends React.Component {
 
 const textfontSize = {
   fontSize: 16,
-  textAlign: 'left',
+  textAlign: 'center',
 };
 const styles = StyleSheet.create({
-  blueText: {
-    ...textfontSize,
-    color: '#014DA2',
-  },
   blackText: {
     ...textfontSize,
     color: '#221E1F',
   },
+  title: {},
   textWithPaddingTop: {
     paddingTop: 10,
   },
-  manaText: {
-    color: '#014DA2',
+  authorsImageContainer: {
+    flex: 3 / 4,
+    flexDirection: 'column',
+    justifyContent: 'center',
+    alignItems: 'flex-end',
+  },
+  authorsImage: {
+    flex: 1,
+    // backgroundColor: 'yellow',
+    resizeMode: 'contain',
+    alignSelf: 'center',
+  },
+  authorsInfoContainer: {
+    flex: 1 / 4,
+    flexDirection: 'row',
+    alignSelf: 'flex-end',
+    width: '90%',
+  },
+  authorInfoContainer: {
+    flex: 1 / 3,
+    alignItems: 'center',
+  },
+  authorTitle: {
+    // color: '#014DA2',
+    fontSize: width * 0.07,
     fontFamily: 'charcuterie-sans-inline',
   },
-  stepNumber: {
-    // fontFamily: 'european-pi-one',
-  },
-  stepText: {
-    fontWeight: 'bold',
+  authorDesc: {
+    fontSize: width * 0.035,
+    paddingHorizontal: 2,
   },
 });
 
