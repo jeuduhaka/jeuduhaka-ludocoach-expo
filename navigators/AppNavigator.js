@@ -9,20 +9,12 @@ import {
   StyleSheet,
   Animated,
   Easing,
-  BackHandler,
+  ScrollView,
 } from 'react-native';
 import { connect } from 'react-redux';
 import { Entypo, FontAwesome } from '@expo/vector-icons';
-import {
-  addNavigationHelpers,
-  NavigationActions,
-  TabNavigator,
-  DrawerNavigator,
-  StackNavigator,
-  DrawerItems,
-} from 'react-navigation';
+import { DrawerNavigator, StackNavigator, DrawerItems } from 'react-navigation';
 import TouchableItem from 'react-navigation/src/views/TouchableItem';
-import { ActionCreators as UndoActionCreators } from 'redux-undo';
 
 import I18n from '../i18n/';
 
@@ -108,15 +100,16 @@ const HomeWithDrawer = DrawerNavigator(
       // };
 
       return (
-        <View style={{ flex: 1, backgroundColor: 'rgba(247, 148, 28, 0.5)' }}>
-          <Image
-            style={{
-              flex: 1,
-              resizeMode: 'cover',
-              width: undefined,
-              height: undefined,
-            }}
-            source={require('../assets/images/motif-estime-de-soi-alpha-0.1.png')}>
+        <Image
+          style={{
+            flex: 1,
+            resizeMode: 'cover',
+            width: undefined,
+            height: undefined,
+          }}
+          source={require('../assets/images/motif-estime-de-soi-alpha-0.1.png')}>
+          <ScrollView
+            style={{ flex: 1, backgroundColor: 'rgba(247, 148, 28, 0.5)' }}>
             <Image
               style={{
                 alignSelf: 'center',
@@ -159,7 +152,7 @@ const HomeWithDrawer = DrawerNavigator(
                 onPress={() =>
                   Linking.openURL('https://www.facebook.com/jeuduhaka')}
                 delayPressIn={0}>
-                <View style={[styles.item, { justifyContent: 'center' }]}>
+                <View style={[styles.item, { alignSelf: 'center' }]}>
                   <Entypo
                     name={'facebook'}
                     size={36}
@@ -181,8 +174,8 @@ const HomeWithDrawer = DrawerNavigator(
                 </Text>
               </View>
             </View>
-          </Image>
-        </View>
+          </ScrollView>
+        </Image>
       );
     },
   }
@@ -216,50 +209,3 @@ export const AppNavigator = StackNavigator(
   },
   mainScreenNavigatorConfig
 );
-
-//ref https://reactnavigation.org/docs/guides/redux#Handling-the-Hardware-Back-Button-in-Android
-class AppWithNavigationState extends React.Component {
-  constructor(props) {
-    super(props);
-
-    this.onBackPress = this.onBackPress.bind(this);
-  }
-
-  componentDidMount() {
-    BackHandler.addEventListener('hardwareBackPress', this.onBackPress);
-  }
-  componentWillUnmount() {
-    BackHandler.removeEventListener('hardwareBackPress', this.onBackPress);
-  }
-  onBackPress() {
-    const { dispatch, nav } = this.props;
-    if (nav.index === 0) {
-      return false;
-    }
-    dispatch(NavigationActions.back());
-    dispatch(UndoActionCreators.undo());
-    return true;
-  }
-
-  render() {
-    const { dispatch, nav, language } = this.props;
-    const navigation = addNavigationHelpers({
-      dispatch,
-      state: nav,
-    });
-
-    return <AppNavigator navigation={navigation} screenProps={{ language }} />;
-  }
-}
-
-AppWithNavigationState.propTypes = {
-  dispatch: PropTypes.func.isRequired,
-  nav: PropTypes.object.isRequired,
-};
-
-const mapStateToProps = state => ({
-  nav: state.nav,
-  language: state.language,
-});
-
-export default connect(mapStateToProps)(AppWithNavigationState);

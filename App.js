@@ -13,7 +13,7 @@ import I18n from 'ex-react-native-i18n';
 import { MaterialIcons, Foundation, Ionicons } from '@expo/vector-icons';
 // import Sentry from 'sentry-expo';
 
-import AppWithNavigationState from './navigators/AppNavigator';
+import AppWithNavigationState from './navigators/AppWithNavigationState';
 import configureStore from './config/configureStore';
 // import imageSources from './stores/CardImageSources';
 // import videoSources from './stores/CardVideoSourcesLocal';
