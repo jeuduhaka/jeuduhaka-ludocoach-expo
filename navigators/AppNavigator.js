@@ -26,6 +26,11 @@ import { ActionCreators as UndoActionCreators } from 'redux-undo';
 
 import I18n from '../i18n/';
 
+import GiftCardsScreen from '../screens/GiftCardsScreen';
+import GamesListScreen from '../screens/GamesListScreen';
+import AuthorsScreen from '../screens/AuthorsScreen';
+import AdviceScreen from '../screens/AdviceScreen';
+import GameGoalScreen from '../screens/GameGoalScreen';
 import ThanksScreen from '../screens/ThanksScreen';
 import HomeScreen from '../screens/HomeScreen';
 import SecondScreen3Moves from '../screens/SecondScreen3Moves';
@@ -74,13 +79,27 @@ const HomeWithDrawer = DrawerNavigator(
     Home: {
       screen: HomeScreen,
     },
+    GameGoal: {
+      screen: GameGoalScreen,
+    },
+    Advice: {
+      screen: AdviceScreen,
+    },
+    GiftCardsScreen: {
+      screen: GiftCardsScreen,
+    },
+    Authors: {
+      screen: AuthorsScreen,
+    },
+    GamesList: {
+      screen: GamesListScreen,
+    },
     Thanks: {
       screen: ThanksScreen,
     },
   },
   {
     headerMode: 'none',
-    initialRouteName: 'Home',
     gesturesEnabled: false,
     contentComponent: props => {
       // const allProps = {

@@ -16,10 +16,10 @@ export default {
   doing: 'FAIRE',
   being: 'ÊTRE',
   play: 'Jouer',
-  letsGo: "C'est parti !",
+  letsGo: 'Continuer',
   youHaveChosen: 'Vous avez choisi',
   placeYourself:
-    ". Placez vous dans un endroit où vous vous sentez bien et où vous avez assez d'espace. Respirez bien et faites comme moi.",
+    ". Placez vous dans un endroit où vous vous sentez bien et avez assez d'espace. Respirez bien et faites comme moi.",
   iChoose: 'Je choisis',
   chooseAnotherCard: 'Choisir une autre carte',
   manaActivated:
@@ -28,6 +28,10 @@ export default {
 
   //Menus
   backToGame: 'Retour au jeu',
+  gameGoalTitle: 'But du jeu',
+  adviceMenuTitle: 'Conseils',
+  authorsTitle: 'Auteurs',
+  gamesListTitle: 'Jeux de Marc Kucharz',
   acknowledgementsMenu: 'Remerciements',
   acknowledgementsText: 'Remerciements à ',
   developedBy: 'Développé par',

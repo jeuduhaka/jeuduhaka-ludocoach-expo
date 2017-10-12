@@ -19,7 +19,7 @@ export default {
   youHaveChosen: 'You have chosen',
   placeYourself:
     '. Find a place where you feel good and have enough space. Pay attention to your breath and follow me.',
-  letsGo: "Let's go!",
+  letsGo: 'Next',
   iChoose: 'I choose',
   chooseAnotherCard: 'Choose another card',
   manaActivated:
@@ -28,6 +28,10 @@ export default {
 
   //Menus
   backToGame: 'Back to Game',
+  gameGoalTitle: "Game's goal",
+  adviceMenuTitle: 'Advice',
+  authorsTitle: 'Authors',
+  gamesListTitle: "Marc Kucharz's Games",
   acknowledgementsMenu: 'Acknowledgements',
   acknowledgementsText: 'Thanks to',
   developedBy: 'Developed by',

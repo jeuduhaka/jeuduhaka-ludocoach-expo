@@ -108,6 +108,7 @@ class App extends React.Component {
           ...MaterialIcons.font,
           {
             'charcuterie-sans-inline': require('./assets/fonts/CharcuterieSansInline-Regular.ttf'),
+            'european-pi-one': require('./assets/fonts/EuropeanPiOne-Regular.ttf'),
           },
         ]),
         this.loadSoundAsync(),
