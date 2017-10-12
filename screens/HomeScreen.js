@@ -136,7 +136,7 @@ class HomeScreen extends React.Component {
               />
             </View>
             <View style={styles.mantraContainer}>
-              <Text style={styles.subtitle}>{I18n.t('powerIsInMe')}</Text>
+              <Text style={styles.subtitle}>{I18n.t('powerIsInYou')}</Text>
             </View>
             <View style={styles.startButtonContainer}>
               {this.state.assetsLoaded ? (
