@@ -7,7 +7,6 @@ import {
   View,
   Dimensions,
 } from 'react-native';
-import { FontAwesome } from '@expo/vector-icons';
 
 import MenuButton from '../components/MenuButton';
 import BackgroundWave from '../components/BackgroundWave';
@@ -21,9 +20,6 @@ class AuthorsScreen extends React.Component {
     drawerLabel: I18n.t('authorsTitle', {
       locale: screenProps.language,
     }),
-    drawerIcon: ({ tintColor }) => (
-      <FontAwesome name="handshake-o" size={18} style={{ color: '#014DA2' }} />
-    ),
   });
 
   render() {

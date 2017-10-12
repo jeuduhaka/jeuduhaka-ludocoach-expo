@@ -12,9 +12,6 @@ class GamesListScreen extends React.Component {
     drawerLabel: I18n.t('gamesListTitle', {
       locale: screenProps.language,
     }),
-    drawerIcon: ({ tintColor }) => (
-      <FontAwesome name="handshake-o" size={18} style={{ color: '#014DA2' }} />
-    ),
   });
 
   render() {

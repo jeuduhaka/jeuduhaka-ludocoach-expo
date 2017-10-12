@@ -1,9 +1,9 @@
 import React from '/utils/enhancedReact';
-import { Text, Image, Linking, View } from 'react-native';
+import { Text, Image, Linking, View, Platform } from 'react-native';
 import { compose } from 'redux';
 import { connect } from 'react-redux';
 import { Asset } from 'expo';
-import { FontAwesome } from '@expo/vector-icons';
+import { Ionicons } from '@expo/vector-icons';
 import flat from 'flat';
 
 import I18n from '../i18n';
@@ -37,9 +37,14 @@ class HomeScreen extends React.Component {
     return {
       headerMode: 'float',
       drawerLabel: I18n.t('backToGame', { locale: screenProps.language }),
-      drawerIcon: ({ tintColor }) => (
-        <FontAwesome name="gamepad" size={18} style={{ color: '#014DA2' }} />
-      ),
+      drawerIcon: ({ tintColor }) => {
+        const iconName =
+          Platform.OS === 'ios' ? 'ios-arrow-forward' : 'md-arrow-forward';
+
+        return (
+          <Ionicons name={iconName} size={18} style={{ color: '#014DA2' }} />
+        );
+      },
     };
   };
 
@@ -108,6 +113,14 @@ class HomeScreen extends React.Component {
         <Image
           style={styles.backgroundImage}
           source={require('../assets/images/fond-bleu-vague-1980x1980.jpg')}>
+          {/* <Image
+            style={{
+              flex: 1,
+              resizeMode: 'cover',
+              width: undefined,
+              height: undefined,
+            }}
+            source={require('../assets/images/motif-estime-de-soi-alpha-0.1.png')}> */}
           <View style={styles.navigationHeader} />
           <View style={styles.contentContainer}>
             <View style={styles.titleContainer}>
@@ -183,6 +196,7 @@ class HomeScreen extends React.Component {
             </View>
           </View>
         </Image>
+        {/* </Image> */}
       </View>
     );
   }

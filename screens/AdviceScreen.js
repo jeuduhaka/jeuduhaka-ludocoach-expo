@@ -13,7 +13,7 @@ class AdviceScreen extends React.Component {
       locale: screenProps.language,
     }),
     drawerIcon: ({ tintColor }) => (
-      <FontAwesome name="handshake-o" size={18} style={{ color: '#014DA2' }} />
+      <FontAwesome name="info" size={18} style={{ color: '#014DA2' }} />
     ),
   });
 

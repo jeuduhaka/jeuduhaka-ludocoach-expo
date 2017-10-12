@@ -10,7 +10,7 @@ import {
 import { Provider } from 'react-redux';
 import Expo, { Font, AppLoading } from 'expo';
 import I18n from 'ex-react-native-i18n';
-import { MaterialIcons, Foundation } from '@expo/vector-icons';
+import { MaterialIcons, Foundation, Ionicons } from '@expo/vector-icons';
 // import Sentry from 'sentry-expo';
 
 import AppWithNavigationState from './navigators/AppNavigator';
@@ -104,6 +104,7 @@ class App extends React.Component {
         // ...cacheVideos(videoSources),
         Font.loadAsync([
           //Foundation used by videoplayer
+          ...Ionicons.font,
           ...Foundation.font,
           ...MaterialIcons.font,
           {

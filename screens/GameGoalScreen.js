@@ -1,6 +1,6 @@
 import React from '/utils/enhancedReact';
 import { Text, Image, StyleSheet, Button, View } from 'react-native';
-import { FontAwesome } from '@expo/vector-icons';
+import { FontAwesome, Foundation } from '@expo/vector-icons';
 
 import MenuButton from '../components/MenuButton';
 import BackgroundWave from '../components/BackgroundWave';
@@ -13,7 +13,7 @@ class GameGoalScreen extends React.Component {
       locale: screenProps.language,
     }),
     drawerIcon: ({ tintColor }) => (
-      <FontAwesome name="handshake-o" size={18} style={{ color: '#014DA2' }} />
+      <Foundation name="target" size={18} style={{ color: '#014DA2' }} />
     ),
   });
 
