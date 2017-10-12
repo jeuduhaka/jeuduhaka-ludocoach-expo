@@ -8,6 +8,8 @@ export default {
   play1Move: 'Jouer en 1 mouvement',
   accessTraining: 'Accéder aux formations',
   allRightsReserved: 'Tous droits réservés',
+  powerIsInMe: '"Le Pouvoir est en moi !"',
+
   chooseCards:
     "Choisissez une carte de chaque couleur en fonction de vos émotions et laissez-vous guider en appuyant sur la carte correspondante dans l'ordre : ",
   oneMoveDescription:

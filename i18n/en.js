@@ -8,6 +8,8 @@ export default {
   play1Move: 'Play with 1 move',
   accessTraining: 'Access to trainings',
   allRightsReserved: 'All rights reserved',
+  powerIsInMe: '"The Power is in me!"',
+
   chooseCards:
     'Choose a card of each color according to your emotions and let yourself be guided by tapping each corresponding card in order',
   oneMoveDescription:
@@ -23,7 +25,7 @@ export default {
   iChoose: 'I choose',
   chooseAnotherCard: 'Choose another card',
   manaActivated:
-    'Congratulations, you have activated your Mana! Say to yourself: "The Power is mine!"',
+    'Congratulations, you have activated your Mana! Say to yourself: "The Power is in me!"',
   thankYou: 'Thank you',
 
   //Menus
