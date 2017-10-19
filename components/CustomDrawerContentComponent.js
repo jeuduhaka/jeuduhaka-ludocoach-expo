@@ -9,7 +9,11 @@ import {
   Animated,
   Easing,
   ScrollView,
+  ActionSheetIOS,
+  Platform,
+  UIManager,
 } from 'react-native';
+import Expo from 'expo';
 import { DrawerNavigator, StackNavigator, DrawerItems } from 'react-navigation';
 import {
   Entypo,
@@ -64,20 +68,21 @@ const Separator = () => (
   />
 );
 
-// const TouchableDrawerItem = () => {
-//   return (
-//     <TouchableItem
-//       onPress={() => navigation.navigate('Advice')}
-//       delayPressIn={0}>
-//       <View style={[styles.item]}>
-//         <View style={[styles.icon, styles.inactiveIcon]}>
-//           <Entypo name={'info'} size={18} />
-//         </View>
-//         <Text style={[styles.label]}>{I18n.t('adviceMenuTitle')}</Text>
-//       </View>
-//     </TouchableItem>
-//   );
-// }
+const shareFailureCallback = error => {
+  __DEV__ && console.log('sharing failed');
+};
+
+const shareSuccessCallback = (success, method) => {
+  // let text;
+  // if (success) {
+  //   text = `Shared via ${method}`;
+  // } else {
+  //   text = "You didn't share";
+  // }
+  // this.setState({ text });
+
+  __DEV__ && console.log('sharing succeeded');
+};
 
 const CustomDrawerContentComponent = props => {
   const { navigation, activeItemKey } = props;
@@ -135,9 +140,42 @@ const CustomDrawerContentComponent = props => {
             delayPressIn={0}>
             <View style={[styles.item]}>
               <View style={[styles.icon, styles.inactiveIcon]}>
-                <Entypo name={'info'} size={18} />
+                <FontAwesome name={'info-circle'} size={18} />
               </View>
               <Text style={[styles.label]}>{I18n.t('adviceMenuTitle')}</Text>
+            </View>
+          </TouchableItem>
+          <TouchableItem
+            onPress={() => {
+              if (Platform.OS === 'ios') {
+                ActionSheetIOS.showShareActionSheetWithOptions(
+                  {
+                    // url: Expo.Asset.fromModule(
+                    //   require('../assets/images/iphone-jeu-du-haka.png')
+                    // ).uri,
+                    url: 'https://www.jeuduhaka.com/application',
+                    message:
+                      "Retrouve ton pouvoir (Mana) grâce à l'appli gratuite du Jeu du Haka !",
+                    subject:
+                      "Télécharge l'appli gratuite Le Jeu du Haka Ludocoach",
+                    excludedActivityTypes: [
+                      'com.apple.mobilenotes.SharingExtension',
+                      'com.google.Drive.ShareExtension',
+                      'com.apple.reminders.RemindersEditorExtension',
+                      'com.apple.mobileslideshow.StreamShareService',
+                    ],
+                  },
+                  shareFailureCallback,
+                  shareSuccessCallback
+                );
+              }
+            }}
+            delayPressIn={0}>
+            <View style={[styles.item]}>
+              <View style={[styles.icon, styles.inactiveIcon]}>
+                <FontAwesome name={'share-alt'} size={18} />
+              </View>
+              <Text style={[styles.label]}>{I18n.t('shareAppLabel')}</Text>
             </View>
           </TouchableItem>
           <Separator />

@@ -32,6 +32,7 @@ export default {
   backToGame: 'Retour au jeu',
   gameGoalTitle: 'But du jeu',
   adviceMenuTitle: 'Conseils',
+  shareAppLabel: "Partager l'appli",
   authorsTitle: 'Auteurs',
   gamesListTitle: 'Jeux de Marc Kucharz',
   acknowledgementsMenu: 'Remerciements',
