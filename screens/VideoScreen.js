@@ -138,11 +138,11 @@ class VideoScreen extends React.Component {
           nextCallback={() => {
             const { currentDeck, videoEnded, backHome, gameMode } = this.props;
 
-            if (gameMode === GAME_MODE_1_MOVE) {
-              backHome();
-            } else {
-              videoEnded(currentDeck);
-            }
+            // if (gameMode === GAME_MODE_1_MOVE) {
+            //   backHome();
+            // } else {
+            videoEnded(currentDeck);
+            // }
           }}
           // playbackCallback={status => {
           //   if (status.didJustFinish) {
