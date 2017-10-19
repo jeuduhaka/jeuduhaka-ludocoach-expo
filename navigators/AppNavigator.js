@@ -17,6 +17,7 @@ import { DrawerNavigator, StackNavigator, DrawerItems } from 'react-navigation';
 import TouchableItem from 'react-navigation/src/views/TouchableItem';
 
 import I18n from '../i18n/';
+import CustomDrawerContentComponent from '../components/CustomDrawerContentComponent';
 
 import GiftCardsScreen from '../screens/GiftCardsScreen';
 import GamesListScreen from '../screens/GamesListScreen';
@@ -93,91 +94,7 @@ const HomeWithDrawer = DrawerNavigator(
   {
     headerMode: 'none',
     gesturesEnabled: false,
-    contentComponent: props => {
-      // const allProps = {
-      //   ...props,
-      //   language: I18n.locale
-      // };
-
-      return (
-        <Image
-          style={{
-            flex: 1,
-            resizeMode: 'cover',
-            width: undefined,
-            height: undefined,
-          }}
-          source={require('../assets/images/motif-estime-de-soi-alpha-0.1.png')}>
-          <ScrollView
-            style={{ flex: 1, backgroundColor: 'rgba(247, 148, 28, 0.5)' }}>
-            <Image
-              style={{
-                alignSelf: 'center',
-                marginTop: 10,
-                width: 100,
-                height: 100,
-                opacity: 1,
-              }}
-              source={require('../assets/images/jeu-du-haka-logo-200x200.png')}
-            />
-            <DrawerItems {...props} />
-            <View
-              style={{
-                flex: 1,
-                flexDirection: 'column',
-                justifyContent: 'flex-end',
-              }}>
-              <TouchableItem
-                onPress={() => Linking.openURL('https://www.jeuduhaka.com')}
-                delayPressIn={0}>
-                <View style={[styles.item]}>
-                  <Text style={[styles.label]}>www.jeuduhaka.com</Text>
-                </View>
-              </TouchableItem>
-              <TouchableItem
-                onPress={() => Linking.openURL('http://www.marckucharz.com')}
-                delayPressIn={0}>
-                <View style={[styles.item]}>
-                  <Text style={[styles.label]}>www.marckucharz.com</Text>
-                </View>
-              </TouchableItem>
-              <TouchableItem
-                onPress={() => Linking.openURL('http://www.ludocoaching.com')}
-                delayPressIn={0}>
-                <View style={[styles.item]}>
-                  <Text style={[styles.label]}>www.ludocoaching.com</Text>
-                </View>
-              </TouchableItem>
-              <TouchableItem
-                onPress={() =>
-                  Linking.openURL('https://www.facebook.com/jeuduhaka')}
-                delayPressIn={0}>
-                <View style={[styles.item, { alignSelf: 'center' }]}>
-                  <Entypo
-                    name={'facebook'}
-                    size={36}
-                    color={'#014DA2'}
-                    style={{
-                      textAlign: 'center',
-                      backgroundColor: 'transparent',
-                    }}
-                  />
-                </View>
-              </TouchableItem>
-              <View style={[styles.item]}>
-                <Text
-                  style={[
-                    styles.label,
-                    { color: '#666666', fontWeight: 'normal', fontSize: 12 },
-                  ]}>
-                  {I18n.t('developedBy')} Florent Roques
-                </Text>
-              </View>
-            </View>
-          </ScrollView>
-        </Image>
-      );
-    },
+    contentComponent: CustomDrawerContentComponent,
   }
 );
 

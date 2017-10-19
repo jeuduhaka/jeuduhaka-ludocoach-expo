@@ -31,11 +31,7 @@ class AuthorsScreen extends React.Component {
           }}
         />
         <BackgroundWave>
-          <Text
-            style={[
-              styles.blackText,
-              { paddingBottom: 20, fontWeight: 'bold', fontSize: 20 },
-            ]}>
+          <Text style={[styles.blackText, styles.titleText]}>
             {I18n.t('authorsTitle')}
           </Text>
 
@@ -80,12 +76,16 @@ const styles = StyleSheet.create({
     ...textfontSize,
     color: '#221E1F',
   },
-  title: {},
-  textWithPaddingTop: {
-    paddingTop: 10,
+  titleText: {
+    flex: 1 / 14,
+    fontWeight: 'bold',
+    fontSize: 20,
+    paddingTop: 5,
+    // backgroundColor: 'orange',
   },
+  title: {},
   authorsImageContainer: {
-    flex: 3 / 4,
+    flex: 10 / 14,
     flexDirection: 'column',
     justifyContent: 'center',
     alignItems: 'flex-end',
@@ -97,14 +97,19 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
   },
   authorsInfoContainer: {
-    flex: 1 / 4,
+    flex: 3 / 14,
     flexDirection: 'row',
     alignSelf: 'flex-end',
+    // alignItems: 'flex-end',
+    // justifyContent: 'flex-start',
     width: '90%',
+    // backgroundColor: 'yellow',
   },
   authorInfoContainer: {
     flex: 1 / 3,
+    flexDirection: 'column',
     alignItems: 'center',
+    justifyContent: 'flex-start',
   },
   authorTitle: {
     // color: '#014DA2',
