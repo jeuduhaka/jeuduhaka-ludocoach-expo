@@ -144,13 +144,13 @@ class VideoScreen extends React.Component {
             videoEnded(currentDeck);
             // }
           }}
-          // playbackCallback={status => {
-          //   if (status.didJustFinish) {
-          //     console.log(currentDeck);
-          //     console.log('entered');
-          //     videoEnded(currentDeck);
-          //   }
-          // }}
+          playbackCallback={status => {
+            if (status.didJustFinish) {
+              console.log(currentDeck);
+              console.log('entered');
+              this.props.videoEnded(currentDeck);
+            }
+          }}
         />
       </View>
     );
