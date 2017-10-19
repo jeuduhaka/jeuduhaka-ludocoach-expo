@@ -11,7 +11,7 @@ import {
   ScrollView,
   ActionSheetIOS,
   Platform,
-  UIManager,
+  Share,
 } from 'react-native';
 import Expo from 'expo';
 import { DrawerNavigator, StackNavigator, DrawerItems } from 'react-navigation';
@@ -167,6 +167,16 @@ const CustomDrawerContentComponent = props => {
                   },
                   shareFailureCallback,
                   shareSuccessCallback
+                );
+              } else if (Platform.OS === 'android') {
+                Share.share(
+                  {
+                    title:
+                      "Télécharge l'appli gratuite Le Jeu du Haka Ludocoach",
+                    message:
+                      "Retrouve ton pouvoir (Mana) grâce à l'appli gratuite du Jeu du Haka ! https://www.jeuduhaka.com/application",
+                  },
+                  {}
                 );
               }
             }}
