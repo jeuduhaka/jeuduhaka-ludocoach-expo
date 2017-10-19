@@ -1,45 +1,66 @@
 import React from '/utils/enhancedReact';
-import { Text, Image, StyleSheet, Button, View } from 'react-native';
+import { Text, Image, StyleSheet, View } from 'react-native';
 import { FontAwesome } from '@expo/vector-icons';
 
 import MenuButton from '../components/MenuButton';
+import BackgroundWave from '../components/BackgroundWave';
 import I18n from '../i18n';
+import { Button } from '../components/common';
 
 class GiftCardsScreen extends React.Component {
-  static navigationOptions = ({ navigation, screenProps }) => ({
-    headerMode: 'float',
-    drawerLabel: 'Envoyer une carte cadeau',
-    drawerIcon: ({ tintColor }) => (
-      <FontAwesome name="handshake-o" size={18} style={{ color: '#014DA2' }} />
-    ),
-  });
-
   render() {
     return (
-      <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+      <View style={{ flex: 1 }}>
         <MenuButton
           onPress={() => {
             this.props.navigation.navigate('DrawerOpen');
           }}
         />
-        <Text
-          style={[
-            styles.blackText,
-            { paddingBottom: 20, fontWeight: 'bold', fontSize: 20 },
-          ]}>
-          Envoyer une carte cadeau
-        </Text>
-        <Text style={[styles.blackText, styles.textWithPaddingTop]}>
-          Vous pouvez envoyer à quelqu'un (ou à vous-même) une ou plusieurs
-          cartes cadeaux (Force, Amour, Confiance, Paix, Estime de soi, Calme,
-          Énergie, Joie) qui lui apportera une énergie positive pour l'aider à
-          développer son Mana sur le terrain de jeu de la vie.
-        </Text>
-        <Text style={[styles.blackText, styles.textWithPaddingTop]}>
-          Libre à vous de choisir la carte la plus appropriée pour vous et/ou la
-          personne que vous souhaitez aider. Libre à elle de l’envoyer à son
-          tour à la personne de son choix.
-        </Text>
+        <BackgroundWave
+          style={{ justifyContent: 'center', alignItems: 'center' }}>
+          <Text
+            style={[
+              styles.blackText,
+              {
+                paddingBottom: 20,
+                fontWeight: 'bold',
+                fontSize: 20,
+                backgroundColor: 'transparent',
+              },
+            ]}>
+            Envoyer une carte cadeau
+          </Text>
+          <View>
+            <Text
+              style={[
+                styles.blackText,
+                styles.textWithPaddingTop,
+                { backgroundColor: 'transparent' },
+              ]}>
+              Vous pouvez envoyer à quelqu'un (ou à vous-même) une ou plusieurs
+              cartes cadeaux (Force, Amour, Confiance, Paix, Estime de soi,
+              Calme, Énergie, Joie) qui lui apportera une énergie positive pour
+              l'aider à développer son Mana sur le terrain de jeu de la vie.
+            </Text>
+            <Text
+              style={[
+                styles.blackText,
+                styles.textWithPaddingTop,
+                { backgroundColor: 'transparent' },
+              ]}>
+              Libre à vous de choisir la carte la plus appropriée pour vous
+              et/ou la personne que vous souhaitez aider. Libre à elle de
+              l’envoyer à son tour à la personne de son choix.
+            </Text>
+            <View style={styles.nextButtonContainer}>
+              <Button
+                onPress={() =>
+                  this.props.navigation.navigate('SendGiftCardGallery')}>
+                Choisir une carte cadeau
+              </Button>
+            </View>
+          </View>
+        </BackgroundWave>
       </View>
     );
   }

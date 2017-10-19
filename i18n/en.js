@@ -32,6 +32,7 @@ export default {
   backToGame: 'Back to Game',
   gameGoalTitle: "Game's goal",
   adviceMenuTitle: 'Advice',
+  sendGiftCardLabel: 'Send a gift card',
   shareAppLabel: 'Share the app',
   authorsTitle: 'Authors',
   gamesListTitle: "Marc Kucharz's Games",

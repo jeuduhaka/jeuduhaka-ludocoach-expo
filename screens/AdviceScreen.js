@@ -26,7 +26,11 @@ class AdviceScreen extends React.Component {
           }}
         />
         <BackgroundWave
-          style={{ justifyContent: 'center', alignItems: 'center' }}>
+          style={{
+            justifyContent: 'flex-start',
+            alignItems: 'center',
+            padding: 10,
+          }}>
           <Text
             style={[
               styles.blackText,
@@ -34,24 +38,26 @@ class AdviceScreen extends React.Component {
             ]}>
             {I18n.t('adviceMenuTitle')}
           </Text>
-          <Text style={[styles.blackText, styles.textWithPaddingTop]}>
-            - Avant chaque mouvement, respirez bien.
-          </Text>
-          <Text style={[styles.blackText, styles.textWithPaddingTop]}>
-            - Si vous n'avez pas le temps de jouer au mode "3 mouvements",
-            pratiquez le mode "1 mouvement". Cette version plus rapide vous
-            permettra de changer d'état rapidement.
-          </Text>
-          <Text style={[styles.blackText, styles.textWithPaddingTop]}>
-            - Après avoir expérimenté le Jeu du Haka, dites-vous :
-          </Text>
-          <Text style={[styles.blackText, { fontWeight: 'bold' }]}>
-            "Le pouvoir est en moi !"
-          </Text>
-          <Text style={[styles.blackText, { paddingHorizontal: 20 }]}>
-            Cette formule vous permettra de réactiver votre Mana (pouvoir) à
-            tout moment !
-          </Text>
+          <View>
+            <Text style={[styles.blackText, styles.textWithPaddingTop]}>
+              - Avant chaque mouvement, respirez bien.
+            </Text>
+            <Text style={[styles.blackText, styles.textWithPaddingTop]}>
+              - Si vous n'avez pas le temps de jouer au mode "3 mouvements",
+              pratiquez le mode "1 mouvement". Cette version vous permettra de
+              changer d'état rapidement.
+            </Text>
+            <Text style={[styles.blackText, styles.textWithPaddingTop]}>
+              - Après avoir expérimenté le Jeu du Haka, dites-vous :
+            </Text>
+            <Text style={[styles.blackText, { fontWeight: 'bold' }]}>
+              "Le pouvoir est en moi !"
+            </Text>
+            <Text style={[styles.blackText, { paddingHorizontal: 20 }]}>
+              Cette formule vous permettra de réactiver votre Mana (pouvoir) à
+              tout moment !
+            </Text>
+          </View>
         </BackgroundWave>
       </View>
     );

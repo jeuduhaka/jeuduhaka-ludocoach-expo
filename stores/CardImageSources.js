@@ -1,6 +1,16 @@
 export default {
   logo: require('../assets/images/jeu-du-haka-logo-200x200.png'),
   wave: require('../assets/images/fond-bleu-vague-1980x1980.jpg'),
+  gifts: {
+    amour: require('../assets/images/giftcards/carte-cadeau-amour.jpg'),
+    calme: require('../assets/images/giftcards/carte-cadeau-calme.jpg'),
+    confiance: require('../assets/images/giftcards/carte-cadeau-confiance.jpg'),
+    energie: require('../assets/images/giftcards/carte-cadeau-energie.jpg'),
+    'estime-de-soi': require('../assets/images/giftcards/carte-cadeau-estime-de-soi.jpg'),
+    force: require('../assets/images/giftcards/carte-cadeau-force.jpg'),
+    joie: require('../assets/images/giftcards/carte-cadeau-joie.jpg'),
+    paix: require('../assets/images/giftcards/carte-cadeau-paix.jpg'),
+  },
   back: {
     red: require('../assets/images/1-back_carte_rouge1.png'),
     orange: require('../assets/images/2-back_carte_orange1.png'),

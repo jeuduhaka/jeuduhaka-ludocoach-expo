@@ -20,6 +20,7 @@ import I18n from '../i18n/';
 import CustomDrawerContentComponent from '../components/CustomDrawerContentComponent';
 
 import GiftCardsScreen from '../screens/GiftCardsScreen';
+import SendGiftCardGalleryScreen from '../screens/SendGiftCardGalleryScreen';
 import GamesListScreen from '../screens/GamesListScreen';
 import AuthorsScreen from '../screens/AuthorsScreen';
 import AdviceScreen from '../screens/AdviceScreen';
@@ -67,6 +68,21 @@ const styles = StyleSheet.create({
   },
 });
 
+const GiftsCardsStack = StackNavigator(
+  {
+    Intro: {
+      screen: GiftCardsScreen,
+    },
+    SendGiftCardGallery: {
+      screen: SendGiftCardGalleryScreen,
+    },
+  },
+  {
+    initialRouteName: 'Intro',
+    headerMode: 'none',
+  }
+);
+
 const HomeWithDrawer = DrawerNavigator(
   {
     Home: {
@@ -78,9 +94,9 @@ const HomeWithDrawer = DrawerNavigator(
     Advice: {
       screen: AdviceScreen,
     },
-    // GiftCardsScreen: {
-    //   screen: GiftCardsScreen,
-    // },
+    GiftCards: {
+      screen: GiftsCardsStack,
+    },
     Authors: {
       screen: AuthorsScreen,
     },
