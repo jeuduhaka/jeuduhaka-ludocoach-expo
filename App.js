@@ -8,7 +8,7 @@ import {
   Platform,
 } from 'react-native';
 import { Provider } from 'react-redux';
-import Expo, { Font, AppLoading } from 'expo';
+import Expo, { Font, AppLoading, KeepAwake } from 'expo';
 import I18n from 'ex-react-native-i18n';
 import { MaterialIcons, Foundation, Ionicons } from '@expo/vector-icons';
 // import Sentry from 'sentry-expo';
@@ -83,6 +83,7 @@ class App extends React.Component {
 
     return (
       <View style={{ flex: 1 }}>
+        <KeepAwake />
         <StatusBar hidden />
         <Provider store={store}>
           <AppWithNavigationState />
