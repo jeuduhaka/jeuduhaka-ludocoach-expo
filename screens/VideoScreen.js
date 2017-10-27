@@ -80,14 +80,15 @@ class VideoScreen extends React.Component {
   }
 
   shouldComponentUpdate(nextProps, nextState) {
-    const { currentDeck, selectedCards } = nextProps;
-    const cardName = selectedCards[currentDeck];
-
-    if (!cardName) {
-      return false;
-    }
-
-    return true;
+    // const { currentDeck, selectedCards } = nextProps;
+    // const cardName = selectedCards[currentDeck];
+    //
+    // if (!cardName) {
+    //   return false;
+    // }
+    //
+    // return true;
+    return false;
   }
 
   render() {
@@ -146,8 +147,8 @@ class VideoScreen extends React.Component {
           }}
           playbackCallback={status => {
             if (status.didJustFinish) {
-              console.log(currentDeck);
-              console.log('entered');
+              // console.log(currentDeck);
+              // console.log('entered');
               this.props.videoEnded(currentDeck);
             }
           }}
