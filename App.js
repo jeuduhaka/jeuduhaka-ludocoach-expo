@@ -2,7 +2,6 @@ import React from '/utils/enhancedReact';
 import {
   AsyncStorage,
   View,
-  //   Image,
   StyleSheet,
   StatusBar,
   Platform,
