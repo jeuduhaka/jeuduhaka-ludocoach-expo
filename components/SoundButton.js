@@ -5,7 +5,7 @@ import {
   View,
   TouchableOpacity,
   Dimensions,
-  StyleSheet
+  StyleSheet,
 } from 'react-native';
 import { Header, HeaderBackButton, HeaderTitle } from 'react-navigation';
 import { compose } from 'redux';
@@ -67,9 +67,8 @@ class SoundButton extends React.Component {
           right: 0,
           flexDirection: 'row',
           //zIndex needed to be on top of Video
-          zIndex: 2
-        }}
-      >
+          zIndex: 2,
+        }}>
         <TouchableOpacity onPress={() => {}}>
           <MuteSound />
         </TouchableOpacity>
@@ -78,7 +77,7 @@ class SoundButton extends React.Component {
   }
 }
 const mapStateToProps = state => ({
-  gameMode: state.gameMode
+  gameMode: state.gameMode,
 });
 
 const enhance = compose(connect(mapStateToProps, {}));

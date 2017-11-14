@@ -5,7 +5,7 @@ import {
   ScrollView,
   Text,
   View,
-  TouchableOpacity
+  TouchableOpacity,
 } from 'react-native';
 import { compose } from 'redux';
 import { connect } from 'react-redux';
@@ -32,7 +32,7 @@ class VideoCardsScreen extends React.Component {
     this.props.navigation.navigate('Video', {
       videoId,
       videoName,
-      videoSource
+      videoSource,
     });
   };
 
@@ -88,7 +88,7 @@ const mapStateToProps = state => ({
   // currentDeck: state.cards.currentDeck,
   cardConfirmed: state.cards.cardConfirmed,
   allCardsChosen: state.cards.allCardsChosen,
-  cardImageSources: state.cards.imageSources
+  cardImageSources: state.cards.imageSources,
 });
 
 const enhance = compose(

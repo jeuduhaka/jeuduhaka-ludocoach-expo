@@ -5,7 +5,7 @@ import {
   View,
   TouchableOpacity,
   Dimensions,
-  StyleSheet
+  StyleSheet,
 } from 'react-native';
 import { Header, HeaderBackButton, HeaderTitle } from 'react-navigation';
 import { compose } from 'redux';
@@ -36,9 +36,8 @@ const MenuButton = ({ onPress }) => {
         left: 0,
         flexDirection: 'row',
         //zIndex needed to be on top of Video
-        zIndex: 2
-      }}
-    >
+        zIndex: 2,
+      }}>
       <TouchableOpacity onPress={onPress}>
         <MenuIcon />
       </TouchableOpacity>

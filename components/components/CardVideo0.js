@@ -3,12 +3,7 @@
  */
 
 import React, { PropTypes } from 'react';
-import {
-  View,
-  Image,
-  TouchableHighlight,
-  Dimensions
-} from 'react-native';
+import { View, Image, TouchableHighlight, Dimensions } from 'react-native';
 import { compose } from 'redux';
 import { connect } from 'react-redux';
 import { Video } from 'expo';
@@ -34,8 +29,6 @@ class CardVideo extends React.Component {
 
   _callback = status => {
     if (status.isLoaded) {
-
-
       if (status.didJustFinish && !status.isLooping) {
         const { currentDeck, videoEnded } = this.props;
         videoEnded(currentDeck);
@@ -54,11 +47,7 @@ class CardVideo extends React.Component {
       this.playbackInstance = null;
     }
 
-    const {
-      currentDeck,
-      selectedCards,
-      videoSources,
-    } = this.props;
+    const { currentDeck, selectedCards, videoSources } = this.props;
 
     const cardName = selectedCards[currentDeck];
     const videoURI = videoSources[currentDeck][cardName];
@@ -137,11 +126,8 @@ const mapStateToProps = state => ({
 });
 
 const enhance = compose(
-  connect(
-    mapStateToProps,
-    { videoEnded }
-  ),
+  connect(mapStateToProps, { videoEnded })
   // require('../utils/withLifecycleLogs').default
-)
+);
 
 export default enhance(CardVideo);

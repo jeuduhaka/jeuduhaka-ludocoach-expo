@@ -1,8 +1,5 @@
 import React from '/utils/enhancedReact';
-import {
-  View,
-  Text,
-} from 'react-native';
+import { View, Text } from 'react-native';
 import { connect } from 'react-redux';
 
 const ChooseCardText = ({ currentDeck, style }) => {
@@ -10,7 +7,7 @@ const ChooseCardText = ({ currentDeck, style }) => {
 
   switch (currentDeck) {
     case 'red':
-      text = 'Comment arrêter d\'AVOIR l\'émotion limitante de…?';
+      text = "Comment arrêter d'AVOIR l'émotion limitante de…?";
       break;
     case 'orange':
       text = '« YAKA » FAIRE…';
@@ -25,9 +22,7 @@ const ChooseCardText = ({ currentDeck, style }) => {
 
   return (
     <View style={styles.containerStyle}>
-      <Text style={styles.textStyle}>
-        {text}
-      </Text>
+      <Text style={styles.textStyle}>{text}</Text>
     </View>
   );
 };
@@ -41,7 +36,7 @@ const styles = {
   },
   textStyle: {
     color: '#FFF',
-  }
+  },
 };
 
 // state refers to the "current state" of your store.
@@ -49,7 +44,4 @@ const mapStateToProps = state => ({
   currentDeck: state.cards.currentDeck,
 });
 
-
-export default connect(
-  mapStateToProps
-)(ChooseCardText);
+export default connect(mapStateToProps)(ChooseCardText);

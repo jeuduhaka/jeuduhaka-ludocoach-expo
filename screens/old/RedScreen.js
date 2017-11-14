@@ -12,13 +12,12 @@ export default class RedScreen extends React.Component {
           style={{
             textAlign: 'center',
             fontSize: 16,
-            color: props.focused ? '#B8282E' : '#000'
-          }}
-        >
+            color: props.focused ? '#B8282E' : '#000',
+          }}>
           1.AVOIR
         </Text>
       );
-    }
+    },
     // Note: By default the icon is only shown on iOS. Search the showIcon option below.
     // tabBarIcon: ({ tintColor }) => (
     //   <Image
@@ -36,8 +35,8 @@ export default class RedScreen extends React.Component {
         currentDeck={'red'}
         style={{
           screenBackground: {
-            backgroundColor: '#6C0000'
-          }
+            backgroundColor: '#6C0000',
+          },
         }}
       />
     );

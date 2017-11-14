@@ -1,9 +1,5 @@
 import React, { PropTypes } from 'react';
-import {
-  View,
-  Image,
-  TouchableHighlight,
-} from 'react-native';
+import { View, Image, TouchableHighlight } from 'react-native';
 import { connect } from 'react-redux';
 import { NavigationActions } from 'react-navigation';
 import Card from './Card';
@@ -56,14 +52,18 @@ class Deck extends React.Component {
       isActive = true;
     }
 
-    if (this.props.color === 'orange' &&
-        (this.props.cards && this.props.cards.red)) {
-        isActive = true;
+    if (
+      this.props.color === 'orange' &&
+      (this.props.cards && this.props.cards.red)
+    ) {
+      isActive = true;
     }
 
-    if (this.props.color === 'green' &&
-        (this.props.cards && this.props.cards.orange)) {
-        isActive = true;
+    if (
+      this.props.color === 'green' &&
+      (this.props.cards && this.props.cards.orange)
+    ) {
+      isActive = true;
     }
 
     if (!isActive) {
@@ -109,7 +109,4 @@ const mapStateToProps = state => ({
   deckColor: state.cards.deckColor,
 });
 
-export default connect(
-  mapStateToProps,
-  { deckPressed }
-)(Deck);
+export default connect(mapStateToProps, { deckPressed })(Deck);

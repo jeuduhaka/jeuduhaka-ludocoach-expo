@@ -5,7 +5,7 @@ import {
   ScrollView,
   Text,
   View,
-  TouchableOpacity
+  TouchableOpacity,
 } from 'react-native';
 
 import styles from './screens.style';
@@ -53,7 +53,7 @@ export default class VideosListScreen extends React.Component {
     this.props.navigation.navigate('Video', {
       videoId,
       videoName,
-      videoSource
+      videoSource,
     });
   };
 

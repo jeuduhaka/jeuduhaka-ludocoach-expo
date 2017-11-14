@@ -12,13 +12,12 @@ export default class OrangeScreen extends React.Component {
           style={{
             textAlign: 'center',
             fontSize: 16,
-            color: props.focused ? '#39B549' : '#000'
-          }}
-        >
+            color: props.focused ? '#39B549' : '#000',
+          }}>
           3.ÊTRE
         </Text>
       );
-    }
+    },
     // Note: By default the icon is only shown on iOS. Search the showIcon option below.
     // tabBarIcon: ({ tintColor }) => (
     //   <Image
@@ -36,8 +35,8 @@ export default class OrangeScreen extends React.Component {
         currentDeck={'green'}
         style={{
           screenBackground: {
-            backgroundColor: '#006900'
-          }
+            backgroundColor: '#006900',
+          },
         }}
       />
     );

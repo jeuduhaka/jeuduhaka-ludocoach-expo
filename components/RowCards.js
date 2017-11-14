@@ -12,8 +12,8 @@ const styles = {
     flex: 1,
     flexDirection: 'row',
     alignItems: 'center',
-    justifyContent: 'space-around'
-  }
+    justifyContent: 'space-around',
+  },
 };
 
 export default RowCards;

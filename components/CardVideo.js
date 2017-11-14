@@ -1,10 +1,5 @@
 import React, { PropTypes } from 'react';
-import {
-  View,
-  Image,
-  TouchableHighlight,
-  Dimensions
-} from 'react-native';
+import { View, Image, TouchableHighlight, Dimensions } from 'react-native';
 import { compose } from 'redux';
 import { connect } from 'react-redux';
 import { Video, Constants } from 'expo';
@@ -60,11 +55,7 @@ class CardVideo extends React.Component {
   };
 
   render() {
-    const {
-      currentDeck,
-      selectedCards,
-      videoSources,
-    } = this.props;
+    const { currentDeck, selectedCards, videoSources } = this.props;
 
     const cardName = selectedCards[currentDeck];
     const videoSource = videoSources[currentDeck][cardName];
@@ -118,11 +109,8 @@ const mapStateToProps = state => ({
 });
 
 const enhance = compose(
-  connect(
-    mapStateToProps,
-    { videoEnded }
-  ),
+  connect(mapStateToProps, { videoEnded })
   // require('../utils/withLifecycleLogs').default
-)
+);
 
 export default enhance(CardVideo);

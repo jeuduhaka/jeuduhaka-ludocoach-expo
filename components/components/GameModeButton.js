@@ -4,7 +4,12 @@ import { connect } from 'react-redux';
 import { Button } from './common';
 import { gameModeChosen } from '../actions';
 
-const GameModeButton = ({ gameMode, gameModeChosen, children, ...otherProps }) => {
+const GameModeButton = ({
+  gameMode,
+  gameModeChosen,
+  children,
+  ...otherProps
+}) => {
   return (
     <Button onPress={() => gameModeChosen(gameMode)} {...otherProps}>
       {children}

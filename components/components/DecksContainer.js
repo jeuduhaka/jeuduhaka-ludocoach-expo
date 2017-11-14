@@ -1,14 +1,10 @@
 import React from '/utils/enhancedReact';
 import { View } from 'react-native';
 
-const DecksContainer = (props) => {
+const DecksContainer = props => {
   const style = Object.assign({}, styles.cardsContainerStyle, props.style);
 
-  return (
-    <View style={style}>
-      {props.children}
-    </View>
-  );
+  return <View style={style}>{props.children}</View>;
 };
 
 const styles = {
@@ -16,7 +12,7 @@ const styles = {
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-around',
-  }
+  },
 };
 
 export default DecksContainer;
