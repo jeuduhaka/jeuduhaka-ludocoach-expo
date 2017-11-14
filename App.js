@@ -102,7 +102,6 @@ class App extends React.Component {
           require('./assets/videoplayer/thumb.png'),
           require('./assets/videoplayer/track.png'),
         ]),
-        // ...cacheVideos(videoSources),
         Font.loadAsync([
           //Foundation used by videoplayer
           ...Ionicons.font,

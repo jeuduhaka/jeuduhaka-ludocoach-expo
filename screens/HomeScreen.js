@@ -113,14 +113,6 @@ class HomeScreen extends React.Component {
         <Image
           style={styles.backgroundImage}
           source={require('../assets/images/fond-bleu-vague-1980x1980.jpg')}>
-          {/* <Image
-            style={{
-              flex: 1,
-              resizeMode: 'cover',
-              width: undefined,
-              height: undefined,
-            }}
-            source={require('../assets/images/motif-estime-de-soi-alpha-0.1.png')}> */}
           <View style={styles.navigationHeader} />
           <View style={styles.contentContainer}>
             <View style={styles.titleContainer}>
@@ -144,7 +136,6 @@ class HomeScreen extends React.Component {
                   <View style={styles.homeActionButton}>
                     <Button
                       title={I18n.t('play3Moves')}
-                      // onPress={() => this.props.navigation.navigate('Second3Moves')}
                       onPress={() =>
                         this.props.gameModeChosen(
                           ActionTypes.GAME_MODE_3_MOVES
@@ -155,7 +146,6 @@ class HomeScreen extends React.Component {
                   <View style={styles.homeActionButton}>
                     <Button
                       title={I18n.t('play1Move')}
-                      // onPress={() => this.props.navigation.navigate('ChooseCardGrid')}
                       onPress={() =>
                         this.props.gameModeChosen(
                           ActionTypes.GAME_MODE_1_MOVE
@@ -163,14 +153,6 @@ class HomeScreen extends React.Component {
                       {I18n.t('play1Move')}
                     </Button>
                   </View>
-                  {/* <View style={styles.homeActionButton}>
-                    <Button
-                      title={I18n.t('accessTraining')}
-                      // onPress={() => this.props.navigation.navigate('ChooseCardGrid')}
-                      onPress={() => Linking.openURL('http://bit.ly/2jvNoUj')}>
-                      {I18n.t('accessTraining')}
-                    </Button>
-                  </View> */}
                 </View>
               ) : (
                 this.state.assetsNumber &&
@@ -180,7 +162,11 @@ class HomeScreen extends React.Component {
                       color: '#000000',
                       alignSelf: 'center',
                     }}>
-                    {I18n.t('loading')}... {this.state.currentAssetIndex}/{this.state.assetsNumber}
+                    <Text>{I18n.t('loading')}</Text>
+                    <Text>... </Text>
+                    <Text>
+                      {this.state.currentAssetIndex}/{this.state.assetsNumber}
+                    </Text>
                   </Text>
                 )
               )}
@@ -196,7 +182,6 @@ class HomeScreen extends React.Component {
             </View>
           </View>
         </Image>
-        {/* </Image> */}
       </View>
     );
   }
