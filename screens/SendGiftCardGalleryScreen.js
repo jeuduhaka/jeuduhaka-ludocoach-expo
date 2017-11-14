@@ -55,16 +55,49 @@ class SendGiftCardGalleryScreen extends React.Component {
     // console.log(item);
 
     return (
-      <View
-        style={
-          (sliderEntryStyles.slideInnerContainer, { alignItems: 'center' })
-        }>
-        <View style={sliderEntryStyles.imageContainer}>
-          <Image source={value} style={sliderEntryStyles.image} />
-        </View>
+      <View style={sliderEntryStyles.slideInnerContainer}>
+        {/* <View style={sliderEntryStyles.imageContainer}> */}
+        <Image source={value} style={sliderEntryStyles.image} />
+        {/* </View> */}
       </View>
     );
   }
+
+  sendCard = () => {
+    const currentGiftCardName = cardGiftsEntries[this.state.activeSlide][0];
+    console.log(currentGiftCardName);
+
+    if (Platform.OS === 'ios') {
+      ActionSheetIOS.showShareActionSheetWithOptions(
+        {
+          // url: Expo.Asset.fromModule(
+          //   require('../assets/images/iphone-jeu-du-haka.png')
+          // ).uri,
+          url: 'https://www.jeuduhaka.com/gift?name=' + currentGiftCardName,
+          message: 'Retrouve ton pouvoir (Mana) grâce à cette carte cadeau !',
+          subject: 'Carte cadeau ' + I18n.t(currentGiftCardName),
+          excludedActivityTypes: [
+            'com.apple.mobilenotes.SharingExtension',
+            'com.google.Drive.ShareExtension',
+            'com.apple.reminders.RemindersEditorExtension',
+            'com.apple.mobileslideshow.StreamShareService',
+          ],
+        },
+        shareFailureCallback,
+        shareSuccessCallback
+      );
+    } else if (Platform.OS === 'android') {
+      Share.share(
+        {
+          title: 'Carte cadeau ' + I18n.t(currentGiftCardName),
+          message:
+            'Retrouve ton pouvoir (Mana) grâce à cette carte cadeau ! https://www.jeuduhaka.com/gift?name=' +
+            currentGiftCardName,
+        },
+        {}
+      );
+    }
+  };
 
   render() {
     return (
@@ -82,70 +115,33 @@ class SendGiftCardGalleryScreen extends React.Component {
             directionalLockEnabled
             //This setting is needed to block verticzl
             scrollEnabled={false}>
-            <Carousel
-              ref={c => {
-                this._carousel = c;
-              }}
-              data={cardGiftsEntries}
-              renderItem={this._renderItem}
-              sliderWidth={sliderWidth}
-              itemWidth={itemWidth}
-              containerCustomStyle={carouselStyles.slider}
-              contentContainerCustomStyle={
-                carouselStyles.sliderContentContainer
-              }
-              lockScrollWhileSnapping
-              loop
-              onSnapToItem={index => {
-                this.setState({ activeSlide: index });
-              }}
-            />
+            <View style={carouselStyles.exampleContainer}>
+              <Carousel
+                ref={c => {
+                  this._carousel = c;
+                }}
+                data={cardGiftsEntries}
+                renderItem={this._renderItem}
+                sliderWidth={sliderWidth}
+                itemWidth={itemWidth}
+                containerCustomStyle={carouselStyles.slider}
+                contentContainerCustomStyle={
+                  carouselStyles.sliderContentContainer
+                }
+                lockScrollWhileSnapping
+                loop
+                onSnapToItem={index => {
+                  this.setState({ activeSlide: index });
+                }}
+              />
+            </View>
           </ScrollView>
           <View
             style={{
-              flex: 2 / 5,
+              flex: 1 / 3,
+              // backgroundColor: 'orange'
             }}>
-            <Button
-              title="Envoyer"
-              onPress={() => {
-                const currentGiftCardName =
-                  cardGiftsEntries[this.state.activeSlide][0];
-                console.log(currentGiftCardName);
-
-                if (Platform.OS === 'ios') {
-                  ActionSheetIOS.showShareActionSheetWithOptions(
-                    {
-                      // url: Expo.Asset.fromModule(
-                      //   require('../assets/images/iphone-jeu-du-haka.png')
-                      // ).uri,
-                      url:
-                        'https://www.jeuduhaka.com/gift?name=' +
-                        currentGiftCardName,
-                      message:
-                        'Retrouve ton pouvoir (Mana) grâce à cette carte cadeau !',
-                      subject: 'Carte cadeau ' + I18n.t(currentGiftCardName),
-                      excludedActivityTypes: [
-                        'com.apple.mobilenotes.SharingExtension',
-                        'com.google.Drive.ShareExtension',
-                        'com.apple.reminders.RemindersEditorExtension',
-                        'com.apple.mobileslideshow.StreamShareService',
-                      ],
-                    },
-                    shareFailureCallback,
-                    shareSuccessCallback
-                  );
-                } else if (Platform.OS === 'android') {
-                  Share.share(
-                    {
-                      title: 'Carte cadeau ' + I18n.t(currentGiftCardName),
-                      message:
-                        'Retrouve ton pouvoir (Mana) grâce à cette carte cadeau ! https://www.jeuduhaka.com/gift?name=' +
-                        currentGiftCardName,
-                    },
-                    {}
-                  );
-                }
-              }}>
+            <Button title="Envoyer" onPress={this.sendCard}>
               Envoyer cette carte cadeau
             </Button>
           </View>

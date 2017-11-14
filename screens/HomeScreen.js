@@ -65,10 +65,10 @@ class HomeScreen extends React.Component {
 
   async _loadAssetsAsync() {
     // console.log(this.props);
-    // if (this.props.areAssetsLoaded) {
-    //   this.setState({ assetsLoaded: true });
-    //   return;
-    // }
+    if (this.props.areAssetsLoaded) {
+      this.setState({ assetsLoaded: true });
+      return;
+    }
 
     const images = Object.values(flat(cardImageSources));
     const videos = Object.values(flat(cardVideoSources));

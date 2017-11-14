@@ -145,16 +145,22 @@ const CustomDrawerContentComponent = props => {
               <Text style={[styles.label]}>{I18n.t('adviceMenuTitle')}</Text>
             </View>
           </TouchableItem>
-          <TouchableItem
-            onPress={() => navigation.navigate('GiftCards')}
-            delayPressIn={0}>
-            <View style={[styles.item]}>
-              <View style={[styles.icon, styles.inactiveIcon]}>
-                <FontAwesome name={'gift'} size={18} />
+          {Platform.OS === 'ios' ? (
+            <TouchableItem
+              onPress={() => navigation.navigate('GiftCards')}
+              delayPressIn={0}>
+              <View style={[styles.item]}>
+                <View style={[styles.icon, styles.inactiveIcon]}>
+                  <FontAwesome name={'gift'} size={18} />
+                </View>
+                <Text style={[styles.label]}>
+                  {I18n.t('sendGiftCardLabel')}
+                </Text>
               </View>
-              <Text style={[styles.label]}>{I18n.t('sendGiftCardLabel')}</Text>
-            </View>
-          </TouchableItem>
+            </TouchableItem>
+          ) : (
+            ''
+          )}
           <TouchableItem
             onPress={() => {
               if (Platform.OS === 'ios') {
