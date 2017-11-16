@@ -48,6 +48,8 @@ class SendGiftCardGalleryScreen extends React.Component {
     this.state = {
       activeSlide: 0,
     };
+
+    console.log(I18n.locale);
   }
 
   _renderItem({ item, index }) {
@@ -74,8 +76,8 @@ class SendGiftCardGalleryScreen extends React.Component {
           //   require('../assets/images/iphone-jeu-du-haka.png')
           // ).uri,
           url: 'https://www.jeuduhaka.com/gift?name=' + currentGiftCardName,
-          message: 'Retrouve ton pouvoir (Mana) grâce à cette carte cadeau !',
-          subject: 'Carte cadeau ' + I18n.t(currentGiftCardName),
+          message: I18n.t('findManaWithGiftCard'),
+          subject: I18n.t('giftCard') + I18n.t(currentGiftCardName),
           excludedActivityTypes: [
             'com.apple.mobilenotes.SharingExtension',
             'com.google.Drive.ShareExtension',
@@ -89,9 +91,10 @@ class SendGiftCardGalleryScreen extends React.Component {
     } else if (Platform.OS === 'android') {
       Share.share(
         {
-          title: 'Carte cadeau ' + I18n.t(currentGiftCardName),
+          title: I18n.t('giftCard') + I18n.t(currentGiftCardName),
           message:
-            'Retrouve ton pouvoir (Mana) grâce à cette carte cadeau ! https://www.jeuduhaka.com/gift?name=' +
+            I18n.t('findManaWithGiftCard') +
+            ' https://www.jeuduhaka.com/gift?name=' +
             currentGiftCardName,
         },
         {}
@@ -142,7 +145,7 @@ class SendGiftCardGalleryScreen extends React.Component {
               // backgroundColor: 'orange'
             }}>
             <Button title="Envoyer" onPress={this.sendCard}>
-              Envoyer cette carte cadeau
+              {I18n.t('sendThisGiftCard')}
             </Button>
           </View>
         </BackgroundWave>

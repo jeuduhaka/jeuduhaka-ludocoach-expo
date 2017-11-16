@@ -28,7 +28,7 @@ class GiftCardsScreen extends React.Component {
                 backgroundColor: 'transparent',
               },
             ]}>
-            Envoyer une carte cadeau
+            {I18n.t('sendGiftCard')}
           </Text>
           <View>
             <Text
@@ -37,10 +37,7 @@ class GiftCardsScreen extends React.Component {
                 styles.textWithPaddingTop,
                 { backgroundColor: 'transparent' },
               ]}>
-              Vous pouvez envoyer à quelqu'un (ou à vous-même) une ou plusieurs
-              cartes cadeaux (Force, Amour, Confiance, Paix, Estime de soi,
-              Calme, Énergie, Joie) qui lui apportera une énergie positive pour
-              l'aider à développer son Mana sur le terrain de jeu de la vie.
+              {I18n.t('sendGiftCardTextPart1')}
             </Text>
             <Text
               style={[
@@ -48,15 +45,13 @@ class GiftCardsScreen extends React.Component {
                 styles.textWithPaddingTop,
                 { backgroundColor: 'transparent' },
               ]}>
-              Libre à vous de choisir la carte la plus appropriée pour vous
-              et/ou la personne que vous souhaitez aider. Libre à elle de
-              l’envoyer à son tour à la personne de son choix.
+              {I18n.t('sendGiftCardTextPart2')}
             </Text>
             <View style={styles.nextButtonContainer}>
               <Button
                 onPress={() =>
                   this.props.navigation.navigate('SendGiftCardGallery')}>
-                Choisir une carte cadeau
+                {I18n.t('chooseGiftCard')}
               </Button>
             </View>
           </View>

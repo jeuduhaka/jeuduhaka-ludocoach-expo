@@ -88,7 +88,6 @@ class HomeScreen extends React.Component {
   }
 
   async componentWillMount() {
-    console.log(this.props);
     if (this.props.language) {
       I18n.locale = this.props.language;
     } else {

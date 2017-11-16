@@ -76,7 +76,7 @@ export default initialState => {
   };
 
   Store.subscribe(() => {
-    __DEV__ && console.log(Store.getState().assetsLoaded);
+    // __DEV__ && console.log(`assetsLoaded: ${Store.getState().assetsLoaded}`);
     //   console.log(Store.getState().gameMode);
   });
 

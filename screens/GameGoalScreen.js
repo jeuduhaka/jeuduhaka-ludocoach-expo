@@ -40,41 +40,44 @@ class GameGoalScreen extends React.Component {
               styles.textWithPaddingTop,
               { fontWeight: 'bold' },
             ]}>
-            Transformez votre énergie négative en énergie positive grâce au
-            pouvoir des danses ancestrales maori !
+            {I18n.t('transformYourEnergy')}
           </Text>
           <Text style={[styles.blackText, styles.textWithPaddingTop]}>
-            Seul ou à plusieurs, vous allez exprimer
+            {I18n.t('gameGoalParagraph1Part1')}
           </Text>
           <Text style={styles.blackText}>
-            par la parole et/ou les gestes vos émotions négatives
+            {I18n.t('gameGoalParagraph1Part2')}
           </Text>
           <Text style={styles.blackText}>
-            pour mieux les dompter, en suivant 3 étapes essentielles :
+            {I18n.t('gameGoalParagraph1Part3')}
           </Text>
           <View style={styles.textWithPaddingTop}>
             <Text style={styles.blackText}>
               <Text style={[styles.stepNumber, styles.colorRed]}>A</Text>{' '}
-              <Text style={styles.stepText}>AVOIR</Text> une émotion limitante
+              <Text style={styles.stepText}>{I18n.t('having')}</Text>
+              {I18n.t('limitingEmotion')}
             </Text>
             <Text style={styles.blackText}>
-              <Text style={[styles.stepNumber, styles.colorOrange]}>B</Text> «
-              Yaka » <Text style={styles.stepText}>FAIRE</Text>…
+              <Text style={[styles.stepNumber, styles.colorOrange]}>B</Text>
+              {I18n.t('yaka')}
+              <Text style={styles.stepText}> {I18n.t('doing')}</Text>
             </Text>
             <Text style={styles.blackText}>
               <Text style={[styles.stepNumber, styles.colorGreen]}>C</Text>{' '}
-              <Text style={styles.stepText}>ÊTRE</Text> mieux.
+              <Text style={styles.stepText}>{I18n.t('being')}</Text>
+              {I18n.t('better')}
             </Text>
           </View>
           <Text style={[styles.blackText, styles.textWithPaddingTop]}>
-            Les gestes du haka joints à la parole
+            {I18n.t('gameGoalParagraph2Part1')}
           </Text>
           <Text style={styles.blackText}>
-            vont vous permettre de trouver le trésor inestimable
+            {I18n.t('gameGoalParagraph2Part2')}
           </Text>
           <Text style={styles.blackText}>
-            que nous possédons tous : le{' '}
-            <Text style={styles.manaText}>Mana</Text> (pouvoir).
+            {I18n.t('gameGoalParagraph2Part3')}{' '}
+            <Text style={styles.manaText}>Mana</Text>{' '}
+            {I18n.t('powerParenthesis')}
           </Text>
         </BackgroundWave>
       </View>

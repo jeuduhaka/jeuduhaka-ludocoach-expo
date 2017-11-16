@@ -60,7 +60,7 @@ export default {
   unite: 'Unity',
   'joker-orange': 'Joker',
   amour: 'Love',
-  calme: 'Calmness',
+  calme: 'Calm',
   confiance: 'Confidence',
   energie: 'Energy',
   'estime-de-soi': 'Self-esteem',
@@ -68,4 +68,30 @@ export default {
   joie: 'Joy',
   paix: 'Peace',
   'joker-vert': 'Joker',
+
+  //game's goal section
+  transformYourEnergy:
+    'Transform your negative energy in positive energy thanks to ancestral maori dances!',
+  limitingEmotion: ' a limiting emotion',
+  yaka: '',
+  better: ' better.',
+  gameGoalParagraph1Part1: 'Alone or in a group,',
+  gameGoalParagraph1Part2:
+    'you are going to express your negative emotions with your voice and/or your gestures ',
+  gameGoalParagraph1Part3: 'following 3 essential steps to better tame them:',
+  gameGoalParagraph2Part1: "Haka's gestures coupled with the voice",
+  gameGoalParagraph2Part2: 'will enable you to find your hidden inner treasure',
+  gameGoalParagraph2Part3: 'that we all have : the',
+  powerParenthesis: '(power).',
+
+  //gift cards
+  sendGiftCard: 'Send a gift card',
+  sendGiftCardTextPart1:
+    "You can send to someone (or yourself) one or several gift cards (Strength, Love, Confidence, Peace, Self-esteem, Calm, Energy, Joy) which will bring a positive energy to help one develop one's Mana on life's game field.",
+  sendGiftCardTextPart2:
+    'Feel free to choose the most appropriate card for you or the person you want to help. The helped person is free to send it to another person of her choice.',
+  chooseGiftCard: 'Choose a gift card',
+  sendThisGiftCard: 'Send this gift card',
+  giftCard: 'Gift card ',
+  findManaWithGiftCard: 'Find your power (Mana) thanks to this gift card!',
 };
