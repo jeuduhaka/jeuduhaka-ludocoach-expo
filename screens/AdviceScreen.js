@@ -40,22 +40,21 @@ class AdviceScreen extends React.Component {
           </Text>
           <View>
             <Text style={[styles.blackText, styles.textWithPaddingTop]}>
-              - Avant chaque mouvement, respirez bien.
+              - {I18n.t('firstAdvice')}
             </Text>
             <Text style={[styles.blackText, styles.textWithPaddingTop]}>
-              - Si vous n'avez pas le temps de jouer au mode "3 mouvements",
-              pratiquez le mode "1 mouvement". Cette version vous permettra de
-              changer d'état rapidement.
+              - {I18n.t('secondAdvice')}
             </Text>
             <Text style={[styles.blackText, styles.textWithPaddingTop]}>
-              - Après avoir expérimenté le Jeu du Haka, dites-vous :
+              - {I18n.t('thirdAdvice')}
             </Text>
             <Text style={[styles.blackText, { fontWeight: 'bold' }]}>
-              "Le pouvoir est en moi !"
+              {I18n.t('adviceFormula')}
             </Text>
             <Text style={[styles.blackText, { paddingHorizontal: 20 }]}>
-              Cette formule vous permettra de réactiver votre Mana (pouvoir) à
-              tout moment !
+              {I18n.t('adviceFormulaExplanationPart1')}{' '}
+              <Text style={styles.manaText}>Mana</Text>{' '}
+              {I18n.t('adviceFormulaExplanationPart2')}
             </Text>
           </View>
         </BackgroundWave>

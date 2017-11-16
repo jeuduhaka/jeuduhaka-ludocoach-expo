@@ -84,6 +84,14 @@ export default {
   gameGoalParagraph2Part3: 'that we all have : the',
   powerParenthesis: '(power).',
 
+  //advice section
+  firstAdvice: 'Before each move, take a deep breath.',
+  secondAdvice: `If you don't have the time to play the "3 moves" mode, use the "1 move" mode. This version will enable you changing state quickly.`,
+  thirdAdvice: 'After your move(s) tell yourself:',
+  adviceFormula: '"The power is in me!"',
+  adviceFormulaExplanationPart1: 'This formula will reactivate your',
+  adviceFormulaExplanationPart2: '(power) at any moment!',
+
   //gift cards
   sendGiftCard: 'Send a gift card',
   sendGiftCardTextPart1:

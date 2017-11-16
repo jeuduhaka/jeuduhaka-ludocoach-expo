@@ -86,6 +86,14 @@ export default {
   gameGoalParagraph2Part3: 'que nous possédons tous : le',
   powerParenthesis: ' (pouvoir).',
 
+  //advice section
+  firstAdvice: 'Avant chaque mouvement, respirez bien.',
+  secondAdvice: `Si vous n'avez pas le temps de jouer au mode "3 mouvements", utilisez le mode "1 mouvement". Cette version vous permettra de changer d'état rapidement.`,
+  thirdAdvice: 'Après avoir expérimenté le Jeu du Haka, dites-vous :',
+  adviceFormula: '"Le pouvoir est en moi !"',
+  adviceFormulaExplanationPart1: 'Cette formule vous permettra de réactiver',
+  adviceFormulaExplanationPart2: '(pouvoir) à tout moment !',
+
   //gift cards
   sendGiftCard: 'Envoyer une carte cadeau',
   sendGiftCardTextPart1:
