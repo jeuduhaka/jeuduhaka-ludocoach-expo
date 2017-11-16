@@ -24,7 +24,7 @@ import sliderEntryStyles, {
 } from '../components/CarouselSliderEntryTextOnImage/SliderEntryTextOnImage.style';
 import cardImageSources from '../stores/CardImageSources';
 
-const cardGiftsEntries = Object.entries(cardImageSources.gifts);
+const cardGiftsEntries = Object.entries(cardImageSources.gifts[I18n.locale]);
 
 const shareFailureCallback = error => {
   __DEV__ && console.log('sharing failed');
