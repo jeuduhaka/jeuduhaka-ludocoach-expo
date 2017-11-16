@@ -39,20 +39,18 @@ class AuthorsScreen extends React.Component {
             <View style={[styles.authorInfoContainer, { paddingTop: '5%' }]}>
               <Text style={styles.authorTitle}>Tehotu Tauraatua</Text>
               <Text style={styles.authorDesc}>
-                Tahitien, coach en bien-être et danseur.
+                {I18n.t('tehotuDescription')}
               </Text>
             </View>
             <View style={[styles.authorInfoContainer, { paddingTop: '10%' }]}>
               <Text style={styles.authorTitle}>Hinenao Kimitete</Text>
               <Text style={styles.authorDesc}>
-                Marquisienne, illustratrice et coach en bien-être.
+                {I18n.t('hinenaoDescription')}
               </Text>
             </View>
             <View style={[styles.authorInfoContainer, { paddingTop: '10%' }]}>
               <Text style={styles.authorTitle}>Marc Kucharz</Text>
-              <Text style={styles.authorDesc}>
-                Parisien, auteur de jeux et fondateur du ludocoaching
-              </Text>
+              <Text style={styles.authorDesc}>{I18n.t('marcDescription')}</Text>
             </View>
           </View>
           <View style={styles.authorsImageContainer}>

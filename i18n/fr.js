@@ -105,4 +105,9 @@ export default {
   giftCard: 'Carte cadeau ',
   findManaWithGiftCard:
     'Retrouve ton pouvoir (Mana) grâce à cette carte cadeau !',
+
+  //authors
+  tehotuDescription: 'Tahitien, coach en bien-être et danseur',
+  hinenaoDescription: 'Marquisienne, illustratrice et coach en bien-être',
+  marcDescription: 'Parisien, auteur de jeux et fondateur du ludocoaching',
 };

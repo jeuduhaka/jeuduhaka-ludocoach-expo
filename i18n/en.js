@@ -102,4 +102,9 @@ export default {
   sendThisGiftCard: 'Send this gift card',
   giftCard: 'Gift card ',
   findManaWithGiftCard: 'Find your power (Mana) thanks to this gift card!',
+
+  //authors
+  tehotuDescription: 'Tahitian, health coach and dancer',
+  hinenaoDescription: 'Marquesan, illustrator and health coach',
+  marcDescription: 'Parisian, games author and ludocoaching founder',
 };
