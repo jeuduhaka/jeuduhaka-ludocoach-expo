@@ -33,6 +33,7 @@ export default {
   gameGoalTitle: 'But du jeu',
   adviceMenuTitle: 'Conseils',
   sendGiftCardLabel: 'Envoyer une carte cadeau',
+  sendGreetingCardLabel: 'Envoyer une carte de voeux',
   shareAppLabel: "Partager l'appli",
   authorsTitle: 'Auteurs',
   gamesListTitle: 'Jeux de Marc Kucharz',
@@ -105,6 +106,9 @@ export default {
   giftCard: 'Carte cadeau',
   findManaWithGiftCard:
     'Retrouve ton pouvoir (Mana) grâce à cette carte cadeau !',
+
+  //greeting cards
+  sendThisGreetingCard: 'Envoyer cette carte de voeux',
 
   //share app
   shareSubject: 'Le Jeu du Haka Ludocoach',

@@ -9,7 +9,12 @@ import {
 import { Provider } from 'react-redux';
 import Expo, { Font, AppLoading, KeepAwake } from 'expo';
 import I18n from 'ex-react-native-i18n';
-import { MaterialIcons, Foundation, Ionicons } from '@expo/vector-icons';
+import {
+  MaterialIcons,
+  Foundation,
+  Ionicons,
+  Entypo,
+} from '@expo/vector-icons';
 // import Sentry from 'sentry-expo';
 
 import AppWithNavigationState from './navigators/AppWithNavigationState';
@@ -106,6 +111,7 @@ class App extends React.Component {
           ...Ionicons.font,
           ...Foundation.font,
           ...MaterialIcons.font,
+          ...Entypo.font,
           {
             'charcuterie-sans-inline': require('./assets/fonts/CharcuterieSansInline-Regular.ttf'),
             'european-pi-one': require('./assets/fonts/EuropeanPiOne-Regular.ttf'),

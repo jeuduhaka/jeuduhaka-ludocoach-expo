@@ -21,6 +21,7 @@ import CustomDrawerContentComponent from '../components/CustomDrawerContentCompo
 
 import GiftCardsScreen from '../screens/GiftCardsScreen';
 import SendGiftCardGalleryScreen from '../screens/SendGiftCardGalleryScreen';
+import SendGreetingCardGalleryScreen from '../screens/SendGreetingCardGalleryScreen';
 import GamesListScreen from '../screens/GamesListScreen';
 import AuthorsScreen from '../screens/AuthorsScreen';
 import AdviceScreen from '../screens/AdviceScreen';
@@ -96,6 +97,9 @@ const HomeWithDrawer = DrawerNavigator(
     },
     GiftCards: {
       screen: GiftsCardsStack,
+    },
+    SendGreetingCard: {
+      screen: SendGreetingCardGalleryScreen,
     },
     Authors: {
       screen: AuthorsScreen,

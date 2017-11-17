@@ -40,7 +40,7 @@ const shareSuccessCallback = (success, method) => {
   __DEV__ && console.log('sharing succeeded');
 };
 
-class SendGiftCardGalleryScreen extends React.Component {
+class SendGreetingCardGalleryScreen extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -76,7 +76,7 @@ class SendGiftCardGalleryScreen extends React.Component {
           // url: Expo.Asset.fromModule(
           //   require('../assets/images/iphone-jeu-du-haka.png')
           // ).uri,
-          url: `https://www.jeuduhaka.com/gift/${language}/${currentGiftCardName}`,
+          url: `https://www.jeuduhaka.com/greeting/${language}/${currentGiftCardName}`,
           message: I18n.t('findManaWithGiftCard'),
           subject: `${I18n.t('giftCard')} ${I18n.t(currentGiftCardName)}`,
           excludedActivityTypes: [
@@ -95,7 +95,7 @@ class SendGiftCardGalleryScreen extends React.Component {
           title: `${I18n.t('giftCard')} ${I18n.t(currentGiftCardName)}`,
           message:
             I18n.t('findManaWithGiftCard') +
-            `https://www.jeuduhaka.com/gift/${language}/${currentGiftCardName}`,
+            `https://www.jeuduhaka.com/greeting/${language}/${currentGiftCardName}`,
         },
         {}
       );
@@ -145,7 +145,7 @@ class SendGiftCardGalleryScreen extends React.Component {
               // backgroundColor: 'orange'
             }}>
             <Button title="Envoyer" onPress={this.sendCard}>
-              {I18n.t('sendThisGiftCard')}
+              {I18n.t('sendThisGreetingCard')}
             </Button>
           </View>
         </BackgroundWave>
@@ -154,4 +154,4 @@ class SendGiftCardGalleryScreen extends React.Component {
   }
 }
 
-export default SendGiftCardGalleryScreen;
+export default SendGreetingCardGalleryScreen;

@@ -33,6 +33,7 @@ export default {
   gameGoalTitle: "Game's goal",
   adviceMenuTitle: 'Advice',
   sendGiftCardLabel: 'Send a gift card',
+  sendGreetingCardLabel: 'Send a greeting card',
   shareAppLabel: 'Share the app',
   authorsTitle: 'Authors',
   gamesListTitle: "Marc Kucharz's Games",
@@ -102,6 +103,9 @@ export default {
   sendThisGiftCard: 'Send this gift card',
   giftCard: 'Gift card',
   findManaWithGiftCard: 'Find your power (Mana) thanks to this gift card!',
+
+  //greeting cards
+  sendThisGreetingCard: 'Send this greeting card',
 
   //share app
   shareSubject: "The Haka's Game Ludocoach",

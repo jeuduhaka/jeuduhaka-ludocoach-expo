@@ -156,6 +156,18 @@ const CustomDrawerContentComponent = props => {
             </View>
           </TouchableItem>
           <TouchableItem
+            onPress={() => navigation.navigate('SendGreetingCard')}
+            delayPressIn={0}>
+            <View style={[styles.item]}>
+              <View style={[styles.icon, styles.inactiveIcon]}>
+                <Entypo name={'newsletter'} size={18} />
+              </View>
+              <Text style={[styles.label]}>
+                {I18n.t('sendGreetingCardLabel')}
+              </Text>
+            </View>
+          </TouchableItem>
+          <TouchableItem
             onPress={() => {
               // console.log(I18n.locale);
               const language = I18n.locale.split('-')[0].toLowerCase();
