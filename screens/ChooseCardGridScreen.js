@@ -39,28 +39,42 @@ class ChooseCardGridScreen extends React.Component {
 
     let currentDeckImageSources = cardImageSources.front[currentDeck];
 
-    const jokerCardName = Object.keys(
-      currentDeckImageSources
-    ).filter(cardName => cardName.includes('joker'))[0];
+    currentDeckImageSources = Object.keys(currentDeckImageSources)
+      .sort((nameA, nameB) => {
+        console.log(`nameA: ${nameA} | nameB: ${nameB}`);
 
-    const jokerCardImage = cardImageSources.front[currentDeck][jokerCardName];
-    delete currentDeckImageSources[jokerCardName];
+        if (nameA.includes('joker')) return 1;
+        if (nameB.includes('joker')) return -1;
 
-    currentDeckImageSources = sortObject(currentDeckImageSources);
+        if (nameA < nameB) {
+          return -1;
+        }
+        if (nameA > nameB) {
+          return 1;
+        }
+
+        // names must be equal
+        return 0;
+      })
+      .reduce(function(result, key) {
+        result[key] = currentDeckImageSources[key];
+        return result;
+      }, {});
 
     const currentImageSources = Object.entries(currentDeckImageSources);
 
-    currentImageSources.push([jokerCardName, jokerCardImage]);
-
     const rows = [];
-    const cards = currentImageSources.map(([cardName, imageSource]) => (
-      <Card
-        key={cardName}
-        name={I18n.t(cardName)}
-        imageSource={imageSource}
-        onPress={() => cardPressed(cardName, gameMode)}
-      />
-    ));
+    const cards = currentImageSources.map(([cardName, imageSource]) => {
+      console.log(cardName);
+      return (
+        <Card
+          key={cardName}
+          name={I18n.t(cardName)}
+          imageSource={imageSource}
+          onPress={() => cardPressed(cardName, gameMode)}
+        />
+      );
+    });
 
     const NB_CARDS_PER_ROW = 3;
 

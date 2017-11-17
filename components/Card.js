@@ -96,7 +96,7 @@ const styles = {
     // color: colors.black,
     color: '#ffffff',
     fontFamily: 'charcuterie-sans-inline',
-    fontSize: Layout.window.width * 0.28 / 5.5,
+    fontSize: Layout.window.width * 0.27 / 5.5,
     letterSpacing: 0.5,
     // borderWidth: 1,
     // borderColor: 'blue',
