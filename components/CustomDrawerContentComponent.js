@@ -157,17 +157,17 @@ const CustomDrawerContentComponent = props => {
           </TouchableItem>
           <TouchableItem
             onPress={() => {
+              // console.log(I18n.locale);
+              const language = I18n.locale.split('-')[0].toLowerCase();
               if (Platform.OS === 'ios') {
                 ActionSheetIOS.showShareActionSheetWithOptions(
                   {
                     // url: Expo.Asset.fromModule(
                     //   require('../assets/images/iphone-jeu-du-haka.png')
                     // ).uri,
-                    url: 'https://www.jeuduhaka.com/application',
-                    message:
-                      "Retrouve ton pouvoir (Mana) grâce à l'appli gratuite du Jeu du Haka !",
-                    subject:
-                      "Télécharge l'appli gratuite Le Jeu du Haka Ludocoach",
+                    subject: I18n.t('shareSubject'),
+                    message: I18n.t('shareMessage'),
+                    url: `https://www.jeuduhaka.com/application/${language}`,
                     excludedActivityTypes: [
                       'com.apple.mobilenotes.SharingExtension',
                       'com.google.Drive.ShareExtension',
@@ -181,10 +181,10 @@ const CustomDrawerContentComponent = props => {
               } else if (Platform.OS === 'android') {
                 Share.share(
                   {
-                    title:
-                      "Télécharge l'appli gratuite Le Jeu du Haka Ludocoach",
-                    message:
-                      "Retrouve ton pouvoir (Mana) grâce à l'appli gratuite du Jeu du Haka ! https://www.jeuduhaka.com/application",
+                    title: I18n.t('shareSubject'),
+                    message: `${I18n.t(
+                      'shareMessage'
+                    )} https://www.jeuduhaka.com/application/${language}`,
                   },
                   {}
                 );
@@ -271,7 +271,7 @@ const CustomDrawerContentComponent = props => {
           </View>
           <View style={[styles.item, { alignItems: 'center' }]}>
             <Text style={[styles.label, styles.developedByText]}>
-              Version 1.0.4
+              Version 1.0.5
             </Text>
           </View>
         </View>

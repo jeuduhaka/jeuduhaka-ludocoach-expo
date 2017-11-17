@@ -67,7 +67,9 @@ class SendGiftCardGalleryScreen extends React.Component {
 
   sendCard = () => {
     const currentGiftCardName = cardGiftsEntries[this.state.activeSlide][0];
-    console.log(currentGiftCardName);
+    // console.log(currentGiftCardName);
+
+    const language = I18n.locale.split('-')[0].toLowerCase();
 
     if (Platform.OS === 'ios') {
       ActionSheetIOS.showShareActionSheetWithOptions(
@@ -75,9 +77,9 @@ class SendGiftCardGalleryScreen extends React.Component {
           // url: Expo.Asset.fromModule(
           //   require('../assets/images/iphone-jeu-du-haka.png')
           // ).uri,
-          url: 'https://www.jeuduhaka.com/gift?name=' + currentGiftCardName,
+          url: `https://www.jeuduhaka.com/gift/${language}/${currentGiftCardName}`,
           message: I18n.t('findManaWithGiftCard'),
-          subject: I18n.t('giftCard') + I18n.t(currentGiftCardName),
+          subject: `${I18n.t('giftCard')} ${I18n.t(currentGiftCardName)}`,
           excludedActivityTypes: [
             'com.apple.mobilenotes.SharingExtension',
             'com.google.Drive.ShareExtension',
@@ -91,11 +93,10 @@ class SendGiftCardGalleryScreen extends React.Component {
     } else if (Platform.OS === 'android') {
       Share.share(
         {
-          title: I18n.t('giftCard') + I18n.t(currentGiftCardName),
+          title: `${I18n.t('giftCard')} ${I18n.t(currentGiftCardName)}`,
           message:
             I18n.t('findManaWithGiftCard') +
-            ' https://www.jeuduhaka.com/gift?name=' +
-            currentGiftCardName,
+            `https://www.jeuduhaka.com/gift/${language}/${currentGiftCardName}`,
         },
         {}
       );

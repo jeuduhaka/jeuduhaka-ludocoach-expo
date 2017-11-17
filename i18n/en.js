@@ -100,8 +100,12 @@ export default {
     'Feel free to choose the most appropriate card for you or the person you want to help. The helped person is free to send it to another person of her choice.',
   chooseGiftCard: 'Choose a gift card',
   sendThisGiftCard: 'Send this gift card',
-  giftCard: 'Gift card ',
+  giftCard: 'Gift card',
   findManaWithGiftCard: 'Find your power (Mana) thanks to this gift card!',
+
+  //share app
+  shareSubject: "Télécharge l'appli gratuite Le Jeu du Haka Ludocoach",
+  shareMessage: `Find your power (Mana) thanks to the Haka's Game free app!`,
 
   //authors
   tehotuDescription: 'Tahitian, health coach and dancer',

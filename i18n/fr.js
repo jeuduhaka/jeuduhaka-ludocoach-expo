@@ -102,9 +102,13 @@ export default {
     'Libre à vous de choisir la carte la plus appropriée pour vous et/ou la personne que vous souhaitez aider. Libre à elle de l’envoyer à son tour à la personne de son choix.',
   chooseGiftCard: 'Choisir une carte cadeau',
   sendThisGiftCard: 'Envoyer cette carte cadeau',
-  giftCard: 'Carte cadeau ',
+  giftCard: 'Carte cadeau',
   findManaWithGiftCard:
     'Retrouve ton pouvoir (Mana) grâce à cette carte cadeau !',
+
+  //share app
+  shareSubject: "Télécharge l'appli gratuite Le Jeu du Haka Ludocoach",
+  shareMessage: `Retrouve ton pouvoir (Mana) grâce à l'appli gratuite du Jeu du Haka !`,
 
   //authors
   tehotuDescription: 'Tahitien, coach en bien-être et danseur',

@@ -41,7 +41,7 @@ class ChooseCardGridScreen extends React.Component {
 
     currentDeckImageSources = Object.keys(currentDeckImageSources)
       .sort((nameA, nameB) => {
-        console.log(`nameA: ${nameA} | nameB: ${nameB}`);
+        // console.log(`nameA: ${nameA} | nameB: ${nameB}`);
 
         if (nameA.includes('joker')) return 1;
         if (nameB.includes('joker')) return -1;
