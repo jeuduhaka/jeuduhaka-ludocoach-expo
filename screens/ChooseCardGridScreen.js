@@ -14,6 +14,15 @@ import HomeButton from '../components/HomeButton';
 
 import cardImageSources from '../stores/CardImageSources';
 
+function sortObject(obj) {
+  return Object.keys(obj)
+    .sort()
+    .reduce(function(result, key) {
+      result[key] = obj[key];
+      return result;
+    }, {});
+}
+
 class ChooseCardGridScreen extends React.Component {
   static navigationOptions = {
     header: null,
@@ -28,9 +37,21 @@ class ChooseCardGridScreen extends React.Component {
   displayCardRows() {
     const { currentDeck, cardPressed, gameMode } = this.props;
 
-    const currentImageSources = Object.entries(
-      cardImageSources.front[currentDeck]
-    );
+    let currentDeckImageSources = cardImageSources.front[currentDeck];
+
+    const jokerCardName = Object.keys(
+      currentDeckImageSources
+    ).filter(cardName => cardName.includes('joker'))[0];
+
+    const jokerCardImage = cardImageSources.front[currentDeck][jokerCardName];
+    delete currentDeckImageSources[jokerCardName];
+
+    currentDeckImageSources = sortObject(currentDeckImageSources);
+
+    const currentImageSources = Object.entries(currentDeckImageSources);
+
+    currentImageSources.push([jokerCardName, jokerCardImage]);
+
     const rows = [];
     const cards = currentImageSources.map(([cardName, imageSource]) => (
       <Card
