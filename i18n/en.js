@@ -104,7 +104,7 @@ export default {
   findManaWithGiftCard: 'Find your power (Mana) thanks to this gift card!',
 
   //share app
-  shareSubject: "Haka's Game Ludocoach",
+  shareSubject: "The Haka's Game Ludocoach",
   shareMessage: `Find your power (Mana) thanks to the Haka's Game free app!`,
 
   //authors
