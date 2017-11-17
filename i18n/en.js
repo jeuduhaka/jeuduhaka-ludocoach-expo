@@ -2,8 +2,8 @@ export default {
   loading: 'loading',
 
   //Jeu
-  hakaGame: "Haka's Game",
-  guidedByLudocoach: "guided by ludocoach's Tehotu",
+  hakaGame: "The Haka's Game",
+  guidedByLudocoach: 'guided by the ludocoach Tehotu',
   play3Moves: 'Play with 3 moves',
   play1Move: 'Play with 1 move',
   accessTraining: 'Access to trainings',
@@ -104,7 +104,7 @@ export default {
   findManaWithGiftCard: 'Find your power (Mana) thanks to this gift card!',
 
   //share app
-  shareSubject: "Télécharge l'appli gratuite Le Jeu du Haka Ludocoach",
+  shareSubject: "Haka's Game Ludocoach",
   shareMessage: `Find your power (Mana) thanks to the Haka's Game free app!`,
 
   //authors

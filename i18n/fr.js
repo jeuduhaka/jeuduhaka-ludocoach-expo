@@ -107,7 +107,7 @@ export default {
     'Retrouve ton pouvoir (Mana) grâce à cette carte cadeau !',
 
   //share app
-  shareSubject: "Télécharge l'appli gratuite Le Jeu du Haka Ludocoach",
+  shareSubject: 'Le Jeu du Haka Ludocoach',
   shareMessage: `Retrouve ton pouvoir (Mana) grâce à l'appli gratuite du Jeu du Haka !`,
 
   //authors
