@@ -11,11 +11,11 @@ export default {
       'https://s3.eu-west-2.amazonaws.com/frqs-jdh/videos/protection.mp4'
     // videoSource: require('../assets/videos/courage.mp4')
   },
-  mouvement: {
+  movement: {
     name: 'Mouvement',
     videoSource:
       'https://s3.eu-west-2.amazonaws.com/frqs-jdh/videos/protection.mp4'
-    // videoSource: require('../assets/videos/mouvement.mp4')
+    // videoSource: require('../assets/videos/movement.mp4')
   },
   patience: {
     name: 'Patience',
@@ -40,11 +40,11 @@ export default {
     videoSource:
       'https://s3.eu-west-2.amazonaws.com/frqs-jdh/videos/protection.mp4'
   },
-  unite: {
+  unity: {
     name: 'Unité',
     videoSource:
       'https://s3.eu-west-2.amazonaws.com/frqs-jdh/videos/protection.mp4'
-    // videoSource: require('../assets/videos/unite.mp4')
+    // videoSource: require('../assets/videos/unity.mp4')
   },
   joker: {
     name: 'Joker orange',

@@ -1,56 +1,56 @@
 export default {
-  amour: {
+  love: {
     name: 'Amour',
     videoSource:
-      'https://s3.eu-west-2.amazonaws.com/frqs-jdh/videos/confiance.mp4'
-    // videoSource: require('../assets/videos/amour.mp4')
+      'https://s3.eu-west-2.amazonaws.com/frqs-jdh/videos/confidence.mp4'
+    // videoSource: require('../assets/videos/love.mp4')
   },
-  calme: {
+  calm: {
     name: 'Calme',
     videoSource:
-      'https://s3.eu-west-2.amazonaws.com/frqs-jdh/videos/confiance.mp4'
-    // videoSource: require('../assets/videos/calme.mp4')
+      'https://s3.eu-west-2.amazonaws.com/frqs-jdh/videos/confidence.mp4'
+    // videoSource: require('../assets/videos/calm.mp4')
   },
-  confiance: {
+  confidence: {
     name: 'Dégoût',
     videoSource:
-      'https://s3.eu-west-2.amazonaws.com/frqs-jdh/videos/confiance.mp4'
-    // videoSource: require('../assets/videos/confiance.mp4')
+      'https://s3.eu-west-2.amazonaws.com/frqs-jdh/videos/confidence.mp4'
+    // videoSource: require('../assets/videos/confidence.mp4')
   },
-  energie: {
+  energy: {
     name: 'Doute',
     videoSource:
-      'https://s3.eu-west-2.amazonaws.com/frqs-jdh/videos/confiance.mp4'
-    // videoSource: require('../assets/videos/energie.mp4')
+      'https://s3.eu-west-2.amazonaws.com/frqs-jdh/videos/confidence.mp4'
+    // videoSource: require('../assets/videos/energy.mp4')
   },
   estimedesoi: {
     name: 'Estime de soi',
     videoSource:
-      'https://s3.eu-west-2.amazonaws.com/frqs-jdh/videos/confiance.mp4'
-    // videoSource: require('../assets/videos/estime-de-soi.mp4')
+      'https://s3.eu-west-2.amazonaws.com/frqs-jdh/videos/confidence.mp4'
+    // videoSource: require('../assets/videos/self-esteem.mp4')
   },
-  force: {
+  strength: {
     name: 'Force',
     videoSource:
-      'https://s3.eu-west-2.amazonaws.com/frqs-jdh/videos/confiance.mp4'
-    // videoSource: require('../assets/videos/force.mp4')
+      'https://s3.eu-west-2.amazonaws.com/frqs-jdh/videos/confidence.mp4'
+    // videoSource: require('../assets/videos/strength.mp4')
   },
-  joie: {
+  joy: {
     name: 'Joie',
     videoSource:
-      'https://s3.eu-west-2.amazonaws.com/frqs-jdh/videos/confiance.mp4'
-    // videoSource: require('../assets/videos/joie.mp4')
+      'https://s3.eu-west-2.amazonaws.com/frqs-jdh/videos/confidence.mp4'
+    // videoSource: require('../assets/videos/joy.mp4')
   },
-  paix: {
+  peace: {
     name: 'Paix',
     videoSource:
-      'https://s3.eu-west-2.amazonaws.com/frqs-jdh/videos/confiance.mp4'
+      'https://s3.eu-west-2.amazonaws.com/frqs-jdh/videos/confidence.mp4'
   },
   joker: {
     name: 'Joker vert',
     videoSource:
-      'https://s3.eu-west-2.amazonaws.com/frqs-jdh/videos/confiance.mp4'
-    // videoSource: require('../assets/videos/joker-vert.mp4')
+      'https://s3.eu-west-2.amazonaws.com/frqs-jdh/videos/confidence.mp4'
+    // videoSource: require('../assets/videos/joker-green.mp4')
   }
   // 'Abandon',
   // 'Colère',

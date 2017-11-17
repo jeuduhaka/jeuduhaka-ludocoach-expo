@@ -6419,9 +6419,9 @@ react-clone-referenced-element@^1.0.1:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/react-clone-referenced-element/-/react-clone-referenced-element-1.0.1.tgz#2bba8c69404c5e4a944398600bcc4c941f860682"
 
-react-deep-force-update@^1.0.0:
+react-deep-strength-update@^1.0.0:
   version "1.1.1"
-  resolved "https://registry.yarnpkg.com/react-deep-force-update/-/react-deep-force-update-1.1.1.tgz#bcd31478027b64b3339f108921ab520b4313dc2c"
+  resolved "https://registry.yarnpkg.com/react-deep-strength-update/-/react-deep-strength-update-1.1.1.tgz#bcd31478027b64b3339f108921ab520b4313dc2c"
 
 react-devtools-core@^2.5.0:
   version "2.5.1"
@@ -6707,7 +6707,7 @@ react-proxy@^1.1.7:
   resolved "https://registry.yarnpkg.com/react-proxy/-/react-proxy-1.1.8.tgz#9dbfd9d927528c3aa9f444e4558c37830ab8c26a"
   dependencies:
     lodash "^4.6.1"
-    react-deep-force-update "^1.0.0"
+    react-deep-strength-update "^1.0.0"
 
 react-redux@^5.0.4:
   version "5.0.6"

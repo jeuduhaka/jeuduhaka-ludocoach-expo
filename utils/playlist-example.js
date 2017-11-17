@@ -519,7 +519,7 @@ class App extends React.Component {
         <View style={styles.space} />
         <View style={styles.videoContainer}>
           <Video
-            // source={{ uri: 'https://s3.eu-west-2.amazonaws.com/frqs-jdh/videos/confiance.mp4' }}
+            // source={{ uri: 'https://s3.eu-west-2.amazonaws.com/frqs-jdh/videos/confidence.mp4' }}
             ref={this._mountVideo}
             style={[
               styles.video,

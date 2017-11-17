@@ -95,7 +95,7 @@ const CustomDrawerContentComponent = props => {
         width: undefined,
         height: undefined,
       }}
-      source={require('../assets/images/motif-estime-de-soi-alpha-0.1.png')}>
+      source={require('../assets/images/motif-self-esteem-alpha-0.1.png')}>
       <ScrollView
         style={{ flex: 1, backgroundColor: 'rgba(247, 148, 28, 0.5)' }}>
         <Image
