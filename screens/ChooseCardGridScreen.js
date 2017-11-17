@@ -65,7 +65,6 @@ class ChooseCardGridScreen extends React.Component {
 
     const rows = [];
     const cards = currentImageSources.map(([cardName, imageSource]) => {
-      console.log(cardName);
       return (
         <Card
           key={cardName}
