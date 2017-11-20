@@ -35,10 +35,12 @@ export default {
   sendGiftCardLabel: 'Envoyer une carte cadeau',
   sendGreetingCardLabel: 'Envoyer une carte de voeux',
   shareAppLabel: "Partager l'appli",
+  contactUs: 'Nous contacter',
   authorsTitle: 'Auteurs',
   gamesListTitle: 'Jeux de Marc Kucharz',
   acknowledgementsMenu: 'Remerciements',
   acknowledgementsText: 'Remerciements à ',
+  onFacebook: 'Sur Facebook',
   developedBy: 'Développé par',
 
   //Cartes

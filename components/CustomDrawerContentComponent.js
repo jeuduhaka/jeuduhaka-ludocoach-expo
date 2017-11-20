@@ -210,6 +210,19 @@ const CustomDrawerContentComponent = props => {
               <Text style={[styles.label]}>{I18n.t('shareAppLabel')}</Text>
             </View>
           </TouchableItem>
+          <TouchableItem
+            onPress={() =>
+              Linking.openURL(
+                'mailto:contact@jeuduhaka.com?subject=Jeu du Haka Ludocoach app'
+              )}
+            delayPressIn={0}>
+            <View style={[styles.item]}>
+              <View style={[styles.icon, styles.inactiveIcon]}>
+                <FontAwesome name={'envelope'} size={18} />
+              </View>
+              <Text style={[styles.label]}>{I18n.t('contactUs')}</Text>
+            </View>
+          </TouchableItem>
           <Separator />
           <TouchableItem
             onPress={() => navigation.navigate('Authors')}
@@ -243,7 +256,7 @@ const CustomDrawerContentComponent = props => {
               <View style={[styles.icon, styles.inactiveIcon]}>
                 <Entypo name={'facebook'} size={18} />
               </View>
-              <Text style={[styles.label]}>Facebook</Text>
+              <Text style={[styles.label]}>{I18n.t('onFacebook')}</Text>
             </View>
           </TouchableItem>
           <TouchableItem
@@ -253,7 +266,7 @@ const CustomDrawerContentComponent = props => {
               <View style={[styles.icon, styles.inactiveIcon]}>
                 <FontAwesome name="globe" size={18} />
               </View>
-              <Text style={[styles.label]}>Le Jeu du Haka</Text>
+              <Text style={[styles.label]}>jeuduhaka.com</Text>
             </View>
           </TouchableItem>
           <TouchableItem
@@ -263,7 +276,7 @@ const CustomDrawerContentComponent = props => {
               <View style={[styles.icon, styles.inactiveIcon]}>
                 <FontAwesome name="globe" size={18} />
               </View>
-              <Text style={[styles.label]}>Marc Kucharz</Text>
+              <Text style={[styles.label]}>marckucharz.com</Text>
             </View>
           </TouchableItem>
           <TouchableItem
@@ -273,16 +286,19 @@ const CustomDrawerContentComponent = props => {
               <View style={[styles.icon, styles.inactiveIcon]}>
                 <FontAwesome name="globe" size={18} />
               </View>
-              <Text style={[styles.label]}>Ludocoaching</Text>
+              <Text style={[styles.label]}>ludocoaching.com</Text>
             </View>
           </TouchableItem>
           <View style={[styles.item, { alignItems: 'center' }]}>
-            <Text style={[styles.label, styles.developedByText]}>
-              {I18n.t('developedBy')} Florent Roques
-            </Text>
-          </View>
-          <View style={[styles.item, { alignItems: 'center' }]}>
-            <Text style={[styles.label, styles.developedByText]}>
+            <Text
+              style={[styles.label, styles.developedByText]}
+              onPress={() =>
+                Linking.openURL(
+                  'mailto:roques.florent+jeuduhakaludoapp@gmail.com?subject=Jeu du Haka Ludocoach app'
+                )}>
+              {I18n.t('developedBy')} Florent Roques{' '}
+              {`
+                `}{' '}
               Version 1.0.5
             </Text>
           </View>

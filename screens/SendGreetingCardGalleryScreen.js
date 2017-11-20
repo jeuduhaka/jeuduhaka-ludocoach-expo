@@ -10,14 +10,11 @@ import {
   ActionSheetIOS,
   Dimensions,
 } from 'react-native';
-import { FontAwesome } from '@expo/vector-icons';
 import Carousel, { Pagination } from 'react-native-snap-carousel';
-const { height, width } = Dimensions.get('window');
 
 import { Button } from '../components/common';
 import BackgroundWave from '../components/BackgroundWave';
 import MenuButton from '../components/MenuButton';
-import BackButton from '../components/BackButton';
 import I18n from '../i18n';
 import carouselStyles, { colors } from '../components/CardCarousel/index.style';
 import sliderEntryStyles, {
@@ -25,6 +22,8 @@ import sliderEntryStyles, {
   itemWidth,
 } from '../components/CarouselSliderEntryTextOnImage/SliderEntryTextOnImage.style';
 import cardImageSources from '../stores/CardImageSources';
+
+const { width } = Dimensions.get('window');
 
 const shareFailureCallback = error => {
   __DEV__ && console.log('sharing failed');

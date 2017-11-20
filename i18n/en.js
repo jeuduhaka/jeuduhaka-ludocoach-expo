@@ -35,10 +35,12 @@ export default {
   sendGiftCardLabel: 'Send a gift card',
   sendGreetingCardLabel: 'Send a greeting card',
   shareAppLabel: 'Share the app',
+  contactUs: 'Contact us',
   authorsTitle: 'Authors',
   gamesListTitle: "Marc Kucharz's Games",
   acknowledgementsMenu: 'Acknowledgements',
   acknowledgementsText: 'Thanks to',
+  onFacebook: 'On Facebook',
   developedBy: 'Developed by',
 
   //Cartes
