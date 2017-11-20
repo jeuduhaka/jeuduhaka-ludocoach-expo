@@ -299,7 +299,7 @@ const CustomDrawerContentComponent = props => {
               {I18n.t('developedBy')} Florent Roques{' '}
               {`
                 `}{' '}
-              Version 1.0.5
+              Version {Expo.Constants.manifest.version}
             </Text>
           </View>
         </View>
