@@ -18,36 +18,45 @@ class GiftCardsScreen extends React.Component {
         />
         <BackgroundWave
           style={{ justifyContent: 'center', alignItems: 'center' }}>
-          <Text
-            style={[
-              styles.blackText,
-              {
-                paddingBottom: 20,
-                fontWeight: 'bold',
-                fontSize: 20,
-                backgroundColor: 'transparent',
-              },
-            ]}>
-            {I18n.t('sendGiftCard')}
-          </Text>
-          <View>
+          <View
+            style={{
+              flex: 3 / 10,
+              alignItems: 'center',
+              justifyContent: 'flex-end',
+            }}>
             <Text
               style={[
                 styles.blackText,
-                styles.textWithPaddingTop,
-                { backgroundColor: 'transparent' },
+                {
+                  // paddingBottom: 20,
+                  fontWeight: 'bold',
+                  fontSize: 20,
+                  backgroundColor: 'transparent',
+                },
               ]}>
-              {I18n.t('sendGiftCardTextPart1')}
+              {I18n.t('sendGiftCard')}
             </Text>
-            <Text
-              style={[
-                styles.blackText,
-                styles.textWithPaddingTop,
-                { backgroundColor: 'transparent' },
-              ]}>
-              {I18n.t('sendGiftCardTextPart2')}
-            </Text>
-            <View style={styles.nextButtonContainer}>
+          </View>
+          <View style={{ flex: 7 / 10 }}>
+            <View style={{ flex: 7 / 10 }}>
+              <Text
+                style={[
+                  styles.blackText,
+                  styles.textWithPaddingTop,
+                  { backgroundColor: 'transparent' },
+                ]}>
+                {I18n.t('sendGiftCardTextPart1')}
+              </Text>
+              <Text
+                style={[
+                  styles.blackText,
+                  styles.textWithPaddingTop,
+                  { backgroundColor: 'transparent' },
+                ]}>
+                {I18n.t('sendGiftCardTextPart2')}
+              </Text>
+            </View>
+            <View style={{ flex: 3 / 10 }}>
               <Button
                 onPress={() =>
                   this.props.navigation.navigate('SendGiftCardGallery')}>

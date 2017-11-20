@@ -76,9 +76,9 @@ class SendGiftCardGalleryScreen extends React.Component {
           // url: Expo.Asset.fromModule(
           //   require('../assets/images/iphone-jeu-du-haka.png')
           // ).uri,
-          url: `https://www.jeuduhaka.com/gift/${language}/${currentGiftCardName}`,
-          message: I18n.t('findManaWithGiftCard'),
           subject: `${I18n.t('giftCard')} ${I18n.t(currentGiftCardName)}`,
+          message: I18n.t('findManaWithGiftCard'),
+          url: `https://www.jeuduhaka.com/gift/${language}/${currentGiftCardName}`,
           excludedActivityTypes: [
             'com.apple.mobilenotes.SharingExtension',
             'com.google.Drive.ShareExtension',

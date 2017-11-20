@@ -88,8 +88,8 @@ export default {
   powerParenthesis: ' (pouvoir).',
 
   //advice section
-  firstAdvice: 'Avant chaque movement, respirez bien.',
-  secondAdvice: `Si vous n'avez pas le temps de jouer au mode "3 mouvements", utilisez le mode "1 movement". Cette version vous permettra de changer d'état rapidement.`,
+  firstAdvice: 'Avant chaque mouvement, respirez bien.',
+  secondAdvice: `Si vous n'avez pas le temps de jouer au mode "3 mouvements", utilisez le mode "1 mouvement". Cette version vous permettra de changer d'état rapidement.`,
   thirdAdvice: 'Après avoir expérimenté le Jeu du Haka, dites-vous :',
   adviceFormula: '"Le pouvoir est en moi !"',
   adviceFormulaExplanationPart1: 'Cette formule vous permettra de réactiver',
@@ -108,7 +108,9 @@ export default {
     'Retrouve ton pouvoir (Mana) grâce à cette carte cadeau !',
 
   //greeting cards
+  greetingText: 'Envoyez une carte cadeau pour souhaiter une bonne année !',
   sendThisGreetingCard: 'Envoyer cette carte de voeux',
+  greetingHappyNewYear: 'Bonne année !',
 
   //share app
   shareSubject: 'Le Jeu du Haka Ludocoach',

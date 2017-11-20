@@ -8,9 +8,11 @@ import {
   Platform,
   Share,
   ActionSheetIOS,
+  Dimensions,
 } from 'react-native';
 import { FontAwesome } from '@expo/vector-icons';
 import Carousel, { Pagination } from 'react-native-snap-carousel';
+const { height, width } = Dimensions.get('window');
 
 import { Button } from '../components/common';
 import BackgroundWave from '../components/BackgroundWave';
@@ -70,15 +72,17 @@ class SendGreetingCardGalleryScreen extends React.Component {
 
     const language = I18n.locale.split('-')[0].toLowerCase();
 
+    //TODO see to use only Share.share for both platforms
     if (Platform.OS === 'ios') {
       ActionSheetIOS.showShareActionSheetWithOptions(
         {
           // url: Expo.Asset.fromModule(
           //   require('../assets/images/iphone-jeu-du-haka.png')
           // ).uri,
-          url: `https://www.jeuduhaka.com/greeting/${language}/${currentGiftCardName}`,
-          message: I18n.t('findManaWithGiftCard'),
-          subject: `${I18n.t('giftCard')} ${I18n.t(currentGiftCardName)}`,
+          message: `${I18n.t('greetingHappyNewYear')} ${I18n.t(
+            'findManaWithGiftCard'
+          )}`,
+          url: `https://www.jeuduhaka.com/gift/newyear/${language}/${currentGiftCardName}`,
           excludedActivityTypes: [
             'com.apple.mobilenotes.SharingExtension',
             'com.google.Drive.ShareExtension',
@@ -92,10 +96,10 @@ class SendGreetingCardGalleryScreen extends React.Component {
     } else if (Platform.OS === 'android') {
       Share.share(
         {
-          title: `${I18n.t('giftCard')} ${I18n.t(currentGiftCardName)}`,
-          message:
-            I18n.t('findManaWithGiftCard') +
-            `https://www.jeuduhaka.com/greeting/${language}/${currentGiftCardName}`,
+          message: `${I18n.t('greetingHappyNewYear')} ${I18n.t(
+            'findManaWithGiftCard'
+          )}
+            https://www.jeuduhaka.com/gift/newyear/${language}/${currentGiftCardName}`,
         },
         {}
       );
@@ -105,11 +109,28 @@ class SendGreetingCardGalleryScreen extends React.Component {
   render() {
     return (
       <View style={{ flex: 1 }}>
-        <BackButton tintColor={'#014DA2'} />
+        <MenuButton
+          onPress={() => {
+            this.props.navigation.navigate('DrawerOpen');
+          }}
+        />
         <BackgroundWave>
+          <View style={{ flex: 1 / 3, justifyContent: 'flex-end' }}>
+            <Text
+              style={{
+                fontFamily: 'charcuterie-sans-inline',
+                fontSize: width * 0.07,
+                textAlign: 'center',
+                color: '#014DA2',
+                paddingTop: 10,
+                paddingHorizontal: 10,
+              }}>
+              {I18n.t('greetingText')}
+            </Text>
+          </View>
           <ScrollView
             horizontal
-            style={carouselStyles.scrollview}
+            style={{ flex: 1 / 3 }}
             contentContainerStyle={carouselStyles.scrollviewContentContainer}
             indicatorStyle={'white'}
             scrollEventThrottle={200}
@@ -142,7 +163,7 @@ class SendGreetingCardGalleryScreen extends React.Component {
           <View
             style={{
               flex: 1 / 3,
-              // backgroundColor: 'orange'
+              // backgroundColor: 'orange',
             }}>
             <Button title="Envoyer" onPress={this.sendCard}>
               {I18n.t('sendThisGreetingCard')}

@@ -27,7 +27,8 @@ class AdviceScreen extends React.Component {
         />
         <BackgroundWave
           style={{
-            justifyContent: 'flex-start',
+            flex: 1,
+            justifyContent: 'center',
             alignItems: 'center',
             padding: 10,
           }}>

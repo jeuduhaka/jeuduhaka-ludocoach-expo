@@ -105,7 +105,9 @@ export default {
   findManaWithGiftCard: 'Find your power (Mana) thanks to this gift card!',
 
   //greeting cards
+  greetingText: 'Send a gift card to wish a Happy New year!',
   sendThisGreetingCard: 'Send this greeting card',
+  greetingHappyNewYear: 'Happy New Year!',
 
   //share app
   shareSubject: "The Haka's Game Ludocoach",

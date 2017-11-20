@@ -41,8 +41,8 @@ class GamesListScreen extends React.Component {
           <Text>Je(u) Vote</Text>
           <Text>Le Jeu des Accords toltèques</Text>
           <Text>Le Jeu de la Paix intérieure</Text>
-          <Text>Réussite intérieure, le jeu</Text>
-          <Text>Va au bout de tes rêves ! Jeu</Text>
+          <Text>Réussite intérieure, le Jeu</Text>
+          <Text>Va au bout de tes rêves ! Le Jeu</Text>
           <Text>Le Jeu du plus malin que le diable</Text>
           <Text>Le Jeu du Ho’oponopono</Text>
           <Text>etc...</Text>
