@@ -110,6 +110,7 @@ export default {
   greetingText: 'Send a gift card to wish a Happy New year!',
   sendThisGreetingCard: 'Send this greeting card',
   greetingHappyNewYear: 'Happy New Year!',
+  greetingLetsPlay: "Let's play!",
 
   //share app
   shareSubject: "The Haka's Game Ludocoach",

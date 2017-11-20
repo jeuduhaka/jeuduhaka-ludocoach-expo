@@ -78,6 +78,9 @@ class SendGreetingCardGalleryScreen extends React.Component {
           // url: Expo.Asset.fromModule(
           //   require('../assets/images/iphone-jeu-du-haka.png')
           // ).uri,
+          subject: `${I18n.t('greetingHappyNewYear')} ${I18n.t(
+            'greetingLetsPlay'
+          )}`,
           message: `${I18n.t('greetingHappyNewYear')} ${I18n.t(
             'findManaWithGiftCard'
           )}`,
@@ -95,6 +98,9 @@ class SendGreetingCardGalleryScreen extends React.Component {
     } else if (Platform.OS === 'android') {
       Share.share(
         {
+          title: `${I18n.t('greetingHappyNewYear')} ${I18n.t(
+            'greetingLetsPlay'
+          )}`,
           message: `${I18n.t('greetingHappyNewYear')} ${I18n.t(
             'findManaWithGiftCard'
           )}

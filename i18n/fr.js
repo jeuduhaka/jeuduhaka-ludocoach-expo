@@ -113,6 +113,7 @@ export default {
   greetingText: 'Envoyez une carte cadeau pour souhaiter une bonne année !',
   sendThisGreetingCard: 'Envoyer cette carte de voeux',
   greetingHappyNewYear: 'Bonne année !',
+  greetingLetsPlay: 'A vous de jouer !',
 
   //share app
   shareSubject: 'Le Jeu du Haka Ludocoach',
