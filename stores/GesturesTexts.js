@@ -31,7 +31,7 @@ export default {
     preparation:
       'Jambes ancrées au sol, plus écartées que la largeur des épaules. Mains sur les cuisses.',
     prevention:
-      'Jambes ancrées au sol, plus écartées   que la largeur des épaules. Un bras tendu vers l’avant main ouverte et l’autre bras fléchi, main fermée à la hanche.',
+      'Jambes ancrées au sol, plus écartées que la largeur des épaules. Un bras tendu vers l’avant main ouverte et l’autre bras fléchi, main fermée à la hanche.',
     protection:
       'Jambes ancrées au sol, plus écartées que la largeur des épaules. Les bras parallèles devant vous. Mains fermées.',
     unity:
