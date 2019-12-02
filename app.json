@@ -32,6 +32,9 @@
       "versionCode": 6,
       "icon": "./assets/icons/jeuduhaka-app-icon-512x512.png",
       "permissions": []
+    },
+    "updates": {
+      "fallbackToCacheTimeout": 0
     }
   }
 }

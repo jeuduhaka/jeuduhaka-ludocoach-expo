@@ -1,20 +1,8 @@
-import React from '/utils/enhancedReact';
-import {
-  AsyncStorage,
-  View,
-  StyleSheet,
-  StatusBar,
-  Platform,
-} from 'react-native';
+import { AsyncStorage, View, StyleSheet, StatusBar, Platform, Text } from 'react-native';
 import { Provider } from 'react-redux';
 import Expo, { Font, AppLoading, KeepAwake } from 'expo';
 import I18n from 'ex-react-native-i18n';
-import {
-  MaterialIcons,
-  Foundation,
-  Ionicons,
-  Entypo,
-} from '@expo/vector-icons';
+import { MaterialIcons, Foundation, Ionicons, Entypo } from '@expo/vector-icons';
 // import Sentry from 'sentry-expo';
 
 import AppWithNavigationState from './navigators/AppWithNavigationState';
@@ -22,6 +10,7 @@ import configureStore from './config/configureStore';
 // import imageSources from './stores/CardImageSources';
 // import videoSources from './stores/CardVideoSourcesLocal';
 import { cacheImages, cacheVideos, cacheFonts } from './utils/cacheAssetsAsync';
+import React from './utils/enhancedReact';
 // import DownloadManager from './utils/DownloadManager';
 
 const store = configureStore();
@@ -57,10 +46,7 @@ class App extends React.Component {
     if (__DEV__) return;
 
     try {
-      const {
-        soundObject,
-        status,
-      } = await Expo.Audio.Sound.create(
+      const { soundObject, status } = await Expo.Audio.Sound.create(
         require('./assets/sounds/normalized-tamtam-loop16bit-1min-volume-0.6.mp3'),
         {
           shouldPlay: true,
@@ -90,7 +76,10 @@ class App extends React.Component {
         <KeepAwake />
         <StatusBar hidden />
         <Provider store={store}>
-          <AppWithNavigationState />
+          <View>
+            <Text>Test</Text>
+          </View>
+          {/* <AppWithNavigationState /> */}
         </Provider>
       </View>
     );

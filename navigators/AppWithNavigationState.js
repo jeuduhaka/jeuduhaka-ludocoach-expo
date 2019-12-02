@@ -1,9 +1,9 @@
-import React from '/utils/enhancedReact';
 import { connect } from 'react-redux';
 import { BackHandler } from 'react-native';
 import PropTypes from 'prop-types';
 import { addNavigationHelpers, NavigationActions } from 'react-navigation';
 import { ActionCreators as UndoActionCreators } from 'redux-undo';
+import React from '../utils/enhancedReact';
 
 import { AppNavigator } from './AppNavigator';
 
