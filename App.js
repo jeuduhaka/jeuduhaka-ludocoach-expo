@@ -1,9 +1,10 @@
 import { AsyncStorage, View, StyleSheet, StatusBar, Platform, Text } from 'react-native';
 import { Provider } from 'react-redux';
-import Expo, { Font, AppLoading, KeepAwake } from 'expo';
+import Expo, { Font, AppLoading } from 'expo';
 import I18n from 'ex-react-native-i18n';
 import { MaterialIcons, Foundation, Ionicons, Entypo } from '@expo/vector-icons';
 // import Sentry from 'sentry-expo';
+import { useKeepAwake } from 'expo-keep-awake';
 
 import AppWithNavigationState from './navigators/AppWithNavigationState';
 import configureStore from './config/configureStore';
@@ -71,9 +72,10 @@ class App extends React.Component {
       );
     }
 
+    useKeepAwake();
+
     return (
       <View style={{ flex: 1 }}>
-        <KeepAwake />
         <StatusBar hidden />
         <Provider store={store}>
           <View>
