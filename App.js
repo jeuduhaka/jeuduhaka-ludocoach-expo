@@ -1,17 +1,19 @@
 import { AsyncStorage, View, StyleSheet, StatusBar, Platform, Text } from 'react-native';
 import { Provider } from 'react-redux';
-import Expo, { Font, AppLoading } from 'expo';
+import Expo, { AppLoading } from 'expo';
+import * as Font from 'expo-font';
 import I18n from 'ex-react-native-i18n';
 import { MaterialIcons, Foundation, Ionicons, Entypo } from '@expo/vector-icons';
 // import Sentry from 'sentry-expo';
-import { useKeepAwake } from 'expo-keep-awake';
+import { activateKeepAwake } from 'expo-keep-awake';
+import React from '/utils/enhancedReact';
 
 import AppWithNavigationState from './navigators/AppWithNavigationState';
 import configureStore from './config/configureStore';
 // import imageSources from './stores/CardImageSources';
 // import videoSources from './stores/CardVideoSourcesLocal';
 import { cacheImages, cacheVideos, cacheFonts } from './utils/cacheAssetsAsync';
-import React from './utils/enhancedReact';
+
 // import DownloadManager from './utils/DownloadManager';
 
 const store = configureStore();
@@ -72,14 +74,14 @@ class App extends React.Component {
       );
     }
 
-    useKeepAwake();
+    activateKeepAwake();
 
     return (
       <View style={{ flex: 1 }}>
         <StatusBar hidden />
         <Provider store={store}>
           <View>
-            <Text>Test</Text>
+            <Text>AppLoaded 2</Text>
           </View>
           {/* <AppWithNavigationState /> */}
         </Provider>

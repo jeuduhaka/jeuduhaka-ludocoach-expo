@@ -4,7 +4,6 @@ import { compose } from 'redux';
 import { connect } from 'react-redux';
 
 import I18n from '../i18n/';
-import App from '../App';
 import { languageChanged } from '../actions/';
 
 const ICON_COLOR = '#014DA2';
