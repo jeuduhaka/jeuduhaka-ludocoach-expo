@@ -71,7 +71,6 @@ class App extends React.Component {
       return (
         <AppLoading
           startAsync={this._cacheResourcesAsync}
-          // startAsync={this._cacheFontsAsync}
           onError={this._handleLoadingError}
           onFinish={this._handleFinishLoading}
         />
@@ -87,19 +86,10 @@ class App extends React.Component {
         <StatusBar hidden />
         <Provider store={store}>
           <AppWithNavigationState />
-          {/* <Text style={{ fontFamily: 'charcuterie-sans-inline' }}>test</Text> */}
         </Provider>
       </View>
     );
   }
-
-  _cacheFontsAsync = async () => {
-    await Font.loadAsync({
-      'charcuterie-sans-inline': require('./assets/fonts/CharcuterieSansInline-Regular.ttf'),
-    });
-    // this.setState({ isLoadingComplete: true });
-    console.log('finished loading fonts');
-  };
 
   _cacheResourcesAsync = async () => {
     try {
@@ -118,7 +108,6 @@ class App extends React.Component {
         Entypo.font,
         {
           'charcuterie-sans-inline': require('./assets/fonts/CharcuterieSansInline-Regular.ttf'),
-          // CharcuterieSansInline: require('./assets/fonts/CharcuterieSansInline-Regular.ttf'),
           'european-pi-one': require('./assets/fonts/EuropeanPiOne-Regular.ttf'),
         },
       ]);
