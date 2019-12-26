@@ -2,6 +2,7 @@ import React from '/utils/enhancedReact';
 import {
   Text,
   Image,
+  ImageBackground,
   View,
   TouchableHighlight,
   Linking,
@@ -13,20 +14,16 @@ import {
   Platform,
   Share,
 } from 'react-native';
-import Expo from 'expo';
+import Constants from 'expo-constants';
+
 import { DrawerNavigator, StackNavigator, DrawerItems } from 'react-navigation';
-import {
-  Entypo,
-  FontAwesome,
-  Foundation,
-  MaterialIcons,
-} from '@expo/vector-icons';
-import TouchableItem from 'react-navigation/src/views/TouchableItem';
+import { Entypo, FontAwesome, Foundation, MaterialIcons } from '@expo/vector-icons';
+import TouchableItem from 'react-navigation-drawer/src/views/TouchableItem';
 
 import I18n from '../i18n/';
 
 //Help for drawer menu item from react-navigation
-import DrawerNavigatorItems from 'react-navigation/src/views/Drawer/DrawerNavigatorItems.js';
+// import DrawerNavigatorItems from 'react-navigation-drawer/src/views/DrawerNavigatorItems.js';
 
 const styles = StyleSheet.create({
   item: {
@@ -88,7 +85,7 @@ const CustomDrawerContentComponent = props => {
   const { navigation, activeItemKey } = props;
 
   return (
-    <Image
+    <ImageBackground
       style={{
         flex: 1,
         resizeMode: 'cover',
@@ -96,8 +93,7 @@ const CustomDrawerContentComponent = props => {
         height: undefined,
       }}
       source={require('../assets/images/motif-self-esteem-alpha-0.1.png')}>
-      <ScrollView
-        style={{ flex: 1, backgroundColor: 'rgba(247, 148, 28, 0.5)' }}>
+      <ScrollView style={{ flex: 1, backgroundColor: 'rgba(247, 148, 28, 0.5)' }}>
         <Image
           style={{
             alignSelf: 'center',
@@ -110,14 +106,14 @@ const CustomDrawerContentComponent = props => {
         />
         {/* <DrawerItems activeTintColor={'#014DA2'} {...props} /> */}
         <View
-          style={{
-            // flex: 1,
-            // flexDirection: 'column',
-            // justifyContent: 'flex-end',
-          }}>
-          <TouchableItem
-            onPress={() => navigation.navigate('Home')}
-            delayPressIn={0}>
+          style={
+            {
+              // flex: 1,
+              // flexDirection: 'column',
+              // justifyContent: 'flex-end',
+            }
+          }>
+          <TouchableItem onPress={() => navigation.navigate('Home')} delayPressIn={0}>
             <View style={[styles.item]}>
               <View style={[styles.icon, styles.inactiveIcon]}>
                 <MaterialIcons name={'home'} size={18} />
@@ -125,9 +121,7 @@ const CustomDrawerContentComponent = props => {
               <Text style={[styles.label]}>{I18n.t('backToGame')}</Text>
             </View>
           </TouchableItem>
-          <TouchableItem
-            onPress={() => navigation.navigate('GameGoal')}
-            delayPressIn={0}>
+          <TouchableItem onPress={() => navigation.navigate('GameGoal')} delayPressIn={0}>
             <View style={[styles.item]}>
               <View style={[styles.icon, styles.inactiveIcon]}>
                 <Foundation name={'target'} size={18} />
@@ -135,9 +129,7 @@ const CustomDrawerContentComponent = props => {
               <Text style={[styles.label]}>{I18n.t('gameGoalTitle')}</Text>
             </View>
           </TouchableItem>
-          <TouchableItem
-            onPress={() => navigation.navigate('Advice')}
-            delayPressIn={0}>
+          <TouchableItem onPress={() => navigation.navigate('Advice')} delayPressIn={0}>
             <View style={[styles.item]}>
               <View style={[styles.icon, styles.inactiveIcon]}>
                 <FontAwesome name={'info-circle'} size={18} />
@@ -145,9 +137,7 @@ const CustomDrawerContentComponent = props => {
               <Text style={[styles.label]}>{I18n.t('adviceMenuTitle')}</Text>
             </View>
           </TouchableItem>
-          <TouchableItem
-            onPress={() => navigation.navigate('GiftCards')}
-            delayPressIn={0}>
+          <TouchableItem onPress={() => navigation.navigate('GiftCards')} delayPressIn={0}>
             <View style={[styles.item]}>
               <View style={[styles.icon, styles.inactiveIcon]}>
                 <FontAwesome name={'gift'} size={18} />
@@ -155,16 +145,12 @@ const CustomDrawerContentComponent = props => {
               <Text style={[styles.label]}>{I18n.t('sendGiftCardLabel')}</Text>
             </View>
           </TouchableItem>
-          <TouchableItem
-            onPress={() => navigation.navigate('SendGreetingCard')}
-            delayPressIn={0}>
+          <TouchableItem onPress={() => navigation.navigate('SendGreetingCard')} delayPressIn={0}>
             <View style={[styles.item]}>
               <View style={[styles.icon, styles.inactiveIcon]}>
                 <Entypo name={'newsletter'} size={18} />
               </View>
-              <Text style={[styles.label]}>
-                {I18n.t('sendGreetingCardLabel')}
-              </Text>
+              <Text style={[styles.label]}>{I18n.t('sendGreetingCardLabel')}</Text>
             </View>
           </TouchableItem>
           <TouchableItem
@@ -212,9 +198,8 @@ const CustomDrawerContentComponent = props => {
           </TouchableItem>
           <TouchableItem
             onPress={() =>
-              Linking.openURL(
-                'mailto:contact@jeuduhaka.com?subject=Jeu du Haka Ludocoach app'
-              )}
+              Linking.openURL('mailto:contact@jeuduhaka.com?subject=Jeu du Haka Ludocoach app')
+            }
             delayPressIn={0}>
             <View style={[styles.item]}>
               <View style={[styles.icon, styles.inactiveIcon]}>
@@ -224,33 +209,24 @@ const CustomDrawerContentComponent = props => {
             </View>
           </TouchableItem>
           <Separator />
-          <TouchableItem
-            onPress={() => navigation.navigate('Authors')}
-            delayPressIn={0}>
+          <TouchableItem onPress={() => navigation.navigate('Authors')} delayPressIn={0}>
             <View style={[styles.item]}>
               <Text style={[styles.label]}>{I18n.t('authorsTitle')}</Text>
             </View>
           </TouchableItem>
-          <TouchableItem
-            onPress={() => navigation.navigate('GamesList')}
-            delayPressIn={0}>
+          <TouchableItem onPress={() => navigation.navigate('GamesList')} delayPressIn={0}>
             <View style={[styles.item]}>
               <Text style={[styles.label]}>{I18n.t('gamesListTitle')}</Text>
             </View>
           </TouchableItem>
-          <TouchableItem
-            onPress={() => navigation.navigate('Thanks')}
-            delayPressIn={0}>
+          <TouchableItem onPress={() => navigation.navigate('Thanks')} delayPressIn={0}>
             <View style={[styles.item]}>
-              <Text style={[styles.label]}>
-                {I18n.t('acknowledgementsMenu')}
-              </Text>
+              <Text style={[styles.label]}>{I18n.t('acknowledgementsMenu')}</Text>
             </View>
           </TouchableItem>
           <Separator />
           <TouchableItem
-            onPress={() =>
-              Linking.openURL('https://www.facebook.com/jeuduhaka')}
+            onPress={() => Linking.openURL('https://www.facebook.com/jeuduhaka')}
             delayPressIn={0}>
             <View style={[styles.item]}>
               <View style={[styles.icon, styles.inactiveIcon]}>
@@ -295,7 +271,8 @@ const CustomDrawerContentComponent = props => {
               onPress={() =>
                 Linking.openURL(
                   'mailto:roques.florent+jeuduhakaludoapp@gmail.com?subject=Jeu du Haka Ludocoach app'
-                )}>
+                )
+              }>
               {I18n.t('developedBy')} Florent Roques{' '}
               {`
                 `}{' '}
@@ -304,7 +281,7 @@ const CustomDrawerContentComponent = props => {
           </View>
         </View>
       </ScrollView>
-    </Image>
+    </ImageBackground>
   );
 };
 

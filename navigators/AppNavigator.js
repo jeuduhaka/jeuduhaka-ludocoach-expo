@@ -13,8 +13,9 @@ import {
 } from 'react-native';
 import { connect } from 'react-redux';
 import { Entypo, FontAwesome } from '@expo/vector-icons';
-import { DrawerNavigator, StackNavigator, DrawerItems } from 'react-navigation';
-import TouchableItem from 'react-navigation/src/views/TouchableItem';
+import { DrawerItems } from 'react-navigation';
+import { createStackNavigator } from 'react-navigation-stack';
+import { createDrawerNavigator } from 'react-navigation-drawer';
 
 import I18n from '../i18n/';
 import CustomDrawerContentComponent from '../components/CustomDrawerContentComponent';
@@ -69,7 +70,7 @@ const styles = StyleSheet.create({
   },
 });
 
-const GiftsCardsStack = StackNavigator(
+const GiftsCardsStack = createStackNavigator(
   {
     Intro: {
       screen: GiftCardsScreen,
@@ -84,7 +85,7 @@ const GiftsCardsStack = StackNavigator(
   }
 );
 
-const HomeWithDrawer = DrawerNavigator(
+const HomeWithDrawer = createDrawerNavigator(
   {
     Home: {
       screen: HomeScreen,
@@ -118,7 +119,7 @@ const HomeWithDrawer = DrawerNavigator(
   }
 );
 
-export const AppNavigator = StackNavigator(
+export const AppNavigator = createStackNavigator(
   {
     Home: { screen: HomeWithDrawer },
     Second3Moves: { screen: SecondScreen3Moves },

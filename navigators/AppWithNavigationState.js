@@ -1,11 +1,13 @@
 import { connect } from 'react-redux';
 import { BackHandler } from 'react-native';
 import PropTypes from 'prop-types';
-import { addNavigationHelpers, NavigationActions } from 'react-navigation';
+import { NavigationActions, createAppContainer } from 'react-navigation';
 import { ActionCreators as UndoActionCreators } from 'redux-undo';
 import React from '../utils/enhancedReact';
 
 import { AppNavigator } from './AppNavigator';
+
+const AppContainer = createAppContainer(AppNavigator);
 
 //ref https://reactnavigation.org/docs/guides/redux#Handling-the-Hardware-Back-Button-in-Android
 class AppWithNavigationState extends React.Component {
@@ -32,13 +34,14 @@ class AppWithNavigationState extends React.Component {
   }
 
   render() {
-    const { dispatch, nav, language } = this.props;
-    const navigation = addNavigationHelpers({
-      dispatch,
-      state: nav,
-    });
+    const { dispatch, nav } = this.props;
 
-    return <AppNavigator navigation={navigation} screenProps={{ language }} />;
+    // const navigation = addNavigationHelpers({
+    //   dispatch,
+    //   state: nav,
+    // });
+
+    return <AppContainer />;
   }
 }
 

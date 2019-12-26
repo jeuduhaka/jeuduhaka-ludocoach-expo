@@ -1,8 +1,8 @@
 import React from '/utils/enhancedReact';
-import { Text, Image, Linking, View, Platform } from 'react-native';
+import { Text, Image, ImageBackground, Linking, View, Platform } from 'react-native';
 import { compose } from 'redux';
 import { connect } from 'react-redux';
-import { Asset } from 'expo';
+import { Asset } from 'expo-asset';
 import { Ionicons } from '@expo/vector-icons';
 import flat from 'flat';
 
@@ -38,12 +38,9 @@ class HomeScreen extends React.Component {
       headerMode: 'float',
       drawerLabel: I18n.t('backToGame', { locale: screenProps.language }),
       drawerIcon: ({ tintColor }) => {
-        const iconName =
-          Platform.OS === 'ios' ? 'ios-arrow-forward' : 'md-arrow-forward';
+        const iconName = Platform.OS === 'ios' ? 'ios-arrow-forward' : 'md-arrow-forward';
 
-        return (
-          <Ionicons name={iconName} size={18} style={{ color: '#014DA2' }} />
-        );
+        return <Ionicons name={iconName} size={18} style={{ color: '#014DA2' }} />;
       },
     };
   };
@@ -109,7 +106,7 @@ class HomeScreen extends React.Component {
           }}
         />
         <LanguageFlagButton />
-        <Image
+        <ImageBackground
           style={styles.backgroundImage}
           source={require('../assets/images/fond-bleu-vague-1980x1980.jpg')}>
           <View style={styles.navigationHeader} />
@@ -135,20 +132,14 @@ class HomeScreen extends React.Component {
                   <View style={styles.homeActionButton}>
                     <Button
                       title={I18n.t('play3Moves')}
-                      onPress={() =>
-                        this.props.gameModeChosen(
-                          ActionTypes.GAME_MODE_3_MOVES
-                        )}>
+                      onPress={() => this.props.gameModeChosen(ActionTypes.GAME_MODE_3_MOVES)}>
                       {I18n.t('play3Moves')}
                     </Button>
                   </View>
                   <View style={styles.homeActionButton}>
                     <Button
                       title={I18n.t('play1Move')}
-                      onPress={() =>
-                        this.props.gameModeChosen(
-                          ActionTypes.GAME_MODE_1_MOVE
-                        )}>
+                      onPress={() => this.props.gameModeChosen(ActionTypes.GAME_MODE_1_MOVE)}>
                       {I18n.t('play1Move')}
                     </Button>
                   </View>
@@ -171,16 +162,14 @@ class HomeScreen extends React.Component {
               )}
             </View>
             <View style={styles.copyrightContainer}>
-              <Text style={styles.copyright}>
-                Hinenao Kimitete - Tehotu Tauraatua
-              </Text>
+              <Text style={styles.copyright}>Hinenao Kimitete - Tehotu Tauraatua</Text>
               <Text style={styles.copyright}>Marc Kucharz</Text>
               <Text style={[styles.copyright, { paddingTop: 10 }]}>
                 © Le Jeu du Haka - {I18n.t('allRightsReserved')}
               </Text>
             </View>
           </View>
-        </Image>
+        </ImageBackground>
       </View>
     );
   }

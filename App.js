@@ -3,7 +3,7 @@ import { Provider } from 'react-redux';
 import Expo, { AppLoading } from 'expo';
 import * as Font from 'expo-font';
 import I18n from 'ex-react-native-i18n';
-import { MaterialIcons, Foundation, Ionicons, Entypo } from '@expo/vector-icons';
+import { MaterialIcons, Foundation, Ionicons, Entypo, FontAwesome } from '@expo/vector-icons';
 // import Sentry from 'sentry-expo';
 import { activateKeepAwake } from 'expo-keep-awake';
 import React from '/utils/enhancedReact';
@@ -17,6 +17,24 @@ import { cacheImages, cacheVideos, cacheFonts } from './utils/cacheAssetsAsync';
 // import DownloadManager from './utils/DownloadManager';
 
 const store = configureStore();
+
+async function _loadSoundAsync() {
+  if (__DEV__) return;
+
+  try {
+    const { soundObject, status } = await Expo.Audio.Sound.create(
+      require('./assets/sounds/normalized-tamtam-loop16bit-1min-volume-0.6.mp3'),
+      {
+        shouldPlay: true,
+        isLooping: true,
+      }
+    );
+    // Your sound is playing!
+  } catch (error) {
+    // An error occurred!
+    console.warn(error);
+  }
+}
 
 class App extends React.Component {
   // static sound = new Expo.Audio.Sound();
@@ -45,34 +63,22 @@ class App extends React.Component {
     if (this.defaultHandler) this.defaultHandler(error, isFatal);
   }
 
-  async loadSoundAsync() {
-    if (__DEV__) return;
-
-    try {
-      const { soundObject, status } = await Expo.Audio.Sound.create(
-        require('./assets/sounds/normalized-tamtam-loop16bit-1min-volume-0.6.mp3'),
-        {
-          shouldPlay: true,
-          isLooping: true,
-        }
-      );
-      // Your sound is playing!
-    } catch (error) {
-      // An error occurred!
-      console.warn(error);
-    }
-  }
-
   render() {
+    console.log(this.state.isLoadingComplete);
     if (!this.state.isLoadingComplete && !this.props.skipLoadingScreen) {
+      console.log('entered');
+
       return (
         <AppLoading
-          startAsync={this._loadResourcesAsync}
+          startAsync={this._cacheResourcesAsync}
+          // startAsync={this._cacheFontsAsync}
           onError={this._handleLoadingError}
           onFinish={this._handleFinishLoading}
         />
       );
     }
+
+    console.log('finished loading');
 
     activateKeepAwake();
 
@@ -80,38 +86,45 @@ class App extends React.Component {
       <View style={{ flex: 1 }}>
         <StatusBar hidden />
         <Provider store={store}>
-          <View>
-            <Text>AppLoaded 2</Text>
-          </View>
-          {/* <AppWithNavigationState /> */}
+          <AppWithNavigationState />
+          {/* <Text style={{ fontFamily: 'charcuterie-sans-inline' }}>test</Text> */}
         </Provider>
       </View>
     );
   }
 
-  _loadResourcesAsync = async () => {
+  _cacheFontsAsync = async () => {
+    await Font.loadAsync({
+      'charcuterie-sans-inline': require('./assets/fonts/CharcuterieSansInline-Regular.ttf'),
+    });
+    // this.setState({ isLoadingComplete: true });
+    console.log('finished loading fonts');
+  };
+
+  _cacheResourcesAsync = async () => {
     try {
-      await Promise.all([
-        store.rehydrateAsync(),
-        ...cacheImages([
-          require('./assets/images/fond-bleu-vague-1980x1980.jpg'),
-          require('./assets/images/jeu-du-haka-logo-200x200.png'),
-          require('./assets/videoplayer/thumb.png'),
-          require('./assets/videoplayer/track.png'),
-        ]),
-        Font.loadAsync([
-          //Foundation used by videoplayer
-          ...Ionicons.font,
-          ...Foundation.font,
-          ...MaterialIcons.font,
-          ...Entypo.font,
-          {
-            'charcuterie-sans-inline': require('./assets/fonts/CharcuterieSansInline-Regular.ttf'),
-            'european-pi-one': require('./assets/fonts/EuropeanPiOne-Regular.ttf'),
-          },
-        ]),
-        this.loadSoundAsync(),
+      const imageAssets = cacheImages([
+        require('./assets/images/fond-bleu-vague-1980x1980.jpg'),
+        require('./assets/images/jeu-du-haka-logo-200x200.png'),
+        require('./assets/videoplayer/thumb.png'),
+        require('./assets/videoplayer/track.png'),
       ]);
+
+      const fontAssets = cacheFonts([
+        //Foundation used by videoplayer
+        Ionicons.font,
+        Foundation.font,
+        MaterialIcons.font,
+        Entypo.font,
+        {
+          'charcuterie-sans-inline': require('./assets/fonts/CharcuterieSansInline-Regular.ttf'),
+          // CharcuterieSansInline: require('./assets/fonts/CharcuterieSansInline-Regular.ttf'),
+          'european-pi-one': require('./assets/fonts/EuropeanPiOne-Regular.ttf'),
+        },
+      ]);
+
+      await Promise.all([store.rehydrateAsync(), _loadSoundAsync(), ...imageAssets, ...fontAssets]);
+      // this.setState({ isLoadingComplete: true });
     } catch (e) {
       console.log('Error downloading assets', e);
       // Sentry.captureException(e);
@@ -129,6 +142,7 @@ class App extends React.Component {
 
   _handleFinishLoading = () => {
     this.setState({ isLoadingComplete: true });
+    console.log('finished _handleFinishLoading');
   };
 }
 //to use storybook

@@ -31,8 +31,8 @@ export default StyleSheet.create({
   backgroundOpacity: {
     position: 'absolute',
     opacity: 0.3,
-    width: width,
-    height: height,
+    width,
+    height,
     top: 0,
     left: 0,
   },
