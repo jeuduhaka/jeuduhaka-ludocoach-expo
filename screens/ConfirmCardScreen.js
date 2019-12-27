@@ -42,12 +42,7 @@ class ConfirmCardScreen extends React.Component {
       buttonsContainerStyle,
     } = styles;
 
-    const {
-      currentDeck,
-      selectedCards,
-      onCardConfirm,
-      onCardCancel,
-    } = this.props;
+    const { currentDeck, selectedCards, onCardConfirm, onCardCancel, navigation } = this.props;
 
     const cardName = selectedCards[currentDeck];
     const imagePath = `front.${currentDeck}.${cardName}`;
@@ -55,8 +50,8 @@ class ConfirmCardScreen extends React.Component {
     return (
       <View style={containerStyle}>
         <View style={styles.navigationHeader}>
-          <BackButton tintColor={'#ffffff'} />
-          <HomeButton tintColor={'#ffffff'} />
+          <BackButton navigation={navigation} tintColor={'#ffffff'} />
+          <HomeButton navigation={navigation} tintColor={'#ffffff'} />
           <ChooseCardText currentDeck={this.props.currentDeck} />
         </View>
         <View style={imageContainerStyle}>
@@ -171,7 +166,7 @@ const styles = {
     // color: colors.black,
     color: '#ffffff',
     fontFamily: 'charcuterie-sans-inline',
-    fontSize: Layout.window.width * 0.7 / 5.5,
+    fontSize: (Layout.window.width * 0.7) / 5.5,
     letterSpacing: 0.5,
     // borderWidth: 1,
     // borderColor: 'blue',

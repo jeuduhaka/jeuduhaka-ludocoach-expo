@@ -100,8 +100,8 @@ class VideoScreen extends React.Component {
     return (
       <View style={styles.videoContainer}>
         {/* <NavigationHeader tintColor={'#ffffff'} /> */}
-        <BackButton tintColor={'#ffffff'} />
-        <HomeButton tintColor={'#ffffff'} />
+        <BackButton navigation={navigation} tintColor={'#ffffff'} />
+        <HomeButton navigation={navigation} tintColor={'#ffffff'} />
 
         <VideoPlayer
           videoProps={{

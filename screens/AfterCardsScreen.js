@@ -27,11 +27,7 @@ class AfterCardsScreen extends React.Component {
   renderChosenCardsText() {
     const {
       gameMode,
-      selectedCards: {
-        red: selectedRedCard,
-        orange: selectedOrangeCard,
-        green: selectedGreenCard,
-      },
+      selectedCards: { red: selectedRedCard, orange: selectedOrangeCard, green: selectedGreenCard },
     } = this.props;
 
     const render = [];
@@ -61,7 +57,7 @@ class AfterCardsScreen extends React.Component {
   }
 
   render() {
-    const { currentDeck, afterCardsButtonPressed } = this.props;
+    const { currentDeck, afterCardsButtonPressed, navigation } = this.props;
 
     const {
       red: selectedRedCard,
@@ -71,8 +67,8 @@ class AfterCardsScreen extends React.Component {
 
     return (
       <View style={styles.container}>
-        <BackButton tintColor={'#014DA2'} />
-        <HomeButton tintColor={'#014DA2'} />
+        <BackButton navigation={navigation} tintColor={'#014DA2'} />
+        <HomeButton navigation={navigation} tintColor={'#014DA2'} />
         <Image
           style={styles.backgroundOpacity}
           source={require('../assets/images/fond-bleu-vague-1980x1980.jpg')}

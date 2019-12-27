@@ -80,10 +80,7 @@ class ChooseCardGridScreen extends React.Component {
     for (let i = 0; i < NB_CARDS_PER_ROW; ++i) {
       rows.push(
         <DecksContainer key={i} style={styles.rowStyle}>
-          {cards.slice(
-            i * NB_CARDS_PER_ROW,
-            i * NB_CARDS_PER_ROW + NB_CARDS_PER_ROW
-          )}
+          {cards.slice(i * NB_CARDS_PER_ROW, i * NB_CARDS_PER_ROW + NB_CARDS_PER_ROW)}
         </DecksContainer>
       );
     }
@@ -93,12 +90,13 @@ class ChooseCardGridScreen extends React.Component {
 
   render() {
     const { containerStyle, textStyle, rowStyle } = styles;
+    const { navigation } = this.props;
 
     return (
       <View style={containerStyle}>
         <View style={{ flex: 1 / 10 }}>
-          <BackButton tintColor={'#ffffff'} />
-          <HomeButton tintColor={'#ffffff'} />
+          <BackButton navigation={navigation} tintColor={'#ffffff'} />
+          <HomeButton navigation={navigation} tintColor={'#ffffff'} />
           <ChooseCardText currentDeck={this.props.currentDeck} />
         </View>
         <View style={{ flex: 9 / 10 }}>{this.displayCardRows()}</View>

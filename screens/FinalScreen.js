@@ -26,11 +26,13 @@ class FinalScreen extends React.Component {
   };
 
   render() {
+    const { navigation } = this.props;
+
     return (
       <View style={styles.container}>
         {/* <NavigationHeader tintColor={'#014DA2'} /> */}
-        <BackButton tintColor={'#014DA2'} />
-        <HomeButton tintColor={'#014DA2'} />
+        <BackButton navigation={navigation} tintColor={'#014DA2'} />
+        <HomeButton navigation={navigation} tintColor={'#014DA2'} />
         <Image
           style={styles.backgroundOpacity}
           source={require('../assets/images/fond-bleu-vague-1980x1980.jpg')}
@@ -40,9 +42,7 @@ class FinalScreen extends React.Component {
           <View style={[styles.intermediateScreenTextContainer]}>
             <Text style={[styles.subtitle]}>{I18n.t('manaActivated')}</Text>
             <View style={styles.nextButtonContainer}>
-              <Button onPress={this.props.onThanksPress}>
-                {I18n.t('thankYou')}
-              </Button>
+              <Button onPress={this.props.onThanksPress}>{I18n.t('thankYou')}</Button>
             </View>
           </View>
         </View>

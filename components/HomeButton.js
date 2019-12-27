@@ -4,6 +4,7 @@ import { compose } from 'redux';
 import { connect } from 'react-redux';
 import { MaterialIcons } from '@expo/vector-icons';
 import { ActionCreators as UndoActionCreators } from 'redux-undo';
+import { StackActions, NavigationActions } from 'react-navigation';
 
 import { backHome } from '../actions';
 
@@ -20,7 +21,12 @@ const HomeIcon = ({ tintColor }) => (
   />
 );
 
-const NavigationHeader = ({ onHomePress, onReset, tintColor }) => {
+const resetAction = StackActions.reset({
+  index: 0,
+  actions: [NavigationActions.navigate({ routeName: 'Home' })],
+});
+
+const HomeButton = ({ navigation, onHomePress, onReset, tintColor }) => {
   return (
     <View
       style={{
@@ -32,7 +38,10 @@ const NavigationHeader = ({ onHomePress, onReset, tintColor }) => {
         zIndex: 2,
       }}>
       <TouchableOpacity
-        onPress={onHomePress}
+        onPress={() => {
+          onHomePress();
+          navigation.dispatch(resetAction);
+        }}
         style={{
           marginVertical: 5,
         }}>
@@ -56,4 +65,4 @@ const mapDispatchToProps = dispatch => {
 
 const enhance = compose(connect(null, mapDispatchToProps));
 
-export default enhance(NavigationHeader);
+export default enhance(HomeButton);

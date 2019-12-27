@@ -63,9 +63,7 @@ class SendGiftCardGalleryScreen extends React.Component {
   }
 
   sendCard = () => {
-    const currentGiftCardName = this.state.cardGiftsEntries[
-      this.state.activeSlide
-    ][0];
+    const currentGiftCardName = this.state.cardGiftsEntries[this.state.activeSlide][0];
     // console.log(currentGiftCardName);
 
     const language = I18n.locale.split('-')[0].toLowerCase();
@@ -103,9 +101,11 @@ class SendGiftCardGalleryScreen extends React.Component {
   };
 
   render() {
+    const { navigation } = this.props;
+
     return (
       <View style={{ flex: 1 }}>
-        <BackButton tintColor={'#014DA2'} />
+        <BackButton navigation={navigation} tintColor={'#014DA2'} />
         <BackgroundWave>
           <ScrollView
             horizontal
@@ -128,9 +128,7 @@ class SendGiftCardGalleryScreen extends React.Component {
                 sliderWidth={sliderWidth}
                 itemWidth={itemWidth}
                 containerCustomStyle={carouselStyles.slider}
-                contentContainerCustomStyle={
-                  carouselStyles.sliderContentContainer
-                }
+                contentContainerCustomStyle={carouselStyles.sliderContentContainer}
                 lockScrollWhileSnapping
                 loop
                 onSnapToItem={index => {
