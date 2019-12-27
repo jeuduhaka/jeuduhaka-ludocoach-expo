@@ -104,7 +104,7 @@ class HomeScreen extends React.Component {
       <View style={styles.container}>
         <MenuButton
           onPress={() => {
-            this.props.navigation.navigate('DrawerOpen');
+            navigation.navigate('DrawerOpen');
           }}
         />
         <LanguageFlagButton />

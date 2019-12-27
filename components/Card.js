@@ -1,12 +1,5 @@
 import React from '/utils/enhancedReact';
-import {
-  Image,
-  TouchableOpacity,
-  Animated,
-  Easing,
-  Text,
-  View,
-} from 'react-native';
+import { ImageBackground, TouchableOpacity, Animated, Easing, Text, View } from 'react-native';
 import Layout from '../constants/Layout';
 // import env from '../config/env';
 //
@@ -27,11 +20,11 @@ import Layout from '../constants/Layout';
 
 function createImage({ name, source, imageStyle }) {
   return (
-    <Image style={{ ...styles.baseImageStyle, ...imageStyle }} source={source}>
+    <ImageBackground style={{ ...styles.baseImageStyle, ...imageStyle }} source={source}>
       <View style={styles.textContainer}>
         <Text style={styles.title}>{name}</Text>
       </View>
-    </Image>
+    </ImageBackground>
   );
 }
 
@@ -96,7 +89,7 @@ const styles = {
     // color: colors.black,
     color: '#ffffff',
     fontFamily: 'charcuterie-sans-inline',
-    fontSize: Layout.window.width * 0.27 / 5.5,
+    fontSize: (Layout.window.width * 0.27) / 5.5,
     letterSpacing: 0.5,
     // borderWidth: 1,
     // borderColor: 'blue',

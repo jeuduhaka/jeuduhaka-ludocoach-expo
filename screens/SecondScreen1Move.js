@@ -13,7 +13,10 @@ class SecondScreen1Move extends React.Component {
     return (
       <SecondScreen
         textContent={[I18n.t('oneMoveDescription'), ' ']}
-        buttonOnPress={onPress}
+        buttonOnPress={() => {
+          onPress();
+          navigation.navigate('ChooseCardGrid');
+        }}
         navigation={navigation}
       />
     );

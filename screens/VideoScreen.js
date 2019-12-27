@@ -92,7 +92,7 @@ class VideoScreen extends React.Component {
   }
 
   render() {
-    const { currentDeck, selectedCards } = this.props;
+    const { currentDeck, selectedCards, navigation } = this.props;
 
     const cardName = selectedCards[currentDeck];
     const videoSource = videoSources[currentDeck][cardName];
