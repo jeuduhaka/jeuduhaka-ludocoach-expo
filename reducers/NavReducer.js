@@ -92,9 +92,9 @@ export default (state = INITIAL_STATE, action) => {
         state
       );
       break;
-    case ActionTypes.CARD_CANCELLED:
-      nextState = AppNavigator.router.getStateForAction(NavigationActions.back(null), state);
-      break;
+    // case ActionTypes.CARD_CANCELLED:
+    //   nextState = AppNavigator.router.getStateForAction(NavigationActions.back(null), state);
+    //   break;
 
     case ActionTypes.ALL_CARDS_CONFIRMED:
       nextState = AppNavigator.router.getStateForAction(

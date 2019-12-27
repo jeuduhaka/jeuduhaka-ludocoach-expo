@@ -4,6 +4,7 @@ import { compose } from 'redux';
 import { connect } from 'react-redux';
 import _get from 'lodash.get';
 import { ActionCreators as UndoActionCreators } from 'redux-undo';
+import { NavigationActions } from 'react-navigation';
 
 import Layout from '../constants/Layout';
 import I18n from '../i18n';
@@ -15,6 +16,8 @@ import HomeButton from '../components/HomeButton';
 import ChooseCardText from '../components/ChooseCardText';
 
 import cardImageSources from '../stores/CardImageSources';
+
+const backAction = NavigationActions.back();
 
 class ConfirmCardScreen extends React.Component {
   static navigationOptions = {
@@ -94,7 +97,10 @@ class ConfirmCardScreen extends React.Component {
             {I18n.t('iChoose')}
           </Button>
           <Button
-            onPress={onCardCancel}
+            onPress={() => {
+              onCardCancel();
+              navigation.dispatch(backAction);
+            }}
             style={{
               textStyle: {
                 alignSelf: 'center',

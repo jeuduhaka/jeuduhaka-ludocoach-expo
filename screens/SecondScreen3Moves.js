@@ -28,7 +28,10 @@ class SecondScreen3Moves extends React.Component {
             3.{I18n.t('being')}
           </Text>,
         ]}
-        buttonOnPress={onPress}
+        buttonOnPress={() => {
+          onPress();
+          navigation.navigate('ChooseCardGrid');
+        }}
         navigation={navigation}
       />
     );
