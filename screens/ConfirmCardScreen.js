@@ -1,5 +1,5 @@
 import React from '/utils/enhancedReact';
-import { View, Image, Text } from 'react-native';
+import { View, ImageBackground, Text } from 'react-native';
 import { compose } from 'redux';
 import { connect } from 'react-redux';
 import _get from 'lodash.get';
@@ -55,11 +55,11 @@ class ConfirmCardScreen extends React.Component {
           <ChooseCardText currentDeck={this.props.currentDeck} />
         </View>
         <View style={imageContainerStyle}>
-          <Image style={imageStyle} source={_get(cardImageSources, imagePath)}>
+          <ImageBackground style={imageStyle} source={_get(cardImageSources, imagePath)}>
             <View style={styles.textContainer}>
               <Text style={styles.title}>{I18n.t(cardName)}</Text>
             </View>
-          </Image>
+          </ImageBackground>
         </View>
         {/* <View style={descriptionContainerStyle}>
           <Text style={descriptionStyle}>

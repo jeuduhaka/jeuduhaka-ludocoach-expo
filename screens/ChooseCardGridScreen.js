@@ -35,7 +35,7 @@ class ChooseCardGridScreen extends React.Component {
   }
 
   displayCardRows() {
-    const { currentDeck, cardPressed, gameMode } = this.props;
+    const { currentDeck, cardPressed, gameMode, navigation } = this.props;
 
     let currentDeckImageSources = cardImageSources.front[currentDeck];
 
@@ -70,7 +70,10 @@ class ChooseCardGridScreen extends React.Component {
           key={cardName}
           name={I18n.t(cardName)}
           imageSource={imageSource}
-          onPress={() => cardPressed(cardName, gameMode)}
+          onPress={() => {
+            cardPressed(cardName, gameMode);
+            navigation.navigate('ConfirmCard');
+          }}
         />
       );
     });
