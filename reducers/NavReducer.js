@@ -15,9 +15,7 @@ import { findRouteKey } from '../utils/helpers';
 // const firstAction = AppNavigator.router.getActionForPathAndParams('CheckingAssets');
 // const INITIAL_STATE = AppNavigator.router.getStateForAction(firstAction);
 
-const INITIAL_STATE = AppNavigator.router.getStateForAction(
-  NavigationActions.init()
-);
+const INITIAL_STATE = AppNavigator.router.getStateForAction(NavigationActions.init());
 
 export default (state = INITIAL_STATE, action) => {
   let nextState;
@@ -95,10 +93,7 @@ export default (state = INITIAL_STATE, action) => {
       );
       break;
     case ActionTypes.CARD_CANCELLED:
-      nextState = AppNavigator.router.getStateForAction(
-        NavigationActions.back(null),
-        state
-      );
+      nextState = AppNavigator.router.getStateForAction(NavigationActions.back(null), state);
       break;
 
     case ActionTypes.ALL_CARDS_CONFIRMED:
@@ -139,10 +134,7 @@ export default (state = INITIAL_STATE, action) => {
       );
       break;
     case ActionTypes.GO_BACK:
-      nextState = AppNavigator.router.getStateForAction(
-        NavigationActions.back(),
-        state
-      );
+      nextState = AppNavigator.router.getStateForAction(NavigationActions.back(), state);
       break;
     default:
       nextState = AppNavigator.router.getStateForAction(action, state);

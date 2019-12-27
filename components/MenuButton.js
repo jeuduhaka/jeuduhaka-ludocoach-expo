@@ -1,13 +1,5 @@
 import React from '/utils/enhancedReact';
-import {
-  Button,
-  Text,
-  View,
-  TouchableOpacity,
-  Dimensions,
-  StyleSheet,
-} from 'react-native';
-import { Header, HeaderBackButton, HeaderTitle } from 'react-navigation';
+import { Button, Text, View, TouchableOpacity, Dimensions, StyleSheet } from 'react-native';
 import { compose } from 'redux';
 import { connect } from 'react-redux';
 import { MaterialIcons } from '@expo/vector-icons';

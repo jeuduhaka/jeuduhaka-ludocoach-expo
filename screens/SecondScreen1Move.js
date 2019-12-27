@@ -6,12 +6,19 @@ import I18n from '../i18n';
 import SecondScreen from './SecondScreen';
 import { secondScreen1MovePassed } from '../actions/';
 
-const SecondScreen1Move = ({ onPress }) => (
-  <SecondScreen
-    textContent={[I18n.t('oneMoveDescription'), ' ']}
-    buttonOnPress={onPress}
-  />
-);
+class SecondScreen1Move extends React.Component {
+  render() {
+    const { onPress, navigation } = this.props;
+
+    return (
+      <SecondScreen
+        textContent={[I18n.t('oneMoveDescription'), ' ']}
+        buttonOnPress={onPress}
+        navigation={navigation}
+      />
+    );
+  }
+}
 
 const mapStateToProps = state => ({});
 

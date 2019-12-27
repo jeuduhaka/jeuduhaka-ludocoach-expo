@@ -1,10 +1,11 @@
 import React from 'react';
 import { View } from 'react-native';
-import { Header, HeaderBackButton, HeaderTitle } from 'react-navigation';
+import { HeaderBackButton } from 'react-navigation-stack';
 import { compose } from 'redux';
 import { connect } from 'react-redux';
 import { MaterialIcons } from '@expo/vector-icons';
 import { ActionCreators as UndoActionCreators } from 'redux-undo';
+import { NavigationActions } from 'react-navigation';
 
 import { goBack } from '../actions';
 
@@ -21,7 +22,9 @@ const HomeIcon = ({ tintColor }) => (
   />
 );
 
-const NavigationHeader = ({ onBackPress, onUndo, tintColor }) => {
+const backAction = NavigationActions.back();
+
+const BackButton = ({ navigation, onBackPress, onUndo, tintColor }) => {
   return (
     <View
       style={{
@@ -32,7 +35,13 @@ const NavigationHeader = ({ onBackPress, onUndo, tintColor }) => {
         //zIndex needed to be on top of Video
         zIndex: 2,
       }}>
-      <HeaderBackButton onPress={onBackPress} tintColor={tintColor} />
+      <HeaderBackButton
+        onPress={() => {
+          navigation.dispatch(backAction);
+          onBackPress();
+        }}
+        tintColor={tintColor}
+      />
     </View>
   );
 };
@@ -50,4 +59,4 @@ const mapDispatchToProps = dispatch => {
 
 const enhance = compose(connect(null, mapDispatchToProps));
 
-export default enhance(NavigationHeader);
+export default enhance(BackButton);

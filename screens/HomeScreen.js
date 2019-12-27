@@ -98,6 +98,8 @@ class HomeScreen extends React.Component {
   }
 
   render() {
+    const { navigation } = this.props;
+
     return (
       <View style={styles.container}>
         <MenuButton
@@ -132,14 +134,20 @@ class HomeScreen extends React.Component {
                   <View style={styles.homeActionButton}>
                     <Button
                       title={I18n.t('play3Moves')}
-                      onPress={() => this.props.gameModeChosen(ActionTypes.GAME_MODE_3_MOVES)}>
+                      onPress={() => {
+                        this.props.gameModeChosen(ActionTypes.GAME_MODE_3_MOVES);
+                        navigation.navigate('Second3Moves');
+                      }}>
                       {I18n.t('play3Moves')}
                     </Button>
                   </View>
                   <View style={styles.homeActionButton}>
                     <Button
                       title={I18n.t('play1Move')}
-                      onPress={() => this.props.gameModeChosen(ActionTypes.GAME_MODE_1_MOVE)}>
+                      onPress={() => {
+                        this.props.gameModeChosen(ActionTypes.GAME_MODE_1_MOVE);
+                        navigation.navigate('Second1Move');
+                      }}>
                       {I18n.t('play1Move')}
                     </Button>
                   </View>

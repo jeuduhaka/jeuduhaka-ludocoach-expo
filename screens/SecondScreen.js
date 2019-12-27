@@ -10,10 +10,12 @@ import HomeButton from '../components/HomeButton';
 
 export default class SecondScreen extends React.Component {
   render() {
-    const { textContent, buttonOnPress } = this.props;
+    const { textContent, buttonOnPress, navigation } = this.props;
+    console.log('navigation SecondScreen');
+    console.log(navigation);
     return (
       <View style={styles.container}>
-        <BackButton tintColor={'#014DA2'} />
+        <BackButton navigation={navigation} tintColor={'#014DA2'} />
         <HomeButton tintColor={'#014DA2'} />
         <Image
           style={styles.backgroundOpacity}
