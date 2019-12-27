@@ -73,7 +73,14 @@ class ConfirmCardScreen extends React.Component {
         </View> */}
         <View style={buttonsContainerStyle}>
           <Button
-            onPress={onCardConfirm.bind(this, currentDeck)}
+            onPress={() => {
+              onCardConfirm.bind(this, currentDeck);
+              if (currentDeck != 'green') {
+                navigation.navigate('Deck');
+                return;
+              }
+              navigation.navigate('AfterCards');
+            }}
             style={{
               textStyle: {
                 alignSelf: 'center',

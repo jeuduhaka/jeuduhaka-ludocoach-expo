@@ -13,6 +13,7 @@ import BackButton from '../components/BackButton';
 import HomeButton from '../components/HomeButton';
 
 import cardImageSources from '../stores/CardImageSources';
+import * as ActionTypes from '../actions/types';
 
 function sortObject(obj) {
   return Object.keys(obj)
@@ -72,6 +73,12 @@ class ChooseCardGridScreen extends React.Component {
           imageSource={imageSource}
           onPress={() => {
             cardPressed(cardName, gameMode);
+
+            if (gameMode === ActionTypes.GAME_MODE_1_MOVE) {
+              navigation.navigate('Video');
+              return;
+            }
+
             navigation.navigate('ConfirmCard');
           }}
         />

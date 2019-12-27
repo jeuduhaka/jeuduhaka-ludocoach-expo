@@ -81,7 +81,15 @@ class AfterCardsScreen extends React.Component {
               {I18n.t('placeYourself')}
             </Text>
             <View style={styles.nextButtonContainer}>
-              <Button onPress={() => afterCardsButtonPressed(currentDeck)}>
+              <Button
+                onPress={() => {
+                  afterCardsButtonPressed(currentDeck);
+                  if (currentDeck != 'green') {
+                    navigation.navigate('Deck');
+                    return;
+                  }
+                  navigation.navigate('Video');
+                }}>
                 {I18n.t('letsGo')}
               </Button>
             </View>
