@@ -12,6 +12,7 @@ import {
 import { Video } from 'expo-av';
 import { compose } from 'redux';
 import { connect } from 'react-redux';
+import { StackActions, NavigationActions } from 'react-navigation';
 
 //from @expo/videoplayer with custom Height
 // import VideoPlayer from '../components/VideoPlayer';
@@ -43,6 +44,11 @@ const videoWidth = Dimensions.get('window').width;
 const videoHeight = Dimensions.get('window').height;
 
 const BASE_VIDEO_URI = 'https://s3.eu-west-2.amazonaws.com/frqs-jdh/videos/';
+
+const resetAction = StackActions.reset({
+  index: 0,
+  actions: [NavigationActions.navigate({ routeName: 'Home' })],
+});
 
 class VideoScreen extends React.Component {
   static navigationOptions = {
@@ -93,7 +99,7 @@ class VideoScreen extends React.Component {
   }
 
   render() {
-    const { currentDeck, selectedCards, navigation } = this.props;
+    const { currentDeck, selectedCards, navigation, gameMode } = this.props;
 
     const cardName = selectedCards[currentDeck];
     const videoSource = videoSources[currentDeck][cardName];
@@ -152,7 +158,10 @@ class VideoScreen extends React.Component {
             if (status.didJustFinish) {
               // console.log(currentDeck);
               // console.log('entered');
-              this.props.videoEnded(currentDeck);
+              // this.props.videoEnded(currentDeck);
+              if (gameMode === GAME_MODE_1_MOVE) {
+                navigation.dispatch(resetAction);
+              }
             }
           }}
         />
