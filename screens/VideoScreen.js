@@ -158,9 +158,16 @@ class VideoScreen extends React.Component {
             if (status.didJustFinish) {
               // console.log(currentDeck);
               // console.log('entered');
-              // this.props.videoEnded(currentDeck);
+              this.props.videoEnded(currentDeck);
+
               if (gameMode === GAME_MODE_1_MOVE) {
                 navigation.dispatch(resetAction);
+              } else {
+                if (currentDeck !== 'green') {
+                  navigation.navigate('Deck');
+                } else {
+                  navigation.navigate('Final');
+                }
               }
             }
           }}

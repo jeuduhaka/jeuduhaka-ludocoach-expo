@@ -26,7 +26,7 @@ class FinalScreen extends React.Component {
   };
 
   render() {
-    const { navigation } = this.props;
+    const { navigation, onThanksPress } = this.props;
 
     return (
       <View style={styles.container}>
@@ -42,7 +42,13 @@ class FinalScreen extends React.Component {
           <View style={[styles.intermediateScreenTextContainer]}>
             <Text style={[styles.subtitle]}>{I18n.t('manaActivated')}</Text>
             <View style={styles.nextButtonContainer}>
-              <Button onPress={this.props.onThanksPress}>{I18n.t('thankYou')}</Button>
+              <Button
+                onPress={() => {
+                  onThanksPress();
+                  navigation.navigate('Home');
+                }}>
+                {I18n.t('thankYou')}
+              </Button>
             </View>
           </View>
         </View>

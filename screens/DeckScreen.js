@@ -37,11 +37,18 @@ class DeckScreen extends React.Component {
       navigation,
     } = this.props;
 
+    console.log(currentDeck);
     if (currentDeck === color) {
       if (!allCardsChosen) {
-        cardProps.onPress = () => deckPressed(color);
+        cardProps.onPress = () => {
+          deckPressed(color);
+          navigation.navigate('ChooseCardGrid');
+        };
       } else {
-        cardProps.onPress = () => selectedCardPressed();
+        cardProps.onPress = () => {
+          selectedCardPressed();
+          navigation.navigate('Video');
+        };
       }
 
       cardProps.style = {

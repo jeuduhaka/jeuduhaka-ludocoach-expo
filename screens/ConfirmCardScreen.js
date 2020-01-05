@@ -74,7 +74,7 @@ class ConfirmCardScreen extends React.Component {
         <View style={buttonsContainerStyle}>
           <Button
             onPress={() => {
-              onCardConfirm.bind(this, currentDeck);
+              onCardConfirm(currentDeck);
               if (currentDeck != 'green') {
                 navigation.navigate('Deck');
                 return;
@@ -155,7 +155,7 @@ const styles = {
     flex: 1,
     flexDirection: 'column',
     resizeMode: 'contain',
-    width: Layout.window.width * 0.85,
+    // width: Layout.window.width * 0.85,
     // backgroundColor: 'orange',
     alignItems: 'center',
   },
