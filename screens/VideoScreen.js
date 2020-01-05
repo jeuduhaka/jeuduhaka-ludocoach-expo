@@ -9,12 +9,13 @@ import {
   Dimensions,
   StyleSheet,
 } from 'react-native';
-import { Asset, Video, Constants } from 'expo';
+import { Video } from 'expo-av';
 import { compose } from 'redux';
 import { connect } from 'react-redux';
 
 //from @expo/videoplayer with custom Height
-import VideoPlayer from '../components/VideoPlayer';
+// import VideoPlayer from '../components/VideoPlayer';
+import VideoPlayer from 'expo-video-player';
 // import NavigationHeader from '../components/NavigationHeader';
 import BackButton from '../components/BackButton';
 import HomeButton from '../components/HomeButton';
@@ -114,11 +115,12 @@ class VideoScreen extends React.Component {
             //   // uri: this.state.videoUri,
             // },
             source: videoSource,
+
             // positionMillis: this.state.playback,
-            style: {
-              width: videoWidth,
-              height: videoHeight,
-            },
+            // style: {
+            //   width: videoWidth,
+            //   height: videoHeight,
+            // },
             // onReadyForDisplay: (naturalSize, status) => {
             //   console.log('onReadyForDisplay');
             //   console.log(status);
@@ -135,16 +137,17 @@ class VideoScreen extends React.Component {
             //   // this._video.playFromPositionAsync(0);
             // },
           }}
+          inFullscreen
           // isPortrait={this.state.isPortrait}
-          nextCallback={() => {
-            const { currentDeck, videoEnded, backHome, gameMode } = this.props;
+          // nextCallback={() => {
+          //   const { currentDeck, videoEnded, backHome, gameMode } = this.props;
 
-            // if (gameMode === GAME_MODE_1_MOVE) {
-            //   backHome();
-            // } else {
-            videoEnded(currentDeck);
-            // }
-          }}
+          //   // if (gameMode === GAME_MODE_1_MOVE) {
+          //   //   backHome();
+          //   // } else {
+          //   videoEnded(currentDeck);
+          //   // }
+          // }}
           playbackCallback={status => {
             if (status.didJustFinish) {
               // console.log(currentDeck);
