@@ -4,7 +4,7 @@ import { compose } from 'redux';
 import { connect } from 'react-redux';
 import { MaterialIcons } from '@expo/vector-icons';
 import { ActionCreators as UndoActionCreators } from 'redux-undo';
-import { StackActions, NavigationActions } from 'react-navigation';
+import { CommonActions } from '@react-navigation/native';
 
 import { backHome } from '../actions';
 
@@ -21,9 +21,9 @@ const HomeIcon = ({ tintColor }) => (
   />
 );
 
-const resetAction = StackActions.reset({
+const resetAction = CommonActions.reset({
   index: 0,
-  actions: [NavigationActions.navigate({ routeName: 'Home' })],
+  routes: [{ name: 'Home' }],
 });
 
 const HomeButton = ({ navigation, onHomePress, onReset, tintColor }) => {
@@ -51,7 +51,7 @@ const HomeButton = ({ navigation, onHomePress, onReset, tintColor }) => {
   );
 };
 
-const mapDispatchToProps = dispatch => {
+const mapDispatchToProps = (dispatch) => {
   return {
     onReset: () => dispatch(UndoActionCreators.clearHistory()),
     onHomePress: () => {

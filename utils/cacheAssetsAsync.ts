@@ -14,8 +14,8 @@ export default function cacheAssetsAsync({
   ]);
 }
 
-export function cacheVideos(videos) {
-  return Object.values(videos).map(video => {
+export function cacheVideos(videos: any[]): any[] {
+  return Object.values(videos).map((video) => {
     // console.log(typeof video);
     if (typeof video === 'object') {
       return cacheVideos(video);
@@ -29,8 +29,8 @@ export function cacheVideos(videos) {
   });
 }
 
-export function cacheImages(images) {
-  return Object.values(images).map(image => {
+export function cacheImages(images: any[]): any[] {
+  return Object.values(images).map((image) => {
     if (typeof image === 'string') {
       // console.log('image string');
       return Image.prefetch(image);
@@ -44,6 +44,6 @@ export function cacheImages(images) {
   });
 }
 
-export function cacheFonts(fonts) {
-  return fonts.map(font => Font.loadAsync(font));
+export function cacheFonts(fonts: any[]): any[] {
+  return fonts.map((font) => Font.loadAsync(font));
 }

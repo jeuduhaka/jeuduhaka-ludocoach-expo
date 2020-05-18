@@ -1,23 +1,14 @@
-import { NavigationActions } from 'react-navigation';
+import { CommonActions as NavigationActions } from '@react-navigation/native';
 import { AppNavigator } from '../navigators/AppNavigator';
+import { StackRouter } from '@react-navigation/native';
 
 import * as ActionTypes from '../actions/types';
-import { findRouteKey } from '../utils/helpers';
 
-// Help: https://github.com/react-community/react-navigation/tree/master/examples/ReduxExample
-// Start with two routes: The Main screen, with the Login screen on top.
-// const firstAction = AppNavigator.router.getActionForPathAndParams('Home');
-// const tempNavState = AppNavigator.router.getStateForAction(firstAction);
-// const secondAction = AppNavigator.router.getActionForPathAndParams('Home');
-// const initialNavState = AppNavigator.router.getStateForAction(secondAction, tempNavState);
+const router = StackRouter({ initialRouteName: 'Home' });
 
-// const firstAction = AppNavigator.router.getActionForPathAndParams('Home');
-// const firstAction = AppNavigator.router.getActionForPathAndParams('CheckingAssets');
-// const INITIAL_STATE = AppNavigator.router.getStateForAction(firstAction);
+const INITIAL_STATE = router.getStateForAction(NavigationActions.init());
 
-const INITIAL_STATE = AppNavigator.router.getStateForAction(NavigationActions.init());
-
-export default (state = INITIAL_STATE, action) => {
+export default (state = INITIAL_STATE, action: any) => {
   let nextState;
   let route;
   // console.log(action);
@@ -35,25 +26,25 @@ export default (state = INITIAL_STATE, action) => {
           break;
       }
 
-      nextState = AppNavigator.router.getStateForAction(
+      nextState = router.getStateForAction(
         NavigationActions.navigate({ routeName: route }),
         state
       );
       break;
     case ActionTypes.SECOND_SCREEN_3_MOVES_PASSED:
-      nextState = AppNavigator.router.getStateForAction(
-        NavigationActions.navigate({ routeName: 'Deck' }),
+      nextState = router.getStateForAction(
+        NavigationActions.navigate('Deck'),
         state
       );
       break;
     case ActionTypes.SECOND_SCREEN_1_MOVE_PASSED:
-      nextState = AppNavigator.router.getStateForAction(
+      nextState = router.getStateForAction(
         NavigationActions.navigate({ routeName: 'ChooseCardGrid' }),
         state
       );
       break;
     case ActionTypes.DECK_PRESSED:
-      nextState = AppNavigator.router.getStateForAction(
+      nextState = router.getStateForAction(
         NavigationActions.navigate({ routeName: 'ChooseCardGrid' }),
         state
       );
@@ -68,13 +59,13 @@ export default (state = INITIAL_STATE, action) => {
           break;
       }
 
-      nextState = AppNavigator.router.getStateForAction(
+      nextState = router.getStateForAction(
         NavigationActions.navigate({ routeName: route }),
         state
       );
       break;
     case ActionTypes.CARD_CONFIRMED:
-      nextState = AppNavigator.router.getStateForAction(
+      nextState = router.getStateForAction(
         // NavigationActions.reset({
         //   index: 1,
         //   actions: [
@@ -93,51 +84,51 @@ export default (state = INITIAL_STATE, action) => {
       );
       break;
     // case ActionTypes.CARD_CANCELLED:
-    //   nextState = AppNavigator.router.getStateForAction(NavigationActions.back(null), state);
+    //   nextState = router.getStateForAction(NavigationActions.back(null), state);
     //   break;
 
     case ActionTypes.ALL_CARDS_CONFIRMED:
-      nextState = AppNavigator.router.getStateForAction(
+      nextState = router.getStateForAction(
         NavigationActions.navigate({ routeName: 'AfterCards' }),
         state
       );
       break;
     case ActionTypes.AFTER_CARDS_BUTTON_PRESSED:
-      nextState = AppNavigator.router.getStateForAction(
+      nextState = router.getStateForAction(
         NavigationActions.navigate({ routeName: 'Deck' }),
         state
       );
       break;
     case ActionTypes.SELECTED_CARD_PRESSED:
-      nextState = AppNavigator.router.getStateForAction(
+      nextState = router.getStateForAction(
         // NavigationActions.navigate({ routeName: 'GesturesText' }),
         NavigationActions.navigate({ routeName: 'Video' }),
         state
       );
       break;
     case ActionTypes.VIDEO_ENDED:
-      nextState = AppNavigator.router.getStateForAction(
+      nextState = router.getStateForAction(
         NavigationActions.navigate({ routeName: 'Deck' }),
         state
       );
       break;
     case ActionTypes.ALL_VIDEOS_ENDED:
-      nextState = AppNavigator.router.getStateForAction(
+      nextState = router.getStateForAction(
         NavigationActions.navigate({ routeName: 'Final' }),
         state
       );
       break;
     case ActionTypes.BACK_HOME:
-      nextState = AppNavigator.router.getStateForAction(
+      nextState = router.getStateForAction(
         NavigationActions.navigate({ routeName: 'Home' }),
         state
       );
       break;
     case ActionTypes.GO_BACK:
-      nextState = AppNavigator.router.getStateForAction(NavigationActions.back(), state);
+      nextState = router.getStateForAction(NavigationActions.back(), state);
       break;
     default:
-      nextState = AppNavigator.router.getStateForAction(action, state);
+      nextState = router.getStateForAction(action, state);
       break;
   }
 

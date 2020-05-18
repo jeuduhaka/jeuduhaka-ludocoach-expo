@@ -1,25 +1,20 @@
 import { AsyncStorage } from 'react-native';
-import { applyMiddleware, createStore, compose } from 'redux';
+import { applyMiddleware, createStore, compose, Middleware } from 'redux';
 import { autoRehydrate } from 'redux-persist';
+import { composeWithDevTools } from 'redux-devtools-extension/developmentOnly';
 import persistStore from '../utils/persistStore';
-
 import reducer from '../reducers';
 
-export function isPersistedStateInvalid(state) {
-  return Object.keys(state).length === 0;
-}
+// export function isPersistedStateInvalid(state) {
+//   return Object.keys(state).length === 0;
+// }
 
-export default initialState => {
-  /* eslint-disable no-undef */
-  /* eslint-disable no-underscore-dangle */
-  const composeEnhancers =
-    typeof window === 'object' && __DEV__ && window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__
-      ? window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__({
-          // Specify extension’s options like name, actionsBlacklist, actionsCreators, serialize...
-        })
-      : compose;
+export default (initialState = {}) => {
+  const composeEnhancers = composeWithDevTools({
+    // Specify here name, actionsBlacklist, actionsCreators and other options
+  });
 
-  const middlewares = [];
+  const middlewares: Middleware[] = [];
 
   if (__DEV__) {
     // Seamless-Immutable logger cleanup
@@ -58,7 +53,7 @@ export default initialState => {
   const Store = createStore(reducer, initialState, enhancer);
 
   Store.rehydrateAsync = () => {
-    return new Promise(resolve => {
+    return new Promise((resolve) => {
       persistStore(
         Store,
         {

@@ -51,7 +51,18 @@ class HomeScreen extends React.Component {
     currentAssetIndex: 0,
   };
 
-  componentDidMount() {
+  async componentDidMount() {
+    if (this.props.language) {
+      I18n.locale = this.props.language;
+    } else {
+      await I18n.initAsync();
+      this.props.languageChanged(I18n.locale);
+    }
+
+    if (this.props.areAssetsLoaded) {
+      this.setState({ assetsLoaded: true });
+    }
+
     try {
       this._loadAssetsAsync();
       // this._getLanguage();
@@ -82,19 +93,6 @@ class HomeScreen extends React.Component {
 
     this.setState({ assetsLoaded: true });
     this.props.assetsLoaded(true);
-  }
-
-  async componentWillMount() {
-    if (this.props.language) {
-      I18n.locale = this.props.language;
-    } else {
-      await I18n.initAsync();
-      this.props.languageChanged(I18n.locale);
-    }
-
-    if (this.props.areAssetsLoaded) {
-      this.setState({ assetsLoaded: true });
-    }
   }
 
   render() {

@@ -4,7 +4,6 @@ import { compose } from 'redux';
 import { connect } from 'react-redux';
 import _get from 'lodash.get';
 import { ActionCreators as UndoActionCreators } from 'redux-undo';
-import { NavigationActions } from 'react-navigation';
 
 import Layout from '../constants/Layout';
 import I18n from '../i18n';
@@ -16,8 +15,6 @@ import HomeButton from '../components/HomeButton';
 import ChooseCardText from '../components/ChooseCardText';
 
 import cardImageSources from '../stores/CardImageSources';
-
-const backAction = NavigationActions.back();
 
 class ConfirmCardScreen extends React.Component {
   static navigationOptions = {
@@ -45,7 +42,13 @@ class ConfirmCardScreen extends React.Component {
       buttonsContainerStyle,
     } = styles;
 
-    const { currentDeck, selectedCards, onCardConfirm, onCardCancel, navigation } = this.props;
+    const {
+      currentDeck,
+      selectedCards,
+      onCardConfirm,
+      onCardCancel,
+      navigation,
+    } = this.props;
 
     const cardName = selectedCards[currentDeck];
     const imagePath = `front.${currentDeck}.${cardName}`;
@@ -58,7 +61,9 @@ class ConfirmCardScreen extends React.Component {
           <ChooseCardText currentDeck={this.props.currentDeck} />
         </View>
         <View style={imageContainerStyle}>
-          <ImageBackground style={imageStyle} source={_get(cardImageSources, imagePath)}>
+          <ImageBackground
+            style={imageStyle}
+            source={_get(cardImageSources, imagePath)}>
             <View style={styles.textContainer}>
               <Text style={styles.title}>{I18n.t(cardName)}</Text>
             </View>
@@ -106,7 +111,7 @@ class ConfirmCardScreen extends React.Component {
           <Button
             onPress={() => {
               onCardCancel();
-              navigation.dispatch(backAction);
+              navigation.goBack();
             }}
             style={{
               textStyle: {
@@ -197,16 +202,16 @@ const styles = {
   },
 };
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
   gameMode: state.gameMode,
   currentDeck: state.cards.present.currentDeck,
   selectedCards: state.cards.present.selected,
   allCardsChosen: state.cards.present.allCardsChosen,
 });
 
-const mapDispatchToProps = dispatch => {
+const mapDispatchToProps = (dispatch) => {
   return {
-    onCardConfirm: currentDeck => dispatch(cardConfirmed(currentDeck)),
+    onCardConfirm: (currentDeck) => dispatch(cardConfirmed(currentDeck)),
     onCardCancel: () => {
       dispatch(UndoActionCreators.undo());
       dispatch(cardCancelled());

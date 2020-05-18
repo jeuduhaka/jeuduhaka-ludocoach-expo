@@ -1,4 +1,4 @@
-const slugify = text => {
+const slugify = (text) => {
   return text
     .toString()
     .toLowerCase()
@@ -11,7 +11,7 @@ const slugify = text => {
 
 const findRouteKey = ({ routes, routeName }) => {
   let key = null;
-  const routeObj = routes.find(r => r.routeName === routeName);
+  const routeObj = routes.find((r) => r.routeName === routeName);
 
   if (routeObj) {
     key = { key: routeObj.key };

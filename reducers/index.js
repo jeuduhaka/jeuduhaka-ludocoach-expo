@@ -2,7 +2,7 @@ import { combineReducers } from 'redux';
 import undoable from 'redux-undo';
 import { resettableReducer } from 'reduxsauce';
 
-import NavReducer from './NavReducer';
+// import NavReducer from './NavReducer';
 import LanguageReducer from './LanguageReducer.js';
 import AssetsLoadedReducer from './AssetsLoadedReducer.js';
 import GameModeReducer from './GameModeReducer';
@@ -14,7 +14,7 @@ import * as ActionTypes from '../actions/types';
 const resettable = resettableReducer(ActionTypes.BACK_HOME);
 
 const rootReducer = combineReducers({
-  nav: resettable(NavReducer),
+  // nav: resettable(NavReducer),
   language: LanguageReducer,
   assetsLoaded: AssetsLoadedReducer,
   cards: resettable(undoable(CardsReducer)),

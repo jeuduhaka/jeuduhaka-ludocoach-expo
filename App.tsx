@@ -1,17 +1,21 @@
-import { AsyncStorage, View, StyleSheet, StatusBar, Platform, Text } from 'react-native';
+import 'react-native-gesture-handler';
+
+import React from 'react';
+import { View, StatusBar } from 'react-native';
 import { Provider } from 'react-redux';
 import Expo, { AppLoading } from 'expo';
 import * as Font from 'expo-font';
 import I18n from 'ex-react-native-i18n';
-import { MaterialIcons, Foundation, Ionicons, Entypo, FontAwesome } from '@expo/vector-icons';
-// import Sentry from 'sentry-expo';
+import {
+  MaterialIcons,
+  Foundation,
+  Ionicons,
+  Entypo,
+} from '@expo/vector-icons';
 import { activateKeepAwake } from 'expo-keep-awake';
-import React from '/utils/enhancedReact';
 
 import AppWithNavigationState from './navigators/AppWithNavigationState';
 import configureStore from './config/configureStore';
-// import imageSources from './stores/CardImageSources';
-// import videoSources from './stores/CardVideoSourcesLocal';
 import { cacheImages, cacheVideos, cacheFonts } from './utils/cacheAssetsAsync';
 
 // import DownloadManager from './utils/DownloadManager';
@@ -22,7 +26,7 @@ async function _loadSoundAsync() {
   if (__DEV__) return;
 
   try {
-    const { soundObject, status } = await Expo.Audio.Sound.create(
+    await Expo.Audio.Sound.create(
       require('./assets/sounds/normalized-tamtam-loop16bit-1min-volume-0.6.mp3'),
       {
         shouldPlay: true,
@@ -36,7 +40,9 @@ async function _loadSoundAsync() {
   }
 }
 
-class App extends React.Component {
+class App extends React.Component<{
+  skipLoadingScreen: boolean;
+}> {
   // static sound = new Expo.Audio.Sound();
 
   state = {
@@ -44,35 +50,38 @@ class App extends React.Component {
     store: null,
   };
 
-  componentWillMount() {
+  componentDidMount() {
     //Intercept react-native error handling
-    this.defaultHandler = ErrorUtils.getGlobalHandler();
-    ErrorUtils.setGlobalHandler(this.wrapGlobalHandler.bind(this));
+    // this.defaultHandler = ErrorUtils.getGlobalHandler();
+    // ErrorUtils.setGlobalHandler(this.wrapGlobalHandler.bind(this));
   }
 
   componentWillUnmount() {
     // this._downloadManager && this._downloadManager.teardown();
   }
 
-  async wrapGlobalHandler(error, isFatal) {
-    // If the error kills our app in Release mode, make sure we don't rehydrate
-    // with an invalid Redux state and cleanly go back to home page instead
-    if (isFatal && !__DEV__) AsyncStorage.clear();
+  // async wrapGlobalHandler(error, isFatal) {
+  //   // If the error kills our app in Release mode, make sure we don't rehydrate
+  //   // with an invalid Redux state and cleanly go back to home page instead
+  //   if (isFatal && !__DEV__) AsyncStorage.clear();
 
-    //Once finished, make sure react-native also gets the error
-    if (this.defaultHandler) this.defaultHandler(error, isFatal);
-  }
+  //   //Once finished, make sure react-native also gets the error
+  //   if (this.defaultHandler) this.defaultHandler(error, isFatal);
+  // }
 
   render() {
-    console.log(this.state.isLoadingComplete);
-    if (!this.state.isLoadingComplete && !this.props.skipLoadingScreen) {
-      console.log('entered');
+    console.log(
+      `this.state.isLoadingComplete: ${this.state.isLoadingComplete}`
+    );
 
+    const handleFinishLoadingFunc = this._handleFinishLoading.bind(this);
+
+    if (!this.state.isLoadingComplete && !this.props.skipLoadingScreen) {
       return (
         <AppLoading
           startAsync={this._cacheResourcesAsync}
           onError={this._handleLoadingError}
-          onFinish={this._handleFinishLoading}
+          onFinish={handleFinishLoadingFunc}
         />
       );
     }
@@ -91,7 +100,7 @@ class App extends React.Component {
     );
   }
 
-  _cacheResourcesAsync = async () => {
+  async _cacheResourcesAsync() {
     try {
       const imageAssets = cacheImages([
         require('./assets/images/fond-bleu-vague-1980x1980.jpg'),
@@ -112,7 +121,12 @@ class App extends React.Component {
         },
       ]);
 
-      await Promise.all([store.rehydrateAsync(), _loadSoundAsync(), ...imageAssets, ...fontAssets]);
+      await Promise.all([
+        store.rehydrateAsync(),
+        _loadSoundAsync(),
+        ...imageAssets,
+        ...fontAssets,
+      ]);
       // this.setState({ isLoadingComplete: true });
     } catch (e) {
       console.log('Error downloading assets', e);
@@ -120,19 +134,23 @@ class App extends React.Component {
     }
 
     // this._downloadManager = new DownloadManager(store);
-  };
+  }
 
-  _handleLoadingError = error => {
+  _handleLoadingError = (error: any) => {
     // In this case, you might want to report the error to your error
     // reporting service, for example Sentry
-    console.warn(error);
+    console.warn(`_handleLoadingError: ${error}`);
     // Sentry.captureException(e);
   };
 
-  _handleFinishLoading = () => {
-    this.setState({ isLoadingComplete: true });
-    console.log('finished _handleFinishLoading');
-  };
+  _handleFinishLoading() {
+    try {
+      this.setState({ isLoadingComplete: true });
+      console.log('finished _handleFinishLoading');
+    } catch (error) {
+      console.warn(`_handleFinishLoading: ${error}`);
+    }
+  }
 }
 //to use storybook
 //uncomment this line and run `yarn run storybook`

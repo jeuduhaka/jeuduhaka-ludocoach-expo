@@ -1,11 +1,10 @@
 import React from 'react';
 import { View } from 'react-native';
-import { HeaderBackButton } from 'react-navigation-stack';
+import { HeaderBackButton } from '@react-navigation/stack';
 import { compose } from 'redux';
 import { connect } from 'react-redux';
 import { MaterialIcons } from '@expo/vector-icons';
 import { ActionCreators as UndoActionCreators } from 'redux-undo';
-import { NavigationActions } from 'react-navigation';
 
 import { goBack } from '../actions';
 
@@ -22,8 +21,6 @@ const HomeIcon = ({ tintColor }) => (
   />
 );
 
-const backAction = NavigationActions.back();
-
 const BackButton = ({ navigation, onBackPress, onUndo, tintColor }) => {
   return (
     <View
@@ -37,7 +34,7 @@ const BackButton = ({ navigation, onBackPress, onUndo, tintColor }) => {
       }}>
       <HeaderBackButton
         onPress={() => {
-          navigation.dispatch(backAction);
+          navigation.goBack();
           onBackPress();
         }}
         tintColor={tintColor}
@@ -46,7 +43,7 @@ const BackButton = ({ navigation, onBackPress, onUndo, tintColor }) => {
   );
 };
 
-const mapDispatchToProps = dispatch => {
+const mapDispatchToProps = (dispatch) => {
   return {
     onBackPress: () => {
       dispatch(UndoActionCreators.undo());
