@@ -23,20 +23,6 @@ import VideoScreen from '../screens/VideoScreen';
 import FinalScreen from '../screens/FinalScreen';
 import AfterCardsScreen from '../screens/AfterCardsScreen';
 
-// const noTransitionConfig = () => ({
-//   transitionSpec: {
-//     duration: 0,
-//     timing: Animated.timing,
-//     easing: Easing.step0,
-//   },
-// });
-
-// const mainScreenNavigatorConfig = {
-//   swipeEnabled: false,
-//   headerMode: 'none',
-//   transitionConfig: noTransitionConfig,
-// };
-
 const styles = StyleSheet.create({
   item: {
     flexDirection: 'row',
@@ -96,15 +82,24 @@ function AppNavigator() {
     <Stack.Navigator
       initialRouteName="Home"
       headerMode="none"
-      screenOptions={
-        {
-          // transitionSpec: {
-          //   // duration: 0,
-          //   timing: Animated.timing,
-          //   easing: Easing.step0,
-          // },
-        }
-      }>
+      screenOptions={{
+        transitionSpec: {
+          open: {
+            animation: 'timing',
+            config: {
+              duration: 0,
+              easing: Easing.step0,
+            },
+          },
+          close: {
+            animation: 'timing',
+            config: {
+              duration: 0,
+              easing: Easing.step0,
+            },
+          },
+        },
+      }}>
       <Stack.Screen name="Home" component={HomeWithDrawer} />
       <Stack.Screen name="Second3Moves" component={SecondScreen3Moves} />
       <Stack.Screen name="Second1Move" component={SecondScreen1Move} />
