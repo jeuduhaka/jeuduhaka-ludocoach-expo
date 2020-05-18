@@ -22,7 +22,7 @@ export default {
   youHaveChosen: 'Vous avez choisi',
   placeYourself:
     ". Placez vous dans un endroit où vous vous sentez bien et avez assez d'espace. Respirez bien et faites comme moi.",
-  iChoose: 'Je choisis',
+  iChooseThisCard: 'Je choisis cette carte',
   chooseAnotherCard: 'Choisir une autre carte',
   manaActivated:
     'Bravo, vous avez activé votre Mana ! Dites vous : "Le pouvoir est en moi !"',

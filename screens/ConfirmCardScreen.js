@@ -106,7 +106,7 @@ class ConfirmCardScreen extends React.Component {
                 marginRight: 5,
               },
             }}>
-            {I18n.t('iChoose')}
+            {I18n.t('iChooseThisCard')}
           </Button>
           <Button
             onPress={() => {

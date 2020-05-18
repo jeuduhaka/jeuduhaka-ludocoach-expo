@@ -22,7 +22,7 @@ export default {
   placeYourself:
     '. Find a place where you feel good and have enough space. Pay attention to your breath and follow me.',
   letsGo: 'Next',
-  iChoose: 'I choose',
+  iChooseThisCard: 'I choose this card',
   chooseAnotherCard: 'Choose another card',
   manaActivated:
     'Congratulations, you have activated your Mana! Say to yourself: "The Power is in me!"',
