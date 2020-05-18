@@ -1,5 +1,4 @@
 import 'react-native-gesture-handler';
-
 import React from 'react';
 import { View, StatusBar } from 'react-native';
 import { Provider } from 'react-redux';
@@ -13,8 +12,9 @@ import {
   Entypo,
 } from '@expo/vector-icons';
 import { activateKeepAwake } from 'expo-keep-awake';
+import { NavigationContainer } from '@react-navigation/native';
 
-import AppWithNavigationState from './navigators/AppWithNavigationState';
+import { AppNavigator } from './navigators/AppNavigator';
 import configureStore from './config/configureStore';
 import { cacheImages, cacheVideos, cacheFonts } from './utils/cacheAssetsAsync';
 
@@ -94,7 +94,9 @@ class App extends React.Component<{
       <View style={{ flex: 1 }}>
         <StatusBar hidden />
         <Provider store={store}>
-          <AppWithNavigationState />
+          <NavigationContainer>
+            <AppNavigator />
+          </NavigationContainer>
         </Provider>
       </View>
     );

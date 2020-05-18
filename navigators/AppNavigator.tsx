@@ -68,21 +68,6 @@ function GiftsCardsStack() {
   );
 }
 
-// const GiftsCardsStack = createStackNavigator(
-//   {
-//     Intro: {
-//       screen: GiftCardsScreen,
-//     },
-//     SendGiftCardGallery: {
-//       screen: SendGiftCardGalleryScreen,
-//     },
-//   },
-//   {
-//     initialRouteName: 'Intro',
-//     headerMode: 'none',
-//   }
-// );
-
 const Drawer = createDrawerNavigator();
 
 function HomeWithDrawer() {
@@ -103,69 +88,6 @@ function HomeWithDrawer() {
     </Drawer.Navigator>
   );
 }
-
-// const HomeWithDrawer = createDrawerNavigator(
-//   {
-//     Home: {
-//       screen: HomeScreen,
-//     },
-//     GameGoal: {
-//       screen: GameGoalScreen,
-//     },
-//     Advice: {
-//       screen: AdviceScreen,
-//     },
-//     GiftCards: {
-//       screen: GiftsCardsStack,
-//     },
-//     SendGreetingCard: {
-//       screen: SendGreetingCardGalleryScreen,
-//     },
-//     Authors: {
-//       screen: AuthorsScreen,
-//     },
-//     GamesList: {
-//       screen: GamesListScreen,
-//     },
-//     Thanks: {
-//       screen: ThanksScreen,
-//     },
-//   },
-//   {
-//     headerMode: 'none',
-//     gesturesEnabled: false,
-//     contentComponent: CustomDrawerContentComponent,
-//   }
-// );
-
-// export const AppNavigator = createStackNavigator(
-//   {
-//     Home: { screen: HomeWithDrawer },
-//     Second3Moves: { screen: SecondScreen3Moves },
-//     Second1Move: { screen: SecondScreen1Move },
-//     Final: { screen: FinalScreen },
-//     Deck: { screen: DeckScreen },
-//     ChooseCardGrid: { screen: ChooseCardGridScreen },
-//     ConfirmCard: { screen: ConfirmCardScreen },
-//     AfterCards: { screen: AfterCardsScreen },
-//     // Main: {
-//     //   screen: MainScreenNavigator,
-//     //   navigationOptions: ({ navigation }) => ({
-//     //     title: 'Ludocoach'
-//     //     // headerBackTitle: null
-//     //   })
-//     // },
-//     Video: {
-//       path: 'video/:card',
-//       screen: VideoScreen,
-//       // headerMode: 'float',
-//       navigationOptions: ({ navigation }) => ({
-//         // headerTitle: navigation.state.params.videoName
-//       }),
-//     },
-//   },
-//   mainScreenNavigatorConfig
-// );
 
 function AppNavigator() {
   const Stack = createStackNavigator();
