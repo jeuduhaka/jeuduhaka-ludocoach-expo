@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { View } from 'react-native';
 import { Video } from 'expo-av';
 import { compose } from 'redux';
@@ -82,8 +82,36 @@ function VideoScreen({
 }) {
   const navigation = useNavigation();
 
+  console.log(`currentDeck: ${currentDeck}`);
+  console.log(`selectedCards: ${selectedCards}`);
+
+  // let cardName = useRef();
   const cardName = selectedCards[currentDeck];
-  const videoSource = videoSources[currentDeck][cardName];
+  // let videoSource = useRef();
+  let videoSource;
+
+  if (
+    videoSources.hasOwnProperty(currentDeck) &&
+    videoSources[currentDeck].hasOwnProperty(cardName)
+  ) {
+    videoSource = videoSources[currentDeck][cardName];
+  }
+
+  console.log(`videoSource: ${videoSource}`);
+
+  // useEffect(() => {
+  //   console.log(`
+
+  //   `);
+
+  //   if (currentDeck && cardName && videoSource && videoSource.current) {
+  //     videoSource.current.value = videoSources[currentDeck][cardName.current.value];
+  //   }
+
+  //   if (currentDeck && cardName && cardName.current) {
+  //     cardName.current.value = selectedCards[currentDeck];
+  //   }
+  // }, [currentDeck, cardName.current, videoSource.current]);
 
   useEffect(() => {
     return () => {
@@ -91,7 +119,7 @@ function VideoScreen({
     };
   });
 
-  return (
+  const renderVideo = () => (
     <View style={styles.videoContainer}>
       {/* <NavigationHeader tintColor={'#ffffff'} /> */}
       <BackButton navigation={navigation} tintColor={'#ffffff'} />
@@ -136,6 +164,12 @@ function VideoScreen({
       />
     </View>
   );
+
+  if (videoSource) {
+    return renderVideo();
+  }
+
+  return <View />;
 }
 
 const mapStateToProps = (state: any) => ({
