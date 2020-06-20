@@ -5,8 +5,6 @@ import { compose } from 'redux';
 import { connect } from 'react-redux';
 import { useNavigation, CommonActions } from '@react-navigation/native';
 
-//from @expo/videoplayer with custom Height
-// import VideoPlayer from '../components/VideoPlayer';
 import VideoPlayer from 'expo-video-player';
 // import NavigationHeader from '../components/NavigationHeader';
 import BackButton from '../components/BackButton';
