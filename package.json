@@ -6,11 +6,11 @@
   "author": "Florent Roques",
   "main": "node_modules/expo/AppEntry.js",
   "scripts": {
-    "build:android": "exp build:android",
-    "build:ios": "exp build:ios",
-    "test": "node node_modules/jest/bin/jest.js",
-    "testw": "node node_modules/jest/bin/jest.js --watch",
-    "reset": "watchman watch-del-all && rm -rf node_modules/ && yarn"
+    "start": "expo start",
+    "android": "expo start --android",
+    "ios": "expo start --ios",
+    "web": "expo start --web",
+    "eject": "expo eject"
   },
   "jest": {
     "preset": "jest-expo"
@@ -22,7 +22,6 @@
   },
   "dependencies": {
     "@expo/vector-icons": "^10.0.0",
-    "@expo/videoplayer": "^0.1.6",
     "@react-native-community/masked-view": "0.1.6",
     "@react-native-community/netinfo": "5.5.1",
     "@react-navigation/drawer": "^5.7.5",
@@ -42,6 +41,7 @@
     "lodash.get": "^4.4.2",
     "prop-types": "^15.5.10",
     "react": "16.9.0",
+    "react-dom": "~16.9.0",
     "react-mixin": "^4.0.0",
     "react-native": "https://github.com/expo/react-native/archive/sdk-37.0.1.tar.gz",
     "react-native-gesture-handler": "~1.6.0",
@@ -50,6 +50,7 @@
     "react-native-safe-area-context": "0.7.3",
     "react-native-screens": "~2.2.0",
     "react-native-snap-carousel": "^3.3.4",
+    "react-native-web": "~0.11.7",
     "react-navigation-touchable-item": "^1.0.4",
     "react-redux": "^5.0.4",
     "react-timer-mixin": "^0.13.3",
