@@ -1,6 +1,8 @@
 import React from 'react';
 import { View } from 'react-native';
 import { HeaderBackButton } from '@react-navigation/stack';
+import { useNavigation } from '@react-navigation/native';
+
 import { compose } from 'redux';
 import { connect } from 'react-redux';
 import { MaterialIcons } from '@expo/vector-icons';
@@ -12,7 +14,7 @@ const ICON_COLOR = '#014DA2';
 const CENTER_ICON_SIZE = 36;
 const BOTTOM_BAR_ICON_SIZE = 30;
 
-const HomeIcon = ({ tintColor }) => (
+const HomeIcon = ({ tintColor }: { tintColor: string }) => (
   <MaterialIcons
     name={'home'}
     size={CENTER_ICON_SIZE}
@@ -21,7 +23,9 @@ const HomeIcon = ({ tintColor }) => (
   />
 );
 
-const BackButton = ({ navigation, onBackPress, onUndo, tintColor }) => {
+const BackButton = ({ tintColor }: { tintColor: string }) => {
+  const navigation = useNavigation();
+
   return (
     <View
       style={{
@@ -35,7 +39,7 @@ const BackButton = ({ navigation, onBackPress, onUndo, tintColor }) => {
       <HeaderBackButton
         onPress={() => {
           navigation.goBack();
-          onBackPress();
+          // onBackPress();
         }}
         tintColor={tintColor}
       />
@@ -46,11 +50,13 @@ const BackButton = ({ navigation, onBackPress, onUndo, tintColor }) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     onBackPress: () => {
-      dispatch(UndoActionCreators.undo());
-      dispatch(goBack());
+      // dispatch(UndoActionCreators.undo());
+      // dispatch(goBack());
     },
     // onUndo: () => dispatch(UndoActionCreators.undo()),
-    onRedo: () => dispatch(UndoActionCreators.redo()),
+    onRedo: () => {
+      // dispatch(UndoActionCreators.redo())
+    },
   };
 };
 
