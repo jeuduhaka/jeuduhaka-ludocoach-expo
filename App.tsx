@@ -2,15 +2,14 @@ import 'react-native-gesture-handler';
 import React from 'react';
 import { View, StatusBar } from 'react-native';
 import { Provider } from 'react-redux';
-import Expo, { AppLoading } from 'expo';
-import * as Font from 'expo-font';
-import I18n from 'ex-react-native-i18n';
+import { AppLoading } from 'expo';
 import {
   MaterialIcons,
   Foundation,
   Ionicons,
   Entypo,
 } from '@expo/vector-icons';
+import { Audio } from 'expo-av';
 import { activateKeepAwake } from 'expo-keep-awake';
 import { NavigationContainer } from '@react-navigation/native';
 
@@ -18,15 +17,13 @@ import { AppNavigator } from './navigators/AppNavigator';
 import configureStore from './config/configureStore';
 import { cacheImages, cacheVideos, cacheFonts } from './utils/cacheAssetsAsync';
 
-// import DownloadManager from './utils/DownloadManager';
-
 const store = configureStore();
 
 async function _loadSoundAsync() {
   if (__DEV__) return;
 
   try {
-    await Expo.Audio.Sound.create(
+    await Audio.Sound.createAsync(
       require('./assets/sounds/normalized-tamtam-loop16bit-1min-volume-0.6.mp3'),
       {
         shouldPlay: true,
@@ -43,31 +40,10 @@ async function _loadSoundAsync() {
 class App extends React.Component<{
   skipLoadingScreen: boolean;
 }> {
-  // static sound = new Expo.Audio.Sound();
-
   state = {
     isLoadingComplete: false,
     store: null,
   };
-
-  componentDidMount() {
-    //Intercept react-native error handling
-    // this.defaultHandler = ErrorUtils.getGlobalHandler();
-    // ErrorUtils.setGlobalHandler(this.wrapGlobalHandler.bind(this));
-  }
-
-  componentWillUnmount() {
-    // this._downloadManager && this._downloadManager.teardown();
-  }
-
-  // async wrapGlobalHandler(error, isFatal) {
-  //   // If the error kills our app in Release mode, make sure we don't rehydrate
-  //   // with an invalid Redux state and cleanly go back to home page instead
-  //   if (isFatal && !__DEV__) AsyncStorage.clear();
-
-  //   //Once finished, make sure react-native also gets the error
-  //   if (this.defaultHandler) this.defaultHandler(error, isFatal);
-  // }
 
   render() {
     console.log(
@@ -129,7 +105,7 @@ class App extends React.Component<{
         ...imageAssets,
         ...fontAssets,
       ]);
-      // this.setState({ isLoadingComplete: true });
+      this.setState({ isLoadingComplete: true });
     } catch (e) {
       console.log('Error downloading assets', e);
       // Sentry.captureException(e);
