@@ -23,8 +23,8 @@ import AuthorsScreen from '../screens/AuthorsScreen';
 import AdviceScreen from '../screens/AdviceScreen';
 import GameGoalScreen from '../screens/GameGoalScreen';
 import ThanksScreen from '../screens/ThanksScreen';
-import HomeScreen from '../screens/HomeScreen';
-import SecondScreen3Moves from '../screens/SecondScreen3Moves';
+import { HomeScreen } from '../screens/HomeScreen';
+import { SecondScreen3Moves } from '../screens/SecondScreen3Moves';
 import { SecondScreen1Move } from '../screens/SecondScreen1Move';
 import DeckScreen from '../screens/DeckScreen';
 import { ChooseCardGridScreen } from '../screens/ChooseCardGridScreen';
@@ -35,6 +35,8 @@ import AfterCardsScreen from '../screens/AfterCardsScreen';
 
 export type RootStackParamList = {
   Home: {};
+  SecondScreen1Move: {};
+  SecondScreen3Moves: {};
   ChooseCardGrid: {
     gameMode: string;
     currentDeck: CardDeckName;
@@ -62,11 +64,12 @@ function GiftsCardsStack() {
   );
 }
 
-const Drawer = createDrawerNavigator();
-
 function HomeWithDrawer() {
+  const Drawer = createDrawerNavigator();
+
   return (
     <Drawer.Navigator
+      initialRouteName="Home"
       drawerContent={(props) => <CustomDrawerContentComponent {...props} />}>
       <Drawer.Screen name="Home" component={HomeScreen} />
       <Drawer.Screen name="GameGoal" component={GameGoalScreen} />
@@ -88,7 +91,7 @@ function AppNavigator() {
 
   return (
     <Stack.Navigator
-      initialRouteName="Home"
+      initialRouteName="HomeWithDrawer"
       headerMode="none"
       screenOptions={{
         transitionSpec: {
@@ -108,7 +111,7 @@ function AppNavigator() {
           },
         },
       }}>
-      <Stack.Screen name="Home" component={HomeWithDrawer} />
+      <Stack.Screen name="HomeWithDrawer" component={HomeWithDrawer} />
       <Stack.Screen name="Second3Moves" component={SecondScreen3Moves} />
       <Stack.Screen name="Second1Move" component={SecondScreen1Move} />
       <Stack.Screen name="Final" component={FinalScreen} />

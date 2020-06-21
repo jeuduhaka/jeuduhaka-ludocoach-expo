@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   Text,
   Image,
@@ -12,11 +12,10 @@ import { connect } from 'react-redux';
 import { Asset } from 'expo-asset';
 import { Ionicons } from '@expo/vector-icons';
 import flat from 'flat';
+import { RouteProp } from '@react-navigation/native';
+import { StackNavigationProp } from '@react-navigation/stack';
 
 import i18n from '../i18n';
-
-import { gameModeChosen, languageChanged, assetsLoaded } from '../actions';
-import * as ActionTypes from '../actions/types';
 
 import { Button } from '../components/common';
 import MenuButton from '../components/MenuButton';
@@ -24,185 +23,146 @@ import LanguageFlagButton from '../components/LanguageFlagButton';
 import styles from './styles';
 import cardImageSources from '../stores/CardImageSources';
 import cardVideoSources from '../stores/CardVideoSourcesLocal';
+import { RootStackParamList } from '../navigators/AppNavigator';
+import { DrawerNavigationProp } from '@react-navigation/drawer';
 
-class HomeScreen extends React.Component {
-  static route = {
-    navigationBar: {
-      visible: false,
-    },
-  };
+type HomeScreenRouteProp = RouteProp<RootStackParamList, 'Home'>;
+type HomeScreenNavigationProp = DrawerNavigationProp<
+  RootStackParamList,
+  'Home'
+>;
 
-  // static navigationOptions = {
-  //   headerMode: 'float',
-  //   drawerLabel: i18n.t('backToGame'),
-  //   drawerIcon: ({ tintColor }) => (
-  //     <FontAwesome name="gamepad" size={18} style={{ color: '#014DA2' }} />
-  //   )
+type Props = {
+  route: HomeScreenRouteProp;
+  navigation: HomeScreenNavigationProp;
+};
+
+function HomeScreen({ route, navigation }: Props) {
+  // static navigationOptions = ({ navigation, screenProps }) => {
+  //   return {
+  //     headerMode: 'float',
+  //     drawerLabel: i18n.t('backToGame', { locale: screenProps.language }),
+  //     drawerIcon: ({ tintColor }) => {
+  //       const iconName =
+  //         Platform.OS === 'ios' ? 'ios-arrow-forward' : 'md-arrow-forward';
+
+  //       return (
+  //         <Ionicons name={iconName} size={18} style={{ color: '#014DA2' }} />
+  //       );
+  //     },
+  //   };
   // };
 
-  static navigationOptions = ({ navigation, screenProps }) => {
-    return {
-      headerMode: 'float',
-      drawerLabel: i18n.t('backToGame', { locale: screenProps.language }),
-      drawerIcon: ({ tintColor }) => {
-        const iconName =
-          Platform.OS === 'ios' ? 'ios-arrow-forward' : 'md-arrow-forward';
+  const [assetsLoaded, setAssetsLoaded] = useState(false);
+  const [assetsCount, setAssetsCount] = useState(0);
+  const [currentAssetIndex, setCurrentAssetIndex] = useState(0);
 
-        return (
-          <Ionicons name={iconName} size={18} style={{ color: '#014DA2' }} />
-        );
-      },
-    };
-  };
-
-  state = {
-    assetsLoaded: false,
-    assetsNumber: null,
-    currentAssetIndex: 0,
-  };
-
-  async componentDidMount() {
-    if (this.props.language) {
-      i18n.locale = this.props.language;
-    } else {
-      this.props.languageChanged(i18n.locale);
+  const loadAssetsAsync = async () => {
+    if (assetsLoaded) {
+      return;
     }
 
-    if (this.props.areAssetsLoaded) {
-      this.setState({ assetsLoaded: true });
+    const images = Object.values<number>(flat(cardImageSources));
+    const videos = Object.values<number>(flat(cardVideoSources));
+
+    const assetsRequires = images.concat(videos);
+    setAssetsCount(assetsRequires.length);
+
+    for (let assetRequire of assetsRequires) {
+      const asset = Asset.fromModule(assetRequire);
+      setCurrentAssetIndex(currentAssetIndex + 1);
+      await asset.downloadAsync();
     }
 
+    setAssetsLoaded(true);
+  };
+
+  useEffect(() => {
     try {
-      this._loadAssetsAsync();
+      loadAssetsAsync();
       // this._getLanguage();
     } finally {
       // this.setState({ appIsReady: true });
     }
-  }
+  }, []);
 
-  async _loadAssetsAsync() {
-    // console.log(this.props);
-    if (this.props.areAssetsLoaded) {
-      this.setState({ assetsLoaded: true });
-      return;
-    }
-
-    const images = Object.values(flat(cardImageSources));
-    const videos = Object.values(flat(cardVideoSources));
-
-    const assets = images.concat(videos);
-    this.setState({ assetsNumber: assets.length });
-
-    for (let asset of assets) {
-      asset = Asset.fromModule(asset);
-      // this.setState({ currentAsset: `${asset.name}.${asset.type}` });
-      this.setState({ currentAssetIndex: this.state.currentAssetIndex + 1 });
-      await asset.downloadAsync();
-    }
-
-    this.setState({ assetsLoaded: true });
-    this.props.assetsLoaded(true);
-  }
-
-  render() {
-    const { navigation } = this.props;
-
-    return (
-      <View style={styles.container}>
-        <MenuButton
-          onPress={() => {
-            navigation.navigate('DrawerOpen');
-          }}
-        />
-        <LanguageFlagButton />
-        <ImageBackground
-          style={styles.backgroundImage}
-          source={require('../assets/images/fond-bleu-vague-1980x1980.jpg')}>
-          <View style={styles.navigationHeader} />
-          <View style={styles.contentContainer}>
-            <View style={styles.titleContainer}>
-              <Text style={styles.title}>{i18n.t('hakaGame')}</Text>
-            </View>
-            <View style={styles.subtitleContainer}>
-              <Text style={styles.subtitle}>{i18n.t('guidedByLudocoach')}</Text>
-            </View>
-            <View style={styles.homeImageContainer}>
-              <Image
-                style={styles.homeImage}
-                source={require('../assets/images/jeu-du-haka-logo-200x200.png')}
-              />
-            </View>
-            <View style={styles.mantraContainer}>
-              <Text style={styles.subtitle}>{i18n.t('powerIsInYou')}</Text>
-            </View>
-            <View style={styles.startButtonContainer}>
-              {this.state.assetsLoaded ? (
-                <View>
-                  <View style={styles.homeActionButton}>
-                    <Button
-                      title={i18n.t('play3Moves')}
-                      onPress={() => {
-                        this.props.gameModeChosen(
-                          ActionTypes.GAME_MODE_3_MOVES
-                        );
-                        navigation.navigate('Second3Moves');
-                      }}>
-                      {i18n.t('play3Moves')}
-                    </Button>
-                  </View>
-                  <View style={styles.homeActionButton}>
-                    <Button
-                      title={i18n.t('play1Move')}
-                      onPress={() => {
-                        this.props.gameModeChosen(ActionTypes.GAME_MODE_1_MOVE);
-                        navigation.navigate('Second1Move');
-                      }}>
-                      {i18n.t('play1Move')}
-                    </Button>
-                  </View>
-                </View>
-              ) : (
-                this.state.assetsNumber &&
-                this.state.currentAssetIndex && (
-                  <Text
-                    style={{
-                      color: '#000000',
-                      alignSelf: 'center',
-                    }}>
-                    <Text>{i18n.t('loading')}</Text>
-                    <Text>... </Text>
-                    <Text>
-                      {this.state.currentAssetIndex}/{this.state.assetsNumber}
-                    </Text>
-                  </Text>
-                )
-              )}
-            </View>
-            <View style={styles.copyrightContainer}>
-              <Text style={styles.copyright}>
-                Hinenao Kimitete - Tehotu Tauraatua
-              </Text>
-              <Text style={styles.copyright}>Marc Kucharz</Text>
-              <Text style={[styles.copyright, { paddingTop: 10 }]}>
-                © Le Jeu du Haka - {i18n.t('allRightsReserved')}
-              </Text>
-            </View>
+  return (
+    <View style={styles.container}>
+      <ImageBackground
+        style={styles.backgroundImage}
+        source={require('../assets/images/fond-bleu-vague-1980x1980.jpg')}>
+        <View style={styles.navigationHeader}>
+          <MenuButton
+            onPress={() => {
+              navigation.openDrawer();
+            }}
+          />
+          <LanguageFlagButton />
+        </View>
+        <View style={styles.contentContainer}>
+          <View style={styles.titleContainer}>
+            <Text style={styles.title}>{i18n.t('hakaGame')}</Text>
           </View>
-        </ImageBackground>
-      </View>
-    );
-  }
+          <View style={styles.subtitleContainer}>
+            <Text style={styles.subtitle}>{i18n.t('guidedByLudocoach')}</Text>
+          </View>
+          <View style={styles.homeImageContainer}>
+            <Image
+              style={styles.homeImage}
+              source={require('../assets/images/jeu-du-haka-logo-200x200.png')}
+            />
+          </View>
+          <View style={styles.mantraContainer}>
+            <Text style={styles.subtitle}>{i18n.t('powerIsInYou')}</Text>
+          </View>
+          <View style={styles.startButtonContainer}>
+            {assetsLoaded ? (
+              <View>
+                <View style={styles.homeActionButton}>
+                  <Button
+                    onPress={() => {
+                      navigation.navigate('Second3Moves');
+                    }}>
+                    {i18n.t('play3Moves')}
+                  </Button>
+                </View>
+                <View style={styles.homeActionButton}>
+                  <Button
+                    onPress={() => {
+                      navigation.navigate('Second1Move');
+                    }}>
+                    {i18n.t('play1Move')}
+                  </Button>
+                </View>
+              </View>
+            ) : (
+              assetsCount &&
+              currentAssetIndex && (
+                <Text
+                  style={{
+                    color: '#000000',
+                    alignSelf: 'center',
+                  }}>
+                  <Text>{i18n.t('loading')}</Text>
+                  <Text>... </Text>
+                  <Text>{`${currentAssetIndex}/${assetsCount}`}</Text>
+                </Text>
+              )
+            )}
+          </View>
+          <View style={styles.copyrightContainer}>
+            <Text style={styles.copyright}>
+              Hinenao Kimitete - Tehotu Tauraatua
+            </Text>
+            <Text style={styles.copyright}>Marc Kucharz</Text>
+            <Text style={[styles.copyright, { paddingTop: 10 }]}>
+              © Le Jeu du Haka - {i18n.t('allRightsReserved')}
+            </Text>
+          </View>
+        </View>
+      </ImageBackground>
+    </View>
+  );
 }
 
-const mapStateToProps = (state) => ({
-  gameMode: state.gameMode,
-  language: state.language,
-  areAssetsLoaded: state.assetsLoaded,
-});
-
-const enhance = compose(
-  connect(mapStateToProps, { gameModeChosen, languageChanged, assetsLoaded })
-  // require('../utils/withLifecycleLogs').default
-);
-
-export default enhance(HomeScreen);
+export { HomeScreen };
