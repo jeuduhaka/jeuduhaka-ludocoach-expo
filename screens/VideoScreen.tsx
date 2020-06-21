@@ -1,19 +1,19 @@
-import React, { useEffect, useRef } from 'react';
-import { View } from 'react-native';
+import React from 'react';
+import { View, StyleSheet } from 'react-native';
 import { Video } from 'expo-av';
-import { compose } from 'redux';
-import { connect } from 'react-redux';
-import { useNavigation, CommonActions } from '@react-navigation/native';
-
+import { RouteProp } from '@react-navigation/native';
+import { StackNavigationProp } from '@react-navigation/stack';
 import VideoPlayer from 'expo-video-player';
-// import NavigationHeader from '../components/NavigationHeader';
+
+import { AssetsSourcesType } from '../types';
+
 import BackButton from '../components/BackButton';
 import HomeButton from '../components/HomeButton';
 import { videoEnded, backHome } from '../actions';
 import { GAME_MODE_1_MOVE } from '../actions/types';
-// import videoSources from '../stores/CardVideoSourcesLocal.js';
+import { RootStackParamList } from '../navigators/AppNavigator';
 
-const videoSources = {
+const videoSources: AssetsSourcesType = {
   red: {
     abandonment: require('../assets/videos/abandonment-render-fr.mp4'),
     anger: require('../assets/videos/anger-render-fr.mp4'),
@@ -49,7 +49,7 @@ const videoSources = {
   },
 };
 
-const styles = {
+const styles = StyleSheet.create({
   videoContainer: {
     flex: 1,
   },
@@ -60,68 +60,30 @@ const styles = {
     bottom: 0,
     right: 0,
   },
-};
-
-const resetAction = CommonActions.reset({
-  index: 0,
-  routes: [{ name: 'Home' }],
 });
 
-function VideoScreen({
-  currentDeck,
-  selectedCards,
-  gameMode,
-  videoEnded,
-}: {
-  currentDeck: any;
-  selectedCards: any;
-  gameMode: any;
-  videoEnded: any;
-}) {
-  const navigation = useNavigation();
+type ChooseCardGridScreenRouteProp = RouteProp<RootStackParamList, 'Video'>;
 
-  console.log(`currentDeck: ${currentDeck}`);
-  console.log(`selectedCards: ${selectedCards}`);
+type ChooseCardGridScreenNavigationProp = StackNavigationProp<
+  RootStackParamList,
+  'Video'
+>;
 
-  // let cardName = useRef();
-  const cardName = selectedCards[currentDeck];
-  // let videoSource = useRef();
-  let videoSource;
+type Props = {
+  route: ChooseCardGridScreenRouteProp;
+  navigation: ChooseCardGridScreenNavigationProp;
+};
 
-  if (
-    videoSources.hasOwnProperty(currentDeck) &&
-    videoSources[currentDeck].hasOwnProperty(cardName)
-  ) {
-    videoSource = videoSources[currentDeck][cardName];
-  }
+function VideoScreen({ route, navigation }: Props) {
+  const { gameMode, currentDeck, cardName } = route.params;
+  console.log(route.params);
 
-  console.log(`videoSource: ${videoSource}`);
+  const videoSource = videoSources[currentDeck][cardName];
 
-  // useEffect(() => {
-  //   console.log(`
-
-  //   `);
-
-  //   if (currentDeck && cardName && videoSource && videoSource.current) {
-  //     videoSource.current.value = videoSources[currentDeck][cardName.current.value];
-  //   }
-
-  //   if (currentDeck && cardName && cardName.current) {
-  //     cardName.current.value = selectedCards[currentDeck];
-  //   }
-  // }, [currentDeck, cardName.current, videoSource.current]);
-
-  useEffect(() => {
-    return () => {
-      console.log('This will be logged on unmount');
-    };
-  });
-
-  const renderVideo = () => (
+  return (
     <View style={styles.videoContainer}>
-      {/* <NavigationHeader tintColor={'#ffffff'} /> */}
-      <BackButton navigation={navigation} tintColor={'#ffffff'} />
-      <HomeButton navigation={navigation} tintColor={'#ffffff'} />
+      <BackButton tintColor={'#ffffff'} />
+      <HomeButton tintColor={'#ffffff'} />
 
       <VideoPlayer
         videoProps={{
@@ -145,11 +107,8 @@ function VideoScreen({
             return;
           }
 
-          videoEnded(currentDeck);
-
           if (gameMode === GAME_MODE_1_MOVE) {
-            navigation.dispatch(resetAction);
-            //RESET
+            navigation.navigate('Home');
             return;
           }
 
@@ -162,24 +121,6 @@ function VideoScreen({
       />
     </View>
   );
-
-  if (videoSource) {
-    return renderVideo();
-  }
-
-  return <View />;
 }
 
-const mapStateToProps = (state: any) => ({
-  gameMode: state.gameMode,
-  currentDeck: state.cards.present.currentDeck,
-  selectedCards: state.cards.present.selected,
-  allVideosEnded: state.cards.present.allVideosEnded,
-});
-
-const enhance = compose(
-  connect(mapStateToProps, { videoEnded, backHome })
-  // require('../utils/withLifecycleLogs').default
-);
-
-export default enhance(VideoScreen);
+export { VideoScreen };

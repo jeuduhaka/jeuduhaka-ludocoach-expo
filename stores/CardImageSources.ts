@@ -1,3 +1,14 @@
+import { number } from 'prop-types';
+import { GreenCardName, CardDeckName, AssetsSourcesType } from '../types';
+
+type GiftCardsSources = {
+  [key in 'en' | 'fr']: {
+    [key in GreenCardName]: number;
+  };
+};
+
+type FrontCardsSources = AssetsSourcesType;
+
 export default {
   logo: require('../assets/images/jeu-du-haka-logo-200x200.png'),
   wave: require('../assets/images/fond-bleu-vague-1980x1980.jpg'),

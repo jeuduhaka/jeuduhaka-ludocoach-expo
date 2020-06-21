@@ -3,6 +3,16 @@ import { StyleSheet, Animated, Easing } from 'react-native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { createDrawerNavigator } from '@react-navigation/drawer';
 
+import {
+  CardDeckName,
+  GreenCardName,
+  OrangeCardName,
+  RedCardName,
+  CardName,
+  AssetsSources,
+  SelectedCards,
+} from '../types';
+
 import CustomDrawerContentComponent from '../components/CustomDrawerContentComponent';
 
 import GiftCardsScreen from '../screens/GiftCardsScreen';
@@ -15,30 +25,28 @@ import GameGoalScreen from '../screens/GameGoalScreen';
 import ThanksScreen from '../screens/ThanksScreen';
 import HomeScreen from '../screens/HomeScreen';
 import SecondScreen3Moves from '../screens/SecondScreen3Moves';
-import SecondScreen1Move from '../screens/SecondScreen1Move';
+import { SecondScreen1Move } from '../screens/SecondScreen1Move';
 import DeckScreen from '../screens/DeckScreen';
-import ChooseCardGridScreen from '../screens/ChooseCardGridScreen';
+import { ChooseCardGridScreen } from '../screens/ChooseCardGridScreen';
 import ConfirmCardScreen from '../screens/ConfirmCardScreen';
-import VideoScreen from '../screens/VideoScreen';
+import { VideoScreen } from '../screens/VideoScreen';
 import FinalScreen from '../screens/FinalScreen';
 import AfterCardsScreen from '../screens/AfterCardsScreen';
 
-const styles = StyleSheet.create({
-  item: {
-    flexDirection: 'row',
-    alignItems: 'center',
-  },
-  icon: {
-    marginHorizontal: 16,
-    width: 24,
-    alignItems: 'center',
-  },
-  label: {
-    color: '#014DA2',
-    margin: 16,
-    fontWeight: 'bold',
-  },
-});
+export type RootStackParamList = {
+  Home: {};
+  ChooseCardGrid: {
+    gameMode: string;
+    currentDeck: CardDeckName;
+    allCardsChosen?: boolean;
+    cardConfirmed?: boolean;
+  };
+  Video: {
+    gameMode: string;
+    currentDeck: CardDeckName;
+    cardName: CardName;
+  };
+};
 
 function GiftsCardsStack() {
   const Stack = createStackNavigator();

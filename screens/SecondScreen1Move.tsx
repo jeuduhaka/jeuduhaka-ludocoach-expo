@@ -6,36 +6,22 @@ import i18n from '../i18n';
 import SecondScreen from './SecondScreen';
 import { secondScreen1MovePassed } from '../actions';
 import { useNavigation } from '@react-navigation/native';
+import { GAME_MODE_1_MOVE } from '../actions/types';
 
-const SecondScreen1Move = (onPress: () => void) => {
+const SecondScreen1Move = () => {
   const navigation = useNavigation();
 
   return (
     <SecondScreen
       textContent={i18n.t('oneMoveDescription')}
       buttonOnPress={() => {
-        onPress();
-        navigation.navigate('ChooseCardGrid');
+        navigation.navigate('ChooseCardGrid', {
+          gameMode: GAME_MODE_1_MOVE,
+          currentDeck: 'green',
+        });
       }}
     />
   );
 };
 
-// TODO specify any
-const mapStateToProps = (state: any) => ({});
-
-// TODO specify any
-const mapDispatchToProps = (dispatch: any) => {
-  return {
-    onPress: () => {
-      // dispatch(UndoActionCreators.clearHistory());
-      dispatch(secondScreen1MovePassed());
-    },
-    // onRedo: () => dispatch(UndoActionCreators.redo())
-  };
-};
-
-const enhance = compose(connect(mapStateToProps, mapDispatchToProps));
-
-// TODO fix type issue
-export default enhance(SecondScreen1Move);
+export { SecondScreen1Move };
