@@ -37,5 +37,5 @@ const mapDispatchToProps = (dispatch: any) => {
 
 const enhance = compose(connect(mapStateToProps, mapDispatchToProps));
 
-// fix type issue
+// TODO fix type issue
 export default enhance(SecondScreen1Move);
