@@ -1,4 +1,4 @@
-import React from '/utils/enhancedReact';
+import React from 'react';
 import { ActivityIndicator } from 'react-native';
 import { Foundation, MaterialIcons } from '@expo/vector-icons';
 
