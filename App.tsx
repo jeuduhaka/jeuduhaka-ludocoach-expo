@@ -13,6 +13,8 @@ import { Audio } from 'expo-av';
 import { activateKeepAwake } from 'expo-keep-awake';
 import { NavigationContainer } from '@react-navigation/native';
 
+import './i18n';
+
 import { AppNavigator } from './navigators/AppNavigator';
 import configureStore from './config/configureStore';
 import { cacheImages, cacheVideos, cacheFonts } from './utils/cacheAssetsAsync';

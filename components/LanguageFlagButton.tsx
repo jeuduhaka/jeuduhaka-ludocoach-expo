@@ -1,10 +1,9 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { View, Image, TouchableOpacity } from 'react-native';
 import { compose } from 'redux';
 import { connect } from 'react-redux';
-
-import i18n, { isLocaleSupported } from '../i18n';
-import { languageChanged } from '../actions';
+import * as Localization from 'expo-localization';
+import { useTranslation } from 'react-i18next';
 
 const ICON_COLOR = '#014DA2';
 const CENTER_ICON_SIZE = 30;
@@ -19,81 +18,47 @@ const flags: {
 };
 
 // TODO specify any
-const otherFlagMap: {
-  [key: string]: string;
+const toggleLanguageMap: {
+  [key: string]: 'en' | 'fr';
 } = {
   fr: 'en',
   en: 'fr',
 };
 // TODO specify any
-const getOtherFlag = (currentLocale: string) => otherFlagMap[currentLocale];
+const toggleLanguage = (currentLocale: string) =>
+  toggleLanguageMap[currentLocale];
 
-class LanguageFlagButton extends React.Component<{
-  language: string;
-  gameMode: string;
-  languageChanged: (language: string) => {};
-}> {
-  constructor(props: any) {
-    super(props);
+function LanguageFlagButton() {
+  // TODO https://docs.expo.io/versions/latest/sdk/localization/#behavior
+  // const { locale } = await Localization.getLocalizationAsync();
 
-    const locale = i18n.locale.split('-')[0];
-    if (isLocaleSupported(locale)) {
-      this.state.currentFlag = getOtherFlag(locale);
-    } else {
-      this.state.currentFlag = getOtherFlag(i18n.defaultLocale);
-    }
-  }
+  const { i18n } = useTranslation();
 
-  state: {
-    currentFlag: string;
-  } = {
-    currentFlag: i18n.locale,
-  };
-
-  shouldComponentUpdate(nextProps: any, nextState: any) {
-    //fix issue when backHome
-    return nextState.currentFlag !== this.state.currentFlag;
-  }
-
-  render() {
-    const { languageChanged } = this.props;
-
-    return (
-      <View
-        style={{
-          position: 'absolute',
-          top: 8,
-          right: 5,
-          flexDirection: 'row',
-          //zIndex needed to be on top of Video
-          zIndex: 2,
+  return (
+    <View
+      style={{
+        position: 'absolute',
+        top: 8,
+        right: 5,
+        flexDirection: 'row',
+        //zIndex needed to be on top of Video
+        zIndex: 2,
+      }}>
+      <TouchableOpacity
+        onPress={() => {
+          const newLanguage = toggleLanguage(i18n.language);
+          i18n.changeLanguage(newLanguage);
         }}>
-        <TouchableOpacity
-          onPress={() => {
-            const otherFlag = getOtherFlag(this.state.currentFlag);
-            i18n.locale = this.state.currentFlag;
-            this.setState({ currentFlag: otherFlag });
-
-            languageChanged(i18n.locale);
-          }}>
-          <Image
-            style={{
-              width: CENTER_ICON_SIZE,
-              height: CENTER_ICON_SIZE * (2 / 3),
-            }}
-            source={{ uri: flags[this.state.currentFlag] }}
-          />
-        </TouchableOpacity>
-      </View>
-    );
-  }
+        <Image
+          style={{
+            width: CENTER_ICON_SIZE,
+            height: CENTER_ICON_SIZE * (2 / 3),
+          }}
+          source={{ uri: flags[toggleLanguage(i18n.language)] }}
+        />
+      </TouchableOpacity>
+    </View>
+  );
 }
-// TODO specify any
-const mapStateToProps = (state: any) => ({
-  gameMode: state.gameMode,
-  language: state.language,
-});
 
-const enhance = compose(connect(mapStateToProps, { languageChanged }));
-
-export default enhance(LanguageFlagButton);
+export { LanguageFlagButton };

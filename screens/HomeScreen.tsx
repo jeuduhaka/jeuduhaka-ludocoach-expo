@@ -15,16 +15,15 @@ import flat from 'flat';
 import { RouteProp } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
 
-import i18n from '../i18n';
-
 import { Button } from '../components/common';
 import MenuButton from '../components/MenuButton';
-import LanguageFlagButton from '../components/LanguageFlagButton';
+import { LanguageFlagButton } from '../components/LanguageFlagButton';
 import styles from './styles';
 import cardImageSources from '../stores/CardImageSources';
 import cardVideoSources from '../stores/CardVideoSourcesLocal';
 import { RootStackParamList } from '../navigators/AppNavigator';
 import { DrawerNavigationProp } from '@react-navigation/drawer';
+import { useTranslation } from 'react-i18next';
 
 type HomeScreenRouteProp = RouteProp<RootStackParamList, 'Home'>;
 type HomeScreenNavigationProp = DrawerNavigationProp<
@@ -41,7 +40,7 @@ function HomeScreen({ route, navigation }: Props) {
   // static navigationOptions = ({ navigation, screenProps }) => {
   //   return {
   //     headerMode: 'float',
-  //     drawerLabel: i18n.t('backToGame', { locale: screenProps.language }),
+  //     drawerLabel: t('backToGame', { locale: screenProps.language }),
   //     drawerIcon: ({ tintColor }) => {
   //       const iconName =
   //         Platform.OS === 'ios' ? 'ios-arrow-forward' : 'md-arrow-forward';
@@ -54,37 +53,37 @@ function HomeScreen({ route, navigation }: Props) {
   // };
 
   const [assetsLoaded, setAssetsLoaded] = useState(false);
-  const [assetsCount, setAssetsCount] = useState(0);
-  const [currentAssetIndex, setCurrentAssetIndex] = useState(0);
 
-  const loadAssetsAsync = async () => {
-    if (assetsLoaded) {
-      return;
-    }
-
-    const images = Object.values<number>(flat(cardImageSources));
-    const videos = Object.values<number>(flat(cardVideoSources));
-
-    const assetsRequires = images.concat(videos);
-    setAssetsCount(assetsRequires.length);
-
-    for (let assetRequire of assetsRequires) {
-      const asset = Asset.fromModule(assetRequire);
-      setCurrentAssetIndex(currentAssetIndex + 1);
-      await asset.downloadAsync();
-    }
-
-    setAssetsLoaded(true);
-  };
+  const [currentAssetIndex, setCurrentAssetIndex] = useState(1);
+  const [assetsRequires] = useState([
+    ...Object.values<number>(flat(cardImageSources)),
+    ...Object.values<number>(flat(cardVideoSources)),
+  ]);
+  const [assetsCount] = useState(assetsRequires.length);
+  const { t } = useTranslation();
 
   useEffect(() => {
-    try {
-      loadAssetsAsync();
-      // this._getLanguage();
-    } finally {
-      // this.setState({ appIsReady: true });
-    }
-  }, []);
+    (async () => {
+      if (assetsLoaded) {
+        return;
+      }
+
+      if (currentAssetIndex === assetsCount) {
+        setAssetsLoaded(true);
+        return;
+      }
+
+      const asset = Asset.fromModule(assetsRequires.pop());
+      await asset.downloadAsync();
+      setCurrentAssetIndex(currentAssetIndex + 1);
+    })();
+  }, [
+    assetsLoaded,
+    currentAssetIndex,
+    assetsCount,
+    assetsRequires,
+    setCurrentAssetIndex,
+  ]);
 
   return (
     <View style={styles.container}>
@@ -101,10 +100,10 @@ function HomeScreen({ route, navigation }: Props) {
         </View>
         <View style={styles.contentContainer}>
           <View style={styles.titleContainer}>
-            <Text style={styles.title}>{i18n.t('hakaGame')}</Text>
+            <Text style={styles.title}>{t('hakaGame')}</Text>
           </View>
           <View style={styles.subtitleContainer}>
-            <Text style={styles.subtitle}>{i18n.t('guidedByLudocoach')}</Text>
+            <Text style={styles.subtitle}>{t('guidedByLudocoach')}</Text>
           </View>
           <View style={styles.homeImageContainer}>
             <Image
@@ -113,7 +112,7 @@ function HomeScreen({ route, navigation }: Props) {
             />
           </View>
           <View style={styles.mantraContainer}>
-            <Text style={styles.subtitle}>{i18n.t('powerIsInYou')}</Text>
+            <Text style={styles.subtitle}>{t('powerIsInYou')}</Text>
           </View>
           <View style={styles.startButtonContainer}>
             {assetsLoaded ? (
@@ -123,7 +122,7 @@ function HomeScreen({ route, navigation }: Props) {
                     onPress={() => {
                       navigation.navigate('Second3Moves');
                     }}>
-                    {i18n.t('play3Moves')}
+                    {t('play3Moves')}
                   </Button>
                 </View>
                 <View style={styles.homeActionButton}>
@@ -131,23 +130,20 @@ function HomeScreen({ route, navigation }: Props) {
                     onPress={() => {
                       navigation.navigate('Second1Move');
                     }}>
-                    {i18n.t('play1Move')}
+                    {t('play1Move')}
                   </Button>
                 </View>
               </View>
             ) : (
-              assetsCount &&
-              currentAssetIndex && (
-                <Text
-                  style={{
-                    color: '#000000',
-                    alignSelf: 'center',
-                  }}>
-                  <Text>{i18n.t('loading')}</Text>
-                  <Text>... </Text>
-                  <Text>{`${currentAssetIndex}/${assetsCount}`}</Text>
-                </Text>
-              )
+              <Text
+                style={{
+                  color: '#000000',
+                  alignSelf: 'center',
+                }}>
+                <Text>{t('loading')}</Text>
+                <Text>... </Text>
+                <Text>{`${currentAssetIndex}/${assetsCount}`}</Text>
+              </Text>
             )}
           </View>
           <View style={styles.copyrightContainer}>
@@ -156,7 +152,7 @@ function HomeScreen({ route, navigation }: Props) {
             </Text>
             <Text style={styles.copyright}>Marc Kucharz</Text>
             <Text style={[styles.copyright, { paddingTop: 10 }]}>
-              © Le Jeu du Haka - {i18n.t('allRightsReserved')}
+              © Le Jeu du Haka - {t('allRightsReserved')}
             </Text>
           </View>
         </View>
