@@ -127,11 +127,7 @@ function SendGiftCardGalleryScreen({ navigation }: Props) {
         style={styles2.backgroundImage}
         source={require('../assets/images/fond-bleu-vague-1980x1980.jpg')}>
         <View style={styles2.navigationHeader}>
-          <MenuButton
-            onPress={() => {
-              navigation.openDrawer();
-            }}
-          />
+          <BackButton tintColor={'#014DA2'} />
         </View>
         <View style={carouselStyles.exampleContainer}>
           <Carousel
