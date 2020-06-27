@@ -57,6 +57,7 @@ function SendGiftCardGalleryScreen({ navigation }: Props) {
     // console.log(item);
 
     return (
+      // TODO better image rendering: add shadows? round image?
       <View style={sliderEntryStyles.slideInnerContainer}>
         {/* <View style={sliderEntryStyles.imageContainer}> */}
         <Image source={value} style={sliderEntryStyles.image} />
