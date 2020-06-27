@@ -88,6 +88,7 @@ function GiftCardsScreen({ navigation }: Props) {
             </View>
             <View style={{ flex: 3 / 10 }}>
               <Button
+                // TODO add better screen transition
                 onPress={() => navigation.navigate('SendGiftCardGallery')}>
                 {i18n.t('chooseGiftCard')}
               </Button>
