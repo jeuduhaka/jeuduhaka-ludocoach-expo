@@ -25,6 +25,8 @@ import styles2 from './styles';
 import { RootStackParamList } from '../navigators/AppNavigator';
 import { DrawerNavigationProp } from '@react-navigation/drawer';
 import { RouteProp } from '@react-navigation/native';
+import * as Sharing from 'expo-sharing';
+import { Asset } from 'expo-asset';
 
 type GiftCardsScreenRouteProp = RouteProp<RootStackParamList, 'GiftCards'>;
 type GiftCardsScreenNavigationProp = DrawerNavigationProp<
@@ -38,7 +40,7 @@ type Props = {
 };
 
 // TODO fix type issue
-const cardGiftsEntries = Object.entries(
+const cardGiftsEntries = Object.entries<number>(
   cardImageSources.gifts[i18n.language.split('-')[0].toLowerCase()]
 );
 
@@ -65,6 +67,22 @@ function SendGiftCardGalleryScreen({ navigation }: Props) {
 
   function sendCard() {
     // TODO update using expo-sharing
+    console.log(cardGiftsEntries[activeSlide]);
+
+    if (!cardGiftsEntries[activeSlide][1]) {
+      // TODO
+      return;
+    }
+
+    let cardFileLocalURI = Asset.fromModule(cardGiftsEntries[activeSlide][1])
+      .localUri;
+    if (!cardFileLocalURI) {
+      // TODO
+      return;
+    }
+
+    // TODO check sometimes not triggered, like assets not loaded or something (android)
+    Sharing.shareAsync(cardFileLocalURI);
     return;
     const currentGiftCardName = cardGiftsEntries[activeSlide][0];
 
