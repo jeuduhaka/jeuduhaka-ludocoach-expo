@@ -36,6 +36,7 @@ import AfterCardsScreen from '../screens/AfterCardsScreen';
 export type RootStackParamList = {
   Home: {};
   GameGoal: {};
+  Advice: {};
   SecondScreen1Move: {};
   SecondScreen3Moves: {};
   ChooseCardGrid: {

@@ -1,45 +1,45 @@
 import React from 'react';
-import { Text, Image, StyleSheet, Button, View } from 'react-native';
-import { FontAwesome } from '@expo/vector-icons';
+import { Text, StyleSheet, View, ImageBackground } from 'react-native';
 
 import MenuButton from '../components/MenuButton';
 import BackgroundWave from '../components/BackgroundWave';
 import i18n from '../i18n';
-import { useNavigation } from '@react-navigation/native';
+import { RouteProp } from '@react-navigation/native';
+import { RootStackParamList } from '../navigators/AppNavigator';
+import { DrawerNavigationProp } from '@react-navigation/drawer';
 
-class AdviceScreen extends React.Component {
-  static navigationOptions = ({
-    screenProps,
-  }: {
-    screenProps: {
-      language: string;
-    };
-  }) => ({
-    headerMode: 'float',
-    drawerLabel: i18n.t('adviceMenuTitle', {
-      locale: screenProps.language,
-    }),
-    drawerIcon: ({ tintColor }: { tintColor: string }) => (
-      <FontAwesome name="info" size={18} style={{ color: '#014DA2' }} />
-    ),
-  });
+import styles2 from './styles';
 
-  render() {
-    const navigation = useNavigation();
-    return (
-      <View style={{ flex: 1 }}>
-        <MenuButton
-          onPress={() => {
-            navigation.navigate('DrawerOpen');
-          }}
-        />
-        <BackgroundWave
-          style={{
-            flex: 1,
-            justifyContent: 'center',
-            alignItems: 'center',
-            padding: 10,
-          }}>
+type AdviceScreenRouteProp = RouteProp<RootStackParamList, 'Advice'>;
+type AdviceScreenNavigationProp = DrawerNavigationProp<
+  RootStackParamList,
+  'Advice'
+>;
+
+type Props = {
+  route: AdviceScreenRouteProp;
+  navigation: AdviceScreenNavigationProp;
+};
+
+// TODO better layout
+function AdviceScreen({ route, navigation }: Props) {
+  return (
+    <View style={{ flex: 1 }}>
+      <ImageBackground
+        style={styles2.backgroundImage}
+        source={require('../assets/images/fond-bleu-vague-1980x1980.jpg')}>
+        <View style={styles2.navigationHeader}>
+          <MenuButton
+            onPress={() => {
+              navigation.openDrawer();
+            }}
+          />
+        </View>
+        <View
+          style={[
+            styles2.contentContainer,
+            { padding: 10, justifyContent: 'center', alignItems: 'center' },
+          ]}>
           <Text
             style={[
               styles.blackText,
@@ -66,10 +66,10 @@ class AdviceScreen extends React.Component {
               {i18n.t('adviceFormulaExplanationPart2')}
             </Text>
           </View>
-        </BackgroundWave>
-      </View>
-    );
-  }
+        </View>
+      </ImageBackground>
+    </View>
+  );
 }
 
 const textfontSize = {
