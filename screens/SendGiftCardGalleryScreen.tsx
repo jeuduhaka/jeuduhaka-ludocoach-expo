@@ -1,16 +1,13 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
-  Text,
   Image,
-  StyleSheet,
   View,
-  ScrollView,
   Platform,
   Share,
   ActionSheetIOS,
+  ImageBackground,
 } from 'react-native';
-import { FontAwesome } from '@expo/vector-icons';
-import Carousel, { Pagination } from 'react-native-snap-carousel';
+import Carousel from 'react-native-snap-carousel';
 
 import { Button } from '../components/common';
 import BackgroundWave from '../components/BackgroundWave';
@@ -24,33 +21,31 @@ import sliderEntryStyles, {
 } from '../components/CarouselSliderEntryTextOnImage/SliderEntryTextOnImage.style';
 import cardImageSources from '../stores/CardImageSources';
 
-const shareFailureCallback = (error: Error) => {
-  __DEV__ && console.log('sharing failed');
+import styles2 from './styles';
+import { RootStackParamList } from '../navigators/AppNavigator';
+import { DrawerNavigationProp } from '@react-navigation/drawer';
+import { RouteProp } from '@react-navigation/native';
+
+type GiftCardsScreenRouteProp = RouteProp<RootStackParamList, 'GiftCards'>;
+type GiftCardsScreenNavigationProp = DrawerNavigationProp<
+  RootStackParamList,
+  'GiftCards'
+>;
+
+type Props = {
+  route: GiftCardsScreenRouteProp;
+  navigation: GiftCardsScreenNavigationProp;
 };
 
-const shareSuccessCallback = (success: boolean, method: string) => {
-  // let text;
-  // if (success) {
-  //   text = `Shared via ${method}`;
-  // } else {
-  //   text = "You didn't share";
-  // }
-  // this.setState({ text });
+// TODO fix type issue
+const cardGiftsEntries = Object.entries(
+  cardImageSources.gifts[i18n.language.split('-')[0].toLowerCase()]
+);
 
-  __DEV__ && console.log('sharing succeeded');
-};
+function SendGiftCardGalleryScreen({ navigation }: Props) {
+  const [activeSlide, setActiveSlide] = useState(0);
 
-class SendGiftCardGalleryScreen extends React.Component {
-  // TODO specify any
-  constructor(props: any) {
-    super(props);
-    this.state = {
-      activeSlide: 0,
-      cardGiftsEntries: Object.entries(cardImageSources.gifts[i18n.locale]),
-    };
-  }
-
-  _renderItem({
+  function _renderItem({
     item,
   }: {
     // TODO specify any
@@ -68,13 +63,12 @@ class SendGiftCardGalleryScreen extends React.Component {
     );
   }
 
-  sendCard = () => {
-    const currentGiftCardName = this.state.cardGiftsEntries[
-      this.state.activeSlide
-    ][0];
-    // console.log(currentGiftCardName);
+  function sendCard() {
+    // TODO update using expo-sharing
+    return;
+    const currentGiftCardName = cardGiftsEntries[activeSlide][0];
 
-    const language = i18n.locale.split('-')[0].toLowerCase();
+    const language = i18n.language.split('-')[0].toLowerCase();
 
     if (Platform.OS === 'ios') {
       ActionSheetIOS.showShareActionSheetWithOptions(
@@ -106,58 +100,45 @@ class SendGiftCardGalleryScreen extends React.Component {
         {}
       );
     }
-  };
-
-  render() {
-    return (
-      <View style={{ flex: 1 }}>
-        <BackButton tintColor={'#014DA2'} />
-        <BackgroundWave>
-          <ScrollView
-            horizontal
-            style={carouselStyles.scrollview}
-            contentContainerStyle={carouselStyles.scrollviewContentContainer}
-            indicatorStyle={'white'}
-            scrollEventThrottle={200}
-            alwaysBounceVertical={false}
-            alwaysBounceHorizontal={false}
-            directionalLockEnabled
-            //This setting is needed to block verticzl
-            scrollEnabled={false}>
-            <View style={carouselStyles.exampleContainer}>
-              <Carousel
-                ref={(c) => {
-                  this._carousel = c;
-                }}
-                data={this.state.cardGiftsEntries}
-                renderItem={this._renderItem}
-                sliderWidth={sliderWidth}
-                itemWidth={itemWidth}
-                containerCustomStyle={carouselStyles.slider}
-                contentContainerCustomStyle={
-                  carouselStyles.sliderContentContainer
-                }
-                lockScrollWhileSnapping
-                loop
-                onSnapToItem={(index: number) => {
-                  this.setState({ activeSlide: index });
-                }}
-              />
-            </View>
-          </ScrollView>
-          <View
-            style={{
-              flex: 1 / 3,
-              // backgroundColor: 'orange'
-            }}>
-            <Button onPress={this.sendCard}>
-              {i18n.t('sendThisGiftCard')}
-            </Button>
-          </View>
-        </BackgroundWave>
-      </View>
-    );
   }
+
+  return (
+    <View style={{ flex: 1 }}>
+      <ImageBackground
+        style={styles2.backgroundImage}
+        source={require('../assets/images/fond-bleu-vague-1980x1980.jpg')}>
+        <View style={styles2.navigationHeader}>
+          <MenuButton
+            onPress={() => {
+              navigation.openDrawer();
+            }}
+          />
+        </View>
+        <View style={carouselStyles.exampleContainer}>
+          <Carousel
+            data={cardGiftsEntries}
+            renderItem={_renderItem}
+            sliderWidth={sliderWidth}
+            itemWidth={itemWidth}
+            containerCustomStyle={carouselStyles.slider}
+            contentContainerCustomStyle={carouselStyles.sliderContentContainer}
+            lockScrollWhileSnapping
+            loop
+            onSnapToItem={(index: number) => {
+              setActiveSlide(index);
+            }}
+          />
+        </View>
+        <View
+          style={{
+            flex: 1 / 3,
+            // backgroundColor: 'orange'
+          }}>
+          <Button onPress={sendCard}>{i18n.t('sendThisGiftCard')}</Button>
+        </View>
+      </ImageBackground>
+    </View>
+  );
 }
 
 export default SendGiftCardGalleryScreen;

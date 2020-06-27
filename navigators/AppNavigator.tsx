@@ -37,6 +37,8 @@ export type RootStackParamList = {
   Home: {};
   GameGoal: {};
   Advice: {};
+  GiftCards: {};
+  SendGiftCardGallery: {};
   SecondScreen1Move: {};
   SecondScreen3Moves: {};
   ChooseCardGrid: {
@@ -56,7 +58,7 @@ function GiftsCardsStack() {
   const Stack = createStackNavigator();
 
   return (
-    <Stack.Navigator initialRouteName="Intro">
+    <Stack.Navigator initialRouteName="Intro" headerMode="none">
       <Stack.Screen name="Intro" component={GiftCardsScreen} />
       <Stack.Screen
         name="SendGiftCardGallery"
