@@ -4,7 +4,7 @@ import { compose } from 'redux';
 import { connect } from 'react-redux';
 import _get from 'lodash.get';
 
-import { deckPressed, selectedCardPressed } from '../actions';
+import { CardDeckName } from '../types';
 
 import Card from '../components/Card';
 import CardBack from '../components/CardBack';
@@ -14,40 +14,50 @@ import HomeButton from '../components/HomeButton';
 import ChooseCardText from '../components/ChooseCardText';
 
 import cardImageSources from '../stores/CardImageSources';
+import { RouteProp } from '@react-navigation/native';
+import { RootStackParamList } from '../navigators/AppNavigator';
+import { DrawerNavigationProp } from '@react-navigation/drawer';
 
-class DeckScreen extends React.Component {
-  static navigationOptions = {
-    header: null,
-    gesturesEnabled: false,
-  };
+import { nextDeck } from '../actions';
 
-  // shouldComponentUpdate(nextProps) {
-  //   return nextProps.cardConfirmed && !nextProps.allVideosEnded;
-  // }
+type DeckScreenRouteProp = RouteProp<RootStackParamList, 'Deck'>;
+type DeckScreenNavigationProp = DrawerNavigationProp<
+  RootStackParamList,
+  'Deck'
+>;
 
-  displayCard(color) {
-    const cardProps = {};
+type Props = {
+  route: DeckScreenRouteProp;
+  navigation: DeckScreenNavigationProp;
+};
 
-    const {
-      currentDeck,
-      allCardsChosen,
-      deckPressed,
-      selectedCards,
-      selectedCardPressed,
-      navigation,
-    } = this.props;
+function DeckScreen({ route, navigation }: Props) {
+  const { currentDeck, selectedCards, allCardsChosen } = route.params;
 
-    console.log(currentDeck);
+  function displayCard(color: CardDeckName) {
+    const cardProps: {
+      onPress: () => void;
+      style: any;
+      imageSource: number;
+    } = {
+      onPress: () => {},
+      style: {},
+      imageSource: NaN,
+    };
+
     if (currentDeck === color) {
       if (!allCardsChosen) {
         cardProps.onPress = () => {
-          deckPressed(color);
-          navigation.navigate('ChooseCardGrid');
+          navigation.navigate('ChooseCardGrid', {
+            gameMode: route.params.gameMode,
+            currentDeck,
+            allCardsChosen: route.params.allCardsChosen,
+            selectedCards,
+          });
         };
       } else {
         cardProps.onPress = () => {
-          selectedCardPressed();
-          navigation.navigate('Video');
+          navigation.navigate('Video', route.params);
         };
       }
 
@@ -69,6 +79,7 @@ class DeckScreen extends React.Component {
 
     const cardName = selectedCards[color];
     let imageSource = _get(cardImageSources, `front.${color}.${cardName}`);
+
     if (!imageSource) {
       imageSource = _get(cardImageSources, `back.${color}`);
       cardProps.imageSource = imageSource;
@@ -80,27 +91,24 @@ class DeckScreen extends React.Component {
     return <CardBack {...cardProps} />;
   }
 
-  render() {
-    const { containerStyle, textStyle } = styles;
-    const { navigation } = this.props;
+  const { containerStyle, textStyle } = styles;
 
-    return (
-      <View style={containerStyle}>
-        <View style={{ flex: 1 / 10 }}>
-          <BackButton navigation={navigation} tintColor={'#ffffff'} />
-          <HomeButton navigation={navigation} tintColor={'#ffffff'} />
-          <ChooseCardText currentDeck={this.props.currentDeck} />
-        </View>
-        <View style={{ flex: 9 / 10 }}>
-          <DecksContainer>
-            {this.displayCard('red')}
-            {this.displayCard('orange')}
-            {this.displayCard('green')}
-          </DecksContainer>
-        </View>
+  return (
+    <View style={containerStyle}>
+      <View style={{ flex: 1 / 10 }}>
+        <BackButton tintColor={'#ffffff'} />
+        <HomeButton tintColor={'#ffffff'} />
+        <ChooseCardText currentDeck={currentDeck} />
       </View>
-    );
-  }
+      <View style={{ flex: 9 / 10 }}>
+        <DecksContainer>
+          {displayCard('red')}
+          {displayCard('orange')}
+          {displayCard('green')}
+        </DecksContainer>
+      </View>
+    </View>
+  );
 }
 
 const styles = {
@@ -116,17 +124,4 @@ const styles = {
   },
 };
 
-const mapStateToProps = (state) => ({
-  currentDeck: state.cards.present.currentDeck,
-  cardConfirmed: state.cards.present.cardConfirmed,
-  selectedCards: state.cards.present.selected,
-  allCardsChosen: state.cards.present.allCardsChosen,
-  allVideosEnded: state.cards.present.allVideosEnded,
-});
-
-const enhance = compose(
-  connect(mapStateToProps, { deckPressed, selectedCardPressed })
-  // require('../utils/withLifecycleLogs').default
-);
-
-export default enhance(DeckScreen);
+export default DeckScreen;

@@ -51,16 +51,32 @@ export type RootStackParamList = {
   ConfirmCard: {
     gameMode: string;
     currentDeck: CardDeckName;
+    allCardsChosen?: boolean;
     cardName: CardName;
     selectedCards: SelectedCards;
   };
-  Deck: {};
-  AfterCards: {};
+  Deck: {
+    gameMode: string;
+    currentDeck: CardDeckName;
+    allCardsChosen?: boolean;
+    cardName: CardName;
+    selectedCards: SelectedCards;
+  };
+  AfterCards: {
+    gameMode: string;
+    currentDeck: CardDeckName;
+    allCardsChosen?: boolean;
+    cardName: CardName;
+    selectedCards: SelectedCards;
+  };
   Video: {
     gameMode: string;
     currentDeck: CardDeckName;
+    allCardsChosen?: boolean;
     cardName: CardName;
+    selectedCards: SelectedCards;
   };
+  Final: {};
 };
 
 function GiftsCardsStack() {

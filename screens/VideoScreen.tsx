@@ -9,7 +9,7 @@ import { AssetsSourcesType } from '../types';
 
 import BackButton from '../components/BackButton';
 import HomeButton from '../components/HomeButton';
-import { videoEnded, backHome } from '../actions';
+import { videoEnded, backHome, nextDeck } from '../actions';
 import { GAME_MODE_1_MOVE } from '../actions/types';
 import { RootStackParamList } from '../navigators/AppNavigator';
 
@@ -75,10 +75,8 @@ type Props = {
 };
 
 function VideoScreen({ route, navigation }: Props) {
-  const { gameMode, currentDeck, cardName } = route.params;
-  console.log(route.params);
-
-  const videoSource = videoSources[currentDeck][cardName];
+  const { gameMode, currentDeck, selectedCards } = route.params;
+  const videoSource = videoSources[currentDeck][selectedCards[currentDeck]];
 
   return (
     <View style={styles.videoContainer}>
@@ -113,7 +111,10 @@ function VideoScreen({ route, navigation }: Props) {
           }
 
           if (currentDeck !== 'green') {
-            navigation.navigate('Deck');
+            navigation.navigate('Deck', {
+              ...route.params,
+              currentDeck: nextDeck(currentDeck),
+            });
           } else {
             navigation.navigate('Final');
           }

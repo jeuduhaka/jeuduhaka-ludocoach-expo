@@ -15,9 +15,10 @@ import HomeButton from '../components/HomeButton';
 import ChooseCardText from '../components/ChooseCardText';
 
 import cardImageSources from '../stores/CardImageSources';
-import { useNavigation, RouteProp } from '@react-navigation/native';
+import { RouteProp } from '@react-navigation/native';
 import { RootStackParamList } from '../navigators/AppNavigator';
 import { DrawerNavigationProp } from '@react-navigation/drawer';
+import { nextDeck } from '../actions';
 
 type ConfirmCardScreenRouteProp = RouteProp<RootStackParamList, 'ConfirmCard'>;
 type ConfirmCardScreenNavigationProp = DrawerNavigationProp<
@@ -69,11 +70,29 @@ function ConfirmCardScreen({ route, navigation }: Props) {
       <View style={buttonsContainerStyle}>
         <Button
           onPress={() => {
-            if (currentDeck != 'green') {
-              navigation.navigate('Deck');
+            if (currentDeck !== 'green') {
+              navigation.navigate('Deck', {
+                gameMode: route.params.gameMode,
+                currentDeck: nextDeck(currentDeck),
+                cardName,
+                selectedCards: {
+                  ...route.params.selectedCards,
+                  [currentDeck]: cardName,
+                },
+                allCardsChosen: route.params.allCardsChosen,
+              });
               return;
             }
-            navigation.navigate('AfterCards');
+            navigation.navigate('AfterCards', {
+              gameMode: route.params.gameMode,
+              currentDeck: nextDeck(currentDeck),
+              cardName,
+              selectedCards: {
+                ...route.params.selectedCards,
+                [currentDeck]: cardName,
+              },
+              allCardsChosen: true,
+            });
           }}
           textStyle={{
             alignSelf: 'center',

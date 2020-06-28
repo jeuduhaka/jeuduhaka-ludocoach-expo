@@ -38,6 +38,7 @@ const SecondScreen3Moves = () => {
             orange: '',
             green: '',
           },
+          allCardsChosen: false,
         });
       }}
     />

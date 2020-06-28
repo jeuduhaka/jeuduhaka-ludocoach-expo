@@ -9,50 +9,31 @@ import {
   StyleProp,
   ViewStyle,
   StyleSheet,
+  ImageStyle,
 } from 'react-native';
 
-// TODO remove any
-function createImage({
-  source,
-  imageStyle,
-}: {
-  source: any;
-  imageStyle: Array<StyleProp<ViewStyle>>;
-}) {
-  return (
-    <Image
-      style={{ ...styles.baseImageStyle, ...imageStyle }}
-      source={source}
-    />
-  );
-}
-
 const CardBack = ({
-  name,
   imageSource,
   onPress,
-  ...otherProps
+  style,
 }: {
-  name: string;
-  imageSource: any;
-  onPress: (_: string) => {};
+  imageSource: number;
+  onPress?: () => void;
+  style: { imageStyle: any };
 }) => {
-  const buttonOnPress = () => {
-    onPress(name);
-  };
-
-  const image = createImage({
-    source: imageSource,
-    // TODO better condition
-    imageStyle: 'style' in otherProps ? otherProps.style.imageStyle : null,
-  });
+  const image = (
+    <Image
+      style={{ ...styles.baseImageStyle, ...style.imageStyle }}
+      source={imageSource}
+    />
+  );
 
   if (!onPress) {
     return image;
   }
 
   return (
-    <TouchableOpacity style={styles.buttonContainer} onPress={buttonOnPress}>
+    <TouchableOpacity style={styles.buttonContainer} onPress={onPress}>
       {image}
     </TouchableOpacity>
   );

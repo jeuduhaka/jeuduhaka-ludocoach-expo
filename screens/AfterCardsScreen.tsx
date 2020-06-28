@@ -10,40 +10,34 @@ import BackButton from '../components/BackButton';
 import HomeButton from '../components/HomeButton';
 
 import * as ActionTypes from '../actions/types';
-import { afterCardsButtonPressed } from '../actions';
 import styles from './styles';
-import { useNavigation } from '@react-navigation/native';
+import { useNavigation, RouteProp } from '@react-navigation/native';
+import { RootStackParamList } from '../navigators/AppNavigator';
+import { DrawerNavigationProp } from '@react-navigation/drawer';
 
-class AfterCardsScreen extends React.Component<{
-  gameMode: string;
-  selectedCards: {
-    red: string;
-    orange: string;
-    green: string;
-  };
-  currentDeck: string;
-  afterCardsButtonPressed: (currentDeck: string) => { type: string };
-}> {
-  static route = {
-    navigationBar: {
-      visible: false,
+type AfterCardsScreenRouteProp = RouteProp<RootStackParamList, 'AfterCards'>;
+type AfterCardsScreenNavigationProp = DrawerNavigationProp<
+  RootStackParamList,
+  'AfterCards'
+>;
+
+type Props = {
+  route: AfterCardsScreenRouteProp;
+  navigation: AfterCardsScreenNavigationProp;
+};
+
+function AfterCardsScreen({ route, navigation }: Props) {
+  const {
+    gameMode,
+    currentDeck,
+    selectedCards: {
+      red: selectedRedCard,
+      orange: selectedOrangeCard,
+      green: selectedGreenCard,
     },
-  };
+  } = route.params;
 
-  static navigationOptions = {
-    header: null,
-  };
-
-  renderChosenCardsText() {
-    const {
-      gameMode,
-      selectedCards: {
-        red: selectedRedCard,
-        orange: selectedOrangeCard,
-        green: selectedGreenCard,
-      },
-    } = this.props;
-
+  function renderChosenCardsText() {
     const render = [];
 
     if (gameMode === ActionTypes.GAME_MODE_3_MOVES) {
@@ -70,57 +64,37 @@ class AfterCardsScreen extends React.Component<{
     return render;
   }
 
-  render() {
-    const { currentDeck, afterCardsButtonPressed } = this.props;
-    const navigation = useNavigation();
-
-    return (
-      <View style={styles.container}>
-        <BackButton tintColor={'#014DA2'} />
-        <HomeButton tintColor={'#014DA2'} />
-        <Image
-          style={styles.backgroundOpacity}
-          source={require('../assets/images/fond-bleu-vague-1980x1980.jpg')}
-        />
-        <View style={styles.navigationHeader} />
-        <View style={styles.contentContainer}>
-          <View style={[styles.intermediateScreenTextContainer]}>
-            <Text style={[styles.subtitle]}>
-              {i18n.t('youHaveChosen')} {this.renderChosenCardsText()}
-              {i18n.t('placeYourself')}
-            </Text>
-            <View style={styles.nextButtonContainer}>
-              <Button
-                onPress={() => {
-                  afterCardsButtonPressed(currentDeck);
-                  if (currentDeck != 'green') {
-                    navigation.navigate('Deck');
-                    return;
-                  }
-                  navigation.navigate('Video');
-                }}>
-                {i18n.t('letsGo')}
-              </Button>
-            </View>
+  return (
+    <View style={styles.container}>
+      <BackButton tintColor={'#014DA2'} />
+      <HomeButton tintColor={'#014DA2'} />
+      <Image
+        style={styles.backgroundOpacity}
+        source={require('../assets/images/fond-bleu-vague-1980x1980.jpg')}
+      />
+      <View style={styles.navigationHeader} />
+      <View style={styles.contentContainer}>
+        <View style={[styles.intermediateScreenTextContainer]}>
+          <Text style={[styles.subtitle]}>
+            {i18n.t('youHaveChosen')} {renderChosenCardsText()}
+            {i18n.t('placeYourself')}
+          </Text>
+          <View style={styles.nextButtonContainer}>
+            <Button
+              onPress={() => {
+                if (currentDeck !== 'green') {
+                  navigation.navigate('Deck', route.params);
+                  return;
+                }
+                navigation.navigate('Video');
+              }}>
+              {i18n.t('letsGo')}
+            </Button>
           </View>
         </View>
       </View>
-    );
-  }
+    </View>
+  );
 }
 
-// TODO specify any
-const mapStateToProps = (state: any) => ({
-  gameMode: state.gameMode,
-  currentDeck: state.cards.present.currentDeck,
-  selectedCards: state.cards.present.selected,
-  allCardsChosen: state.cards.present.allCardsChosen,
-  cardImageSources: state.cards.present.imageSources,
-});
-
-const enhance = compose(
-  connect(mapStateToProps, { afterCardsButtonPressed })
-  // require('../utils/withLifecycleLogs').default
-);
-
-export default enhance(AfterCardsScreen);
+export default AfterCardsScreen;

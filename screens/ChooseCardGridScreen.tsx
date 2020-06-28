@@ -70,16 +70,14 @@ function ChooseCardGridScreen({ route, navigation }: Props) {
           imageSource={imageSource}
           onPress={() => {
             if (gameMode === ActionTypes.GAME_MODE_1_MOVE) {
-              console.log(cardName);
-
-              console.log(gameMode);
-              console.log(currentDeck);
-              // console.log(selectedCards);
-
               navigation.navigate('Video', {
                 gameMode,
                 currentDeck,
-                cardName,
+                selectedCards: {
+                  ...route.params.selectedCards,
+                  [currentDeck]: cardName,
+                },
+                allCardsChosen: true,
               });
               return;
             }
@@ -92,6 +90,7 @@ function ChooseCardGridScreen({ route, navigation }: Props) {
                 ...route.params.selectedCards,
                 [currentDeck]: cardName,
               },
+              allCardsChosen: route.params.allCardsChosen,
             });
           }}
         />

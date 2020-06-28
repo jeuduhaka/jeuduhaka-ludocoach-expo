@@ -48,7 +48,7 @@ export const cardPressed = (cardName: string, gameMode: string) => {
   };
 };
 
-function nextDeck(currentDeck: string) {
+export function nextDeck(currentDeck: string) {
   switch (currentDeck) {
     case 'red':
       return 'orange';
