@@ -18,9 +18,7 @@
       "backgroundColor": "#ffffff",
       "hideExponentText": true
     },
-    "packagerOpts": {
-      "assetExts": ["ttf"]
-    },
+    "packagerOpts": {},
     "ios": {
       "bundleIdentifier": "com.marckucharz.jeuduhaka-ludocoach",
       "buildNumber": "6",
