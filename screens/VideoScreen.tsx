@@ -62,16 +62,16 @@ const styles = StyleSheet.create({
   },
 });
 
-type ChooseCardGridScreenRouteProp = RouteProp<RootStackParamList, 'Video'>;
+type VideoScreenRouteProp = RouteProp<RootStackParamList, 'Video'>;
 
-type ChooseCardGridScreenNavigationProp = StackNavigationProp<
+type VideoScreenNavigationProp = StackNavigationProp<
   RootStackParamList,
   'Video'
 >;
 
 type Props = {
-  route: ChooseCardGridScreenRouteProp;
-  navigation: ChooseCardGridScreenNavigationProp;
+  route: VideoScreenRouteProp;
+  navigation: VideoScreenNavigationProp;
 };
 
 function VideoScreen({ route, navigation }: Props) {
