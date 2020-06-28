@@ -7,8 +7,9 @@ import i18n from '../i18n';
 import SecondScreen from './SecondScreen';
 import { secondScreen3MovesPassed } from '../actions';
 import { useNavigation } from '@react-navigation/native';
+import { GAME_MODE_3_MOVES } from '../actions/types';
 
-const SecondScreen3Moves = (onPress: () => void) => {
+const SecondScreen3Moves = () => {
   const navigation = useNavigation();
 
   return (
@@ -29,28 +30,13 @@ const SecondScreen3Moves = (onPress: () => void) => {
         </Text>,
       ]}
       buttonOnPress={() => {
-        onPress();
-        navigation.navigate('ChooseCardGrid');
+        navigation.navigate('ChooseCardGrid', {
+          gameMode: GAME_MODE_3_MOVES,
+          currentDeck: 'red',
+        });
       }}
     />
   );
 };
 
-// TODO specify any
-const mapStateToProps = (state: any) => ({});
-
-// TODO specify any
-const mapDispatchToProps = (dispatch: any) => {
-  return {
-    onPress: () => {
-      // dispatch(UndoActionCreators.clearHistory());
-      dispatch(secondScreen3MovesPassed());
-    },
-    // onRedo: () => dispatch(UndoActionCreators.redo())
-  };
-};
-
-const enhance = compose(connect(mapStateToProps, mapDispatchToProps));
-
-// TODO fix type issue
-export default enhance(SecondScreen3Moves);
+export { SecondScreen3Moves };
