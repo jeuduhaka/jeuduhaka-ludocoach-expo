@@ -294,7 +294,7 @@ const CustomDrawerContentComponent = (props: any) => {
               style={[styles.label, styles.developedByText]}
               onPress={() =>
                 Linking.openURL(
-                  'mailto:roques.florent+jeuduhakaludoapp@gmail.com?subject=Jeu du Haka Ludocoach app'
+                  'mailto:roques.florent@gmail.com?subject=[Jeu du Haka] Ludocoach app'
                 )
               }>
               {i18n.t('developedBy')} Florent Roques{' '}
