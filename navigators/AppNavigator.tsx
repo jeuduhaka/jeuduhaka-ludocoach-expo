@@ -83,27 +83,7 @@ function GiftsCardsStack() {
   const Stack = createStackNavigator();
 
   return (
-    <Stack.Navigator
-      initialRouteName="Intro"
-      headerMode="none"
-      screenOptions={{
-        transitionSpec: {
-          open: {
-            animation: 'timing',
-            config: {
-              duration: 0,
-              easing: Easing.step0,
-            },
-          },
-          close: {
-            animation: 'timing',
-            config: {
-              duration: 0,
-              easing: Easing.step0,
-            },
-          },
-        },
-      }}>
+    <Stack.Navigator initialRouteName="Intro" headerMode="none">
       <Stack.Screen name="Intro" component={GiftCardsScreen} />
       <Stack.Screen
         name="SendGiftCardGallery"
