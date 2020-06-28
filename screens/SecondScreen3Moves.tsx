@@ -33,6 +33,11 @@ const SecondScreen3Moves = () => {
         navigation.navigate('ChooseCardGrid', {
           gameMode: GAME_MODE_3_MOVES,
           currentDeck: 'red',
+          selectedCards: {
+            red: '',
+            orange: '',
+            green: '',
+          },
         });
       }}
     />

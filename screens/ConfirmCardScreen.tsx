@@ -15,140 +15,114 @@ import HomeButton from '../components/HomeButton';
 import ChooseCardText from '../components/ChooseCardText';
 
 import cardImageSources from '../stores/CardImageSources';
-import { useNavigation } from '@react-navigation/native';
+import { useNavigation, RouteProp } from '@react-navigation/native';
+import { RootStackParamList } from '../navigators/AppNavigator';
+import { DrawerNavigationProp } from '@react-navigation/drawer';
 
-class ConfirmCardScreen extends React.Component<{
-  currentDeck: 'red' | 'orange' | 'green';
-  // TODO specify any
-  selectedCards: any;
-  onCardConfirm: any;
-  onCardCancel: any;
-}> {
-  static navigationOptions = {
-    header: null,
-    gesturesEnabled: false,
-  };
+type ConfirmCardScreenRouteProp = RouteProp<RootStackParamList, 'ConfirmCard'>;
+type ConfirmCardScreenNavigationProp = DrawerNavigationProp<
+  RootStackParamList,
+  'ConfirmCard'
+>;
 
-  shouldComponentUpdate(nextProps: {
-    currentDeck: 'red' | 'orange' | 'green' | '';
-    selectedCards: {
-      red: string;
-      orange: string;
-      green: string;
-    };
-  }) {
-    const { currentDeck, selectedCards } = nextProps;
-    //fix issue when backHome
-    return (
-      currentDeck !== '' &&
-      //Fix issue with missing translation
-      selectedCards[currentDeck] !== ''
-    );
-  }
+type Props = {
+  route: ConfirmCardScreenRouteProp;
+  navigation: ConfirmCardScreenNavigationProp;
+};
 
-  render() {
-    const {
-      containerStyle,
-      imageContainerStyle,
-      imageStyle,
-      buttonsContainerStyle,
-    } = styles;
+function ConfirmCardScreen({ route, navigation }: Props) {
+  const { currentDeck, selectedCards } = route.params;
 
-    const {
-      currentDeck,
-      selectedCards,
-      onCardConfirm,
-      onCardCancel,
-    } = this.props;
+  const {
+    containerStyle,
+    imageContainerStyle,
+    imageStyle,
+    buttonsContainerStyle,
+  } = styles;
 
-    const cardName = selectedCards[currentDeck];
-    const imagePath = `front.${currentDeck}.${cardName}`;
+  const cardName = selectedCards[currentDeck];
+  const imagePath = `front.${currentDeck}.${cardName}`;
 
-    const navigation = useNavigation();
-
-    return (
-      <View style={containerStyle}>
-        <View style={styles.navigationHeader}>
-          <BackButton tintColor={'#ffffff'} />
-          <HomeButton tintColor={'#ffffff'} />
-          <ChooseCardText currentDeck={this.props.currentDeck} />
-        </View>
-        <View style={imageContainerStyle}>
-          <ImageBackground
-            style={imageStyle}
-            source={_get(cardImageSources, imagePath)}>
-            <View style={styles.textContainer}>
-              <Text style={styles.title}>{i18n.t(cardName)}</Text>
-            </View>
-          </ImageBackground>
-        </View>
-        {/* <View style={descriptionContainerStyle}>
+  return (
+    <View style={containerStyle}>
+      <View style={styles.navigationHeader}>
+        <BackButton tintColor={'#ffffff'} />
+        <HomeButton tintColor={'#ffffff'} />
+        <ChooseCardText currentDeck={currentDeck} />
+      </View>
+      <View style={imageContainerStyle}>
+        <ImageBackground
+          style={imageStyle}
+          source={_get(cardImageSources, imagePath)}>
+          <View style={styles.textContainer}>
+            <Text style={styles.title}>{i18n.t(cardName)}</Text>
+          </View>
+        </ImageBackground>
+      </View>
+      {/* <View style={descriptionContainerStyle}>
           <Text style={descriptionStyle}>
             En équilibre sur une jambe, l'autre est repliée.
             Le bras avant tente de cacher le visage.
             Le bras arrière est tendu vers l'arrière.
           </Text>
         </View> */}
-        <View style={buttonsContainerStyle}>
-          <Button
-            onPress={() => {
-              onCardConfirm(currentDeck);
-              if (currentDeck != 'green') {
-                navigation.navigate('Deck');
-                return;
-              }
-              navigation.navigate('AfterCards');
-            }}
-            textStyle={{
-              alignSelf: 'center',
-              color: '#000000',
-              fontSize: 16,
-              fontWeight: '600',
-              paddingTop: 10,
-              paddingBottom: 10,
-            }}
-            buttonStyle={{
-              // flex: 1, //expands as much as content possibly can
-              alignSelf: 'stretch',
-              backgroundColor: '#ffffff',
-              borderRadius: 5,
-              borderWidth: 1,
-              borderColor: '#000000',
-              marginLeft: 5,
-              marginRight: 5,
-            }}>
-            {i18n.t('iChooseThisCard')}
-          </Button>
-          <Button
-            onPress={() => {
-              onCardCancel();
-              navigation.goBack();
-            }}
-            textStyle={{
-              alignSelf: 'center',
-              color: '#ffffff',
-              backgroundColor: '#000000',
-              fontSize: 16,
-              fontWeight: '600',
-              paddingTop: 10,
-              paddingBottom: 10,
-            }}
-            buttonStyle={{
-              // flex: 1, //expands as much as content possibly can
-              alignSelf: 'stretch',
-              backgroundColor: '#000000',
-              borderRadius: 5,
-              borderWidth: 1,
-              borderColor: '#ffffff',
-              marginLeft: 5,
-              marginRight: 5,
-            }}>
-            {i18n.t('chooseAnotherCard')}
-          </Button>
-        </View>
+      <View style={buttonsContainerStyle}>
+        <Button
+          onPress={() => {
+            if (currentDeck != 'green') {
+              navigation.navigate('Deck');
+              return;
+            }
+            navigation.navigate('AfterCards');
+          }}
+          textStyle={{
+            alignSelf: 'center',
+            color: '#000000',
+            fontSize: 16,
+            fontWeight: '600',
+            paddingTop: 10,
+            paddingBottom: 10,
+          }}
+          buttonStyle={{
+            // flex: 1, //expands as much as content possibly can
+            alignSelf: 'stretch',
+            backgroundColor: '#ffffff',
+            borderRadius: 5,
+            borderWidth: 1,
+            borderColor: '#000000',
+            marginLeft: 5,
+            marginRight: 5,
+          }}>
+          {i18n.t('iChooseThisCard')}
+        </Button>
+        <Button
+          onPress={() => {
+            navigation.goBack();
+          }}
+          textStyle={{
+            alignSelf: 'center',
+            color: '#ffffff',
+            backgroundColor: '#000000',
+            fontSize: 16,
+            fontWeight: '600',
+            paddingTop: 10,
+            paddingBottom: 10,
+          }}
+          buttonStyle={{
+            // flex: 1, //expands as much as content possibly can
+            alignSelf: 'stretch',
+            backgroundColor: '#000000',
+            borderRadius: 5,
+            borderWidth: 1,
+            borderColor: '#ffffff',
+            marginLeft: 5,
+            marginRight: 5,
+          }}>
+          {i18n.t('chooseAnotherCard')}
+        </Button>
       </View>
-    );
-  }
+    </View>
+  );
 }
 
 const styles = StyleSheet.create({

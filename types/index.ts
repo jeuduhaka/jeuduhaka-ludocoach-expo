@@ -16,7 +16,7 @@ export type GreenAssetsSources = {
 };
 
 export type AssetsSources = {
-  [key in CardName | RedCardName]?: number;
+  [key in CardName]?: number;
 };
 
 export type AssetsSources2 =
@@ -36,7 +36,7 @@ export type AssetsSources3 =
     };
 
 export type SelectedCards = {
-  [key in CardDeckName]: CardName;
+  [key in CardDeckName]: CardName | '';
 };
 
 export type RedCardName =

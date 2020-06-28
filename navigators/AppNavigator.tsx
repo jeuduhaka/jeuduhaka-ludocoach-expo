@@ -46,7 +46,16 @@ export type RootStackParamList = {
     currentDeck: CardDeckName;
     allCardsChosen?: boolean;
     cardConfirmed?: boolean;
+    selectedCards: SelectedCards;
   };
+  ConfirmCard: {
+    gameMode: string;
+    currentDeck: CardDeckName;
+    cardName: CardName;
+    selectedCards: SelectedCards;
+  };
+  Deck: {};
+  AfterCards: {};
   Video: {
     gameMode: string;
     currentDeck: CardDeckName;

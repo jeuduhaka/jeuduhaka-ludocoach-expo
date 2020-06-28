@@ -8,7 +8,6 @@ import i18n from '../i18n';
 import DecksContainer from '../components/DecksContainer';
 import Card from '../components/Card';
 import ChooseCardText from '../components/ChooseCardText';
-import { cardPressed } from '../actions';
 import BackButton from '../components/BackButton';
 import HomeButton from '../components/HomeButton';
 
@@ -70,8 +69,6 @@ function ChooseCardGridScreen({ route, navigation }: Props) {
           name={i18n.t(cardName)}
           imageSource={imageSource}
           onPress={() => {
-            cardPressed(cardName, gameMode);
-
             if (gameMode === ActionTypes.GAME_MODE_1_MOVE) {
               console.log(cardName);
 
@@ -87,7 +84,15 @@ function ChooseCardGridScreen({ route, navigation }: Props) {
               return;
             }
 
-            navigation.navigate('ConfirmCard');
+            navigation.navigate('ConfirmCard', {
+              gameMode,
+              currentDeck,
+              cardName,
+              selectedCards: {
+                ...route.params.selectedCards,
+                [currentDeck]: cardName,
+              },
+            });
           }}
         />
       );
