@@ -87,7 +87,6 @@ const CustomDrawerContentComponent = (props: any) => {
     <ImageBackground
       style={{
         flex: 1,
-        resizeMode: 'cover',
         width: undefined,
         height: undefined,
       }}
