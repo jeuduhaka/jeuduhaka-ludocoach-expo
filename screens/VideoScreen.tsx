@@ -111,12 +111,12 @@ function VideoScreen({ route, navigation }: Props) {
           }
 
           if (currentDeck !== 'green') {
-            navigation.navigate('Deck', {
+            navigation.push('Deck', {
               ...route.params,
               currentDeck: nextDeck(currentDeck),
             });
           } else {
-            navigation.navigate('Final');
+            navigation.push('Final');
           }
         }}
       />

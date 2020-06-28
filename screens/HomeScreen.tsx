@@ -1,16 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import {
-  Text,
-  Image,
-  ImageBackground,
-  Linking,
-  View,
-  Platform,
-} from 'react-native';
-import { compose } from 'redux';
-import { connect } from 'react-redux';
+import { Text, Image, ImageBackground, View } from 'react-native';
 import { Asset } from 'expo-asset';
-import { Ionicons } from '@expo/vector-icons';
 import flat from 'flat';
 import { RouteProp } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
@@ -22,38 +12,23 @@ import styles from './styles';
 import cardImageSources from '../stores/CardImageSources';
 import cardVideoSources from '../stores/CardVideoSourcesLocal';
 import { RootStackParamList } from '../navigators/AppNavigator';
-import { DrawerNavigationProp } from '@react-navigation/drawer';
 import { useTranslation } from 'react-i18next';
+import { DrawerNavigationProp } from '@react-navigation/drawer';
 
 type HomeScreenRouteProp = RouteProp<RootStackParamList, 'Home'>;
-type HomeScreenNavigationProp = DrawerNavigationProp<
+type HomeScreenNavigationProp = StackNavigationProp<
   RootStackParamList,
   'Home'
->;
+> &
+  DrawerNavigationProp<RootStackParamList, 'Home'>;
 
 type Props = {
   route: HomeScreenRouteProp;
   navigation: HomeScreenNavigationProp;
 };
 
-function HomeScreen({ route, navigation }: Props) {
-  // static navigationOptions = ({ navigation, screenProps }) => {
-  //   return {
-  //     headerMode: 'float',
-  //     drawerLabel: t('backToGame', { locale: screenProps.language }),
-  //     drawerIcon: ({ tintColor }) => {
-  //       const iconName =
-  //         Platform.OS === 'ios' ? 'ios-arrow-forward' : 'md-arrow-forward';
-
-  //       return (
-  //         <Ionicons name={iconName} size={18} style={{ color: '#014DA2' }} />
-  //       );
-  //     },
-  //   };
-  // };
-
+function HomeScreen({ navigation }: Props) {
   const [assetsLoaded, setAssetsLoaded] = useState(false);
-
   const [currentAssetIndex, setCurrentAssetIndex] = useState(1);
   const [assetsRequires] = useState([
     ...Object.values<number>(flat(cardImageSources)),
@@ -120,7 +95,7 @@ function HomeScreen({ route, navigation }: Props) {
                 <View style={styles.homeActionButton}>
                   <Button
                     onPress={() => {
-                      navigation.navigate('Second3Moves');
+                      navigation.push('SecondScreen3Moves');
                     }}>
                     {t('play3Moves')}
                   </Button>
@@ -128,7 +103,7 @@ function HomeScreen({ route, navigation }: Props) {
                 <View style={styles.homeActionButton}>
                   <Button
                     onPress={() => {
-                      navigation.navigate('Second1Move');
+                      navigation.push('SecondScreen1Move');
                     }}>
                     {t('play1Move')}
                   </Button>

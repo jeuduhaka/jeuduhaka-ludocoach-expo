@@ -1,7 +1,9 @@
 import React from 'react';
 import { Text, Image, View } from 'react-native';
-import { compose } from 'redux';
-import { connect } from 'react-redux';
+import { RouteProp } from '@react-navigation/native';
+import { StackNavigationProp } from '@react-navigation/stack';
+
+import { RootStackParamList } from '../navigators/AppNavigator';
 
 import i18n from '../i18n';
 
@@ -11,12 +13,9 @@ import HomeButton from '../components/HomeButton';
 
 import * as ActionTypes from '../actions/types';
 import styles from './styles';
-import { useNavigation, RouteProp } from '@react-navigation/native';
-import { RootStackParamList } from '../navigators/AppNavigator';
-import { DrawerNavigationProp } from '@react-navigation/drawer';
 
 type AfterCardsScreenRouteProp = RouteProp<RootStackParamList, 'AfterCards'>;
-type AfterCardsScreenNavigationProp = DrawerNavigationProp<
+type AfterCardsScreenNavigationProp = StackNavigationProp<
   RootStackParamList,
   'AfterCards'
 >;
@@ -83,10 +82,10 @@ function AfterCardsScreen({ route, navigation }: Props) {
             <Button
               onPress={() => {
                 if (currentDeck !== 'green') {
-                  navigation.navigate('Deck', route.params);
+                  navigation.push('Deck', route.params);
                   return;
                 }
-                navigation.navigate('Video');
+                navigation.push('Video');
               }}>
               {i18n.t('letsGo')}
             </Button>

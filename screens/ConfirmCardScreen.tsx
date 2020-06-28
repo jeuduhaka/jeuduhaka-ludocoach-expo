@@ -17,11 +17,11 @@ import ChooseCardText from '../components/ChooseCardText';
 import cardImageSources from '../stores/CardImageSources';
 import { RouteProp } from '@react-navigation/native';
 import { RootStackParamList } from '../navigators/AppNavigator';
-import { DrawerNavigationProp } from '@react-navigation/drawer';
 import { nextDeck } from '../actions';
+import { StackNavigationProp } from '@react-navigation/stack';
 
 type ConfirmCardScreenRouteProp = RouteProp<RootStackParamList, 'ConfirmCard'>;
-type ConfirmCardScreenNavigationProp = DrawerNavigationProp<
+type ConfirmCardScreenNavigationProp = StackNavigationProp<
   RootStackParamList,
   'ConfirmCard'
 >;
@@ -71,7 +71,7 @@ function ConfirmCardScreen({ route, navigation }: Props) {
         <Button
           onPress={() => {
             if (currentDeck !== 'green') {
-              navigation.navigate('Deck', {
+              navigation.push('Deck', {
                 gameMode: route.params.gameMode,
                 currentDeck: nextDeck(currentDeck),
                 cardName,
@@ -83,7 +83,7 @@ function ConfirmCardScreen({ route, navigation }: Props) {
               });
               return;
             }
-            navigation.navigate('AfterCards', {
+            navigation.push('AfterCards', {
               gameMode: route.params.gameMode,
               currentDeck: nextDeck(currentDeck),
               cardName,
@@ -197,30 +197,4 @@ const styles = StyleSheet.create({
   },
 });
 
-// TODO specify any
-const mapStateToProps = (state: any) => ({
-  gameMode: state.gameMode,
-  currentDeck: state.cards.present.currentDeck,
-  selectedCards: state.cards.present.selected,
-  allCardsChosen: state.cards.present.allCardsChosen,
-});
-
-// TODO specify any
-const mapDispatchToProps = (dispatch: (_: any) => any) => {
-  return {
-    onCardConfirm: (currentDeck: string) =>
-      dispatch(cardConfirmed(currentDeck)),
-    onCardCancel: () => {
-      dispatch(UndoActionCreators.undo());
-      dispatch(cardCancelled());
-    },
-    onRedo: () => dispatch(UndoActionCreators.redo()),
-  };
-};
-
-const enhance = compose(
-  connect(mapStateToProps, mapDispatchToProps)
-  // require('../utils/withLifecycleLogs').default
-);
-
-export default enhance(ConfirmCardScreen);
+export default ConfirmCardScreen;

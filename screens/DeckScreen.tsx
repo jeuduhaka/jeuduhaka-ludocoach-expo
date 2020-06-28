@@ -1,12 +1,9 @@
 import React from 'react';
-import { View, Text, Dimensions } from 'react-native';
-import { compose } from 'redux';
-import { connect } from 'react-redux';
+import { View } from 'react-native';
 import _get from 'lodash.get';
 
 import { CardDeckName } from '../types';
 
-import Card from '../components/Card';
 import CardBack from '../components/CardBack';
 import DecksContainer from '../components/DecksContainer';
 import BackButton from '../components/BackButton';
@@ -16,15 +13,10 @@ import ChooseCardText from '../components/ChooseCardText';
 import cardImageSources from '../stores/CardImageSources';
 import { RouteProp } from '@react-navigation/native';
 import { RootStackParamList } from '../navigators/AppNavigator';
-import { DrawerNavigationProp } from '@react-navigation/drawer';
-
-import { nextDeck } from '../actions';
+import { StackNavigationProp } from '@react-navigation/stack';
 
 type DeckScreenRouteProp = RouteProp<RootStackParamList, 'Deck'>;
-type DeckScreenNavigationProp = DrawerNavigationProp<
-  RootStackParamList,
-  'Deck'
->;
+type DeckScreenNavigationProp = StackNavigationProp<RootStackParamList, 'Deck'>;
 
 type Props = {
   route: DeckScreenRouteProp;
@@ -48,7 +40,7 @@ function DeckScreen({ route, navigation }: Props) {
     if (currentDeck === color) {
       if (!allCardsChosen) {
         cardProps.onPress = () => {
-          navigation.navigate('ChooseCardGrid', {
+          navigation.push('ChooseCardGrid', {
             gameMode: route.params.gameMode,
             currentDeck,
             allCardsChosen: route.params.allCardsChosen,
@@ -57,7 +49,7 @@ function DeckScreen({ route, navigation }: Props) {
         };
       } else {
         cardProps.onPress = () => {
-          navigation.navigate('Video', route.params);
+          navigation.push('Video', route.params);
         };
       }
 

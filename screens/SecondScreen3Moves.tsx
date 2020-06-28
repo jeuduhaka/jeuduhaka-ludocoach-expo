@@ -1,17 +1,28 @@
 import React from 'react';
 import { Text, Image, Linking, View } from 'react-native';
-import { compose } from 'redux';
-import { connect } from 'react-redux';
 
 import i18n from '../i18n';
 import SecondScreen from './SecondScreen';
-import { secondScreen3MovesPassed } from '../actions';
-import { useNavigation } from '@react-navigation/native';
+import { RouteProp } from '@react-navigation/native';
 import { GAME_MODE_3_MOVES } from '../actions/types';
+import { RootStackParamList } from '../navigators/AppNavigator';
+import { StackNavigationProp } from '@react-navigation/stack';
 
-const SecondScreen3Moves = () => {
-  const navigation = useNavigation();
+type SecondScreen3MovesRouteProp = RouteProp<
+  RootStackParamList,
+  'SecondScreen3Moves'
+>;
+type SecondScreen3MovesNavigationProp = StackNavigationProp<
+  RootStackParamList,
+  'SecondScreen3Moves'
+>;
 
+type Props = {
+  route: SecondScreen3MovesRouteProp;
+  navigation: SecondScreen3MovesNavigationProp;
+};
+
+function SecondScreen3Moves({ navigation }: Props) {
   return (
     <SecondScreen
       textContent={[
@@ -30,7 +41,7 @@ const SecondScreen3Moves = () => {
         </Text>,
       ]}
       buttonOnPress={() => {
-        navigation.navigate('ChooseCardGrid', {
+        navigation.push('ChooseCardGrid', {
           gameMode: GAME_MODE_3_MOVES,
           currentDeck: 'red',
           selectedCards: {
@@ -43,6 +54,6 @@ const SecondScreen3Moves = () => {
       }}
     />
   );
-};
+}
 
 export { SecondScreen3Moves };

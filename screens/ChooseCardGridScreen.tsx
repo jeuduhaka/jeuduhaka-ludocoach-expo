@@ -70,7 +70,7 @@ function ChooseCardGridScreen({ route, navigation }: Props) {
           imageSource={imageSource}
           onPress={() => {
             if (gameMode === ActionTypes.GAME_MODE_1_MOVE) {
-              navigation.navigate('Video', {
+              navigation.push('Video', {
                 gameMode,
                 currentDeck,
                 selectedCards: {
@@ -82,7 +82,7 @@ function ChooseCardGridScreen({ route, navigation }: Props) {
               return;
             }
 
-            navigation.navigate('ConfirmCard', {
+            navigation.push('ConfirmCard', {
               gameMode,
               currentDeck,
               cardName,

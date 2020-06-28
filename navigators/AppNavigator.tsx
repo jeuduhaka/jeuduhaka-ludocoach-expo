@@ -141,8 +141,8 @@ function AppNavigator() {
         },
       }}>
       <Stack.Screen name="HomeWithDrawer" component={HomeWithDrawer} />
-      <Stack.Screen name="Second3Moves" component={SecondScreen3Moves} />
-      <Stack.Screen name="Second1Move" component={SecondScreen1Move} />
+      <Stack.Screen name="SecondScreen3Moves" component={SecondScreen3Moves} />
+      <Stack.Screen name="SecondScreen1Move" component={SecondScreen1Move} />
       <Stack.Screen name="Final" component={FinalScreen} />
       <Stack.Screen name="Deck" component={DeckScreen} />
       <Stack.Screen name="ChooseCardGrid" component={ChooseCardGridScreen} />
