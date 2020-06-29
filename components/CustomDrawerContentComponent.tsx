@@ -20,6 +20,7 @@ import {
   MaterialIcons,
 } from '@expo/vector-icons';
 import TouchableItem from '@react-navigation/drawer/src/views/TouchableItem';
+import { DrawerContentScrollView } from '@react-navigation/drawer';
 
 import i18n from '../i18n';
 
@@ -91,7 +92,7 @@ const CustomDrawerContentComponent = (props: any) => {
         height: undefined,
       }}
       source={require('../assets/images/motif-self-esteem-alpha-0.1.png')}>
-      <ScrollView
+      <DrawerContentScrollView
         style={{ flex: 1, backgroundColor: 'rgba(247, 148, 28, 0.5)' }}>
         <Image
           style={{
@@ -304,7 +305,7 @@ const CustomDrawerContentComponent = (props: any) => {
             </Text>
           </View>
         </View>
-      </ScrollView>
+      </DrawerContentScrollView>
     </ImageBackground>
   );
 };
