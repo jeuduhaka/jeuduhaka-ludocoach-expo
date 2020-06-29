@@ -168,7 +168,7 @@ const CustomDrawerContentComponent = (props: any) => {
           <TouchableItem
             onPress={() => {
               // console.log(i18n.locale);
-              const language = i18n.locale.split('-')[0].toLowerCase();
+              const language = i18n.language.split('-')[0].toLowerCase();
               if (Platform.OS === 'ios') {
                 // TODO use Share.share
                 ActionSheetIOS.showShareActionSheetWithOptions(
