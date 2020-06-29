@@ -7,71 +7,73 @@ import {
   View,
   Dimensions,
   TextStyle,
+  ImageBackground,
 } from 'react-native';
 
 import MenuButton from '../components/MenuButton';
 import BackgroundWave from '../components/BackgroundWave';
 import i18n from '../i18n';
-import { useNavigation } from '@react-navigation/native';
+import { useNavigation, RouteProp } from '@react-navigation/native';
+import { RootStackParamList } from '../navigators/AppNavigator';
+import { DrawerNavigationProp } from '@react-navigation/drawer';
+import styles2 from './styles';
 
 const { width } = Dimensions.get('window');
 
-class AuthorsScreen extends React.Component {
-  static navigationOptions = ({
-    screenProps,
-  }: {
-    screenProps: {
-      language: string;
-    };
-  }) => ({
-    headerMode: 'float',
-    drawerLabel: i18n.t('authorsTitle', {
-      locale: screenProps.language,
-    }),
-  });
+type AuthorsScreenRouteProp = RouteProp<RootStackParamList, 'Advice'>;
+type AuthorsScreenNavigationProp = DrawerNavigationProp<
+  RootStackParamList,
+  'Advice'
+>;
 
-  render() {
-    const navigation = useNavigation();
-    return (
-      <View style={{ flex: 1 }}>
-        <MenuButton
-          onPress={() => {
-            navigation.navigate('DrawerOpen');
-          }}
-        />
-        <BackgroundWave>
-          <Text style={[styles.blackText, styles.titleText]}>
-            {i18n.t('authorsTitle')}
-          </Text>
+type Props = {
+  route: AuthorsScreenRouteProp;
+  navigation: AuthorsScreenNavigationProp;
+};
 
-          <View style={styles.authorsInfoContainer}>
-            <View style={[styles.authorInfoContainer, { paddingTop: '5%' }]}>
-              <Text style={styles.authorTitle}>Tehotu Tauraatua</Text>
-              <Text style={styles.authorDesc}>
-                {i18n.t('tehotuDescription')}
-              </Text>
-            </View>
-            <View style={[styles.authorInfoContainer, { paddingTop: '10%' }]}>
-              <Text style={styles.authorTitle}>Hinenao Kimitete</Text>
-              <Text style={styles.authorDesc}>
-                {i18n.t('hinenaoDescription')}
-              </Text>
-            </View>
-            <View style={[styles.authorInfoContainer, { paddingTop: '10%' }]}>
-              <Text style={styles.authorTitle}>Marc Kucharz</Text>
-              <Text style={styles.authorDesc}>{i18n.t('marcDescription')}</Text>
-            </View>
+// TODO better layout
+function AuthorsScreen({ navigation }: Props) {
+  return (
+    <View style={{ flex: 1 }}>
+      <ImageBackground
+        style={styles2.backgroundImage}
+        source={require('../assets/images/fond-bleu-vague-1980x1980.jpg')}>
+        <View style={styles2.navigationHeader}>
+          <MenuButton
+            onPress={() => {
+              navigation.openDrawer();
+            }}
+          />
+        </View>
+        <Text style={[styles.blackText, styles.titleText]}>
+          {i18n.t('authorsTitle')}
+        </Text>
+
+        <View style={styles.authorsInfoContainer}>
+          <View style={[styles.authorInfoContainer, { paddingTop: '5%' }]}>
+            <Text style={styles.authorTitle}>Tehotu Tauraatua</Text>
+            <Text style={styles.authorDesc}>{i18n.t('tehotuDescription')}</Text>
           </View>
-          <View style={styles.authorsImageContainer}>
-            <Image
-              style={styles.authorsImage}
-              source={require('../assets/images/authors.png')}
-            />
+          <View style={[styles.authorInfoContainer, { paddingTop: '10%' }]}>
+            <Text style={styles.authorTitle}>Hinenao Kimitete</Text>
+            <Text style={styles.authorDesc}>
+              {i18n.t('hinenaoDescription')}
+            </Text>
           </View>
-        </BackgroundWave>
-      </View>
-    );
-  }
+          <View style={[styles.authorInfoContainer, { paddingTop: '10%' }]}>
+            <Text style={styles.authorTitle}>Marc Kucharz</Text>
+            <Text style={styles.authorDesc}>{i18n.t('marcDescription')}</Text>
+          </View>
+        </View>
+        <View style={styles.authorsImageContainer}>
+          <Image
+            style={styles.authorsImage}
+            source={require('../assets/images/authors.png')}
+          />
+        </View>
+      </ImageBackground>
+    </View>
+  );
 }
 
 const textfontSize: TextStyle = {
