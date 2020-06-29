@@ -1,27 +1,30 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
   Text,
   Image,
-  StyleSheet,
   View,
-  ScrollView,
   Platform,
   Share,
   ActionSheetIOS,
   Dimensions,
+  ImageBackground,
 } from 'react-native';
 import Carousel, { Pagination } from 'react-native-snap-carousel';
 
 import { Button } from '../components/common';
-import BackgroundWave from '../components/BackgroundWave';
 import MenuButton from '../components/MenuButton';
 import i18n from '../i18n';
-import carouselStyles, { colors } from '../components/CardCarousel/index.style';
+import carouselStyles from '../components/CardCarousel/index.style';
 import sliderEntryStyles, {
   sliderWidth,
   itemWidth,
 } from '../components/CarouselSliderEntryTextOnImage/SliderEntryTextOnImage.style';
 import cardImageSources from '../stores/CardImageSources';
+import { RouteProp } from '@react-navigation/native';
+import { RootStackParamList } from '../navigators/AppNavigator';
+import { DrawerNavigationProp } from '@react-navigation/drawer';
+
+import styles2 from './styles';
 
 const { width } = Dimensions.get('window');
 
@@ -30,27 +33,30 @@ const shareFailureCallback = (error) => {
 };
 
 const shareSuccessCallback = (success, method) => {
-  // let text;
-  // if (success) {
-  //   text = `Shared via ${method}`;
-  // } else {
-  //   text = "You didn't share";
-  // }
-  // this.setState({ text });
-
   __DEV__ && console.log('sharing succeeded');
 };
 
-class SendGreetingCardGalleryScreen extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      activeSlide: 0,
-      cardGiftsEntries: Object.entries(cardImageSources.gifts[i18n.locale]),
-    };
-  }
+type SendGreetingCardGalleryScreenRouteProp = RouteProp<
+  RootStackParamList,
+  'GiftCards'
+>;
+type SendGreetingCardGalleryScreenNavigationProp = DrawerNavigationProp<
+  RootStackParamList,
+  'GiftCards'
+>;
 
-  _renderItem({ item, index }) {
+type Props = {
+  route: SendGreetingCardGalleryScreenRouteProp;
+  navigation: SendGreetingCardGalleryScreenNavigationProp;
+};
+
+function SendGreetingCardGalleryScreen({ navigation }: Props) {
+  const [activeSlide, setActiveSlide] = useState(0);
+  const [cardGiftsEntries] = useState(
+    Object.entries(cardImageSources.gifts[i18n.language])
+  );
+
+  function _renderItem({ item, index }) {
     const [key, value] = item;
     // console.log(item);
 
@@ -63,13 +69,11 @@ class SendGreetingCardGalleryScreen extends React.Component {
     );
   }
 
-  sendCard = () => {
-    const currentGiftCardName = this.state.cardGiftsEntries[
-      this.state.activeSlide
-    ][0];
+  async function sendCard() {
+    const currentGiftCardName = cardGiftsEntries[activeSlide][0];
     // console.log(currentGiftCardName);
 
-    const language = i18n.locale.split('-')[0].toLowerCase();
+    const language = i18n.language.split('-')[0].toLowerCase();
 
     //TODO see to use only Share.share for both platforms
     if (Platform.OS === 'ios') {
@@ -101,83 +105,68 @@ class SendGreetingCardGalleryScreen extends React.Component {
           title: `${i18n.t('greetingHappyNewYear')} ${i18n.t(
             'greetingLetsPlay'
           )}`,
-          message: `${i18n.t('greetingHappyNewYear')} ${i18n.t(
-            'findManaWithGiftCard'
-          )}
-            https://www.jeuduhaka.com/gift/newyear/${language}/${currentGiftCardName}`,
+          message:
+            `${i18n.t('greetingHappyNewYear')} ${i18n.t(
+              'findManaWithGiftCard'
+            )} ` +
+            `https://www.jeuduhaka.com/gift/newyear/${language}/${currentGiftCardName}`,
         },
         {}
       );
     }
-  };
+  }
 
-  render() {
-    return (
-      <View style={{ flex: 1 }}>
+  return (
+    <View style={{ flex: 1 }}>
+      <ImageBackground
+        style={styles2.backgroundImage}
+        source={require('../assets/images/fond-bleu-vague-1980x1980.jpg')}>
         <MenuButton
           onPress={() => {
-            this.props.navigation.navigate('DrawerOpen');
+            navigation.openDrawer();
           }}
         />
-        <BackgroundWave>
-          <View style={{ flex: 1 / 3, justifyContent: 'flex-end' }}>
-            <Text
-              style={{
-                fontFamily: 'charcuterie-sans-inline',
-                fontSize: width * 0.07,
-                textAlign: 'center',
-                color: '#014DA2',
-                paddingTop: 10,
-                paddingHorizontal: 10,
-              }}>
-              {i18n.t('greetingText')}
-            </Text>
-          </View>
-          <ScrollView
-            horizontal
-            style={{ flex: 1 / 3 }}
-            contentContainerStyle={carouselStyles.scrollviewContentContainer}
-            indicatorStyle={'white'}
-            scrollEventThrottle={200}
-            alwaysBounceVertical={false}
-            alwaysBounceHorizontal={false}
-            directionalLockEnabled
-            //This setting is needed to block verticzl
-            scrollEnabled={false}>
-            <View style={carouselStyles.exampleContainer}>
-              <Carousel
-                ref={(c) => {
-                  this._carousel = c;
-                }}
-                data={this.state.cardGiftsEntries}
-                renderItem={this._renderItem}
-                sliderWidth={sliderWidth}
-                itemWidth={itemWidth}
-                containerCustomStyle={carouselStyles.slider}
-                contentContainerCustomStyle={
-                  carouselStyles.sliderContentContainer
-                }
-                lockScrollWhileSnapping
-                loop
-                onSnapToItem={(index) => {
-                  this.setState({ activeSlide: index });
-                }}
-              />
-            </View>
-          </ScrollView>
-          <View
+        <View style={{ flex: 1 / 3, justifyContent: 'flex-end' }}>
+          <Text
             style={{
-              flex: 1 / 3,
-              // backgroundColor: 'orange',
+              fontFamily: 'charcuterie-sans-inline',
+              fontSize: width * 0.07,
+              textAlign: 'center',
+              color: '#014DA2',
+              paddingTop: 10,
+              paddingHorizontal: 10,
             }}>
-            <Button onPress={this.sendCard}>
-              {i18n.t('sendThisGreetingCard')}
-            </Button>
-          </View>
-        </BackgroundWave>
-      </View>
-    );
-  }
+            {i18n.t('greetingText')}
+          </Text>
+        </View>
+        <View style={carouselStyles.exampleContainer}>
+          <Carousel
+            // ref={(c) => {
+            //   this._carousel = c;
+            // }}
+            data={cardGiftsEntries}
+            renderItem={_renderItem}
+            sliderWidth={sliderWidth}
+            itemWidth={itemWidth}
+            containerCustomStyle={carouselStyles.slider}
+            contentContainerCustomStyle={carouselStyles.sliderContentContainer}
+            lockScrollWhileSnapping
+            loop
+            onSnapToItem={(index: number) => {
+              setActiveSlide(index);
+            }}
+          />
+        </View>
+        <View
+          style={{
+            flex: 1 / 3,
+            // backgroundColor: 'orange',
+          }}>
+          <Button onPress={sendCard}>{i18n.t('sendThisGreetingCard')}</Button>
+        </View>
+      </ImageBackground>
+    </View>
+  );
 }
 
 export default SendGreetingCardGalleryScreen;
