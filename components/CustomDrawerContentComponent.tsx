@@ -7,10 +7,10 @@ import {
   Linking,
   StyleSheet,
   ScrollView,
-  ActionSheetIOS,
   Platform,
   Share,
 } from 'react-native';
+
 import Constants from 'expo-constants';
 
 import {
@@ -171,24 +171,26 @@ const CustomDrawerContentComponent = (props: any) => {
               const language = i18n.language.split('-')[0].toLowerCase();
               if (Platform.OS === 'ios') {
                 // TODO use Share.share
-                ActionSheetIOS.showShareActionSheetWithOptions(
-                  {
-                    // url: Expo.Asset.fromModule(
-                    //   require('../assets/images/iphone-jeu-du-haka.png')
-                    // ).uri,
-                    subject: i18n.t('shareSubject'),
-                    message: i18n.t('shareMessage'),
-                    url: `https://www.jeuduhaka.com/application/${language}`,
-                    excludedActivityTypes: [
-                      'com.apple.mobilenotes.SharingExtension',
-                      'com.google.Drive.ShareExtension',
-                      'com.apple.reminders.RemindersEditorExtension',
-                      'com.apple.mobileslideshow.StreamShareService',
-                    ],
-                  },
-                  shareFailureCallback,
-                  shareSuccessCallback
-                );
+                import('react-native').then(({ ActionSheetIOS }) => {
+                  ActionSheetIOS.showShareActionSheetWithOptions(
+                    {
+                      // url: Expo.Asset.fromModule(
+                      //   require('../assets/images/iphone-jeu-du-haka.png')
+                      // ).uri,
+                      subject: i18n.t('shareSubject'),
+                      message: i18n.t('shareMessage'),
+                      url: `https://www.jeuduhaka.com/application/${language}`,
+                      excludedActivityTypes: [
+                        'com.apple.mobilenotes.SharingExtension',
+                        'com.google.Drive.ShareExtension',
+                        'com.apple.reminders.RemindersEditorExtension',
+                        'com.apple.mobileslideshow.StreamShareService',
+                      ],
+                    },
+                    shareFailureCallback,
+                    shareSuccessCallback
+                  );
+                })
               } else if (Platform.OS === 'android') {
                 Share.share(
                   {

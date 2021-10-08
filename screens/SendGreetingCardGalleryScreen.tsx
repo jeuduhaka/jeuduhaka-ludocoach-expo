@@ -5,7 +5,6 @@ import {
   View,
   Platform,
   Share,
-  ActionSheetIOS,
   Dimensions,
   ImageBackground,
 } from 'react-native';
@@ -77,28 +76,30 @@ function SendGreetingCardGalleryScreen({ navigation }: Props) {
 
     //TODO see to use only Share.share for both platforms
     if (Platform.OS === 'ios') {
-      ActionSheetIOS.showShareActionSheetWithOptions(
-        {
-          // url: Expo.Asset.fromModule(
-          //   require('../assets/images/iphone-jeu-du-haka.png')
-          // ).uri,
-          subject: `${i18n.t('greetingHappyNewYear')} ${i18n.t(
-            'greetingLetsPlay'
-          )}`,
-          message: `${i18n.t('greetingHappyNewYear')} ${i18n.t(
-            'findManaWithGiftCard'
-          )}`,
-          url: `https://www.jeuduhaka.com/gift/newyear/${language}/${currentGiftCardName}`,
-          excludedActivityTypes: [
-            'com.apple.mobilenotes.SharingExtension',
-            'com.google.Drive.ShareExtension',
-            'com.apple.reminders.RemindersEditorExtension',
-            'com.apple.mobileslideshow.StreamShareService',
-          ],
-        },
-        shareFailureCallback,
-        shareSuccessCallback
-      );
+      import('react-native').then(({ ActionSheetIOS }) => {
+        ActionSheetIOS.showShareActionSheetWithOptions(
+          {
+            // url: Expo.Asset.fromModule(
+            //   require('../assets/images/iphone-jeu-du-haka.png')
+            // ).uri,
+            subject: `${i18n.t('greetingHappyNewYear')} ${i18n.t(
+              'greetingLetsPlay'
+            )}`,
+            message: `${i18n.t('greetingHappyNewYear')} ${i18n.t(
+              'findManaWithGiftCard'
+            )}`,
+            url: `https://www.jeuduhaka.com/gift/newyear/${language}/${currentGiftCardName}`,
+            excludedActivityTypes: [
+              'com.apple.mobilenotes.SharingExtension',
+              'com.google.Drive.ShareExtension',
+              'com.apple.reminders.RemindersEditorExtension',
+              'com.apple.mobileslideshow.StreamShareService',
+            ],
+          },
+          shareFailureCallback,
+          shareSuccessCallback
+        );
+      });
     } else if (Platform.OS === 'android') {
       Share.share(
         {

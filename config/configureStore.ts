@@ -1,4 +1,4 @@
-import { AsyncStorage } from 'react-native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import { applyMiddleware, createStore, compose, Middleware } from 'redux';
 import { autoRehydrate } from 'redux-persist';
 import { composeWithDevTools } from 'redux-devtools-extension/developmentOnly';

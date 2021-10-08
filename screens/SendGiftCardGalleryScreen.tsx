@@ -4,7 +4,6 @@ import {
   View,
   Platform,
   Share,
-  ActionSheetIOS,
   ImageBackground,
 } from 'react-native';
 import Carousel from 'react-native-snap-carousel';
@@ -90,6 +89,7 @@ function SendGiftCardGalleryScreen({ navigation }: Props) {
     const language = i18n.language.split('-')[0].toLowerCase();
 
     if (Platform.OS === 'ios') {
+
       ActionSheetIOS.showShareActionSheetWithOptions(
         {
           // url: Expo.Asset.fromModule(

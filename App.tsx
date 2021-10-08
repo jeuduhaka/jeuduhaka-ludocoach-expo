@@ -2,7 +2,7 @@ import 'react-native-gesture-handler';
 import React from 'react';
 import { View, StatusBar } from 'react-native';
 import { Provider } from 'react-redux';
-import { AppLoading } from 'expo';
+import AppLoading from 'expo-app-loading';
 import {
   MaterialIcons,
   Foundation,

@@ -12,6 +12,7 @@
     "web": "expo start --web",
     "eject": "expo eject"
   },
+  "postinstall": "fix-for-web.sh",
   "jest": {
     "preset": "jest-expo"
   },
@@ -22,6 +23,7 @@
   },
   "dependencies": {
     "@expo/vector-icons": "^12.0.0",
+    "@react-native-async-storage/async-storage": "~1.15.0",
     "@react-native-community/masked-view": "0.1.10",
     "@react-native-community/netinfo": "6.0.0",
     "@react-native-community/slider": "3.0.3",
@@ -34,6 +36,7 @@
     "@types/react-redux": "^7.1.8",
     "eslint-config-rallycoding": "^3.2.0",
     "expo": "^42.0.0",
+    "expo-app-loading": "1.1.2",
     "expo-asset": "~8.3.3",
     "expo-av": "~9.2.3",
     "expo-constants": "~11.0.1",
@@ -79,6 +82,8 @@
     "@types/react-native": "~0.63.2",
     "babel-plugin-root-import": "^6.5.0",
     "babel-preset-expo": "8.3.0",
+    "patch-package": "^6.4.7",
+    "postinstall-postinstall": "^2.1.0",
     "typescript": "~4.0.0"
   }
 }
