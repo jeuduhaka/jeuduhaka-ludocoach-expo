@@ -92,7 +92,9 @@ function VideoScreen({ route, navigation }: Props) {
           resizeMode: Video.RESIZE_MODE_CONTAIN,
           source: videoSource,
         }}
-        inFullscreen
+        fullscreen={{
+          inFullscreen: true
+        }}
         playbackCallback={(status) => {
           if (!status.isLoaded) {
             if (status.error) {

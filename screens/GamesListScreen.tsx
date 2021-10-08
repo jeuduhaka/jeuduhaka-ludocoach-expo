@@ -1,64 +1,70 @@
 import React from 'react';
-import { Text, Image, StyleSheet, Button, View, TextStyle } from 'react-native';
+import {
+  Text,
+  Image,
+  StyleSheet,
+  Button,
+  View,
+  TextStyle,
+  ImageBackground,
+} from 'react-native';
 import { FontAwesome } from '@expo/vector-icons';
 
 import MenuButton from '../components/MenuButton';
 import BackgroundWave from '../components/BackgroundWave';
 import i18n from '../i18n';
-import { useNavigation } from '@react-navigation/native';
+import { useNavigation, RouteProp } from '@react-navigation/native';
+import styles2 from './styles';
+import { RootStackParamList } from '../navigators/AppNavigator';
+import { DrawerNavigationProp } from '@react-navigation/drawer';
 
-class GamesListScreen extends React.Component {
-  static navigationOptions = ({
-    screenProps,
-  }: {
-    screenProps: {
-      language: string;
-    };
-  }) => ({
-    headerMode: 'float',
-    drawerLabel: i18n.t('gamesListTitle', {
-      locale: screenProps.language,
-    }),
-  });
+type GamesListScreenRouteProp = RouteProp<RootStackParamList, 'GamesList'>;
+type GamesListScreenNavigationProp = DrawerNavigationProp<
+  RootStackParamList,
+  'GamesList'
+>;
 
-  render() {
-    const navigation = useNavigation();
+type Props = {
+  route: GamesListScreenRouteProp;
+  navigation: GamesListScreenNavigationProp;
+};
 
-    return (
-      <View style={{ flex: 1 }}>
+function GamesListScreen({ navigation }: Props) {
+  return (
+    <View style={{ flex: 1 }}>
+      <ImageBackground
+        style={styles2.backgroundImage}
+        source={require('../assets/images/fond-bleu-vague-1980x1980.jpg')}>
         <MenuButton
           onPress={() => {
-            navigation.navigate('DrawerOpen');
+            navigation.openDrawer();
           }}
         />
-        <BackgroundWave
-          style={{ justifyContent: 'center', alignItems: 'center' }}>
-          <Text
-            style={[
-              styles.blackText,
-              { paddingBottom: 20, fontWeight: 'bold', fontSize: 20 },
-            ]}>
-            {i18n.t('gamesListTitle')}
-          </Text>
-          <Text>Le Jeu de l’Entraide</Text>
-          <Text>Le Jeu des Vies antérieures</Text>
-          <Text>Le Jeu des Sept Lois spirituelles</Text>
-          <Text>Horaklès le Jeu du Héros</Text>
-          <Text>Le Jeu de la Démanipulation</Text>
-          <Text>Le Jeu de l’Humour</Text>
-          <Text>Conversations avec Dieu, le Jeu</Text>
-          <Text>Je(u) Vote</Text>
-          <Text>Le Jeu des Accords toltèques</Text>
-          <Text>Le Jeu de la Paix intérieure</Text>
-          <Text>Réussite intérieure, le Jeu</Text>
-          <Text>Va au bout de tes rêves ! Le Jeu</Text>
-          <Text>Le Jeu du plus malin que le diable</Text>
-          <Text>Le Jeu du Ho’oponopono</Text>
-          <Text>etc...</Text>
-        </BackgroundWave>
-      </View>
-    );
-  }
+        <Text
+          style={[
+            styles.blackText,
+            { paddingBottom: 20, fontWeight: 'bold', fontSize: 20 },
+          ]}>
+          {i18n.t('gamesListTitle')}
+        </Text>
+        <Text>Le Jeu de l’Entraide</Text>
+        <Text>Le Jeu des Vies antérieures</Text>
+        <Text>Le Jeu des Sept Lois spirituelles</Text>
+        <Text>Horaklès le Jeu du Héros</Text>
+        <Text>Le Jeu de la Démanipulation</Text>
+        <Text>Le Jeu de l’Humour</Text>
+        <Text>Conversations avec Dieu, le Jeu</Text>
+        <Text>Je(u) Vote</Text>
+        <Text>Le Jeu des Accords toltèques</Text>
+        <Text>Le Jeu de la Paix intérieure</Text>
+        <Text>Réussite intérieure, le Jeu</Text>
+        <Text>Va au bout de tes rêves ! Le Jeu</Text>
+        <Text>Le Jeu du plus malin que le diable</Text>
+        <Text>Le Jeu du Ho’oponopono</Text>
+        <Text>etc...</Text>
+      </ImageBackground>
+    </View>
+  );
 }
 
 const textfontSize: TextStyle = {
