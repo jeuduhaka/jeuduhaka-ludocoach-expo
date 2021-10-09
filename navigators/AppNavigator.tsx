@@ -88,8 +88,8 @@ function GiftsCardsStack() {
   return (
     <Stack.Navigator
       initialRouteName="Intro"
-      headerMode="none"
       screenOptions={{
+        headerShown: false,
         transitionSpec: {
           open: {
             animation: 'timing',
@@ -144,8 +144,8 @@ function AppNavigator() {
   return (
     <Stack.Navigator
       initialRouteName="HomeWithDrawer"
-      headerMode="none"
       screenOptions={{
+        headerShown: false,
         transitionSpec: {
           open: {
             animation: 'timing',

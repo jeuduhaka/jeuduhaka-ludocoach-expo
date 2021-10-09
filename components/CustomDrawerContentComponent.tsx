@@ -9,6 +9,7 @@ import {
   ScrollView,
   Platform,
   Share,
+  TouchableOpacity
 } from 'react-native';
 
 import Constants from 'expo-constants';
@@ -19,7 +20,6 @@ import {
   Foundation,
   MaterialIcons,
 } from '@expo/vector-icons';
-import TouchableItem from '@react-navigation/drawer/src/views/TouchableItem';
 import { DrawerContentScrollView } from '@react-navigation/drawer';
 
 import i18n from '../i18n';
@@ -113,7 +113,7 @@ const CustomDrawerContentComponent = (props: any) => {
               // justifyContent: 'flex-end',
             }
           }>
-          <TouchableItem
+          <TouchableOpacity
             onPress={() => navigation.navigate('Home')}
             delayPressIn={0}>
             <View style={[styles.item]}>
@@ -122,8 +122,8 @@ const CustomDrawerContentComponent = (props: any) => {
               </View>
               <Text style={[styles.label]}>{i18n.t('backToGame')}</Text>
             </View>
-          </TouchableItem>
-          <TouchableItem
+          </TouchableOpacity>
+          <TouchableOpacity
             onPress={() => navigation.navigate('GameGoal')}
             delayPressIn={0}>
             <View style={[styles.item]}>
@@ -132,8 +132,8 @@ const CustomDrawerContentComponent = (props: any) => {
               </View>
               <Text style={[styles.label]}>{i18n.t('gameGoalTitle')}</Text>
             </View>
-          </TouchableItem>
-          <TouchableItem
+          </TouchableOpacity>
+          <TouchableOpacity
             onPress={() => navigation.navigate('Advice')}
             delayPressIn={0}>
             <View style={[styles.item]}>
@@ -142,8 +142,8 @@ const CustomDrawerContentComponent = (props: any) => {
               </View>
               <Text style={[styles.label]}>{i18n.t('adviceMenuTitle')}</Text>
             </View>
-          </TouchableItem>
-          <TouchableItem
+          </TouchableOpacity>
+          <TouchableOpacity
             onPress={() => navigation.navigate('GiftCards')}
             delayPressIn={0}>
             <View style={[styles.item]}>
@@ -152,8 +152,8 @@ const CustomDrawerContentComponent = (props: any) => {
               </View>
               <Text style={[styles.label]}>{i18n.t('sendGiftCardLabel')}</Text>
             </View>
-          </TouchableItem>
-          <TouchableItem
+          </TouchableOpacity>
+          <TouchableOpacity
             onPress={() => navigation.navigate('SendGreetingCard')}
             delayPressIn={0}>
             <View style={[styles.item]}>
@@ -164,8 +164,8 @@ const CustomDrawerContentComponent = (props: any) => {
                 {i18n.t('sendGreetingCardLabel')}
               </Text>
             </View>
-          </TouchableItem>
-          <TouchableItem
+          </TouchableOpacity>
+          <TouchableOpacity
             onPress={() => {
               // console.log(i18n.locale);
               const language = i18n.language.split('-')[0].toLowerCase();
@@ -210,8 +210,8 @@ const CustomDrawerContentComponent = (props: any) => {
               </View>
               <Text style={[styles.label]}>{i18n.t('shareAppLabel')}</Text>
             </View>
-          </TouchableItem>
-          <TouchableItem
+          </TouchableOpacity>
+          <TouchableOpacity
             onPress={() =>
               Linking.openURL(
                 'mailto:contact@jeuduhaka.com?subject=Jeu du Haka Ludocoach app'
@@ -224,23 +224,23 @@ const CustomDrawerContentComponent = (props: any) => {
               </View>
               <Text style={[styles.label]}>{i18n.t('contactUs')}</Text>
             </View>
-          </TouchableItem>
+          </TouchableOpacity>
           <Separator />
-          <TouchableItem
+          <TouchableOpacity
             onPress={() => navigation.navigate('Authors')}
             delayPressIn={0}>
             <View style={[styles.item]}>
               <Text style={[styles.label]}>{i18n.t('authorsTitle')}</Text>
             </View>
-          </TouchableItem>
-          <TouchableItem
+          </TouchableOpacity>
+          <TouchableOpacity
             onPress={() => navigation.navigate('GamesList')}
             delayPressIn={0}>
             <View style={[styles.item]}>
               <Text style={[styles.label]}>{i18n.t('gamesListTitle')}</Text>
             </View>
-          </TouchableItem>
-          <TouchableItem
+          </TouchableOpacity>
+          <TouchableOpacity
             onPress={() => navigation.navigate('Thanks')}
             delayPressIn={0}>
             <View style={[styles.item]}>
@@ -248,9 +248,9 @@ const CustomDrawerContentComponent = (props: any) => {
                 {i18n.t('acknowledgementsMenu')}
               </Text>
             </View>
-          </TouchableItem>
+          </TouchableOpacity>
           <Separator />
-          <TouchableItem
+          <TouchableOpacity
             onPress={() =>
               Linking.openURL('https://www.facebook.com/jeuduhaka')
             }
@@ -261,8 +261,8 @@ const CustomDrawerContentComponent = (props: any) => {
               </View>
               <Text style={[styles.label]}>{i18n.t('onFacebook')}</Text>
             </View>
-          </TouchableItem>
-          <TouchableItem
+          </TouchableOpacity>
+          <TouchableOpacity
             onPress={() => Linking.openURL('https://www.jeuduhaka.com')}
             delayPressIn={0}>
             <View style={[styles.item]}>
@@ -271,8 +271,8 @@ const CustomDrawerContentComponent = (props: any) => {
               </View>
               <Text style={[styles.label]}>jeuduhaka.com</Text>
             </View>
-          </TouchableItem>
-          <TouchableItem
+          </TouchableOpacity>
+          <TouchableOpacity
             onPress={() => Linking.openURL('http://www.marckucharz.com')}
             delayPressIn={0}>
             <View style={[styles.item]}>
@@ -281,8 +281,8 @@ const CustomDrawerContentComponent = (props: any) => {
               </View>
               <Text style={[styles.label]}>marckucharz.com</Text>
             </View>
-          </TouchableItem>
-          <TouchableItem
+          </TouchableOpacity>
+          <TouchableOpacity
             onPress={() => Linking.openURL('http://www.ludocoaching.com')}
             delayPressIn={0}>
             <View style={[styles.item]}>
@@ -291,7 +291,7 @@ const CustomDrawerContentComponent = (props: any) => {
               </View>
               <Text style={[styles.label]}>ludocoaching.com</Text>
             </View>
-          </TouchableItem>
+          </TouchableOpacity>
           <View style={[styles.item, { alignItems: 'center' }]}>
             <Text
               style={[styles.label, styles.developedByText]}

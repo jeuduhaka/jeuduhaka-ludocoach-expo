@@ -1,6 +1,6 @@
 import React from 'react';
 import { View } from 'react-native';
-import { HeaderBackButton } from '@react-navigation/stack';
+import { HeaderBackButton } from '@react-navigation/elements';
 import { useNavigation } from '@react-navigation/native';
 
 import { compose } from 'redux';
