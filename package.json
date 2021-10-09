@@ -12,7 +12,6 @@
     "web": "expo start --web",
     "eject": "expo eject"
   },
-  "postinstall": "fix-for-web.sh",
   "jest": {
     "preset": "jest-expo"
   },
