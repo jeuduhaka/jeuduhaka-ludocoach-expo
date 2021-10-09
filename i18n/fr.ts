@@ -11,7 +11,7 @@ export default {
   powerIsInYou: '"Le Pouvoir est en toi !"',
 
   chooseCards:
-    "Choisissez une carte de chaque couleur en fonction de vos émotions et laissez-vous guider en appuyant sur la carte correspondante dans l'ordre : ",
+    "Choisissez une carte de chaque couleur en fonction de vos émotions et laissez-vous guider en appuyant sur la carte correspondante dans l'ordre\u00a0: ",
   oneMoveDescription:
     'Pour cette version, choisissez la carte qui vous permettra de passer directement à un mieux-Être.',
   having: 'AVOIR',
