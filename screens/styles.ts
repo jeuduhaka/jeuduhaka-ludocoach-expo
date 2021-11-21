@@ -1,4 +1,4 @@
-import { StyleSheet, Dimensions, TextStyle } from 'react-native';
+import { StyleSheet, Dimensions, TextStyle, Platform } from 'react-native';
 
 const { height, width } = Dimensions.get('window');
 
@@ -13,13 +13,11 @@ export default StyleSheet.create({
   container: { flex: 1 },
   backgroundImage: {
     flex: 1,
-    width: undefined,
-    height: undefined,
   },
   navigationHeader: { flex: 1 / 14 },
   contentContainer: { flex: 12 / 14 },
   titleContainer: {
-    flex: 1 / 10,
+    flex: Platform.OS === 'web' ? 1.6 / 10 : 1.2 / 10,
   },
   intermediateScreenTextContainer: {
     flex: 1,
@@ -38,7 +36,7 @@ export default StyleSheet.create({
     marginTop: 20,
   },
   title: {
-    fontSize: width * 0.14,
+    fontSize: Platform.OS === 'web' ? width * 0.07 : width * 0.14,
     fontFamily: 'charcuterie-sans-inline',
     color: '#014DA2',
     backgroundColor: 'transparent',
@@ -52,6 +50,7 @@ export default StyleSheet.create({
   },
   subtitle: {
     ...textStyle,
+    fontSize: Platform.OS === 'web' ? width * 0.035 : width * 0.07,
     fontFamily: 'charcuterie-sans-inline',
   },
   intermediateScreenText: {
@@ -64,6 +63,8 @@ export default StyleSheet.create({
     flex: 1,
     resizeMode: 'contain',
     alignSelf: 'center',
+    width: '100%',
+    height: '100%'
   },
   homeActionButton: {
     paddingTop: 5,
@@ -71,15 +72,17 @@ export default StyleSheet.create({
   mantraContainer: {
     flex: 1 / 10,
   },
-  startButtonContainer: { flex: 2 / 10 },
+  startButtonContainer: {
+    flex: 2 / 10,
+    alignSelf: Platform.OS === 'web' ? 'center' : 'auto',
+    width: Platform.OS === 'web' ? width * 0.3 : 'auto'
+  },
   copyrightContainer: {
     flex: 1 / 10,
     paddingTop: 10,
-    // borderWidth: 1,
-    // borderColor: 'yellow',
   },
   copyright: {
-    fontSize: width * 0.04,
+    fontSize: Platform.OS === 'web' ? width * 0.015 : width * 0.04,
     backgroundColor: 'transparent',
     alignSelf: 'center',
   },
