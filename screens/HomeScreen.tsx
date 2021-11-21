@@ -7,7 +7,7 @@ import { StackNavigationProp } from '@react-navigation/stack';
 
 import { Button } from '../components/common';
 import MenuButton from '../components/MenuButton';
-import { LanguageFlagButton } from '../components/LanguageFlagButton';
+import { LanguageFlagPicker } from '../components/LanguageFlagPicker';
 import styles from './styles';
 import cardImageSources from '../stores/CardImageSources';
 import cardVideoSources from '../stores/CardVideoSourcesLocal';
@@ -71,7 +71,7 @@ function HomeScreen({ navigation }: Props) {
               navigation.openDrawer();
             }}
           />
-          <LanguageFlagButton />
+          <LanguageFlagPicker />
         </View>
         <View style={styles.contentContainer}>
           <View style={styles.titleContainer}>
