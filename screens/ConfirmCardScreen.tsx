@@ -1,14 +1,10 @@
 import React from 'react';
 import { View, ImageBackground, Text, StyleSheet } from 'react-native';
-import { compose } from 'redux';
-import { connect } from 'react-redux';
 import _get from 'lodash.get';
-import { ActionCreators as UndoActionCreators } from 'redux-undo';
 
 import Layout from '../constants/Layout';
 import i18n from '../i18n';
 
-import { cardConfirmed, cardCancelled } from '../actions';
 import { Button } from '../components/common';
 import BackButton from '../components/BackButton';
 import HomeButton from '../components/HomeButton';
