@@ -6,7 +6,6 @@ import {
   View,
   Linking,
   StyleSheet,
-  ScrollView,
   Platform,
   Share,
   TouchableOpacity
@@ -104,15 +103,7 @@ const CustomDrawerContentComponent = (props: any) => {
           }}
           source={require('../assets/images/jeu-du-haka-logo-200x200.png')}
         />
-        {/* <DrawerItems activeTintColor={'#014DA2'} {...props} /> */}
-        <View
-          style={
-            {
-              // flex: 1,
-              // flexDirection: 'column',
-              // justifyContent: 'flex-end',
-            }
-          }>
+        <View>
           <TouchableOpacity
             onPress={() => navigation.navigate('Home')}
             delayPressIn={0}>
@@ -167,16 +158,12 @@ const CustomDrawerContentComponent = (props: any) => {
           </TouchableOpacity>
           <TouchableOpacity
             onPress={() => {
-              // console.log(i18n.locale);
               const language = i18n.language.split('-')[0].toLowerCase();
               if (Platform.OS === 'ios') {
                 // TODO use Share.share
                 import('react-native').then(({ ActionSheetIOS }) => {
                   ActionSheetIOS.showShareActionSheetWithOptions(
                     {
-                      // url: Expo.Asset.fromModule(
-                      //   require('../assets/images/iphone-jeu-du-haka.png')
-                      // ).uri,
                       subject: i18n.t('shareSubject'),
                       message: i18n.t('shareMessage'),
                       url: `https://www.jeuduhaka.com/application/${language}`,
