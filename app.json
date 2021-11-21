@@ -3,7 +3,11 @@
     "name": "Jeu du Haka Ludocoach",
     "description": "Transforme ton énergie négative en énergie positive ! Y'HAKA jouer !",
     "slug": "jeuduhaka-ludocoach",
-    "platforms": ["ios", "android", "web"],
+    "platforms": [
+      "ios",
+      "android",
+      "web"
+    ],
     "privacy": "unlisted",
     "version": "1.1.0",
     "orientation": "portrait",
@@ -12,11 +16,6 @@
     "notification": {
       "icon": "./assets/icons/notification-icon.png",
       "color": "#000000"
-    },
-    "loading": {
-      "icon": "./assets/icons/jeuduhaka-app-icon-512x512.png",
-      "backgroundColor": "#ffffff",
-      "hideExponentText": true
     },
     "packagerOpts": {},
     "ios": {
@@ -33,6 +32,7 @@
     },
     "updates": {
       "fallbackToCacheTimeout": 0
-    }
+    },
+    "githubUrl": "https://github.com/jeuduhaka/jdh-ludocoach"
   }
 }
