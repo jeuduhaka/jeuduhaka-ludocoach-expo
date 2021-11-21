@@ -23,7 +23,7 @@ const HomeIcon = ({ tintColor }: { tintColor: string }) => (
 
 const resetAction = CommonActions.reset({
   index: 0,
-  routes: [{ name: 'Home' }],
+  routes: [{ name: 'HomeWithDrawer' }],
 });
 
 const HomeButton = ({
