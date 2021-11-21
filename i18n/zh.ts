@@ -19,7 +19,7 @@ export default {
     letsGo: '继续',
     youHaveChosen: '您选择了',
     placeYourself: "选择一个你感觉舒适并足够大的地方进行训练，深呼吸，然后跟我做。",
-    iChoose: '我选择',
+    iChooseThisCard: '我选这张卡',
     chooseAnotherCard: '选择另外一张卡',
     manaActivated: '太棒了，您已经开启您的超自然力，请大声说：力量与我同在！',
     thankYou: '谢谢',
