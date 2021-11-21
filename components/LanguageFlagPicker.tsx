@@ -11,11 +11,14 @@ function LanguageFlagPicker() {
     <View
       style={{
         position: 'absolute',
-        top: 1,
-        right: 5,
+        top: 0,
+        right: 0,
         width: 150
       }}>
       <Picker
+        style={{
+          backgroundColor: 'white'
+        }}
         selectedValue={selectedLanguage}
         onValueChange={(newLanguage) => {
           setSelectedLanguage(newLanguage);
