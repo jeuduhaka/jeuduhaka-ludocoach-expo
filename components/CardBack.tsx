@@ -2,14 +2,7 @@ import React from 'react';
 import {
   Image,
   TouchableOpacity,
-  Animated,
-  Easing,
-  Text,
-  View,
-  StyleProp,
-  ViewStyle,
   StyleSheet,
-  ImageStyle,
 } from 'react-native';
 
 const CardBack = ({
@@ -55,8 +48,8 @@ const styles = StyleSheet.create({
     // alignSelf: 'stretch',
     // flexGrow: 1,
     justifyContent: 'space-between',
-    width: undefined,
-    // height: undefined
+    width: '100%',
+    height: '100%'
   },
   textContainer: {
     flex: 1,
