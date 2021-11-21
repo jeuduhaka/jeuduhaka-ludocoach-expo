@@ -51,8 +51,16 @@ type Props = {
 
 function SendGreetingCardGalleryScreen({ navigation }: Props) {
   const [activeSlide, setActiveSlide] = useState(0);
+
+  let language = i18n.language.split('-')[0].toLowerCase();
+
+  if (!(language in cardImageSources.gifts)) {
+    language = 'en';
+  }
+
+
   const [cardGiftsEntries] = useState(
-    Object.entries(cardImageSources.gifts[i18n.language])
+    Object.entries(cardImageSources.gifts[language])
   );
 
   function _renderItem({ item, index }) {
@@ -70,9 +78,6 @@ function SendGreetingCardGalleryScreen({ navigation }: Props) {
 
   async function sendCard() {
     const currentGiftCardName = cardGiftsEntries[activeSlide][0];
-    // console.log(currentGiftCardName);
-
-    const language = i18n.language.split('-')[0].toLowerCase();
 
     //TODO see to use only Share.share for both platforms
     if (Platform.OS === 'ios') {

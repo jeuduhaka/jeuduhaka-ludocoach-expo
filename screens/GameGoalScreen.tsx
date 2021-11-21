@@ -6,13 +6,13 @@ import {
   TextStyle,
   ImageBackground,
 } from 'react-native';
+import { useTranslation } from 'react-i18next';
+import { RouteProp } from '@react-navigation/native';
+import { DrawerNavigationProp } from '@react-navigation/drawer';
 
 import MenuButton from '../components/MenuButton';
 import i18n from '../i18n';
-import { RouteProp } from '@react-navigation/native';
 import { RootStackParamList } from '../navigators/AppNavigator';
-import { DrawerNavigationProp } from '@react-navigation/drawer';
-
 import styles2 from './styles';
 
 type GameGoalScreenRouteProp = RouteProp<RootStackParamList, 'GameGoal'>;
@@ -27,6 +27,10 @@ type Props = {
 };
 
 function GameGoalScreen({ route, navigation }: Props) {
+  const language = i18n.language.split('-')[0].toLowerCase();
+
+  const { t } = useTranslation();
+
   return (
     <View style={{ flex: 1 }}>
       <ImageBackground
@@ -49,7 +53,7 @@ function GameGoalScreen({ route, navigation }: Props) {
               styles.blackText,
               { paddingBottom: 20, fontWeight: 'bold', fontSize: 20 },
             ]}>
-            {i18n.t('gameGoalTitle')}
+            {t('gameGoalTitle')}
           </Text>
           <Text
             style={[
@@ -57,45 +61,69 @@ function GameGoalScreen({ route, navigation }: Props) {
               styles.textWithPaddingTop,
               { fontWeight: 'bold' },
             ]}>
-            {i18n.t('transformYourEnergy')}
+            {t('transformYourEnergy')}
           </Text>
-          <Text style={[styles.blackText, styles.textWithPaddingTop]}>
-            {i18n.t('gameGoalParagraph1Part1')}
-          </Text>
-          <Text style={styles.blackText}>
-            {i18n.t('gameGoalParagraph1Part2')}
-          </Text>
-          <Text style={styles.blackText}>
-            {i18n.t('gameGoalParagraph1Part3')}
-          </Text>
+          {language !== 'zh' ?
+              <>
+                <Text style={[styles.blackText, styles.textWithPaddingTop]}>
+                  {t('gameGoalParagraph1Part1')}
+                </Text>
+                <Text style={styles.blackText}>
+                  {t('gameGoalParagraph1Part2')}
+                </Text>
+                <Text style={styles.blackText}>
+                  {t('gameGoalParagraph1Part3')}
+                </Text>
+              </>
+           :
+              <Text style={[styles.blackText, styles.textWithPaddingTop]}>
+                {t('gameGoalParagraph1')}
+              </Text>
+          }
+          
           <View style={styles.textWithPaddingTop}>
             <Text style={styles.blackText}>
               <Text style={[styles.stepNumber, styles.colorRed]}>A</Text>{' '}
               <Text style={styles.stepText}>{i18n.t('having')}</Text>
-              {i18n.t('limitingEmotion')}
+              {t('limitingEmotion')}
             </Text>
             <Text style={styles.blackText}>
               <Text style={[styles.stepNumber, styles.colorOrange]}>B</Text>
-              {i18n.t('yaka')}
+              {t('yaka')}
               <Text style={styles.stepText}> {i18n.t('doing')}</Text>
             </Text>
             <Text style={styles.blackText}>
               <Text style={[styles.stepNumber, styles.colorGreen]}>C</Text>{' '}
               <Text style={styles.stepText}>{i18n.t('being')}</Text>
-              {i18n.t('better')}
+              {t('better')}
             </Text>
           </View>
-          <Text style={[styles.blackText, styles.textWithPaddingTop]}>
-            {i18n.t('gameGoalParagraph2Part1')}
-          </Text>
-          <Text style={styles.blackText}>
-            {i18n.t('gameGoalParagraph2Part2')}
-          </Text>
-          <Text style={styles.blackText}>
-            {i18n.t('gameGoalParagraph2Part3')}{' '}
-            <Text style={styles.manaText}>Mana</Text>{' '}
-            {i18n.t('powerParenthesis')}
-          </Text>
+          {language !== 'zh' ?
+              <>
+                <Text style={[styles.blackText, styles.textWithPaddingTop]}>
+                  {t('gameGoalParagraph2Part1')}
+                </Text>
+                <Text style={styles.blackText}>
+                  {t('gameGoalParagraph2Part2')}
+                </Text>
+                <Text style={styles.blackText}>
+                  {t('gameGoalParagraph2Part3')}{' '}
+                  <Text style={styles.manaText}>Mana</Text>{' '}
+                  {t('powerParenthesis')}
+                </Text>
+              </>
+           :
+              <>
+                <Text style={[styles.blackText, styles.textWithPaddingTop]}>
+                  {t('gameGoalParagraph2')}
+                </Text>
+                <Text style={styles.blackText}>
+                  {' '}
+                  <Text style={styles.manaText}>Mana</Text>{' '}
+                  {t('powerParenthesis')}
+                </Text>
+              </>
+          }
         </View>
       </ImageBackground>
     </View>
