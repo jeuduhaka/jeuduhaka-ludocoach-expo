@@ -95,7 +95,7 @@ function HomeScreen({ navigation }: Props) {
                 <View style={styles.homeActionButton}>
                   <Button
                     onPress={() => {
-                      navigation.push('SecondScreen3Moves');
+                      navigation.push('SecondScreen3Moves', {});
                     }}>
                     {t('play3Moves')}
                   </Button>
@@ -103,7 +103,7 @@ function HomeScreen({ navigation }: Props) {
                 <View style={styles.homeActionButton}>
                   <Button
                     onPress={() => {
-                      navigation.push('SecondScreen1Move');
+                      navigation.push('SecondScreen1Move', {});
                     }}>
                     {t('play1Move')}
                   </Button>
