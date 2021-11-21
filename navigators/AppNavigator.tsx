@@ -122,7 +122,11 @@ function HomeWithDrawer() {
   return (
     <Drawer.Navigator
       initialRouteName="Home"
-      drawerContent={(props) => <CustomDrawerContentComponent {...props} />}>
+      drawerContent={(props) => <CustomDrawerContentComponent {...props} />}
+      screenOptions={{
+        headerShown: false,
+      }}
+    >
       <Drawer.Screen name="Home" component={HomeScreen} />
       <Drawer.Screen name="GameGoal" component={GameGoalScreen} />
       <Drawer.Screen name="Advice" component={AdviceScreen} />
