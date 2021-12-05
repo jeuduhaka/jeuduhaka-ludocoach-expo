@@ -8,10 +8,10 @@ import { RootStackParamList } from '../navigators/AppNavigator';
 import MenuButton from '../components/MenuButton';
 import styles2 from './styles';
 
-type GiftCardsScreenRouteProp = RouteProp<RootStackParamList, 'Thanks'>;
+type GiftCardsScreenRouteProp = RouteProp<RootStackParamList, 'Acknowledgements'>;
 type GiftCardsScreenNavigationProp = DrawerNavigationProp<
   RootStackParamList,
-  'Thanks'
+  'Acknowledgements'
 >;
 
 type Props = {
@@ -21,18 +21,6 @@ type Props = {
 
 function AcknowledgementsScreen({ navigation }: Props) {
   const { t } = useTranslation();
-  // static navigationOptions = ({
-  //   screenProps,
-  // }: {
-  //   screenProps: {
-  //     language: string;
-  //   };
-  // }) => ({
-  //   headerMode: 'float',
-  //   drawerLabel: t('acknowledgementsMenu', {
-  //     locale: screenProps.language,
-  //   }),
-  // });
 
   return (
     <View style={{ flex: 1 }}>

@@ -57,7 +57,6 @@ function GiftCardsScreen({ navigation }: Props) {
               style={[
                 styles.blackText,
                 {
-                  // paddingBottom: 20,
                   fontWeight: 'bold',
                   fontSize: 20,
                   backgroundColor: 'transparent',

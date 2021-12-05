@@ -22,7 +22,7 @@ import GamesListScreen from '../screens/GamesListScreen';
 import AuthorsScreen from '../screens/AuthorsScreen';
 import AdviceScreen from '../screens/AdviceScreen';
 import GameGoalScreen from '../screens/GameGoalScreen';
-import ThanksScreen from '../screens/ThanksScreen';
+import AcknowledgementsScreen from '../screens/AcknowledgementsScreen';
 import { HomeScreen } from '../screens/HomeScreen';
 import { SecondScreen3Moves } from '../screens/SecondScreen3Moves';
 import { SecondScreen1Move } from '../screens/SecondScreen1Move';
@@ -42,7 +42,7 @@ export type RootStackParamList = {
   SendGreetingCardGallery: {};
   Authors: {};
   GamesList: {};
-  Thanks: {};
+  Acknowledgements: {};
   SecondScreen1Move: {};
   SecondScreen3Moves: {};
   ChooseCardGrid: {
@@ -138,7 +138,7 @@ function HomeWithDrawer() {
       />
       <Drawer.Screen name="Authors" component={AuthorsScreen} />
       <Drawer.Screen name="GamesList" component={GamesListScreen} />
-      <Drawer.Screen name="Thanks" component={ThanksScreen} />
+      <Drawer.Screen name="Acknowledgements" component={AcknowledgementsScreen} />
     </Drawer.Navigator>
   );
 }
