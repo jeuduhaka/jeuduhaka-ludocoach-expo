@@ -20,10 +20,8 @@ const resetAction = CommonActions.reset({
 });
 
 const HomeButton = ({
-  onHomePress,
   tintColor,
 }: {
-  onHomePress: () => void;
   tintColor: string;
 }) => {
   const navigation = useNavigation();

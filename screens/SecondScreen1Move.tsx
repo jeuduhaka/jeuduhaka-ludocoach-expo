@@ -23,7 +23,7 @@ type Props = {
 
 function SecondScreen1Move({ navigation }: Props) {
   const { t } = useTranslation();
-  
+
   return (
     <SecondScreen
       textContent={t('oneMoveDescription')}

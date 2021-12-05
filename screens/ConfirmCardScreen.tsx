@@ -29,7 +29,7 @@ type Props = {
 
 function ConfirmCardScreen({ route, navigation }: Props) {
   const { currentDeck, selectedCards } = route.params;
-  const { t } = useTranslation
+  const { t } = useTranslation();
 
   const {
     containerStyle,

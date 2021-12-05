@@ -82,7 +82,6 @@ function VideoScreen({ route, navigation }: Props) {
     <View style={styles.videoContainer}>
       <BackButton tintColor={'#ffffff'} />
       <HomeButton tintColor={'#ffffff'} />
-
       <VideoPlayer
         videoProps={{
           // style: styles.backgroundVideo,

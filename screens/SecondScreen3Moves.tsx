@@ -1,11 +1,12 @@
 import React from 'react';
 import { Text } from 'react-native';
+import { RouteProp } from '@react-navigation/native';
+import { StackNavigationProp } from '@react-navigation/stack';
+import { useTranslation } from 'react-i18next';
 
 import SecondScreen from './SecondScreen';
-import { RouteProp } from '@react-navigation/native';
 import { GAME_MODE_3_MOVES } from '../actions/types';
 import { RootStackParamList } from '../navigators/AppNavigator';
-import { StackNavigationProp } from '@react-navigation/stack';
 
 type SecondScreen3MovesRouteProp = RouteProp<
   RootStackParamList,
