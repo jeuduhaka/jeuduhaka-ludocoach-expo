@@ -2,8 +2,6 @@ import React from 'react';
 import {
   ImageBackground,
   TouchableOpacity,
-  Animated,
-  Easing,
   Text,
   View,
   StyleProp,
@@ -78,8 +76,6 @@ const styles = StyleSheet.create({
     // alignSelf: 'stretch',
     // flexGrow: 1,
     justifyContent: 'space-between',
-    width: undefined,
-    height: undefined,
     alignItems: 'center',
   },
   textContainer: {
@@ -99,13 +95,10 @@ const styles = StyleSheet.create({
   },
   title: {
     flex: 2 / 9,
-    // color: colors.black,
     color: '#ffffff',
     fontFamily: 'charcuterie-sans-inline',
     fontSize: (Layout.window.width * 0.27) / 5.5,
     letterSpacing: 0.5,
-    // borderWidth: 1,
-    // borderColor: 'blue',
   },
 });
 
