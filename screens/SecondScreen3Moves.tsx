@@ -1,7 +1,6 @@
 import React from 'react';
-import { Text, Image, Linking, View } from 'react-native';
+import { Text } from 'react-native';
 
-import i18n from '../i18n';
 import SecondScreen from './SecondScreen';
 import { RouteProp } from '@react-navigation/native';
 import { GAME_MODE_3_MOVES } from '../actions/types';
@@ -23,21 +22,23 @@ type Props = {
 };
 
 function SecondScreen3Moves({ navigation }: Props) {
+  const { t } = useTranslation();
+  
   return (
     <SecondScreen
       textContent={[
-        i18n.t('chooseCards'),
+        t('chooseCards'),
         ' ',
         <Text key="text-1" style={{ color: '#B8282E' }}>
-          1.{i18n.t('having')}
+          1.{t('having')}
         </Text>,
         ' ',
         <Text key="text-2" style={{ color: '#F7941C' }}>
-          2.{i18n.t('doing')}
+          2.{t('doing')}
         </Text>,
         ' ',
         <Text key="text-3" style={{ color: '#39B549' }}>
-          3.{i18n.t('being')}
+          3.{t('being')}
         </Text>,
       ]}
       buttonOnPress={() => {

@@ -2,13 +2,12 @@ import React from 'react';
 import { Text, StyleSheet, View, ImageBackground } from 'react-native';
 
 import MenuButton from '../components/MenuButton';
-import BackgroundWave from '../components/BackgroundWave';
-import i18n from '../i18n';
 import { RouteProp } from '@react-navigation/native';
 import { RootStackParamList } from '../navigators/AppNavigator';
 import { DrawerNavigationProp } from '@react-navigation/drawer';
 
 import styles2 from './styles';
+import { useTranslation } from 'react-i18next';
 
 type AdviceScreenRouteProp = RouteProp<RootStackParamList, 'Advice'>;
 type AdviceScreenNavigationProp = DrawerNavigationProp<
@@ -23,6 +22,7 @@ type Props = {
 
 // TODO better layout
 function AdviceScreen({ route, navigation }: Props) {
+  const { t } = useTranslation();
   return (
     <View style={{ flex: 1 }}>
       <ImageBackground
@@ -45,25 +45,25 @@ function AdviceScreen({ route, navigation }: Props) {
               styles.blackText,
               { paddingBottom: 20, fontWeight: 'bold', fontSize: 20 },
             ]}>
-            {i18n.t('adviceMenuTitle')}
+            {t('adviceMenuTitle')}
           </Text>
           <View>
             <Text style={[styles.blackText, styles.textWithPaddingTop]}>
-              - {i18n.t('firstAdvice')}
+              - {t('firstAdvice')}
             </Text>
             <Text style={[styles.blackText, styles.textWithPaddingTop]}>
-              - {i18n.t('secondAdvice')}
+              - {t('secondAdvice')}
             </Text>
             <Text style={[styles.blackText, styles.textWithPaddingTop]}>
-              - {i18n.t('thirdAdvice')}
+              - {t('thirdAdvice')}
             </Text>
             <Text style={[styles.blackText, { fontWeight: 'bold' }]}>
-              {i18n.t('adviceFormula')}
+              {t('adviceFormula')}
             </Text>
             <Text style={[styles.blackText, { paddingHorizontal: 20 }]}>
-              {i18n.t('adviceFormulaExplanationPart1')}{' '}
+              {t('adviceFormulaExplanationPart1')}{' '}
               <Text style={styles.manaText}>Mana</Text>{' '}
-              {i18n.t('adviceFormulaExplanationPart2')}
+              {t('adviceFormulaExplanationPart2')}
             </Text>
           </View>
         </View>

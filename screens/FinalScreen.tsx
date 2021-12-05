@@ -1,8 +1,6 @@
 import React from 'react';
 import { Text, Image, View } from 'react-native';
 
-import i18n from '../i18n';
-
 import { Button } from '../components/common';
 import styles from './styles';
 // import NavigationHeader from '../components/NavigationHeader';
@@ -12,6 +10,7 @@ import HomeButton from '../components/HomeButton';
 import { RouteProp } from '@react-navigation/native';
 import { RootStackParamList } from '../navigators/AppNavigator';
 import { StackNavigationProp } from '@react-navigation/stack';
+import { useTranslation } from 'react-i18next';
 
 type FinalScreenRouteProp = RouteProp<RootStackParamList, 'Final'>;
 
@@ -26,6 +25,8 @@ type Props = {
 };
 
 function FinalScreen({ route, navigation }: Props) {
+  const { t } = useTranslation();
+  
   return (
     <View style={styles.container}>
       <BackButton tintColor={'#014DA2'} />
@@ -37,13 +38,13 @@ function FinalScreen({ route, navigation }: Props) {
       <View style={styles.navigationHeader} />
       <View style={styles.contentContainer}>
         <View style={[styles.intermediateScreenTextContainer]}>
-          <Text style={[styles.subtitle]}>{i18n.t('manaActivated')}</Text>
+          <Text style={[styles.subtitle]}>{t('manaActivated')}</Text>
           <View style={styles.nextButtonContainer}>
             <Button
               onPress={() => {
                 navigation.navigate('Home');
               }}>
-              {i18n.t('thankYou')}
+              {t('thankYou')}
             </Button>
           </View>
         </View>

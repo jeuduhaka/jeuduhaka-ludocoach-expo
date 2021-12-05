@@ -26,6 +26,7 @@ import { DrawerNavigationProp } from '@react-navigation/drawer';
 import { RouteProp } from '@react-navigation/native';
 import * as Sharing from 'expo-sharing';
 import { Asset } from 'expo-asset';
+import { useTranslation } from 'react-i18next';
 
 type GiftCardsScreenRouteProp = RouteProp<RootStackParamList, 'GiftCards'>;
 type GiftCardsScreenNavigationProp = DrawerNavigationProp<
@@ -38,13 +39,15 @@ type Props = {
   navigation: GiftCardsScreenNavigationProp;
 };
 
-// TODO fix type issue
-const cardGiftsEntries = Object.entries<number>(
-  cardImageSources.gifts[i18n.language.split('-')[0].toLowerCase()]
-);
+
 
 function SendGiftCardGalleryScreen({ navigation }: Props) {
+  const { t } = useTranslation();
   const [activeSlide, setActiveSlide] = useState(0);
+  // TODO fix type issue
+  const cardGiftsEntries = Object.entries<number>(
+    cardImageSources.gifts[i18n.language.split('-')[0].toLowerCase()]
+  );
 
   function _renderItem({
     item,
@@ -95,8 +98,8 @@ function SendGiftCardGalleryScreen({ navigation }: Props) {
           // url: Expo.Asset.fromModule(
           //   require('../assets/images/iphone-jeu-du-haka.png')
           // ).uri,
-          subject: `${i18n.t('giftCard')} ${i18n.t(currentGiftCardName)}`,
-          message: i18n.t('findManaWithGiftCard'),
+          subject: `${t('giftCard')} ${t(currentGiftCardName)}`,
+          message: t('findManaWithGiftCard'),
           url: `https://www.jeuduhaka.com/gift/${language}/${currentGiftCardName}`,
           excludedActivityTypes: [
             'com.apple.mobilenotes.SharingExtension',
@@ -111,9 +114,9 @@ function SendGiftCardGalleryScreen({ navigation }: Props) {
     } else if (Platform.OS === 'android') {
       Share.share(
         {
-          title: `${i18n.t('giftCard')} ${i18n.t(currentGiftCardName)}`,
+          title: `${t('giftCard')} ${t(currentGiftCardName)}`,
           message:
-            i18n.t('findManaWithGiftCard') +
+            t('findManaWithGiftCard') +
             `https://www.jeuduhaka.com/gift/${language}/${currentGiftCardName}`,
         },
         {}
@@ -149,7 +152,7 @@ function SendGiftCardGalleryScreen({ navigation }: Props) {
             flex: 1 / 3,
             // backgroundColor: 'orange'
           }}>
-          <Button onPress={sendCard}>{i18n.t('sendThisGiftCard')}</Button>
+          <Button onPress={sendCard}>{t('sendThisGiftCard')}</Button>
         </View>
       </ImageBackground>
     </View>

@@ -1,22 +1,18 @@
 import React from 'react';
 import {
   Text,
-  Image,
   StyleSheet,
-  Button,
   View,
   TextStyle,
   ImageBackground,
 } from 'react-native';
-import { FontAwesome } from '@expo/vector-icons';
 
 import MenuButton from '../components/MenuButton';
-import BackgroundWave from '../components/BackgroundWave';
-import i18n from '../i18n';
-import { useNavigation, RouteProp } from '@react-navigation/native';
+import { RouteProp } from '@react-navigation/native';
 import styles2 from './styles';
 import { RootStackParamList } from '../navigators/AppNavigator';
 import { DrawerNavigationProp } from '@react-navigation/drawer';
+import { useTranslation } from 'react-i18next';
 
 type GamesListScreenRouteProp = RouteProp<RootStackParamList, 'GamesList'>;
 type GamesListScreenNavigationProp = DrawerNavigationProp<
@@ -30,6 +26,7 @@ type Props = {
 };
 
 function GamesListScreen({ navigation }: Props) {
+  const { t } = useTranslation();
   return (
     <View style={{ flex: 1 }}>
       <ImageBackground
@@ -40,28 +37,34 @@ function GamesListScreen({ navigation }: Props) {
             navigation.openDrawer();
           }}
         />
-        <Text
+        <View
           style={[
-            styles.blackText,
-            { paddingBottom: 20, fontWeight: 'bold', fontSize: 20 },
+            styles2.contentContainer,
+            { justifyContent: 'center', alignItems: 'center' },
           ]}>
-          {i18n.t('gamesListTitle')}
-        </Text>
-        <Text>Le Jeu de l’Entraide</Text>
-        <Text>Le Jeu des Vies antérieures</Text>
-        <Text>Le Jeu des Sept Lois spirituelles</Text>
-        <Text>Horaklès le Jeu du Héros</Text>
-        <Text>Le Jeu de la Démanipulation</Text>
-        <Text>Le Jeu de l’Humour</Text>
-        <Text>Conversations avec Dieu, le Jeu</Text>
-        <Text>Je(u) Vote</Text>
-        <Text>Le Jeu des Accords toltèques</Text>
-        <Text>Le Jeu de la Paix intérieure</Text>
-        <Text>Réussite intérieure, le Jeu</Text>
-        <Text>Va au bout de tes rêves ! Le Jeu</Text>
-        <Text>Le Jeu du plus malin que le diable</Text>
-        <Text>Le Jeu du Ho’oponopono</Text>
-        <Text>etc...</Text>
+          <Text
+            style={[
+              styles.blackText,
+              { paddingBottom: 20, fontWeight: 'bold', fontSize: 20 },
+            ]}>
+            {t('gamesListTitle')}
+          </Text>
+          <Text>Le Jeu de l’Entraide</Text>
+          <Text>Le Jeu des Vies antérieures</Text>
+          <Text>Le Jeu des Sept Lois spirituelles</Text>
+          <Text>Horaklès le Jeu du Héros</Text>
+          <Text>Le Jeu de la Démanipulation</Text>
+          <Text>Le Jeu de l’Humour</Text>
+          <Text>Conversations avec Dieu, le Jeu</Text>
+          <Text>Je(u) Vote</Text>
+          <Text>Le Jeu des Accords toltèques</Text>
+          <Text>Le Jeu de la Paix intérieure</Text>
+          <Text>Réussite intérieure, le Jeu</Text>
+          <Text>Va au bout de tes rêves ! Le Jeu</Text>
+          <Text>Le Jeu du plus malin que le diable</Text>
+          <Text>Le Jeu du Ho’oponopono</Text>
+          <Text>etc...</Text>
+        </View>
       </ImageBackground>
     </View>
   );

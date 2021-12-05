@@ -42,6 +42,7 @@ export type RootStackParamList = {
   SendGreetingCardGallery: {};
   Authors: {};
   GamesList: {};
+  Thanks: {};
   SecondScreen1Move: {};
   SecondScreen3Moves: {};
   ChooseCardGrid: {

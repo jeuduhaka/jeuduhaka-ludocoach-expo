@@ -1,23 +1,20 @@
 import React from 'react';
 import {
   Text,
-  Image,
   StyleSheet,
   View,
   TextStyle,
   ImageBackground,
 } from 'react-native';
-import { FontAwesome } from '@expo/vector-icons';
 
 import MenuButton from '../components/MenuButton';
-import BackgroundWave from '../components/BackgroundWave';
-import i18n from '../i18n';
 import { Button } from '../components/common';
-import { useNavigation, RouteProp } from '@react-navigation/native';
+import { RouteProp } from '@react-navigation/native';
 
 import styles2 from './styles';
 import { RootStackParamList } from '../navigators/AppNavigator';
 import { DrawerNavigationProp } from '@react-navigation/drawer';
+import { useTranslation } from 'react-i18next';
 
 type GiftCardsScreenRouteProp = RouteProp<RootStackParamList, 'GiftCards'>;
 type GiftCardsScreenNavigationProp = DrawerNavigationProp<
@@ -31,6 +28,8 @@ type Props = {
 };
 
 function GiftCardsScreen({ navigation }: Props) {
+  const { t } = useTranslation();
+
   return (
     <View style={{ flex: 1 }}>
       <ImageBackground
@@ -64,7 +63,7 @@ function GiftCardsScreen({ navigation }: Props) {
                   backgroundColor: 'transparent',
                 },
               ]}>
-              {i18n.t('sendGiftCard')}
+              {t('sendGiftCard')}
             </Text>
           </View>
           <View style={{ flex: 7 / 10 }}>
@@ -75,7 +74,7 @@ function GiftCardsScreen({ navigation }: Props) {
                   styles.textWithPaddingTop,
                   { backgroundColor: 'transparent' },
                 ]}>
-                {i18n.t('sendGiftCardTextPart1')}
+                {t('sendGiftCardTextPart1')}
               </Text>
               <Text
                 style={[
@@ -83,14 +82,14 @@ function GiftCardsScreen({ navigation }: Props) {
                   styles.textWithPaddingTop,
                   { backgroundColor: 'transparent' },
                 ]}>
-                {i18n.t('sendGiftCardTextPart2')}
+                {t('sendGiftCardTextPart2')}
               </Text>
             </View>
             <View style={{ flex: 3 / 10 }}>
               <Button
                 // TODO add better screen transition
                 onPress={() => navigation.navigate('SendGiftCardGallery')}>
-                {i18n.t('chooseGiftCard')}
+                {t('chooseGiftCard')}
               </Button>
             </View>
           </View>

@@ -3,7 +3,6 @@ import { View, ImageBackground, Text, StyleSheet } from 'react-native';
 import _get from 'lodash.get';
 
 import Layout from '../constants/Layout';
-import i18n from '../i18n';
 
 import { Button } from '../components/common';
 import BackButton from '../components/BackButton';
@@ -15,6 +14,7 @@ import { RouteProp } from '@react-navigation/native';
 import { RootStackParamList } from '../navigators/AppNavigator';
 import { nextDeck } from '../actions';
 import { StackNavigationProp } from '@react-navigation/stack';
+import { useTranslation } from 'react-i18next';
 
 type ConfirmCardScreenRouteProp = RouteProp<RootStackParamList, 'ConfirmCard'>;
 type ConfirmCardScreenNavigationProp = StackNavigationProp<
@@ -29,6 +29,7 @@ type Props = {
 
 function ConfirmCardScreen({ route, navigation }: Props) {
   const { currentDeck, selectedCards } = route.params;
+  const { t } = useTranslation
 
   const {
     containerStyle,
@@ -52,7 +53,7 @@ function ConfirmCardScreen({ route, navigation }: Props) {
           style={imageStyle}
           source={_get(cardImageSources, imagePath)}>
           <View style={styles.textContainer}>
-            <Text style={styles.title}>{i18n.t(cardName)}</Text>
+            <Text style={styles.title}>{t(cardName)}</Text>
           </View>
         </ImageBackground>
       </View>
@@ -108,7 +109,7 @@ function ConfirmCardScreen({ route, navigation }: Props) {
             marginLeft: 5,
             marginRight: 5,
           }}>
-          {i18n.t('iChooseThisCard')}
+          {t('iChooseThisCard')}
         </Button>
         <Button
           onPress={() => {
@@ -133,7 +134,7 @@ function ConfirmCardScreen({ route, navigation }: Props) {
             marginLeft: 5,
             marginRight: 5,
           }}>
-          {i18n.t('chooseAnotherCard')}
+          {t('chooseAnotherCard')}
         </Button>
       </View>
     </View>

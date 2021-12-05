@@ -1,52 +1,71 @@
 import React from 'react';
-import { Text, Image, StyleSheet, Button, View } from 'react-native';
+import { Text, StyleSheet, View, ImageBackground} from 'react-native';
+import { RouteProp } from '@react-navigation/native';
+import { DrawerNavigationProp } from '@react-navigation/drawer';
+import { useTranslation } from 'react-i18next';
 
+import { RootStackParamList } from '../navigators/AppNavigator';
 import MenuButton from '../components/MenuButton';
-import BackgroundWave from '../components/BackgroundWave';
-import i18n from '../i18n';
-import { useNavigation } from '@react-navigation/native';
+import styles2 from './styles';
 
-class ThanksScreen extends React.Component {
-  static navigationOptions = ({
-    screenProps,
-  }: {
-    screenProps: {
-      language: string;
-    };
-  }) => ({
-    headerMode: 'float',
-    drawerLabel: i18n.t('acknowledgementsMenu', {
-      locale: screenProps.language,
-    }),
-  });
+type GiftCardsScreenRouteProp = RouteProp<RootStackParamList, 'Thanks'>;
+type GiftCardsScreenNavigationProp = DrawerNavigationProp<
+  RootStackParamList,
+  'Thanks'
+>;
 
-  render() {
-    const navigation = useNavigation();
+type Props = {
+  route: GiftCardsScreenRouteProp;
+  navigation: GiftCardsScreenNavigationProp;
+};
 
-    return (
-      <View style={{ flex: 1 }}>
-        <MenuButton
-          onPress={() => {
-            navigation.navigate('DrawerOpen');
-          }}
-        />
-        <BackgroundWave
-          style={{ justifyContent: 'center', alignItems: 'center' }}>
+function AcknowledgementsScreen({ navigation }: Props) {
+  const { t } = useTranslation();
+  // static navigationOptions = ({
+  //   screenProps,
+  // }: {
+  //   screenProps: {
+  //     language: string;
+  //   };
+  // }) => ({
+  //   headerMode: 'float',
+  //   drawerLabel: t('acknowledgementsMenu', {
+  //     locale: screenProps.language,
+  //   }),
+  // });
+
+  return (
+    <View style={{ flex: 1 }}>
+      <ImageBackground
+        style={styles2.backgroundImage}
+        source={require('../assets/images/fond-bleu-vague-1980x1980.jpg')}>
+        <View style={styles2.navigationHeader}>
+          <MenuButton
+            onPress={() => {
+              navigation.openDrawer();
+            }}
+          />
+        </View>
+        <View
+          style={[
+            styles2.contentContainer,
+            { justifyContent: 'center', alignItems: 'center' },
+          ]}>
           <Text
             style={[
               styles.text,
               { paddingBottom: 20, fontWeight: 'bold', fontSize: 20 },
             ]}>
-            {i18n.t('acknowledgementsText')}:
+            {t('acknowledgementsText')}:
           </Text>
           <Text style={styles.text}>
             La Délégation de la Polynésie Française
           </Text>
           <Text style={styles.text}>Teanuanua PARAURAHI</Text>
-        </BackgroundWave>
-      </View>
-    );
-  }
+        </View>
+      </ImageBackground>
+    </View>
+  );
 }
 
 const styles = StyleSheet.create({
@@ -56,4 +75,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default ThanksScreen;
+export default AcknowledgementsScreen;

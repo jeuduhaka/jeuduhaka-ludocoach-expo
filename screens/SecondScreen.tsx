@@ -1,12 +1,11 @@
 import React, { ReactNode } from 'react';
 import { Text, Image, Linking, View } from 'react-native';
 
-import i18n from '../i18n';
-
 import { Button } from '../components/common';
 import styles from './styles';
 import BackButton from '../components/BackButton';
 import HomeButton from '../components/HomeButton';
+import { useTranslation } from 'react-i18next';
 
 export default class SecondScreen extends React.Component<{
   textContent: ReactNode;
@@ -14,6 +13,7 @@ export default class SecondScreen extends React.Component<{
 }> {
   render() {
     const { textContent, buttonOnPress } = this.props;
+    const { t } = useTranslation();
 
     return (
       <View style={styles.container}>
@@ -28,7 +28,7 @@ export default class SecondScreen extends React.Component<{
           <View style={[styles.intermediateScreenTextContainer]}>
             <Text style={styles.subtitle}>{textContent}</Text>
             <View style={styles.nextButtonContainer}>
-              <Button onPress={buttonOnPress}>{i18n.t('play')}</Button>
+              <Button onPress={buttonOnPress}>{t('play')}</Button>
             </View>
           </View>
         </View>

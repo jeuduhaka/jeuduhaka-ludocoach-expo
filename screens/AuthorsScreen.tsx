@@ -3,7 +3,6 @@ import {
   Text,
   Image,
   StyleSheet,
-  Button,
   View,
   Dimensions,
   TextStyle,
@@ -11,12 +10,11 @@ import {
 } from 'react-native';
 
 import MenuButton from '../components/MenuButton';
-import BackgroundWave from '../components/BackgroundWave';
-import i18n from '../i18n';
-import { useNavigation, RouteProp } from '@react-navigation/native';
+import { RouteProp } from '@react-navigation/native';
 import { RootStackParamList } from '../navigators/AppNavigator';
 import { DrawerNavigationProp } from '@react-navigation/drawer';
 import styles2 from './styles';
+import { useTranslation } from 'react-i18next';
 
 const { width } = Dimensions.get('window');
 
@@ -33,6 +31,8 @@ type Props = {
 
 // TODO better layout
 function AuthorsScreen({ navigation }: Props) {
+  const { t } = useTranslation();
+
   return (
     <View style={{ flex: 1 }}>
       <ImageBackground
@@ -46,23 +46,23 @@ function AuthorsScreen({ navigation }: Props) {
           />
         </View>
         <Text style={[styles.blackText, styles.titleText]}>
-          {i18n.t('authorsTitle')}
+          {t('authorsTitle')}
         </Text>
 
         <View style={styles.authorsInfoContainer}>
           <View style={[styles.authorInfoContainer, { paddingTop: '5%' }]}>
             <Text style={styles.authorTitle}>Tehotu Tauraatua</Text>
-            <Text style={styles.authorDesc}>{i18n.t('tehotuDescription')}</Text>
+            <Text style={styles.authorDesc}>{t('tehotuDescription')}</Text>
           </View>
           <View style={[styles.authorInfoContainer, { paddingTop: '10%' }]}>
             <Text style={styles.authorTitle}>Hinenao Kimitete</Text>
             <Text style={styles.authorDesc}>
-              {i18n.t('hinenaoDescription')}
+              {t('hinenaoDescription')}
             </Text>
           </View>
           <View style={[styles.authorInfoContainer, { paddingTop: '10%' }]}>
             <Text style={styles.authorTitle}>Marc Kucharz</Text>
-            <Text style={styles.authorDesc}>{i18n.t('marcDescription')}</Text>
+            <Text style={styles.authorDesc}>{t('marcDescription')}</Text>
           </View>
         </View>
         <View style={styles.authorsImageContainer}>

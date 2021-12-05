@@ -9,7 +9,7 @@
       "web"
     ],
     "privacy": "unlisted",
-    "version": "1.1.0",
+    "version": "2.0.0",
     "orientation": "portrait",
     "primaryColor": "#cccccc",
     "icon": "./assets/icons/jeuduhaka-app-icon-512x512.png",
@@ -19,8 +19,8 @@
     },
     "packagerOpts": {},
     "ios": {
-      "bundleIdentifier": "com.marckucharz.jeuduhaka-ludocoach",
-      "buildNumber": "6",
+      "bundleIdentifier": "com.marckucharz.jeuduhakaludocoach",
+      "buildNumber": "7",
       "icon": "./assets/icons/jeuduhaka-app-icon-1024x1024-no-transparency.png",
       "supportsTablet": false
     },

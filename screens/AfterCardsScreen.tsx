@@ -5,14 +5,13 @@ import { StackNavigationProp } from '@react-navigation/stack';
 
 import { RootStackParamList } from '../navigators/AppNavigator';
 
-import i18n from '../i18n';
-
 import { Button } from '../components/common';
 import BackButton from '../components/BackButton';
 import HomeButton from '../components/HomeButton';
 
 import * as ActionTypes from '../actions/types';
 import styles from './styles';
+import { useTranslation } from 'react-i18next';
 
 type AfterCardsScreenRouteProp = RouteProp<RootStackParamList, 'AfterCards'>;
 type AfterCardsScreenNavigationProp = StackNavigationProp<
@@ -26,6 +25,7 @@ type Props = {
 };
 
 function AfterCardsScreen({ route, navigation }: Props) {
+  const { t } = useTranslation();
   const {
     gameMode,
     currentDeck,
@@ -42,11 +42,11 @@ function AfterCardsScreen({ route, navigation }: Props) {
     if (gameMode === ActionTypes.GAME_MODE_3_MOVES) {
       const renderTmp = [
         <Text key={selectedRedCard} style={{ color: '#B8282E' }}>
-          {i18n.t(selectedRedCard)}
+          {t(selectedRedCard)}
         </Text>,
         ', ',
         <Text key={selectedOrangeCard} style={{ color: '#F7941C' }}>
-          {i18n.t(selectedOrangeCard)}
+          {t(selectedOrangeCard)}
         </Text>,
         ', ',
       ];
@@ -56,7 +56,7 @@ function AfterCardsScreen({ route, navigation }: Props) {
 
     render.push(
       <Text key={selectedGreenCard} style={{ color: '#39B549' }}>
-        {i18n.t(selectedGreenCard)}
+        {t(selectedGreenCard)}
       </Text>
     );
 
@@ -75,8 +75,8 @@ function AfterCardsScreen({ route, navigation }: Props) {
       <View style={styles.contentContainer}>
         <View style={[styles.intermediateScreenTextContainer]}>
           <Text style={[styles.subtitle]}>
-            {i18n.t('youHaveChosen')} {renderChosenCardsText()}
-            {i18n.t('placeYourself')}
+            {t('youHaveChosen')} {renderChosenCardsText()}
+            {t('placeYourself')}
           </Text>
           <View style={styles.nextButtonContainer}>
             <Button
@@ -87,7 +87,7 @@ function AfterCardsScreen({ route, navigation }: Props) {
                 }
                 navigation.push('Video');
               }}>
-              {i18n.t('letsGo')}
+              {t('letsGo')}
             </Button>
           </View>
         </View>

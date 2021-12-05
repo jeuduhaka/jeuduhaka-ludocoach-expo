@@ -8,7 +8,7 @@ import {
   Dimensions,
   ImageBackground,
 } from 'react-native';
-import Carousel, { Pagination } from 'react-native-snap-carousel';
+import Carousel from 'react-native-snap-carousel';
 
 import { Button } from '../components/common';
 import MenuButton from '../components/MenuButton';
@@ -24,6 +24,7 @@ import { RootStackParamList } from '../navigators/AppNavigator';
 import { DrawerNavigationProp } from '@react-navigation/drawer';
 
 import styles2 from './styles';
+import { useTranslation } from 'react-i18next';
 
 const { width } = Dimensions.get('window');
 
@@ -51,6 +52,7 @@ type Props = {
 
 function SendGreetingCardGalleryScreen({ navigation }: Props) {
   const [activeSlide, setActiveSlide] = useState(0);
+  const { t } = useTranslation();
 
   let language = i18n.language.split('-')[0].toLowerCase();
 
@@ -86,13 +88,13 @@ function SendGreetingCardGalleryScreen({ navigation }: Props) {
             // url: Expo.Asset.fromModule(
             //   require('../assets/images/iphone-jeu-du-haka.png')
             // ).uri,
-            subject: `${i18n.t('greetingHappyNewYear')} ${i18n.t(
+            subject: `${t('greetingHappyNewYear')} ${t(
               'greetingLetsPlay'
             )}`,
-            message: `${i18n.t('greetingHappyNewYear')} ${i18n.t(
+            message: `${t('greetingHappyNewYear')} ${t(
               'findManaWithGiftCard'
             )}`,
-            url: `https://www.jeuduhaka.com/gift/newyear/${language}/${currentGiftCardName}`,
+            url: `https://jeuduhaka.netlify.app/${language}/giftnewyear/${currentGiftCardName}`,
             excludedActivityTypes: [
               'com.apple.mobilenotes.SharingExtension',
               'com.google.Drive.ShareExtension',
@@ -107,14 +109,14 @@ function SendGreetingCardGalleryScreen({ navigation }: Props) {
     } else if (Platform.OS === 'android') {
       Share.share(
         {
-          title: `${i18n.t('greetingHappyNewYear')} ${i18n.t(
+          title: `${t('greetingHappyNewYear')} ${t(
             'greetingLetsPlay'
           )}`,
           message:
-            `${i18n.t('greetingHappyNewYear')} ${i18n.t(
+            `${t('greetingHappyNewYear')} ${t(
               'findManaWithGiftCard'
             )} ` +
-            `https://www.jeuduhaka.com/gift/newyear/${language}/${currentGiftCardName}`,
+            `https://jeuduhaka.netlify.app/${language}/giftnewyear/${currentGiftCardName}`,
         },
         {}
       );
@@ -141,7 +143,7 @@ function SendGreetingCardGalleryScreen({ navigation }: Props) {
               paddingTop: 10,
               paddingHorizontal: 10,
             }}>
-            {i18n.t('greetingText')}
+            {t('greetingText')}
           </Text>
         </View>
         <View style={carouselStyles.exampleContainer}>
@@ -167,7 +169,7 @@ function SendGreetingCardGalleryScreen({ navigation }: Props) {
             flex: 1 / 3,
             // backgroundColor: 'orange',
           }}>
-          <Button onPress={sendCard}>{i18n.t('sendThisGreetingCard')}</Button>
+          <Button onPress={sendCard}>{t('sendThisGreetingCard')}</Button>
         </View>
       </ImageBackground>
     </View>

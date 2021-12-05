@@ -3,8 +3,6 @@ import { View, StyleSheet } from 'react-native';
 import { RouteProp } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
 
-import i18n from '../i18n';
-
 import DecksContainer from '../components/DecksContainer';
 import Card from '../components/Card';
 import ChooseCardText from '../components/ChooseCardText';
@@ -14,7 +12,8 @@ import HomeButton from '../components/HomeButton';
 import cardImageSources from '../stores/CardImageSources';
 import * as ActionTypes from '../actions/types';
 import { RootStackParamList } from '../navigators/AppNavigator';
-import { CardName, AssetsSources } from '../types';
+import { CardName } from '../types';
+import { useTranslation } from 'react-i18next';
 
 type ChooseCardGridScreenRouteProp = RouteProp<
   RootStackParamList,
@@ -33,6 +32,7 @@ type Props = {
 
 function ChooseCardGridScreen({ route, navigation }: Props) {
   const { currentDeck, gameMode } = route.params;
+  const { t } = useTranslation();
 
   const displayCardRows = () => {
     // TODO specify any
@@ -66,7 +66,7 @@ function ChooseCardGridScreen({ route, navigation }: Props) {
       return (
         <Card
           key={cardName}
-          name={i18n.t(cardName)}
+          name={t(cardName)}
           imageSource={imageSource}
           onPress={() => {
             if (gameMode === ActionTypes.GAME_MODE_1_MOVE) {

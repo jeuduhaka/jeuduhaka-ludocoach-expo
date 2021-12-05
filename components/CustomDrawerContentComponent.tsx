@@ -10,9 +10,7 @@ import {
   Share,
   TouchableOpacity
 } from 'react-native';
-
 import Constants from 'expo-constants';
-
 import {
   Entypo,
   FontAwesome,
@@ -20,6 +18,7 @@ import {
   MaterialIcons,
 } from '@expo/vector-icons';
 import { DrawerContentScrollView } from '@react-navigation/drawer';
+import { useNavigation } from '@react-navigation/core';
 
 import i18n from '../i18n';
 
@@ -80,8 +79,9 @@ const shareSuccessCallback = (success: boolean, method: string) => {
 };
 
 // TODO specify any
-const CustomDrawerContentComponent = (props: any) => {
-  const { navigation, activeItemKey } = props;
+const CustomDrawerContentComponent = () => {
+  const navigation = useNavigation();
+  const language = i18n.language.split('-')[0].toLowerCase();
 
   return (
     <ImageBackground
@@ -134,31 +134,34 @@ const CustomDrawerContentComponent = (props: any) => {
               <Text style={[styles.label]}>{i18n.t('adviceMenuTitle')}</Text>
             </View>
           </TouchableOpacity>
-          <TouchableOpacity
-            onPress={() => navigation.navigate('GiftCards')}
-            delayPressIn={0}>
-            <View style={[styles.item]}>
-              <View style={[styles.icon, styles.inactiveIcon]}>
-                <FontAwesome name={'gift'} size={18} />
+          {language !== 'zh' ? (
+            <TouchableOpacity
+              onPress={() => navigation.navigate('GiftCards')}
+              delayPressIn={0}>
+              <View style={[styles.item]}>
+                <View style={[styles.icon, styles.inactiveIcon]}>
+                  <FontAwesome name={'gift'} size={18} />
+                </View>
+                <Text style={[styles.label]}>{i18n.t('sendGiftCardLabel')}</Text>
               </View>
-              <Text style={[styles.label]}>{i18n.t('sendGiftCardLabel')}</Text>
-            </View>
-          </TouchableOpacity>
-          <TouchableOpacity
-            onPress={() => navigation.navigate('SendGreetingCard')}
-            delayPressIn={0}>
-            <View style={[styles.item]}>
-              <View style={[styles.icon, styles.inactiveIcon]}>
-                <Entypo name={'newsletter'} size={18} />
+            </TouchableOpacity>
+          ) : null}
+          {language !== 'zh' ? (
+            <TouchableOpacity
+              onPress={() => navigation.navigate('SendGreetingCard')}
+              delayPressIn={0}>
+              <View style={[styles.item]}>
+                <View style={[styles.icon, styles.inactiveIcon]}>
+                  <Entypo name={'newsletter'} size={18} />
+                </View>
+                <Text style={[styles.label]}>
+                  {i18n.t('sendGreetingCardLabel')}
+                </Text>
               </View>
-              <Text style={[styles.label]}>
-                {i18n.t('sendGreetingCardLabel')}
-              </Text>
-            </View>
-          </TouchableOpacity>
-          <TouchableOpacity
+            </TouchableOpacity>
+          ) : null}
+          {/* <TouchableOpacity
             onPress={() => {
-              const language = i18n.language.split('-')[0].toLowerCase();
               if (Platform.OS === 'ios') {
                 // TODO use Share.share
                 import('react-native').then(({ ActionSheetIOS }) => {
@@ -197,11 +200,11 @@ const CustomDrawerContentComponent = (props: any) => {
               </View>
               <Text style={[styles.label]}>{i18n.t('shareAppLabel')}</Text>
             </View>
-          </TouchableOpacity>
+          </TouchableOpacity> */}
           <TouchableOpacity
             onPress={() =>
               Linking.openURL(
-                'mailto:contact@jeuduhaka.com?subject=Jeu du Haka Ludocoach app'
+                'mailto:contact@marckucharz.com?subject=[Jeu du Haka] Ludocoach app'
               )
             }
             delayPressIn={0}>
