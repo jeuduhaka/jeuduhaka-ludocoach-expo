@@ -21,6 +21,7 @@ import { DrawerContentScrollView } from '@react-navigation/drawer';
 import { useNavigation } from '@react-navigation/core';
 
 import i18n from '../i18n';
+import { useTranslation } from 'react-i18next';
 
 const styles = StyleSheet.create({
   item: {
@@ -81,6 +82,7 @@ const shareSuccessCallback = (success: boolean, method: string) => {
 // TODO specify any
 const CustomDrawerContentComponent = () => {
   const navigation = useNavigation();
+  const { t } = useTranslation();
   const language = i18n.language.split('-')[0].toLowerCase();
 
   return (
@@ -111,7 +113,7 @@ const CustomDrawerContentComponent = () => {
               <View style={[styles.icon, styles.inactiveIcon]}>
                 <MaterialIcons name={'home'} size={18} />
               </View>
-              <Text style={[styles.label]}>{i18n.t('backToGame')}</Text>
+              <Text style={[styles.label]}>{t('backToGame')}</Text>
             </View>
           </TouchableOpacity>
           <TouchableOpacity
@@ -121,7 +123,7 @@ const CustomDrawerContentComponent = () => {
               <View style={[styles.icon, styles.inactiveIcon]}>
                 <Foundation name={'target'} size={18} />
               </View>
-              <Text style={[styles.label]}>{i18n.t('gameGoalTitle')}</Text>
+              <Text style={[styles.label]}>{t('gameGoalTitle')}</Text>
             </View>
           </TouchableOpacity>
           <TouchableOpacity
@@ -131,7 +133,7 @@ const CustomDrawerContentComponent = () => {
               <View style={[styles.icon, styles.inactiveIcon]}>
                 <FontAwesome name={'info-circle'} size={18} />
               </View>
-              <Text style={[styles.label]}>{i18n.t('adviceMenuTitle')}</Text>
+              <Text style={[styles.label]}>{t('adviceMenuTitle')}</Text>
             </View>
           </TouchableOpacity>
           {language !== 'zh' ? (
@@ -142,7 +144,7 @@ const CustomDrawerContentComponent = () => {
                 <View style={[styles.icon, styles.inactiveIcon]}>
                   <FontAwesome name={'gift'} size={18} />
                 </View>
-                <Text style={[styles.label]}>{i18n.t('sendGiftCardLabel')}</Text>
+                <Text style={[styles.label]}>{t('sendGiftCardLabel')}</Text>
               </View>
             </TouchableOpacity>
           ) : null}
@@ -155,7 +157,7 @@ const CustomDrawerContentComponent = () => {
                   <Entypo name={'newsletter'} size={18} />
                 </View>
                 <Text style={[styles.label]}>
-                  {i18n.t('sendGreetingCardLabel')}
+                  {t('sendGreetingCardLabel')}
                 </Text>
               </View>
             </TouchableOpacity>
@@ -167,8 +169,8 @@ const CustomDrawerContentComponent = () => {
                 import('react-native').then(({ ActionSheetIOS }) => {
                   ActionSheetIOS.showShareActionSheetWithOptions(
                     {
-                      subject: i18n.t('shareSubject'),
-                      message: i18n.t('shareMessage'),
+                      subject: t('shareSubject'),
+                      message: t('shareMessage'),
                       url: `https://www.jeuduhaka.com/application/${language}`,
                       excludedActivityTypes: [
                         'com.apple.mobilenotes.SharingExtension',
@@ -184,8 +186,8 @@ const CustomDrawerContentComponent = () => {
               } else if (Platform.OS === 'android') {
                 Share.share(
                   {
-                    title: i18n.t('shareSubject'),
-                    message: `${i18n.t(
+                    title: t('shareSubject'),
+                    message: `${t(
                       'shareMessage'
                     )} https://www.jeuduhaka.com/application/${language}`,
                   },
@@ -198,7 +200,7 @@ const CustomDrawerContentComponent = () => {
               <View style={[styles.icon, styles.inactiveIcon]}>
                 <FontAwesome name={'share-alt'} size={18} />
               </View>
-              <Text style={[styles.label]}>{i18n.t('shareAppLabel')}</Text>
+              <Text style={[styles.label]}>{t('shareAppLabel')}</Text>
             </View>
           </TouchableOpacity> */}
           <TouchableOpacity
@@ -212,7 +214,7 @@ const CustomDrawerContentComponent = () => {
               <View style={[styles.icon, styles.inactiveIcon]}>
                 <FontAwesome name={'envelope'} size={18} />
               </View>
-              <Text style={[styles.label]}>{i18n.t('contactUs')}</Text>
+              <Text style={[styles.label]}>{t('contactUs')}</Text>
             </View>
           </TouchableOpacity>
           <Separator />
@@ -220,22 +222,22 @@ const CustomDrawerContentComponent = () => {
             onPress={() => navigation.navigate('Authors')}
             delayPressIn={0}>
             <View style={[styles.item]}>
-              <Text style={[styles.label]}>{i18n.t('authorsTitle')}</Text>
+              <Text style={[styles.label]}>{t('authorsTitle')}</Text>
             </View>
           </TouchableOpacity>
           <TouchableOpacity
             onPress={() => navigation.navigate('GamesList')}
             delayPressIn={0}>
             <View style={[styles.item]}>
-              <Text style={[styles.label]}>{i18n.t('gamesListTitle')}</Text>
+              <Text style={[styles.label]}>{t('gamesListTitle')}</Text>
             </View>
           </TouchableOpacity>
           <TouchableOpacity
-            onPress={() => navigation.navigate('Thanks')}
+            onPress={() => navigation.navigate('Acknowledgements')}
             delayPressIn={0}>
             <View style={[styles.item]}>
               <Text style={[styles.label]}>
-                {i18n.t('acknowledgementsMenu')}
+                {t('acknowledgementsMenu')}
               </Text>
             </View>
           </TouchableOpacity>
@@ -249,7 +251,7 @@ const CustomDrawerContentComponent = () => {
               <View style={[styles.icon, styles.inactiveIcon]}>
                 <Entypo name={'facebook'} size={18} />
               </View>
-              <Text style={[styles.label]}>{i18n.t('onFacebook')}</Text>
+              <Text style={[styles.label]}>{t('onFacebook')}</Text>
             </View>
           </TouchableOpacity>
           <TouchableOpacity
@@ -290,7 +292,7 @@ const CustomDrawerContentComponent = () => {
                   'mailto:roques.florent@gmail.com?subject=[Jeu du Haka] Ludocoach app'
                 )
               }>
-              {i18n.t('developedBy')} Florent Roques{' '}
+              {t('developedBy')} Florent Roques{' '}
               {`
                 `}{' '}
               Version {Constants.manifest.version}
