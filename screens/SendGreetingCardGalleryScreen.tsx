@@ -60,9 +60,7 @@ function SendGreetingCardGalleryScreen({ navigation }: Props) {
     language = 'en';
   }
 
-  const [cardGiftsEntries] = useState(
-    Object.entries(cardImageSources.gifts[language])
-  );
+  const cardGiftsEntries = Object.entries(cardImageSources.gifts[language]);
 
   function _renderItem({ item, index }) {
     const [key, value] = item;
