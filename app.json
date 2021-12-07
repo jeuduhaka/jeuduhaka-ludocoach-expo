@@ -20,13 +20,13 @@
     "packagerOpts": {},
     "ios": {
       "bundleIdentifier": "com.marckucharz.jeuduhakaludocoach",
-      "buildNumber": "7",
+      "buildNumber": "6",
       "icon": "./assets/icons/jeuduhaka-app-icon-1024x1024-no-transparency.png",
       "supportsTablet": false
     },
     "android": {
       "package": "com.marckucharz.jeuduhakaludocoach",
-      "versionCode": 6,
+      "versionCode": 7,
       "icon": "./assets/icons/jeuduhaka-app-icon-512x512.png",
       "permissions": []
     },
