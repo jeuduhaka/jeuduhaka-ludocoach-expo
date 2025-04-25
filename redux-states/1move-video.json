@@ -1,3 +1,0 @@
-{
-	"payload": "[{\"type\":\"GAME_MODE_CHOSEN\",\"gameMode\":\"GAME_MODE_1_MOVE\"},{\"type\":\"CARD_PRESSED\",\"cardName\":\"strength\",\"gameMode\":\"GAME_MODE_1_MOVE\"}]"
-}
