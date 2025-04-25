@@ -76,7 +76,8 @@ type Props = {
 
 function VideoScreen({ route, navigation }: Props) {
   const { gameMode, currentDeck, selectedCards } = route.params;
-  const videoSource = videoSources[currentDeck][selectedCards[currentDeck]];
+  const cardName = selectedCards[currentDeck];
+  const videoSource = cardName ? videoSources[currentDeck][cardName] : undefined;
 
   return (
     <View style={styles.videoContainer}>
@@ -107,7 +108,7 @@ function VideoScreen({ route, navigation }: Props) {
           }
 
           if (gameMode === GAME_MODE_1_MOVE) {
-            navigation.navigate('Home');
+            navigation.navigate({ key: 'Home' });
             return;
           }
 
@@ -117,7 +118,7 @@ function VideoScreen({ route, navigation }: Props) {
               currentDeck: nextDeck(currentDeck),
             });
           } else {
-            navigation.push('Final');
+            navigation.push('Final', route.params);
           }
         }}
       />
